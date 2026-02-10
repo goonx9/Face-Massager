@@ -37,7 +37,7 @@ import emailjs from '@emailjs/browser';
 // ==========================================================
 const SELLER_CONFIG = {
   EMAILJS_SERVICE_ID: "service_gxhivxk", 
-  EMAILJS_TEMPLATE_ID: "template_uvnytaa", 
+  EMAILJS_TEMPLATE_ID: "template_239s5yz", 
   EMAILJS_PUBLIC_KEY: "_h1UzYlyePtWt0IqM", 
   WHATSAPP_NUMBER: "2348039940408", 
   // Updated with your specific Paystack checkout link
