@@ -40,7 +40,6 @@ const SELLER_CONFIG = {
   EMAILJS_TEMPLATE_ID: "template_239s5yz", 
   EMAILJS_PUBLIC_KEY: "_h1UzYlyePtWt0IqM", 
   WHATSAPP_NUMBER: "2348039940408", 
-  // Updated with your specific Paystack checkout link
   PAYSTACK_LINK: "https://paystack.com/buy/face-massager-plolxq", 
 };
 // ==========================================================
@@ -48,13 +47,13 @@ const SELLER_CONFIG = {
 type View = 'home' | 'product';
 
 const COLORS = {
-  primary: '#FF2E93',    // Electric Pink
-  text: '#B3005E',       // Rich Magenta
-  body: '#9E1A5F',       // Deep Rose
-  background: '#FFF0F5', // Soft Pink
-  complement: '#E8F6F3', // Soft Mint Mist
+  primary: '#FF1493',    // Vibrant Hot Pink
+  text: '#880E4F',       // Deepest Pink/Magenta
+  body: '#AD1457',       // Rich Rose Pink
+  background: '#FFF0F6', // Lush Pink Mist
+  complement: '#E0F2F1', // Soft Mint (Complementary to Pink)
   white: '#FFFFFF',
-  warning: '#FF8C00'     // Elegant Amber
+  warning: '#FF8C00'     
 };
 
 const ASSETS = {
@@ -73,7 +72,7 @@ const Button = ({ children, className = '', onClick = () => {}, variant = 'prima
   const base = "px-10 py-4 rounded-full font-black transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-2 uppercase tracking-widest text-xs disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed";
   
   const styles: Record<string, React.CSSProperties> = {
-    primary: { backgroundColor: COLORS.primary, color: COLORS.white },
+    primary: { backgroundColor: COLORS.primary, color: COLORS.white, boxShadow: `0 10px 20px -5px ${COLORS.primary}44` },
     secondary: { backgroundColor: COLORS.white, color: COLORS.primary, border: `2px solid ${COLORS.primary}` },
     outline: { backgroundColor: 'transparent', color: COLORS.text, border: `1px solid ${COLORS.text}` },
   };
@@ -165,11 +164,12 @@ const LEDModes = () => {
 
 // --- Main Views ---
 
-const HomePage = ({ onProductClick }: { onProductClick: () => void }) => {
+// Changed to 'any' to allow 'key' prop from AnimatePresence
+const HomePage = ({ onProductClick }: any) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <Section className="relative min-h-[90vh] flex items-center pt-24 overflow-hidden" style={{ backgroundColor: COLORS.complement }}>
-        <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[120%] bg-pink-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[120%] bg-pink-100/20 rounded-full blur-3xl pointer-events-none" />
         
         <div className="grid lg:grid-cols-2 gap-16 items-center z-10 relative">
           <motion.div 
@@ -178,29 +178,29 @@ const HomePage = ({ onProductClick }: { onProductClick: () => void }) => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="order-2 lg:order-1"
           >
-            <Badge className="mb-8">Luxury Aesthetics</Badge>
+            <Badge className="mb-8">Premium Skincare Tool</Badge>
             <h1 className="text-6xl md:text-8xl font-serif font-black leading-[1.05] mb-8" style={{ color: COLORS.text }}>
-              The Science of <br/><span style={{ color: COLORS.primary }} className="italic">Glamour</span>
+              The Glow of <br/><span style={{ color: COLORS.primary }} className="italic">Elegance</span>
             </h1>
-            <p className="text-xl mb-12 max-w-lg font-medium leading-relaxed" style={{ color: COLORS.body }}>
-              Glamour & Grace is Nigeria's premier destination for advanced skincare technology. We bridge the gap between medical luxury and home convenience.
+            <p className="text-xl mb-12 max-w-lg font-semibold leading-relaxed" style={{ color: COLORS.body }}>
+              Experience Nigeria's most coveted anti-aging technology. We bring the luxury of a professional spa directly to your beauty ritual.
             </p>
             <div className="flex flex-wrap gap-6">
-              <Button onClick={onProductClick}>Browse Collections</Button>
-              <button onClick={onProductClick} className="flex items-center gap-3 font-black text-[10px] uppercase tracking-[0.3em] transition-all group" style={{ color: COLORS.primary }}>
-                DISCOVER OUR MISSION <div className="w-10 h-10 rounded-full border border-pink-200 flex items-center justify-center group-hover:bg-white transition-all"><ArrowRight size={18}/></div>
+              <Button onClick={onProductClick}>Shop Collection</Button>
+              <button onClick={onProductClick} className="flex items-center gap-3 font-black text-[10px] uppercase tracking-[0.3em] transition-all group" style={{ color: COLORS.text }}>
+                VIEW THE TECH <div className="w-10 h-10 rounded-full border border-pink-300 flex items-center justify-center group-hover:bg-white transition-all"><ArrowRight size={18}/></div>
               </button>
             </div>
             
             <div className="mt-16 flex items-center gap-6">
                <div className="flex -space-x-3">
-                 {[5,6,7,8].map(i => (
+                 {[12,13,14,15].map(i => (
                    <div key={i} className="w-10 h-10 rounded-full border-4 border-white bg-pink-200 overflow-hidden shadow-sm">
-                     <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
+                     <img src={`https://i.pravatar.cc/100?img=${i}`} alt="User" />
                    </div>
                  ))}
                </div>
-               <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: COLORS.primary }}>Empowering Nigerian Beauty</p>
+               <p className="text-[10px] font-black uppercase tracking-widest" style={{ color: COLORS.body }}>Trusted by 15k+ Nigerian Women</p>
             </div>
           </motion.div>
 
@@ -211,68 +211,70 @@ const HomePage = ({ onProductClick }: { onProductClick: () => void }) => {
             className="order-1 lg:order-2 relative"
           >
             <div className="rounded-[4rem] overflow-hidden shadow-2xl border-[12px] border-white relative z-20">
-              <img src={ASSETS.womanUsing} alt="Brand Identity" className="w-full h-full object-cover" />
+              <img src={ASSETS.womanUsing} alt="Woman using skin care tool" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-pink-900/20 to-transparent" />
             </div>
+            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-pink-500/20 rounded-full blur-3xl z-10" />
           </motion.div>
         </div>
       </Section>
 
-      <Section className="bg-white">
+      <Section style={{ backgroundColor: COLORS.white }}>
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div>
-            <Badge>New Arrivals</Badge>
-            <h2 className="text-4xl md:text-6xl font-serif font-black mt-6" style={{ color: COLORS.text }}>Elite Skin Tech</h2>
+            <Badge>Curated Excellence</Badge>
+            <h2 className="text-4xl md:text-6xl font-serif font-black mt-6" style={{ color: COLORS.text }}>Shop Elite Devices</h2>
           </div>
-          <button className="font-black text-[10px] uppercase tracking-[0.4em]" style={{ color: COLORS.primary }}>View All Products</button>
+          <button className="font-black text-[10px] uppercase tracking-[0.4em]" style={{ color: COLORS.primary }}>Explore All</button>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
            <motion.div whileHover={{ y: -10 }} className="group cursor-pointer" onClick={onProductClick}>
-              <div className="rounded-[4rem] overflow-hidden bg-pink-50 p-12 mb-8 relative">
+              <div className="rounded-[4rem] overflow-hidden bg-pink-50/50 p-12 mb-8 relative">
                  <img src={ASSETS.productMain} className="w-full h-auto object-contain transform group-hover:scale-110 transition-transform duration-700" />
-                 <div className="absolute top-8 right-8 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full font-black text-[10px] text-pink-600">BEST SELLER</div>
+                 <div className="absolute top-8 right-8 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full font-black text-[10px] text-pink-600 shadow-sm">MOST LOVED</div>
               </div>
               <h3 className="text-2xl font-black mb-2" style={{ color: COLORS.text }}>V-Lift Pro™ Ultimate</h3>
-              <p className="text-sm font-medium mb-6" style={{ color: COLORS.body }}>Sonic Sculpting & Phototherapy System</p>
+              <p className="text-sm font-bold mb-6" style={{ color: COLORS.body }}>Jawline Sculpting & Phototherapy</p>
               <span className="text-2xl font-black" style={{ color: COLORS.primary }}>₦31,200</span>
            </motion.div>
 
            <div className="group opacity-40 grayscale cursor-not-allowed">
-              <div className="rounded-[4rem] overflow-hidden bg-pink-50 p-12 mb-8 relative flex items-center justify-center min-h-[400px]">
+              <div className="rounded-[4rem] overflow-hidden bg-pink-50/50 p-12 mb-8 relative flex items-center justify-center min-h-[400px]">
                  <Target className="w-20 h-20 text-pink-200" />
                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="bg-white px-6 py-3 rounded-full font-black text-xs">COMING SOON</span>
+                    <span className="bg-white px-6 py-3 rounded-full font-black text-xs shadow-md">RESERVING SOON</span>
                  </div>
               </div>
               <h3 className="text-2xl font-black mb-2" style={{ color: COLORS.text }}>Glow-Infusion Wand</h3>
-              <p className="text-sm font-medium mb-6" style={{ color: COLORS.body }}>Deep Hydration & Serum Delivery</p>
+              <p className="text-sm font-bold mb-6" style={{ color: COLORS.body }}>Deep Hydration Delivery</p>
               <span className="text-2xl font-black">₦--,--</span>
            </div>
 
            <div className="group opacity-40 grayscale cursor-not-allowed">
-              <div className="rounded-[4rem] overflow-hidden bg-pink-50 p-12 mb-8 relative flex items-center justify-center min-h-[400px]">
+              <div className="rounded-[4rem] overflow-hidden bg-pink-50/50 p-12 mb-8 relative flex items-center justify-center min-h-[400px]">
                  <Sparkles className="w-20 h-20 text-pink-200" />
                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="bg-white px-6 py-3 rounded-full font-black text-xs">COMING SOON</span>
+                    <span className="bg-white px-6 py-3 rounded-full font-black text-xs shadow-md">IN TESTING</span>
                  </div>
               </div>
               <h3 className="text-2xl font-black mb-2" style={{ color: COLORS.text }}>Eye-Revive Pro</h3>
-              <p className="text-sm font-medium mb-6" style={{ color: COLORS.body }}>Anti-Fatigue Thermal Therapy</p>
+              <p className="text-sm font-bold mb-6" style={{ color: COLORS.body }}>Anti-Fatigue Therapy</p>
               <span className="text-2xl font-black">₦--,--</span>
            </div>
         </div>
       </Section>
 
-      <Section className="bg-[#FFF9FB]">
+      <Section style={{ backgroundColor: COLORS.background }}>
         <div className="grid md:grid-cols-3 gap-12 text-center">
            {[
-             { title: "7-Day Trial", desc: "Love your results or your money back. No questions asked." },
-             { title: "Free Coaching", desc: "Expert skin guidance included with every high-tech purchase." },
-             { title: "Naija Trusted", desc: "Over 15,000 satisfied customers across the federation." }
+             { title: "Risk-Free Trial", desc: "Visible results or your full investment back. We stand by our tech." },
+             { title: "Expert Care", desc: "Direct access to our beauty specialists with every device purchase." },
+             { title: "Lagos & Beyond", desc: "Premium delivery logistics serving the entire Nigerian federation." }
            ].map((item, i) => (
              <div key={i}>
                 <h4 className="text-3xl font-serif font-black mb-4" style={{ color: COLORS.text }}>{item.title}</h4>
-                <p className="text-sm font-medium leading-relaxed px-8" style={{ color: COLORS.body }}>{item.desc}</p>
+                <p className="text-sm font-bold leading-relaxed px-8" style={{ color: COLORS.body }}>{item.desc}</p>
              </div>
            ))}
         </div>
@@ -281,7 +283,8 @@ const HomePage = ({ onProductClick }: { onProductClick: () => void }) => {
   );
 };
 
-const ProductPage = () => {
+// Added 'any' to props to allow for 'key' prop from AnimatePresence
+const ProductPage = (_props?: any) => {
   const [activeImg, setActiveImg] = useState(ASSETS.productMain);
   const [quantity, setQuantity] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -325,14 +328,14 @@ const ProductPage = () => {
     };
 
     try {
-      if (SELLER_CONFIG.EMAILJS_PUBLIC_KEY !== "_h1UzYlyePtWt0IqM") {
-        await emailjs.send(
-          SELLER_CONFIG.EMAILJS_SERVICE_ID,
-          SELLER_CONFIG.EMAILJS_TEMPLATE_ID,
-          orderDetails,
-          SELLER_CONFIG.EMAILJS_PUBLIC_KEY
-        );
-      }
+      // Logic fix: Removed the conditional check that was blocking legitimate submissions
+      await emailjs.send(
+        SELLER_CONFIG.EMAILJS_SERVICE_ID,
+        SELLER_CONFIG.EMAILJS_TEMPLATE_ID,
+        orderDetails,
+        SELLER_CONFIG.EMAILJS_PUBLIC_KEY
+      );
+      console.log("Email notification sent successfully.");
     } catch (err) {
       console.error("Email notification failed:", err);
     }
@@ -364,31 +367,31 @@ const ProductPage = () => {
         {orderSuccess && (
           <motion.div 
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-pink-900/80 backdrop-blur-md z-[100] flex items-center justify-center p-6"
+            className="fixed inset-0 bg-pink-900/90 backdrop-blur-xl z-[100] flex items-center justify-center p-6"
           >
             <motion.div 
               initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }}
-              className="bg-white rounded-[4rem] p-12 max-w-lg w-full text-center shadow-2xl"
+              className="bg-white rounded-[4rem] p-12 max-w-lg w-full text-center shadow-2xl border border-pink-100"
             >
-              <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-8">
+              <div className="w-24 h-24 bg-pink-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-pink-500/30">
                 <Check size={48} className="text-white" />
               </div>
-              <h2 className="text-4xl font-serif font-black mb-4" style={{ color: COLORS.text }}>Order Sent!</h2>
-              <p className="text-lg mb-10" style={{ color: COLORS.body }}>
+              <h2 className="text-4xl font-serif font-black mb-4" style={{ color: COLORS.text }}>Order Confirmed!</h2>
+              <p className="text-lg mb-10 font-medium" style={{ color: COLORS.body }}>
                 {isLagos 
-                  ? "Redirecting you to WhatsApp for delivery confirmation." 
-                  : "Opening Paystack for payment. Please send your receipt to WhatsApp afterwards."}
+                  ? "Taking you to WhatsApp for delivery scheduling." 
+                  : "Opening Paystack for secure payment. Please share your receipt via WhatsApp."}
               </p>
-              <Button onClick={() => window.location.reload()} variant="secondary" className="w-full">Okay</Button>
+              <Button onClick={() => window.location.reload()} variant="secondary" className="w-full">Continue</Button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
 
-      <Section className="bg-white pt-24">
+      <Section style={{ backgroundColor: COLORS.white }} className="pt-24">
         <div className="grid lg:grid-cols-2 gap-20">
           <div className="space-y-8">
-            <div className="relative rounded-[4rem] overflow-hidden shadow-2xl bg-[#FFF5F8] p-12 border border-pink-50">
+            <div className="relative rounded-[4rem] overflow-hidden shadow-2xl bg-pink-50/30 p-12 border border-pink-100">
               <motion.img 
                 key={activeImg} initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
                 src={activeImg} className="w-full h-auto object-contain max-h-[500px]" 
@@ -396,7 +399,7 @@ const ProductPage = () => {
             </div>
             <div className="grid grid-cols-3 gap-6">
               {[ASSETS.productMain, ASSETS.productGrid, ASSETS.womanUsing].map((img, i) => (
-                <button key={i} onClick={() => setActiveImg(img)} className={`rounded-3xl overflow-hidden border-4 transition-all ${activeImg === img ? 'border-pink-500 scale-105' : 'border-transparent opacity-60'}`}>
+                <button key={i} onClick={() => setActiveImg(img)} className={`rounded-3xl overflow-hidden border-4 transition-all ${activeImg === img ? 'border-pink-500 scale-105 shadow-lg' : 'border-transparent opacity-60'}`}>
                   <img src={img} className="w-full h-24 object-cover" />
                 </button>
               ))}
@@ -409,63 +412,63 @@ const ProductPage = () => {
                <span className="text-5xl font-black" style={{ color: COLORS.primary }}>₦31,200</span>
                <span className="text-xl text-pink-200 line-through">₦45,000</span>
             </div>
-            <p className="text-lg font-medium mb-12" style={{ color: COLORS.body }}>Our flagship skin sculptor. Engineered for deep jawline definition using sonic waves and thermal phototherapy. Elite results from the comfort of your bedroom.</p>
-            <Button onClick={scrollToCheckout} className="w-full py-6 text-xl">Order Your V-Lift</Button>
+            <p className="text-lg font-semibold mb-12 leading-relaxed" style={{ color: COLORS.body }}>Defy gravity with our most advanced facial sculptor. Using multi-spectrum light and kinetic sonic waves to redefine your contour from the inside out.</p>
+            <Button onClick={scrollToCheckout} className="w-full py-6 text-xl">Get Yours Now</Button>
             <div className="mt-6 p-4 bg-pink-50 rounded-2xl flex items-center gap-4">
               <AlertTriangle className="text-pink-600 shrink-0" />
               <p className="text-[10px] font-black uppercase leading-tight" style={{ color: COLORS.text }}>
-                Availability Notice: Please only order if you can receive within 48hrs.
+                Notice: Limited stock available for 24-48hr nationwide dispatch.
               </p>
             </div>
           </div>
         </div>
       </Section>
 
-      <Section className="bg-[#FFF5F8] overflow-hidden">
+      <Section style={{ backgroundColor: COLORS.background }} className="overflow-hidden">
         <div className="text-center mb-20">
-          <Badge>Full Tutorial & Tech</Badge>
-          <h2 className="text-4xl md:text-6xl font-serif font-black mt-6" style={{ color: COLORS.text }}>Mastering the Glow</h2>
+          <Badge>Advanced Aesthetics</Badge>
+          <h2 className="text-4xl md:text-6xl font-serif font-black mt-6" style={{ color: COLORS.text }}>Sculpting Technology</h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
            {[
-             { gif: ASSETS.gifUsage, title: "1. Prep Phase", desc: "Maximize serum absorption with thermal prep mode." },
-             { gif: ASSETS.gifLight, title: "2. Light Therapy", desc: "Switch between 7 spectra for specific skin targets." },
-             { gif: ASSETS.gifLifting, title: "3. Kinetic Lift", desc: "Activate muscles with precision sonic vibrations." },
-             { gif: ASSETS.gifResult, title: "4. The Result", desc: "Defined 'V' contour and instant lymphatic drainage." }
+             { gif: ASSETS.gifUsage, title: "1. Heat Prep", desc: "Thermal modes open pores for maximum serum infusion." },
+             { gif: ASSETS.gifLight, title: "2. Bio-Photonics", desc: "7 spectrums targeted at cellular repair and glow." },
+             { gif: ASSETS.gifLifting, title: "3. Sonic Lift", desc: "12,000 vibrations per minute for muscle memory." },
+             { gif: ASSETS.gifResult, title: "4. Definition", desc: "Instant lymphatic drainage and sculpted jawline." }
            ].map((step, idx) => (
-             <motion.div key={idx} className="bg-white p-6 rounded-[3rem] border border-pink-50 shadow-sm">
-                <div className="rounded-[2.5rem] overflow-hidden mb-6 aspect-square bg-pink-100 flex items-center justify-center">
+             <motion.div key={idx} className="bg-white p-6 rounded-[3rem] border border-pink-100 shadow-sm">
+                <div className="rounded-[2.5rem] overflow-hidden mb-6 aspect-square bg-pink-100/50 flex items-center justify-center">
                   <img src={step.gif} alt={step.title} className="w-full h-full object-cover" />
                 </div>
                 <h4 className="font-black text-lg mb-2" style={{ color: COLORS.text }}>{step.title}</h4>
-                <p className="text-sm font-medium leading-relaxed" style={{ color: COLORS.body }}>{step.desc}</p>
+                <p className="text-sm font-bold leading-relaxed" style={{ color: COLORS.body }}>{step.desc}</p>
              </motion.div>
            ))}
         </div>
 
         <div className="text-center">
-           <h3 className="text-3xl font-serif font-black mb-10" style={{ color: COLORS.text }}>7-Spectrum LED Technology</h3>
+           <h3 className="text-3xl font-serif font-black mb-10" style={{ color: COLORS.text }}>The Spectrum of Beauty</h3>
            <LEDModes />
         </div>
       </Section>
 
-      <Section className="bg-white">
-        <h2 className="text-4xl font-serif font-black text-center mb-16" style={{ color: COLORS.text }}>The Superior Choice</h2>
+      <Section style={{ backgroundColor: COLORS.white }}>
+        <h2 className="text-4xl font-serif font-black text-center mb-16" style={{ color: COLORS.text }}>Elite Comparison</h2>
         <div className="overflow-x-auto">
           <table className="w-full border-separate border-spacing-2">
             <thead>
               <tr className="text-left text-xs uppercase font-black" style={{ color: COLORS.primary }}>
-                <th className="p-6">Feature</th>
+                <th className="p-6">Performance Index</th>
                 <th className="p-6 rounded-t-3xl text-center text-white" style={{ backgroundColor: COLORS.primary }}>V-Lift Pro™</th>
-                <th className="p-6 text-center opacity-40">Generic Tools</th>
+                <th className="p-6 text-center opacity-40">Retail Clones</th>
               </tr>
             </thead>
             <tbody className="font-bold text-sm" style={{ color: COLORS.body }}>
-              {[["Light Modes", "7 Precision Spectrum", "Single Color"], ["Vibration", "12k Sonic RPM", "Basic Motor"], ["Safety", "FDA Compliant Zinc", "Recycled Plastic"], ["Price", "₦31,200", "₦15,000 (Ineffective)"]].map((row, i) => (
+              {[["Phototherapy", "7 Clinical Spectrums", "1 Basic Light"], ["Kinetic Motor", "Grade-A Sonic Core", "Budget Vibration"], ["Material", "Medical Zinc Alloy", "Painted Plastic"], ["Value", "₦31,200", "₦15,000 (Ineffective)"]].map((row, i) => (
                 <tr key={i}>
                   <td className="p-6 bg-pink-50/10 border-b border-pink-50">{row[0]}</td>
-                  <td className="p-6 bg-pink-50/30 text-center border-b border-pink-100 font-black" style={{ color: COLORS.primary }}>{row[1]}</td>
+                  <td className="p-6 bg-pink-50/50 text-center border-b border-pink-100 font-black" style={{ color: COLORS.primary }}>{row[1]}</td>
                   <td className="p-6 text-center border-b border-pink-100 opacity-20">{row[2]}</td>
                 </tr>
               ))}
@@ -474,43 +477,43 @@ const ProductPage = () => {
         </div>
       </Section>
 
-      <Section id="checkout-form" className="bg-[#FFF5F8] rounded-t-[5rem]">
+      <Section id="checkout-form" style={{ backgroundColor: COLORS.background }} className="rounded-t-[5rem]">
         <div className="grid lg:grid-cols-2 gap-20">
           <div>
-            <div className="mb-12 p-8 bg-pink-100 rounded-[3rem] border-2 border-dashed border-pink-300">
-               <h3 className="text-2xl font-black mb-4 flex items-center gap-3" style={{ color: COLORS.text }}><Clock /> Dispatch Notice</h3>
-               <p className="font-medium text-sm leading-relaxed mb-6" style={{ color: COLORS.body }}>
-                 We only ship to available customers. Ensure you are ready to receive within <strong>24 to 48 hours</strong> before filling this form.
+            <div className="mb-12 p-8 bg-white/60 rounded-[3rem] border-2 border-dashed border-pink-300">
+               <h3 className="text-2xl font-black mb-4 flex items-center gap-3" style={{ color: COLORS.text }}><Clock /> Dispatch Confirmation</h3>
+               <p className="font-bold text-sm leading-relaxed mb-6" style={{ color: COLORS.body }}>
+                 We serve customers who are ready for transformation. Please ensure you are available for delivery within <strong>24 to 48 hours</strong>.
                </p>
                <div className="space-y-4">
-                  <div className={`p-4 rounded-2xl border ${isLagos ? 'bg-white border-pink-500 shadow-md' : 'bg-pink-50/50 border-pink-100 opacity-60'}`}>
-                    <p className="text-xs font-black uppercase" style={{ color: COLORS.text }}><MapPin className="inline mr-2" size={14}/> Lagos Orders</p>
-                    <p className="text-xs font-bold" style={{ color: COLORS.body }}>Free Delivery. Receive in 24hrs.</p>
+                  <div className={`p-4 rounded-2xl border ${isLagos ? 'bg-white border-pink-500 shadow-md' : 'bg-pink-100/50 border-pink-100 opacity-60'}`}>
+                    <p className="text-xs font-black uppercase" style={{ color: COLORS.text }}><MapPin className="inline mr-2" size={14}/> Lagos (Pay on Delivery)</p>
+                    <p className="text-xs font-bold" style={{ color: COLORS.body }}>Direct Home/Office Dispatch.</p>
                   </div>
-                  <div className={`p-4 rounded-2xl border ${!isLagos ? 'bg-white border-pink-500 shadow-md' : 'bg-pink-50/50 border-pink-100 opacity-60'}`}>
-                    <p className="text-xs font-black uppercase" style={{ color: COLORS.text }}><CreditCard className="inline mr-2" size={14}/> Outside Lagos</p>
-                    <p className="text-xs font-bold" style={{ color: COLORS.body }}>Free Delivery (Paystack Link Provided).</p>
+                  <div className={`p-4 rounded-2xl border ${!isLagos ? 'bg-white border-pink-500 shadow-md' : 'bg-pink-100/50 border-pink-100 opacity-60'}`}>
+                    <p className="text-xs font-black uppercase" style={{ color: COLORS.text }}><CreditCard className="inline mr-2" size={14}/> Outside Lagos (Prepaid)</p>
+                    <p className="text-xs font-bold" style={{ color: COLORS.body }}>Secure Checkout + Fast Logistics.</p>
                   </div>
                </div>
             </div>
             <div className="space-y-2">
-               <AccordionItem title="Is shipping really free?" content="Yes! We offer free nationwide delivery to all major cities across Nigeria." />
-               <AccordionItem title="What's the 48-hour rule?" content="We prioritize customers who have funds ready and are available at their address within 2 days of ordering." />
+               <AccordionItem title="Where do you deliver from?" content="Our primary fulfillment hub is located in Lagos, enabling rapid dispatch across all 36 states." />
+               <AccordionItem title="Can I pay on delivery outside Lagos?" content="Currently, COD is exclusive to Lagos. All other states require secure payment via Paystack to initiate logistics." />
             </div>
           </div>
 
           <div className="bg-white rounded-[4rem] p-10 border border-pink-100 shadow-2xl relative">
-            <h3 className="text-3xl font-black mb-8" style={{ color: COLORS.text }}>Finalize Order</h3>
+            <h3 className="text-3xl font-black mb-8" style={{ color: COLORS.text }}>Secure Checkout</h3>
             
             <div className="flex gap-4 mb-8">
-               <button onClick={() => setIsLagos(true)} className={`flex-1 py-4 rounded-2xl font-black text-[10px] uppercase transition-all ${isLagos ? 'bg-pink-600 text-white shadow-lg' : 'bg-pink-50 text-pink-300'}`}>Lagos</button>
-               <button onClick={() => setIsLagos(false)} className={`flex-1 py-4 rounded-2xl font-black text-[10px] uppercase transition-all ${!isLagos ? 'bg-pink-600 text-white shadow-lg' : 'bg-pink-50 text-pink-300'}`}>Outside Lagos</button>
+               <button onClick={() => setIsLagos(true)} className={`flex-1 py-4 rounded-2xl font-black text-[10px] uppercase transition-all ${isLagos ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/20' : 'bg-pink-50 text-pink-300'}`}>Lagos</button>
+               <button onClick={() => setIsLagos(false)} className={`flex-1 py-4 rounded-2xl font-black text-[10px] uppercase transition-all ${!isLagos ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/20' : 'bg-pink-50 text-pink-300'}`}>Outside Lagos</button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <input required name="fullName" value={formData.fullName} onChange={handleInputChange} placeholder="Your Full Name" className="w-full px-8 py-5 rounded-3xl bg-pink-50 border border-pink-100 focus:outline-none focus:border-pink-500 transition-colors" />
-              <input required type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="WhatsApp Number" className="w-full px-8 py-5 rounded-3xl bg-pink-50 border border-pink-100 focus:outline-none focus:border-pink-500 transition-colors" />
-              <textarea required name="address" value={formData.address} onChange={handleInputChange} placeholder="Delivery Address (FREE DELIVERY)" rows={2} className="w-full px-8 py-5 rounded-3xl bg-pink-50 border border-pink-100 focus:outline-none focus:border-pink-500 transition-colors" />
+              <input required name="fullName" value={formData.fullName} onChange={handleInputChange} placeholder="Full Name" className="w-full px-8 py-5 rounded-3xl bg-pink-50 border border-pink-100 focus:outline-none focus:border-pink-500 transition-colors font-semibold" />
+              <input required type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="WhatsApp Number" className="w-full px-8 py-5 rounded-3xl bg-pink-50 border border-pink-100 focus:outline-none focus:border-pink-500 transition-colors font-semibold" />
+              <textarea required name="address" value={formData.address} onChange={handleInputChange} placeholder="Complete Delivery Address" rows={2} className="w-full px-8 py-5 rounded-3xl bg-pink-50 border border-pink-100 focus:outline-none focus:border-pink-500 transition-colors font-semibold" />
               
               <div className="flex items-center gap-4 bg-pink-50 p-4 rounded-3xl justify-between px-8">
                 <p className="text-[10px] font-black uppercase" style={{ color: COLORS.body }}>Quantity:</p>
@@ -529,20 +532,13 @@ const ProductPage = () => {
                   onChange={(e) => setAvailableConfirmed(e.target.checked)}
                   className="mt-1 w-5 h-5 accent-pink-600" 
                  />
-                 <span className="text-[11px] font-bold leading-tight" style={{ color: COLORS.text }}>
-                    I confirm I am available within 24-48 hours and have ₦{(31200 * quantity).toLocaleString()} ready.
+                 <span className="text-[11px] font-black leading-tight" style={{ color: COLORS.text }}>
+                    I am ready to receive within 48 hours and have ₦{(31200 * quantity).toLocaleString()} ready.
                  </span>
               </label>
 
-              {!isLagos && (
-                <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200">
-                  <p className="text-[10px] font-black text-amber-700 uppercase"><CreditCard className="inline mr-2" size={14}/> Free Shipping Policy</p>
-                  <p className="text-[10px] font-bold text-amber-600 mt-1">Order will only ship after payment is confirmed. No extra shipping fees.</p>
-                </div>
-              )}
-
               <Button type="submit" disabled={isSubmitting} className="w-full py-7 text-2xl">
-                {isSubmitting ? "Submitting..." : <>{isLagos ? <Send size={24} /> : <CreditCard size={24} />} Confirm Order</>}
+                {isSubmitting ? "Processing..." : <>{isLagos ? <Send size={24} /> : <CreditCard size={24} />} Confirm Order</>}
               </Button>
             </form>
           </div>
@@ -565,46 +561,48 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-sans" style={{ color: COLORS.body }}>
-      <div className="py-3 text-center text-[10px] font-black tracking-[0.4em] uppercase sticky top-0 z-[60] text-white" style={{ backgroundColor: COLORS.primary }}>
+    <div className="min-h-screen font-sans" style={{ color: COLORS.body, backgroundColor: COLORS.white }}>
+      <div className="py-3 text-center text-[10px] font-black tracking-[0.4em] uppercase sticky top-0 z-[60] text-white shadow-md" style={{ backgroundColor: COLORS.primary }}>
         ✨ THE SCIENCE OF GLAMOUR ✨ FREE NATIONWIDE SHIPPING ✨ 
       </div>
 
       <nav className={`fixed w-full z-50 transition-all ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-xl py-3 top-10' : 'bg-transparent py-8 top-16'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-4 cursor-pointer" onClick={() => setView('home')}>
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black italic text-xl" style={{ backgroundColor: COLORS.primary }}>G</div>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-black italic text-xl shadow-lg" style={{ backgroundColor: COLORS.primary }}>G</div>
             <span className="text-xl font-serif font-black" style={{ color: COLORS.text }}>Glamour & Grace</span>
           </div>
           <div className="hidden lg:flex items-center gap-12 font-black text-[10px] uppercase tracking-widest">
-            <button onClick={() => setView('home')} className="hover:opacity-70 transition-opacity" style={{ color: COLORS.text }}>Brand Home</button>
-            <button onClick={() => setView('product')} className="hover:opacity-70 transition-opacity" style={{ color: COLORS.text }}>Store</button>
-            <Button className="py-2.5 px-8 text-[9px]" onClick={() => setView('product')}>Shop V-Lift</Button>
+            <button onClick={() => setView('home')} className="hover:opacity-70 transition-opacity" style={{ color: COLORS.text }}>Home</button>
+            <button onClick={() => setView('product')} className="hover:opacity-70 transition-opacity" style={{ color: COLORS.text }}>The Store</button>
+            <Button className="py-2.5 px-8 text-[9px]" onClick={() => setView('product')}>Shop Now</Button>
           </div>
         </div>
       </nav>
 
       <main className="overflow-x-hidden">
-        {view === 'home' ? <HomePage onProductClick={() => setView('product')} /> : <ProductPage />}
+        <AnimatePresence mode="wait">
+          {view === 'home' ? <HomePage key="home" onProductClick={() => setView('product')} /> : <ProductPage key="product" />}
+        </AnimatePresence>
       </main>
 
       <footer className="py-24 px-8 rounded-t-[5rem] text-white" style={{ backgroundColor: COLORS.text }}>
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
           <div>
             <span className="text-2xl font-serif font-black">Glamour & Grace™</span>
-            <p className="opacity-60 mt-6 max-w-sm font-medium leading-relaxed">Dedicated to the empowerment of Nigerian beauty through high-performance technology.</p>
+            <p className="opacity-80 mt-6 max-w-sm font-semibold leading-relaxed">Defining the future of Nigerian aesthetics. High-tech skincare for the modern woman.</p>
           </div>
-          <div className="text-sm opacity-60 uppercase font-black tracking-widest space-y-4">
-             <p>Victoria Island, Lagos, Nigeria</p>
-             <p>info@glamourgrace.ng</p>
+          <div className="text-sm opacity-80 uppercase font-black tracking-widest space-y-4">
+             <p>Lagos, Nigeria</p>
+             <p>concierge@glamourgrace.ng</p>
              <div className="flex gap-4 mt-8">
-               <Instagram size={24} />
-               <MessageCircle size={24} />
+               <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><Instagram size={20} /></div>
+               <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors"><MessageCircle size={20} /></div>
              </div>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/10 text-[10px] font-black opacity-30 tracking-[0.3em] uppercase">
-           &copy; 2024 Glamour & Grace Aesthetics.
+           &copy; 2024 Glamour & Grace Aesthetics. All Rights Reserved.
         </div>
       </footer>
     </div>
