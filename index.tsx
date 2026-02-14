@@ -296,11 +296,9 @@ const TestimonialSlider = () => {
 const HomePage = ({ onProductClick }: any) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-      {/* Hero Section with Complementary Color & Updated Image Styling */}
       <Section className="relative min-h-[95vh] flex items-center pt-24 overflow-hidden" style={{ backgroundColor: COLORS.complement }}>
         <FloatingHearts />
         
-        {/* Soft Pink Floating Blob */}
         <div className="absolute top-[-20%] right-[-10%] w-[80%] h-[150%] bg-pink-100/40 rounded-full blur-[100px] pointer-events-none" />
         
         <div className="grid lg:grid-cols-2 gap-16 items-center z-10 relative">
@@ -345,12 +343,10 @@ const HomePage = ({ onProductClick }: any) => {
             <div className="rounded-[4rem] overflow-hidden shadow-3xl border-[16px] border-white relative z-20 aspect-[4/5] md:aspect-auto">
               <img src={ASSETS.womanUsing} alt="Woman using skin care tool" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-pink-900/30 to-transparent mix-blend-multiply" />
-              {/* Promo overlay tag */}
               <div className="absolute top-10 left-10 -rotate-12 bg-pink-600 text-white px-6 py-3 rounded-full font-black text-xs shadow-xl flex items-center gap-2">
                 <Gift size={16}/> FREE SERUM
               </div>
             </div>
-            {/* Decorative element to highlight the complement */}
             <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-teal-400/20 rounded-full blur-3xl z-10" />
             <div className="absolute -top-10 -left-10 w-48 h-48 bg-pink-400/20 rounded-full blur-3xl z-10" />
           </motion.div>
@@ -409,7 +405,6 @@ const HomePage = ({ onProductClick }: any) => {
         </div>
       </Section>
 
-      {/* Testimonials Slider Section */}
       <Section style={{ backgroundColor: COLORS.background }} className="rounded-[5rem]">
         <div className="text-center mb-16">
           <Badge className="mb-6">Pure Love</Badge>
