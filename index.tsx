@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
@@ -61,7 +60,6 @@ const Button = ({ children, className = '', onClick = () => {}, variant = 'prima
   );
 };
 
-// Fix Section component: remove trailing "Section;" and properly close the function with ");"
 const Section = ({ children, className = "", id = "", style = {} }: any) => (
   <section id={id} className={`py-16 md:py-32 px-6 md:px-12 lg:px-24 ${className}`} style={style}>
     <div className="max-w-7xl mx-auto">{children}</div>
@@ -81,7 +79,10 @@ const App = () => {
           </div>
           <div className="flex items-center gap-8">
             <a href="#collection" className="text-[10px] font-black tracking-[0.3em] uppercase hidden md:block">Collection</a>
-            <Button onClick={() => window.location.href = '#collection'} className="px-8 py-4">Shop Now</Button>
+            <Button onClick={() => {
+               const el = document.getElementById('collection');
+               if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }} className="px-8 py-4">Shop Now</Button>
           </div>
         </div>
       </nav>
