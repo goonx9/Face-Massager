@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
@@ -60,6 +61,7 @@ const Button = ({ children, className = '', onClick = () => {}, variant = 'prima
   );
 };
 
+// Fix Section component: remove trailing "Section;" and properly close the function with ");"
 const Section = ({ children, className = "", id = "", style = {} }: any) => (
   <section id={id} className={`py-16 md:py-32 px-6 md:px-12 lg:px-24 ${className}`} style={style}>
     <div className="max-w-7xl mx-auto">{children}</div>
@@ -95,7 +97,10 @@ const App = () => {
               Professional skincare meets advanced technology. Discover the secret to a timeless glow with Nigeria's most trusted collection of aesthetic tools.
             </p>
             <div className="flex flex-wrap gap-6 items-center">
-              <Button onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}>Shop The Collection</Button>
+              <Button onClick={() => {
+                const el = document.getElementById('collection');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}>Shop The Collection</Button>
               <div className="flex items-center gap-2 text-pink-700/60 font-black text-[10px] tracking-widest">
                 <Shield size={20} /> SECURED SHIPPING
               </div>
@@ -163,10 +168,8 @@ const App = () => {
   );
 };
 
-const rootElement = document.getElementById('root');
-if (rootElement) {
-  const root = createRoot(rootElement);
+const container = document.getElementById('root');
+if (container) {
+  const root = createRoot(container);
   root.render(<App />);
-} else {
-  console.error('Failed to find the root element');
 }

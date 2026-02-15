@@ -33,7 +33,7 @@
             color: white;
         }
         #root:empty::before {
-            content: "Initializing Beauty Tech...";
+            content: "Initializing Glamour & Grace...";
             position: fixed;
             top: 50%;
             left: 50%;
@@ -41,9 +41,13 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.3em;
-            font-size: 10px;
+            font-size: 11px;
             color: var(--primary);
-            opacity: 0.5;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
         }
     </style>
 <script type="importmap">
@@ -55,8 +59,8 @@
     "lucide-react": "https://esm.sh/lucide-react@0.460.0",
     "framer-motion": "https://esm.sh/framer-motion@11.11.17",
     "@emailjs/browser": "https://esm.sh/@emailjs/browser@4.4.1",
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
   }
 }
 </script>
