@@ -13,7 +13,7 @@
     <style>
         :root {
             --primary: #FF2D55;
-            --text: #5E002C; /* Deep Pink Font */
+            --text: #5E002C;
             --body: #880E4F;
             --background: #FFF5F8;
             --complement: #F1FBF3;
@@ -30,13 +30,11 @@
         .bg-primary { background-color: var(--primary); }
         .bg-complement { background-color: var(--complement); }
         .shadow-3xl { box-shadow: 0 35px 60px -15px rgba(216, 27, 96, 0.15); }
-        
         .faq-item[open] summary svg { transform: rotate(180deg); }
         summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="fixed top-0 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
@@ -53,13 +51,12 @@
     </nav>
 
     <main class="pt-32">
-        <!-- Hero Section (No Image) -->
+        <!-- Hero Section -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-complement rounded-b-[4rem] md:rounded-b-[6rem]">
             <div class="max-w-3xl mx-auto text-center space-y-10">
-                <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase inline-block">Professional Hydration</span>
                 <h1 class="text-6xl md:text-8xl font-serif font-black leading-tight">PureSteam™ <br><span class="italic text-primary">Hydration System.</span></h1>
                 <p class="text-xl md:text-2xl font-medium opacity-90 leading-relaxed" style="color: var(--body)">
-                    Go beyond surface washing. Experience the technology that penetrates 10x deeper for a medical-grade glow.
+                    Go beyond surface washing. Experience the technology that penetrates 10x deeper for a professional-grade glow.
                 </p>
                 <div class="flex flex-wrap gap-8 items-center justify-center">
                     <div class="text-3xl font-black text-primary">₦32,500 <span class="text-lg line-through opacity-30 ml-2">₦43,800</span></div>
@@ -72,7 +69,6 @@
         <section class="py-24 px-6 md:px-12 lg:px-24">
             <div class="max-w-4xl mx-auto space-y-32">
                 
-                <!-- Feature 1 -->
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
                         <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" class="w-full h-auto" alt="Nano-Atomization Tech">
@@ -85,7 +81,6 @@
                     </div>
                 </div>
 
-                <!-- Feature 2 -->
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
                         <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087873/aflldh_tdpu1n.gif" class="w-full h-auto" alt="Deep Hydration">
@@ -98,13 +93,12 @@
                     </div>
                 </div>
 
-                <!-- Feature 3 -->
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
                         <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087873/afll40_iwgqjv.gif" class="w-full h-auto" alt="Blackhead Removal">
                     </div>
                     <div class="space-y-6">
-                        <h2 class="text-4xl md:text-5xl font-serif font-black">Effortless Blackhead Release</h2>
+                        <h2 class="text-4xl md:text-5xl font-serif font-black">Effortless Pore Extraction</h2>
                         <p class="text-lg font-semibold opacity-70 leading-relaxed">
                             No more painful squeezing. The thermal mist softens keratin plugs and sebum, allowing blackheads to glide out effortlessly during your regular cleaning steps.
                         </p>
@@ -118,8 +112,8 @@
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white border-y border-pink-50">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-serif font-black">The Gold Standard</h2>
-                    <p class="font-bold opacity-60 mt-4 uppercase text-[10px] tracking-widest">PureSteam™ vs Generic Brands</p>
+                    <h2 class="text-4xl md:text-5xl font-serif font-black">Professional Standards</h2>
+                    <p class="font-bold opacity-60 mt-4 uppercase text-[10px] tracking-widest">PureSteam™ vs Others</p>
                 </div>
                 <div class="overflow-hidden rounded-[3rem] border border-pink-100 shadow-xl">
                     <table class="w-full text-left bg-white">
@@ -132,46 +126,22 @@
                         </thead>
                         <tbody class="font-bold text-sm">
                             <tr class="border-b border-pink-50">
-                                <td class="p-8">Nano-Ionic Particle Size</td>
-                                <td class="p-8 text-green-500">Micro (Deep)</td>
-                                <td class="p-8 text-red-400">Large (Surface)</td>
+                                <td class="p-8">Nano-Ionic Technology</td>
+                                <td class="p-8 text-green-500">Yes (10x Depth)</td>
+                                <td class="p-8 text-red-400">No (Surface only)</td>
                             </tr>
                             <tr class="border-b border-pink-50">
-                                <td class="p-8">Mist Start Time</td>
+                                <td class="p-8">Mist Ready Time</td>
                                 <td class="p-8 text-green-500">30 Seconds</td>
-                                <td class="p-8 text-gray-400">3 Minutes</td>
+                                <td class="p-8 text-gray-400">180 Seconds</td>
                             </tr>
                             <tr>
-                                <td class="p-8">UV Sterilization</td>
-                                <td class="p-8 text-green-500"><i data-lucide="check"></i></td>
-                                <td class="p-8 text-red-400"><i data-lucide="x"></i></td>
+                                <td class="p-8">Absorption Boost</td>
+                                <td class="p-8 text-green-500">200% Increase</td>
+                                <td class="p-8 text-red-400">None</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="py-24 px-6 md:px-12 lg:px-24 bg-complement/20">
-            <div class="max-w-7xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-serif font-black mb-16 text-center">Verified Results</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-10 rounded-[3rem] shadow-xl">
-                        <div class="flex text-primary mb-6"><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i></div>
-                        <p class="font-bold mb-8 italic">"My pores have never felt this clean. I use it before my Vitamin C serum and the glow is instant."</p>
-                        <h4 class="font-black text-sm">Titi O., Lagos</h4>
-                    </div>
-                    <div class="bg-white p-10 rounded-[3rem] shadow-xl">
-                        <div class="flex text-primary mb-6"><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i></div>
-                        <p class="font-bold mb-8 italic">"Best investment for my acne-prone skin. It softens everything so easily. Spa results at home!"</p>
-                        <h4 class="font-black text-sm">Jane A., Abuja</h4>
-                    </div>
-                    <div class="bg-white p-10 rounded-[3rem] shadow-xl">
-                        <div class="flex text-primary mb-6"><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i><i data-lucide="star" fill="currentColor" size="16"></i></div>
-                        <p class="font-bold mb-8 italic">"Premium build quality. The steam is consistent and warm. My skin feels like silk afterwards."</p>
-                        <h4 class="font-black text-sm">Sandra C., Port Harcourt</h4>
-                    </div>
                 </div>
             </div>
         </section>
@@ -187,7 +157,7 @@
                             <i data-lucide="chevron-down" class="text-primary transition-transform"></i>
                         </summary>
                         <div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">
-                            For normal to oily skin, we recommend 2-3 times per week. For sensitive or dry skin, once a week is perfect.
+                            For normal to oily skin, we recommend 2-3 times per week. For sensitive or dry skin, once a week is perfect to maintain hydration levels.
                         </div>
                     </details>
                     <details class="faq-item group bg-pink-50/50 rounded-[2rem] overflow-hidden">
@@ -196,14 +166,14 @@
                             <i data-lucide="chevron-down" class="text-primary transition-transform"></i>
                         </summary>
                         <div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">
-                            For the longevity of the nano-nozzle, we recommend using distilled or purified water to prevent mineral buildup.
+                            For the longevity of the device, we recommend using distilled or purified water to prevent mineral buildup in the nano-nozzle.
                         </div>
                     </details>
                 </div>
             </div>
         </section>
 
-        <!-- Order Form (At the Bottom) -->
+        <!-- Order Form -->
         <section id="order" class="py-24 px-6 md:px-12 lg:px-24 border-t border-pink-50 bg-white">
             <div class="max-w-3xl mx-auto">
                 <div class="text-center mb-12">
@@ -244,26 +214,11 @@
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
             const originalText = btn.innerHTML;
-            
             btn.disabled = true;
             btn.innerText = 'PROCESSING ORDER...';
-
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
-
-            const message = `
-🌟 NEW ORDER RECEIVED! 🌟
--------------------------
-Product: ${data.product_name}
-Price: ₦${parseInt(data.product_price).toLocaleString()}
--------------------------
-Customer: ${data.name}
-Phone: ${data.phone}
-Location: ${data.location}
-Address: ${data.address}
--------------------------
-            `;
-
+            const message = `🌟 NEW ORDER RECEIVED! 🌟\n-------------------------\nProduct: ${data.product_name}\nPrice: ₦${parseInt(data.product_price).toLocaleString()}\n-------------------------\nCustomer: ${data.name}\nPhone: ${data.phone}\nLocation: ${data.location}\nAddress: ${data.address}\n-------------------------`;
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
@@ -274,13 +229,11 @@ Address: ${data.address}
                     location: data.location,
                     address: data.address
                 });
-
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 window.open(waUrl, '_blank');
                 window.location.href = 'index.html';
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
-                console.error(err);
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
