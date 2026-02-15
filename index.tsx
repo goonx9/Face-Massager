@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { 
@@ -139,7 +138,7 @@ const App = () => {
             <div className="rounded-[3rem] md:rounded-[5rem] overflow-hidden shadow-3xl border-[12px] md:border-[16px] border-white relative">
               <img 
                   src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Woman using skincare tool" 
+                  alt="Professional Skincare Device" 
                   className="w-full h-full object-cover aspect-[4/5]" 
               />
             </div>
