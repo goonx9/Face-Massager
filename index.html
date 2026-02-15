@@ -11,12 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #FF2D55;
-            --text: #5E002C;
-            --body: #880E4F;
-            --background: #FFF5F8;
-            --complement: #F1FBF3;
-            --accent: #F06292;
+            --primary: #FF1493;
+            --secondary: #F06292;
+            --text: #4A0E2E;
+            --body: #701D44;
+            --background: #FFF0F5;
+            --complement: #E8F5E9;
+            --border: #F8BBD0;
         }
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
@@ -25,31 +26,242 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
         .font-serif { font-family: 'Playfair Display', serif; }
-        .shadow-3xl { box-shadow: 0 35px 60px -15px rgba(216, 27, 96, 0.2); }
-        ::selection {
-            background-color: #FF2D55;
-            color: white;
+        .bg-complement { background-color: var(--complement); }
+        .text-primary { color: var(--primary); }
+        .text-body { color: var(--body); }
+        .border-pink-100 { border-color: #FCE4EC; }
+        
+        /* Smooth Fade In */
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .floating-heart {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.1;
+            animation: float 15s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.2; }
+            80% { opacity: 0.2; }
+            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@19.0.0",
-    "react-dom": "https://esm.sh/react-dom@19.0.0",
-    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react",
-    "framer-motion": "https://esm.sh/framer-motion@11.11.17?external=react",
-    "@emailjs/browser": "https://esm.sh/@emailjs/browser@4.4.1",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "react/": "https://esm.sh/react@^19.2.4/"
-  }
-}
-</script>
 </head>
 <body>
-    <div id="root"></div>
-    <script type="module" src="index.tsx"></script>
+    <!-- Navbar -->
+    <nav class="fixed top-0 inset-x-0 z-[100] bg-white/95 backdrop-blur-md border-b border-pink-100 px-6 py-4 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-[#FF1493] flex items-center justify-center text-white shadow-lg">
+                    <i data-lucide="sparkles" size="22"></i>
+                </div>
+                <span class="text-xl md:text-2xl font-serif font-black tracking-tight uppercase text-pink-800">GLAMOUR & GRACE</span>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#collection" class="text-[10px] font-black tracking-[0.2em] uppercase hidden md:block text-pink-900/70 hover:text-pink-600 transition-colors">Collection</a>
+                <button onclick="document.getElementById('collection').scrollIntoView({behavior: 'smooth'})" class="px-6 py-3 md:px-8 md:py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] md:text-[11px] bg-[#FF1493] text-white">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[80vh] flex items-center pt-24 md:pt-32 overflow-hidden bg-complement">
+        <!-- Static Hearts for Background -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden" id="heart-container"></div>
+        
+        <div class="max-w-4xl mx-auto text-center z-10 relative px-6 fade-in">
+            <div class="inline-block px-4 py-1 rounded-full bg-pink-100 text-pink-600 font-black text-[9px] tracking-widest uppercase mb-6">
+                #1 Beauty Tech in Nigeria
+            </div>
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif font-black leading-[0.9] mb-8 text-pink-900">
+                Timeless <br><span class="text-primary italic">Glow.</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-12 max-w-2xl mx-auto font-medium leading-relaxed text-body">
+                Experience clinical-grade results from the comfort of your home. Our smart tools are engineered to sculpt, hydrate, and rejuvenate your natural beauty with precision technology.
+            </p>
+            <div class="flex flex-wrap gap-6 items-center justify-center">
+                <button onclick="document.getElementById('collection').scrollIntoView({behavior: 'smooth'})" class="px-10 py-4 md:px-12 md:py-5 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] md:text-[11px] bg-[#FF1493] text-white">
+                    Explore Collection <i data-lucide="arrow-right" size="16"></i>
+                </button>
+                <div class="flex items-center gap-3 text-pink-700 font-bold text-sm bg-white/50 px-6 py-4 rounded-full backdrop-blur-sm">
+                    <span class="flex text-yellow-500">
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                    </span>
+                    1,200+ Happy Clients
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 md:py-32 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-pink-50 flex items-center justify-center text-pink-500">
+                    <i data-lucide="zap" size="28"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-black">Instant Results</h3>
+                <p class="opacity-70 font-medium">Visible skin tightening and hydration after just one session with our advanced nano-technology.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-green-50 flex items-center justify-center text-green-500">
+                    <i data-lucide="award" size="28"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-black">Premium Quality</h3>
+                <p class="opacity-70 font-medium">Built with medical-grade materials and safe for all skin types. Dermatologist recommended.</p>
+            </div>
+            <div class="space-y-4">
+                <div class="w-14 h-14 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-500">
+                    <i data-lucide="truck" size="28"></i>
+                </div>
+                <h3 class="text-2xl font-serif font-black">Fast Delivery</h3>
+                <p class="opacity-70 font-medium">Express 24-48hr shipping within Lagos and Abuja. Nationwide delivery in 3-5 days.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection -->
+    <section id="collection" class="py-16 md:py-32 px-6 md:px-12 lg:px-24 bg-pink-50/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-7xl font-serif font-black mb-6 text-pink-900">The Essentials</h2>
+                <p class="max-w-xl mx-auto opacity-60 font-bold uppercase text-[10px] tracking-[0.4em]">Our Best-Selling Skincare Innovations</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
+                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
+                            Bestseller
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">V-Lift Pro™ Sculpting</h3>
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="text-2xl font-black text-pink-600">₦31,200</span>
+                            <span class="text-sm line-through opacity-40 font-bold">₦45,000</span>
+                        </div>
+                        <a href="v-lift.html" class="block">
+                            <button class="w-full px-10 py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] bg-[#FF1493] text-white">
+                                Explore Results
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" alt="PureSteam" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
+                            New Arrival
+                        </div>
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">PureSteam™ Nano-Ionic</h3>
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="text-2xl font-black text-pink-600">₦32,500</span>
+                            <span class="text-sm line-through opacity-40 font-bold">₦43,800</span>
+                        </div>
+                        <a href="steamer.html" class="block">
+                            <button class="w-full px-10 py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] bg-[#FF1493] text-white">
+                                Explore Results
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Testimonial -->
+    <section class="py-16 md:py-32 px-6 md:px-12 lg:px-24 bg-pink-900 text-white text-center rounded-[4rem] md:rounded-[6rem] mx-6 md:mx-12 my-20">
+        <div class="max-w-3xl mx-auto space-y-12">
+            <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight italic">
+                "The best investment I've made for my skin this year. Truly salon-grade results."
+            </h2>
+            <div class="flex flex-col items-center gap-4">
+                <div class="w-20 h-20 rounded-full border-4 border-pink-500 overflow-hidden bg-pink-100">
+                   <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop" alt="User">
+                </div>
+                <div>
+                    <p class="font-black text-lg tracking-widest uppercase">Adaobi O.</p>
+                    <p class="text-pink-300 font-bold text-sm">Verified Customer, Lagos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-100">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-16">
+            <div class="md:col-span-2 space-y-8">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white">
+                        <i data-lucide="sparkles" size="20"></i>
+                    </div>
+                    <span class="text-2xl font-serif font-black tracking-tight uppercase text-pink-900">GLAMOUR & GRACE</span>
+                </div>
+                <p class="text-lg opacity-60 leading-relaxed max-w-md">
+                    Democratizing professional skincare tech for the modern Nigerian woman. Elegance meets efficiency.
+                </p>
+                <div class="flex gap-4">
+                   <div class="w-12 h-12 rounded-full border border-pink-100 flex items-center justify-center text-pink-600"><i data-lucide="message-circle" size="20"></i></div>
+                   <div class="w-12 h-12 rounded-full border border-pink-100 flex items-center justify-center text-pink-600"><i data-lucide="shield" size="20"></i></div>
+                   <div class="w-12 h-12 rounded-full border border-pink-100 flex items-center justify-center text-pink-600"><i data-lucide="check-circle-2" size="20"></i></div>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-black text-[11px] uppercase tracking-[0.3em] text-pink-900">Support</h4>
+                <ul class="space-y-4 font-bold text-sm opacity-60">
+                    <li><a href="#" class="hover:text-pink-600">Shipping Policy</a></li>
+                    <li><a href="#" class="hover:text-pink-600">Returns & Refunds</a></li>
+                    <li><a href="#" class="hover:text-pink-600">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-black text-[11px] uppercase tracking-[0.3em] text-pink-900">Contact</h4>
+                <ul class="space-y-4 font-bold text-sm opacity-60">
+                    <li class="flex items-center gap-3"><i data-lucide="message-circle" size="16"></i> +234 803 994 0408</li>
+                    <li class="flex items-center gap-3"><i data-lucide="shield-check" size="16"></i> 100% Secure Payment</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-pink-50 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">© 2025 GLAMOUR & GRACE AESTHETICS. NIGERIA.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Background Hearts Logic (Native JS to avoid dependencies)
+        const container = document.getElementById('heart-container');
+        for (let i = 0; i < 12; i++) {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDelay = (i * 2) + 's';
+            heart.style.fontSize = (20 + Math.random() * 40) + 'px';
+            heart.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>';
+            heart.style.color = 'rgba(244, 143, 177, 0.4)';
+            container.appendChild(heart);
+        }
+    </script>
 </body>
 </html>
