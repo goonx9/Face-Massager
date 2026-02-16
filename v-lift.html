@@ -142,8 +142,8 @@ Address: ${data.address}
                 });
 
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                window.open(waUrl, '_blank');
-                window.location.href = 'index.html';
+                // Redirect directly instead of window.open to prevent popup blockers
+                window.location.href = waUrl;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 console.error(err);
