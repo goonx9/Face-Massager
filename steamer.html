@@ -260,7 +260,8 @@ Address: ${data.address}
                     product_price: data.product_price
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                window.location.href = waUrl;
+                // Redirect to Thank You page for Pixel tracking, passing WA link
+                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${data.product_price}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 btn.disabled = false;

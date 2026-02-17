@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Glamour & Grace</title>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4029546293858823');
+    fbq('track', 'PageView');
+    
+    // Extract price if available from URL for better tracking
+    const urlParams = new URLSearchParams(window.location.search);
+    const price = urlParams.get('p') || '0';
+    
+    // FIRE PURCHASE EVENT FOR FACEBOOK ADS
+    fbq('track', 'Purchase', {
+        value: parseFloat(price),
+        currency: 'NGN'
+    });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF2D55;
+            --background: #FFF5F8;
+            --text: #5E002C;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--background); 
+            color: var(--text); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="text-center">
+    <div class="max-w-md w-full bg-white p-12 rounded-[4rem] shadow-2xl border border-pink-100 space-y-8">
+        <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+            <i data-lucide="check-circle-2" size="48"></i>
+        </div>
+        
+        <div class="space-y-4">
+            <h1 class="text-4xl font-serif font-black">Order Received!</h1>
+            <p class="font-medium opacity-70 leading-relaxed">
+                Thank you for choosing Glamour & Grace. Your order is being processed. 
+                <br><br>
+                Please click the button below to confirm your order via WhatsApp and speed up delivery.
+            </p>
+        </div>
+
+        <button id="waRedirectBtn" class="w-full py-5 bg-[#FF2D55] text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+            <i data-lucide="message-circle" size="18"></i> Finish on WhatsApp
+        </button>
+        
+        <p class="text-[10px] font-black opacity-30 uppercase tracking-widest">You will be redirected automatically in 5 seconds...</p>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        const params = new URLSearchParams(window.location.search);
+        const waLink = params.get('wa');
+        
+        if (!waLink) {
+            window.location.href = 'index.html';
+        }
+
+        const handleRedirect = () => {
+            if (waLink) {
+                window.location.href = decodeURIComponent(waLink);
+            }
+        };
+
+        document.getElementById('waRedirectBtn').addEventListener('click', handleRedirect);
+
+        // Auto-redirect after 5 seconds to ensure Pixel fires but UX stays smooth
+        setTimeout(handleRedirect, 5000);
+    </script>
+</body>
+</html>
