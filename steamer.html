@@ -252,6 +252,11 @@ Address: ${data.address}
                     to_name: "Glamour & Grace",
                     from_name: data.name,
                     message: message,
+                    name: data.name,
+                    phone: data.phone,
+                    location: data.location,
+                    state: data.location,
+                    address: data.address,
                     customer_name: data.name,
                     customer_phone: data.phone,
                     customer_location: data.location,
@@ -260,7 +265,6 @@ Address: ${data.address}
                     product_price: data.product_price
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                // Redirect to Thank You page for Pixel tracking, passing WA link
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${data.product_price}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
