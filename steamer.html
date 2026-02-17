@@ -235,19 +235,31 @@
             btn.innerText = 'PROCESSING ORDER...';
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
-            const message = `🌟 NEW ORDER RECEIVED! 🌟\n-------------------------\nProduct: ${data.product_name}\nPrice: ₦${parseInt(data.product_price).toLocaleString()}\n-------------------------\nCustomer: ${data.name}\nPhone: ${data.phone}\nLocation: ${data.location}\nAddress: ${data.address}\n-------------------------`;
+            
+            const message = `🌟 NEW ORDER RECEIVED! 🌟
+-------------------------
+Product: ${data.product_name}
+Price: ₦${parseInt(data.product_price).toLocaleString()}
+-------------------------
+Customer: ${data.name}
+Phone: ${data.phone}
+Location: ${data.location}
+Address: ${data.address}
+-------------------------`;
+
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
                     from_name: data.name,
                     message: message,
-                    phone: data.phone,
+                    customer_name: data.name,
+                    customer_phone: data.phone,
+                    customer_location: data.location,
+                    customer_address: data.address,
                     product_name: data.product_name,
-                    location: data.location,
-                    address: data.address
+                    product_price: data.product_price
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                // Redirect directly instead of window.open to bypass popup blockers
                 window.location.href = waUrl;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
