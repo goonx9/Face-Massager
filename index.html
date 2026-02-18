@@ -81,15 +81,17 @@
         /* Order Notification Styles */
         #order-notification {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            display: none;
-            transform: translateY(100px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         #order-notification.show {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
             transform: translateY(0);
         }
         
@@ -101,13 +103,13 @@
 </head>
 <body>
     <!-- Order Notification -->
-    <div id="order-notification" class="bg-white/95 backdrop-blur shadow-2xl rounded-2xl p-4 border border-pink-100 items-center gap-4 max-w-[280px]">
-        <div class="w-10 h-10 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white">
-            <i data-lucide="shopping-bag" size="18"></i>
+    <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
+        <div class="w-12 h-12 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white shadow-lg">
+            <i data-lucide="shopping-bag" size="20"></i>
         </div>
         <div>
-            <p class="text-[11px] font-bold leading-tight" id="notif-text">Ada from Lagos ordered V-Lift Pro™</p>
-            <p class="text-[9px] text-pink-500 font-bold uppercase tracking-widest mt-1">Just now</p>
+            <p class="text-[12px] text-pink-900 font-medium leading-snug" id="notif-text">Ada from Lagos ordered V-Lift Pro™</p>
+            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest mt-1">Just now</p>
         </div>
     </div>
 
@@ -348,14 +350,16 @@
             setTimeout(initHearts, 1000);
         }
 
-        // Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo"];
+        // Shared Order Notification Logic
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna"];
         const prods = ["V-Lift Pro™ Sculpting", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');
             const txt = document.getElementById('notif-text');
+            if (!el || !txt) return;
+
             const name = names[Math.floor(Math.random() * names.length)];
             const state = states[Math.floor(Math.random() * states.length)];
             const prod = prods[Math.floor(Math.random() * prods.length)];
@@ -365,11 +369,10 @@
             el.classList.add('show');
             setTimeout(() => {
                 el.classList.remove('show');
-            }, 3000);
+            }, 3500);
         }
 
         setInterval(triggerNotif, 5000);
-        // Initial trigger
         setTimeout(triggerNotif, 2000);
     </script>
 </body>
