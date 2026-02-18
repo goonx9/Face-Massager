@@ -43,9 +43,35 @@
         .text-primary { color: var(--primary); }
         .bg-primary { background-color: var(--primary); }
         .shadow-3xl { box-shadow: 0 35px 60px -15px rgba(216, 27, 96, 0.2); }
+
+        /* Order Notification Styles */
+        #order-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+            transform: translateY(100px);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #order-notification.show {
+            display: flex;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
+    <!-- Order Notification -->
+    <div id="order-notification" class="bg-white/95 backdrop-blur shadow-2xl rounded-2xl p-4 border border-pink-100 items-center gap-4 max-w-[280px]">
+        <div class="w-10 h-10 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white">
+            <i data-lucide="shopping-bag" size="18"></i>
+        </div>
+        <div>
+            <p class="text-[11px] font-bold leading-tight" id="notif-text">Ada from Lagos ordered V-Lift Pro™</p>
+            <p class="text-[9px] text-pink-500 font-bold uppercase tracking-widest mt-1">Just now</p>
+        </div>
+    </div>
+
     <nav class="fixed top-0 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
@@ -115,6 +141,31 @@
                 emailjs.init("_h1UzYlyePtWt0IqM");
             }
         });
+
+        // Order Notification Logic
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo"];
+        const prods = ["V-Lift Pro™ Sculpting", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
+
+        function triggerNotif() {
+            const el = document.getElementById('order-notification');
+            const txt = document.getElementById('notif-text');
+            const name = names[Math.floor(Math.random() * names.length)];
+            const state = states[Math.floor(Math.random() * states.length)];
+            const prod = prods[Math.floor(Math.random() * prods.length)];
+
+            if(txt) txt.innerHTML = `<strong>${name}</strong> from <strong>${state}</strong> ordered <strong>${prod}</strong>`;
+            
+            if(el) {
+                el.classList.add('show');
+                setTimeout(() => {
+                    el.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        setInterval(triggerNotif, 5000);
+        setTimeout(triggerNotif, 2000);
 
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
