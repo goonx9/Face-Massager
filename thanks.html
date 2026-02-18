@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Thank You | Glamour & Grace</title>
     <!-- Meta Pixel Code -->
     <script>
@@ -17,11 +17,9 @@
     fbq('init', '4029546293858823');
     fbq('track', 'PageView');
     
-    // Extract price if available from URL for better tracking
     const urlParams = new URLSearchParams(window.location.search);
     const price = urlParams.get('p') || '0';
     
-    // FIRE PURCHASE EVENT FOR FACEBOOK ADS
     fbq('track', 'Purchase', {
         value: parseFloat(price),
         currency: 'NGN'
@@ -32,9 +30,6 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -52,6 +47,7 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+            -webkit-font-smoothing: antialiased;
         }
         .font-serif { font-family: 'Playfair Display', serif; }
     </style>
@@ -78,9 +74,9 @@
         <p class="text-[10px] font-black opacity-30 uppercase tracking-widest">You will be redirected automatically in 5 seconds...</p>
     </div>
 
+    <!-- Deferred Scripts -->
+    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
     <script>
-        lucide.createIcons();
-        
         const params = new URLSearchParams(window.location.search);
         const waLink = params.get('wa');
         
@@ -95,8 +91,6 @@
         };
 
         document.getElementById('waRedirectBtn').addEventListener('click', handleRedirect);
-
-        // Auto-redirect after 5 seconds to ensure Pixel fires but UX stays smooth
         setTimeout(handleRedirect, 5000);
     </script>
 </body>

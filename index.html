@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Glamour & Grace | Professional Skincare Solutions</title>
+    
+    <!-- Resource Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -21,11 +28,10 @@
     src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
     <style>
         :root {
             --primary: #FF1493;
@@ -44,6 +50,7 @@
             padding: 0;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
         .font-serif { font-family: 'Playfair Display', serif; }
         .bg-complement { background-color: var(--complement); }
@@ -51,7 +58,6 @@
         .text-body { color: var(--body); }
         .border-pink-100 { border-color: #FCE4EC; }
         
-        /* Smooth Fade In */
         .fade-in { animation: fadeIn 0.8s ease-out forwards; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
@@ -63,12 +69,18 @@
             pointer-events: none;
             opacity: 0.1;
             animation: float 15s linear infinite;
+            will-change: transform, opacity;
         }
         @keyframes float {
             0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
             20% { opacity: 0.2; }
             80% { opacity: 0.2; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Optimization for Instagram Browser */
+        @supports (-webkit-touch-callout: none) {
+            .min-h-screen { min-height: -webkit-fill-available; }
         }
     </style>
 </head>
@@ -93,7 +105,6 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-[80vh] flex items-center pt-24 md:pt-32 overflow-hidden bg-complement">
-        <!-- Static Hearts for Background -->
         <div class="absolute inset-0 pointer-events-none overflow-hidden" id="heart-container"></div>
         
         <div class="max-w-4xl mx-auto text-center z-10 relative px-6 fade-in">
@@ -162,7 +173,7 @@
                 <!-- Product Card 1 -->
                 <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
-                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
                             Bestseller
                         </div>
@@ -183,7 +194,7 @@
                 <!-- Product Card 2 -->
                 <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" alt="PureSteam" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" alt="PureSteam" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
                             New Arrival
                         </div>
@@ -201,10 +212,10 @@
                         </a>
                     </div>
                 </div>
-                <!-- Product Card 3 (New Spatula) -->
+                <!-- Product Card 3 -->
                 <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg" alt="Beauty Spatula" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg" alt="Beauty Spatula" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
                             Essential
                         </div>
@@ -234,7 +245,7 @@
             </h2>
             <div class="flex flex-col items-center gap-4">
                 <div class="w-20 h-20 rounded-full border-4 border-pink-500 overflow-hidden bg-pink-100">
-                   <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop" alt="User">
+                   <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&h=200&auto=format&fit=crop" loading="lazy" decoding="async" alt="User">
                 </div>
                 <div>
                     <p class="font-black text-lg tracking-widest uppercase">Adaobi O.</p>
@@ -284,21 +295,31 @@
         </div>
     </footer>
 
+    <!-- Deferred Scripts -->
+    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
     <script>
-        // Initialize Icons
-        lucide.createIcons();
+        // Optimization for Background Hearts using requestIdleCallback
+        const initHearts = () => {
+            const container = document.getElementById('heart-container');
+            if (!container) return;
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = (i * 2) + 's';
+                heart.style.fontSize = (20 + Math.random() * 40) + 'px';
+                heart.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>';
+                heart.style.color = 'rgba(244, 143, 177, 0.4)';
+                fragment.appendChild(heart);
+            }
+            container.appendChild(fragment);
+        };
 
-        // Background Hearts Logic (Native JS to avoid dependencies)
-        const container = document.getElementById('heart-container');
-        for (let i = 0; i < 12; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'floating-heart';
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDelay = (i * 2) + 's';
-            heart.style.fontSize = (20 + Math.random() * 40) + 'px';
-            heart.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="lucide lucide-heart"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>';
-            heart.style.color = 'rgba(244, 143, 177, 0.4)';
-            container.appendChild(heart);
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => initHearts());
+        } else {
+            setTimeout(initHearts, 1000);
         }
     </script>
 </body>

@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Ultrasonic Glow Spatula™ | Glamour & Grace</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -22,10 +26,6 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -41,6 +41,7 @@
             background-color: var(--background); 
             color: var(--text); 
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
         }
         .font-serif { font-family: 'Playfair Display', serif; }
         .text-primary { color: var(--primary); }
@@ -88,7 +89,7 @@
                 
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white bg-white">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260612/aka6l9_q02v1h.gif" class="w-full h-auto" alt="Ultrasonic Extraction">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260612/aka6l9_q02v1h.gif" loading="lazy" decoding="async" class="w-full h-auto" alt="Ultrasonic Extraction">
                     </div>
                     <div class="space-y-6">
                         <h2 class="text-4xl md:text-5xl font-serif font-black">Deep Extraction Mode</h2>
@@ -100,7 +101,7 @@
 
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white bg-white">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771262234/aka6n8_srl2ar.gif" class="w-full h-auto" alt="EMS Infusion">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771262234/aka6n8_srl2ar.gif" loading="lazy" decoding="async" class="w-full h-auto" alt="EMS Infusion">
                     </div>
                     <div class="space-y-6">
                         <h2 class="text-4xl md:text-5xl font-serif font-black">EMS Lifting & Nutrient Infusion</h2>
@@ -112,7 +113,7 @@
 
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
-                         <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg" class="w-full h-auto" alt="Spatula Detail">
+                         <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg" loading="lazy" decoding="async" class="w-full h-auto" alt="Spatula Detail">
                     </div>
                     <div class="space-y-6">
                         <h2 class="text-4xl md:text-5xl font-serif font-black">Medical Grade Stainless Steel</h2>
@@ -169,7 +170,7 @@
                 <h2 class="text-3xl md:text-5xl font-serif font-black italic">"I could literally see the gunk coming out of my pores. My face has never felt this clean or smooth. It's magic."</h2>
                 <div class="flex flex-col items-center gap-4">
                     <div class="w-16 h-16 rounded-full bg-pink-200 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?q=80&w=150&h=150&auto=format&fit=crop" alt="Customer">
+                        <img src="https://images.unsplash.com/photo-1548142813-c348350df52b?q=80&w=150&h=150&auto=format&fit=crop" loading="lazy" decoding="async" alt="Customer">
                     </div>
                     <p class="font-black text-sm uppercase tracking-widest">Chinelo V. <span class="text-pink-400">— Abuja</span></p>
                 </div>
@@ -209,9 +210,15 @@
         <p class="text-[10px] font-black tracking-[0.4em] uppercase opacity-40">© 2025 Glamour & Grace Aesthetics. All Rights Reserved.</p>
     </footer>
 
+    <!-- Deferred Scripts -->
+    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
-        lucide.createIcons();
-        emailjs.init("_h1UzYlyePtWt0IqM");
+        window.addEventListener('load', () => {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("_h1UzYlyePtWt0IqM");
+            }
+        });
 
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -222,16 +229,7 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
             
-            const message = `🌟 NEW ORDER RECEIVED! 🌟
--------------------------
-Product: ${data.product_name}
-Price: ₦${parseInt(data.product_price).toLocaleString()}
--------------------------
-Customer: ${data.name}
-Phone: ${data.phone}
-Location: ${data.location}
-Address: ${data.address}
--------------------------`;
+            const message = `🌟 NEW ORDER RECEIVED! 🌟\n-------------------------\nProduct: ${data.product_name}\nPrice: ₦${parseInt(data.product_price).toLocaleString()}\n-------------------------\nCustomer: ${data.name}\nPhone: ${data.phone}\nLocation: ${data.location}\nAddress: ${data.address}\n-------------------------`;
 
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
@@ -251,7 +249,6 @@ Address: ${data.address}
                     product_price: data.product_price
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                // Redirect to Thank You page for Pixel tracking, passing WA link
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${data.product_price}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');

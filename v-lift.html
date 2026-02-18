@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>V-Lift Pro™ | Glamour & Grace</title>
+    
+    <!-- Preloads -->
+    <link rel="preload" as="image" href="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -22,10 +28,6 @@
     /></noscript>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -36,7 +38,7 @@
             --complement: #F1FBF3;
             --accent: #F06292;
         }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--background); color: var(--text); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--background); color: var(--text); -webkit-font-smoothing: antialiased; }
         .font-serif { font-family: 'Playfair Display', serif; }
         .text-primary { color: var(--primary); }
         .bg-primary { background-color: var(--primary); }
@@ -64,7 +66,7 @@
             <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
                 <div class="space-y-8">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white bg-pink-50">
-                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" class="w-full h-auto">
+                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" class="w-full h-auto" decoding="async">
                     </div>
                 </div>
                 <div class="flex flex-col justify-center">
@@ -104,9 +106,15 @@
         </section>
     </main>
 
+    <!-- Deferred Scripts -->
+    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
-        lucide.createIcons();
-        emailjs.init("_h1UzYlyePtWt0IqM");
+        window.addEventListener('load', () => {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("_h1UzYlyePtWt0IqM");
+            }
+        });
 
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -117,16 +125,7 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
 
-            const message = `🌟 NEW ORDER RECEIVED! 🌟
--------------------------
-Product: ${data.product_name}
-Price: ₦${parseInt(data.product_price).toLocaleString()}
--------------------------
-Customer: ${data.name}
-Phone: ${data.phone}
-Location: ${data.location}
-Address: ${data.address}
--------------------------`;
+            const message = `🌟 NEW ORDER RECEIVED! 🌟\n-------------------------\nProduct: ${data.product_name}\nPrice: ₦${parseInt(data.product_price).toLocaleString()}\n-------------------------\nCustomer: ${data.name}\nPhone: ${data.phone}\nLocation: ${data.location}\nAddress: ${data.address}\n-------------------------`;
 
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
