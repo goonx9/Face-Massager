@@ -7,6 +7,9 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -21,9 +24,6 @@
     fbq('init', '4029546293858823');
     fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
-    /></noscript>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
@@ -70,6 +70,9 @@
     </style>
 </head>
 <body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
+    /></noscript>
     <!-- Order Notification -->
     <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
         <div class="w-12 h-12 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white shadow-lg">
@@ -105,7 +108,7 @@
                     The ultimate skin extraction and infusion tool. 30,000 vibrations per second to clear pores and drive serums deep into your dermis.
                 </p>
                 <div class="flex flex-wrap gap-8 items-center justify-center">
-                    <div class="text-3xl font-black text-primary">₦34,500 <span class="text-lg line-through opacity-30 ml-2">₦48,000</span></div>
+                    <div class="text-3xl font-black text-primary">₦36,500 <span class="text-lg line-through opacity-30 ml-2">₦48,000</span></div>
                     <a href="#order" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:translate-y-[-2px] transition-all">Claim Yours</a>
                 </div>
             </div>
@@ -148,6 +151,31 @@
                         <p class="text-lg font-semibold opacity-70 leading-relaxed">
                             Engineered with a hypoallergenic spatula head curved to fit every contour of your face—from the nose bridge to the jawline—ensuring no spot is left untreated.
                         </p>
+                    </div>
+                </div>
+
+                <!-- Added Information Section -->
+                <div class="grid md:grid-cols-3 gap-8 pt-12">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-lg border border-pink-50 text-center space-y-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mx-auto">
+                            <i data-lucide="droplets"></i>
+                        </div>
+                        <h4 class="font-black text-sm uppercase tracking-widest">Cleaning Mode</h4>
+                        <p class="text-xs font-medium opacity-60">Removes dead skin cells and opens clogged pores.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-lg border border-pink-50 text-center space-y-4">
+                        <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-primary mx-auto">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <h4 class="font-black text-sm uppercase tracking-widest">Moist Mode</h4>
+                        <p class="text-xs font-medium opacity-60">Drives skincare products deep into the skin.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-lg border border-pink-50 text-center space-y-4">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 mx-auto">
+                            <i data-lucide="trending-up"></i>
+                        </div>
+                        <h4 class="font-black text-sm uppercase tracking-widest">Lifting Mode</h4>
+                        <p class="text-xs font-medium opacity-60">Tightens and lifts skin with EMS microcurrent.</p>
                     </div>
                 </div>
 
@@ -214,7 +242,7 @@
                 </div>
                 <form id="orderForm" class="space-y-6 bg-complement/20 p-12 rounded-[4rem] border border-pink-50 shadow-3xl">
                     <input type="hidden" name="product_name" value="Ultrasonic Glow Spatula™">
-                    <input type="hidden" name="product_price" value="34500">
+                    <input type="hidden" name="product_price" value="36500">
                     <div class="grid gap-6">
                         <input type="text" name="name" placeholder="FULL NAME" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
@@ -281,8 +309,24 @@
             btn.innerText = 'PROCESSING ORDER...';
             const formData = new FormData(this);
             const data = Object.fromEntries(formData.entries());
+            const timestamp = new Date().toLocaleString();
             
-            const message = `🌟 NEW ORDER RECEIVED! 🌟\n-------------------------\nProduct: ${data.product_name}\nPrice: ₦${parseInt(data.product_price).toLocaleString()}\n-------------------------\nCustomer: ${data.name}\nPhone: ${data.phone}\nLocation: ${data.location}\nAddress: ${data.address}\n-------------------------`;
+            const message = `🌟 NEW ORDER RECEIVED! 🌟\n\n` +
+                            `📅 Date: ${timestamp}\n` +
+                            `-------------------------\n` +
+                            `🛍️ PRODUCT DETAILS\n` +
+                            `Product: ${data.product_name}\n` +
+                            `Price: ₦${parseInt(data.product_price).toLocaleString()}\n` +
+                            `-------------------------\n` +
+                            `👤 CUSTOMER DETAILS\n` +
+                            `Name: ${data.name}\n` +
+                            `Phone: ${data.phone}\n` +
+                            `Location: ${data.location}\n` +
+                            `Address: ${data.address}\n` +
+                            `-------------------------\n` +
+                            `💳 PAYMENT METHOD\n` +
+                            `Type: Pay on Delivery\n` +
+                            `-------------------------`;
 
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
@@ -299,7 +343,9 @@
                     customer_location: data.location,
                     customer_address: data.address,
                     product_name: data.product_name,
-                    product_price: data.product_price
+                    product_price: data.product_price,
+                    order_date: timestamp,
+                    payment_method: "Pay on Delivery"
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${data.product_price}`;
