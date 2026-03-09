@@ -485,19 +485,21 @@
                     to_name: "Glamour & Grace",
                     from_name: data.name,
                     message: message,
-                    name: data.name,
-                    phone: data.phone,
-                    location: data.location,
-                    state: data.location,
-                    address: data.address,
                     customer_name: data.name,
                     customer_phone: data.phone,
-                    customer_location: data.location,
                     customer_address: data.address,
                     product_name: data.product_name,
-                    product_price: data.product_price,
+                    product_ordered: data.product_name,
+                    quantity: "1",
+                    total_amount: `₦${totalPrice.toLocaleString()}`,
+                    payment_method: paymentType,
+                    ordered_at: timestamp,
                     order_date: timestamp,
-                    payment_method: paymentType
+                    name: data.name,
+                    phone: data.phone,
+                    address: data.address,
+                    location: data.location,
+                    total: `₦${totalPrice.toLocaleString()}`
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
