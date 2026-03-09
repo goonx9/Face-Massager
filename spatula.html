@@ -494,7 +494,10 @@
                     customerName: data.name,
                     phone: data.phone,
                     address: data.address,
-                    location: data.location
+                    location: data.location,
+                    whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`,
+                    customer_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`,
+                    order_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
