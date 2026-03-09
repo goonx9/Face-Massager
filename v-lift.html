@@ -526,7 +526,7 @@
                 });
 
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
+                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent(data.product_name)}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 console.error(err);
