@@ -100,35 +100,121 @@
     </nav>
 
     <main class="pt-32">
-        <!-- Hero Section -->
-        <section class="py-24 px-6 md:px-12 lg:px-24 bg-complement rounded-b-[4rem] md:rounded-b-[6rem]">
-            <div class="max-w-3xl mx-auto text-center space-y-10">
-                <h1 class="text-6xl md:text-8xl font-serif font-black leading-tight">PureSteam™ <br><span class="italic text-primary">Hydration System.</span></h1>
-                <p class="text-xl md:text-2xl font-medium opacity-90 leading-relaxed" style="color: var(--body)">
-                    Go beyond surface washing. Experience the technology that penetrates 10x deeper for a professional-grade glow.
+        <!-- Section 1: Problem -->
+        <section class="py-20 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <h2 class="text-4xl md:text-5xl font-serif font-black text-primary">Is your skin screaming for a deep clean?</h2>
+                <p class="text-xl leading-relaxed opacity-80 font-medium">
+                    Surface washing only removes 20% of the dirt. The rest stays trapped in your pores, leading to blackheads, breakouts, and a dull complexion that no amount of makeup can hide.
                 </p>
-                <div class="flex flex-wrap gap-8 items-center justify-center">
-                    <div class="text-3xl font-black text-primary">₦34,500 <span class="text-lg line-through opacity-30 ml-2">₦43,800</span></div>
-                    <a href="#order" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:translate-y-[-2px] transition-all">Get Yours Today</a>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
+                        <i data-lucide="droplets" class="text-pink-400 mb-4"></i>
+                        <p class="text-sm font-bold">Clogged pores & stubborn blackheads</p>
+                    </div>
+                    <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
+                        <i data-lucide="wind" class="text-pink-400 mb-4"></i>
+                        <p class="text-sm font-bold">Dry, flaky patches & uneven texture</p>
+                    </div>
+                    <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
+                        <i data-lucide="shield-alert" class="text-pink-400 mb-4"></i>
+                        <p class="text-sm font-bold">Serums that just "sit" on the surface</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Vertical Feature Stack -->
-        <section class="py-24 px-6 md:px-12 lg:px-24">
-            <div class="max-w-4xl mx-auto space-y-32">
+        <!-- Section 2: New Insight -->
+        <section class="py-20 px-6 md:px-12 lg:px-24 bg-pink-50/30">
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-primary font-black uppercase tracking-widest text-xs">The Hydration Secret</span>
+                    <h2 class="text-4xl font-serif font-black">Why regular steam isn't enough...</h2>
+                    <p class="text-lg leading-relaxed opacity-80">
+                        Standard steam particles are too large to actually enter your pores. They just make your face wet without providing deep benefits.
+                    </p>
+                    <p class="text-lg leading-relaxed opacity-80">
+                        <strong>Nano-Ionic technology</strong> atomizes water into micro-particles that are 10x smaller. These particles penetrate the skin barrier, melting sebum and hydrating at a cellular level.
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-pink-100">
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">1</div>
+                            <p class="font-bold">10x Deeper penetration than regular steam</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">2</div>
+                            <p class="font-bold">Softens blackheads for easy removal</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">3</div>
+                            <p class="font-bold">Boosts blood circulation for a natural glow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Product Solution -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-complement rounded-[4rem] md:rounded-[6rem] my-12">
+            <div class="max-w-3xl mx-auto text-center space-y-10">
+                <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase inline-block">The Solution</span>
+                <h1 class="text-6xl md:text-8xl font-serif font-black leading-tight">PureSteam™ <br><span class="italic text-primary">Hydration System.</span></h1>
+                <div class="flex flex-wrap gap-4 items-center justify-center mb-6">
+                    <span class="text-5xl font-black text-primary">₦34,500</span>
+                    <span class="text-2xl line-through opacity-30 font-bold">₦43,800</span>
+                </div>
+
+                <!-- Offer Badges -->
+                <div class="flex flex-wrap gap-3 justify-center mb-10">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
+                        <i data-lucide="truck" size="14"></i> Free Delivery
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
+                        <i data-lucide="banknote" size="14"></i> Cash on Delivery
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-purple-100">
+                        <i data-lucide="shield-check" size="14"></i> 7-Day Return Policy
+                    </div>
+                </div>
+
+                <p class="text-xl md:text-2xl font-medium opacity-90 leading-relaxed" style="color: var(--body)">
+                    Go beyond surface washing. Experience the technology that penetrates 10x deeper for a professional-grade glow.
+                </p>
+                <a href="#order" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:translate-y-[-2px] transition-all inline-block">Get Yours Today</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Proof -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-50">
+            <div class="max-w-5xl mx-auto text-center space-y-16">
+                <div class="space-y-4">
+                    <h2 class="text-4xl md:text-5xl font-serif font-black">Professional Results at Home</h2>
+                    <p class="text-lg font-bold opacity-60 uppercase tracking-widest">See the PureSteam™ Difference</p>
+                </div>
                 
-                <div class="space-y-10 text-center">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
                         <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" loading="lazy" decoding="async" class="w-full h-auto" alt="Nano-Atomization Tech">
                     </div>
-                    <div class="space-y-6">
-                        <h2 class="text-4xl md:text-5xl font-serif font-black">Nano-Ionic Deep Pore Cleansing</h2>
-                        <p class="text-lg font-semibold opacity-70 leading-relaxed">
-                            Traditional steam stays on the surface. Our nano-ionic technology atomizes water into micro-particles that reach the deepest layers of your skin, melting away trapped makeup and impurities.
+                    <div class="text-left space-y-6">
+                        <h3 class="text-3xl font-serif font-black">Nano-Ionic Deep Cleansing</h3>
+                        <p class="text-lg opacity-70 leading-relaxed">
+                            Our nano-ionic technology atomizes water into micro-particles that reach the deepest layers of your skin, melting away trapped makeup and impurities that regular washing misses.
                         </p>
+                        <div class="flex items-center gap-2 text-primary">
+                            <i data-lucide="star" fill="currentColor" size="16"></i>
+                            <i data-lucide="star" fill="currentColor" size="16"></i>
+                            <i data-lucide="star" fill="currentColor" size="16"></i>
+                            <i data-lucide="star" fill="currentColor" size="16"></i>
+                            <i data-lucide="star" fill="currentColor" size="16"></i>
+                            <span class="ml-2 font-black text-xs uppercase tracking-widest">5.0 Rating</span>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
                 <div class="space-y-10 text-center">
                     <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
@@ -261,11 +347,32 @@
                         <input type="text" name="name" placeholder="FULL NAME" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <select name="location" class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all appearance-none cursor-pointer shadow-sm">
-                            <option value="Lagos">Lagos Delivery (Within 24-48hrs)</option>
-                            <option value="Abuja">Abuja Delivery (Within 48-72hrs)</option>
-                            <option value="Other">Other Locations (3-5 Days)</option>
+                            <option value="Lagos">Lagos Delivery (Within 24-48hrs) - FREE</option>
+                            <option value="Abuja">Abuja Delivery (Within 48-72hrs) - FREE</option>
+                            <option value="Other">Other Locations (3-5 Days) - FREE</option>
                         </select>
                         <textarea name="address" placeholder="DELIVERY ADDRESS" required class="w-full px-8 py-5 rounded-[2.5rem] bg-white outline-none font-black text-[11px] tracking-widest min-h-[140px] border border-transparent focus:border-primary transition-all shadow-sm"></textarea>
+                        <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100 space-y-3">
+                            <p class="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-2">
+                                <i data-lucide="info" size="14"></i> Order Summary
+                            </p>
+                            <div class="flex justify-between text-sm font-bold">
+                                <span>PureSteam™</span>
+                                <span>₦34,500</span>
+                            </div>
+                            <div class="flex justify-between text-sm font-bold text-green-600">
+                                <span>Delivery</span>
+                                <span>FREE</span>
+                            </div>
+                            <div class="flex justify-between text-sm font-bold text-blue-600">
+                                <span>Payment</span>
+                                <span>Cash on Delivery</span>
+                            </div>
+                            <div class="pt-3 border-t border-pink-200 flex justify-between text-lg font-black">
+                                <span>Total</span>
+                                <span>₦34,500</span>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" id="submitBtn" class="w-full py-6 bg-primary text-white rounded-full font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
                         <i data-lucide="zap" size="18"></i> Order My PureSteam
