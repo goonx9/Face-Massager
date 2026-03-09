@@ -474,16 +474,27 @@
                     customer_address: data.address,
                     product_name: data.product_name,
                     product_ordered: data.product_name,
+                    product: data.product_name,
+                    item: data.product_name,
                     quantity: "1",
+                    qty: "1",
                     total_amount: `₦${totalPrice.toLocaleString()}`,
+                    total_price: `₦${totalPrice.toLocaleString()}`,
+                    amount: `₦${totalPrice.toLocaleString()}`,
+                    total: `₦${totalPrice.toLocaleString()}`,
                     payment_method: paymentType,
+                    payment: paymentType,
+                    method: paymentType,
                     ordered_at: timestamp,
                     order_date: timestamp,
+                    date: timestamp,
+                    timestamp: timestamp,
                     name: data.name,
+                    full_name: data.name,
+                    customerName: data.name,
                     phone: data.phone,
                     address: data.address,
-                    location: data.location,
-                    total: `₦${totalPrice.toLocaleString()}`
+                    location: data.location
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
