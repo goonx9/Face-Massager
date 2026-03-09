@@ -332,10 +332,10 @@
                     <div class="grid gap-6">
                         <input type="text" name="name" placeholder="FULL NAME" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
-                        <select name="location" class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all appearance-none cursor-pointer shadow-sm">
+                        <select name="location" id="locationSelect" class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all appearance-none cursor-pointer shadow-sm">
                             <option value="Lagos">Lagos Delivery (Within 24-48hrs) - FREE</option>
-                            <option value="Abuja">Abuja Delivery (Within 48-72hrs) - FREE</option>
-                            <option value="Other">Other Locations (3-5 Days) - FREE</option>
+                            <option value="Abuja">Abuja Delivery (Within 48-72hrs) - ₦3,000</option>
+                            <option value="Other">Other Locations (3-5 Days) - ₦3,000</option>
                         </select>
                         <textarea name="address" placeholder="DELIVERY ADDRESS" required class="w-full px-8 py-5 rounded-[2.5rem] bg-white outline-none font-black text-[11px] tracking-widest min-h-[140px] border border-transparent focus:border-primary transition-all shadow-sm"></textarea>
                         <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100 space-y-3">
@@ -346,17 +346,17 @@
                                 <span>Glow Spatula™</span>
                                 <span>₦36,500</span>
                             </div>
-                            <div class="flex justify-between text-sm font-bold text-green-600">
+                            <div class="flex justify-between text-sm font-bold" id="deliveryRow">
                                 <span>Delivery</span>
-                                <span>FREE</span>
+                                <span id="deliveryFeeText" class="text-green-600">FREE</span>
                             </div>
-                            <div class="flex justify-between text-sm font-bold text-blue-600">
+                            <div class="flex justify-between text-sm font-bold" id="paymentRow">
                                 <span>Payment</span>
-                                <span>Cash on Delivery</span>
+                                <span id="paymentMethodText" class="text-blue-600">Cash on Delivery</span>
                             </div>
                             <div class="pt-3 border-t border-pink-200 flex justify-between text-lg font-black">
                                 <span>Total</span>
-                                <span>₦36,500</span>
+                                <span id="totalPriceText">₦36,500</span>
                             </div>
                         </div>
                     </div>
@@ -408,6 +408,30 @@
         setInterval(triggerNotif, 5000);
         setTimeout(triggerNotif, 2000);
 
+        // Dynamic Order Summary Logic
+        const locSelect = document.getElementById('locationSelect');
+        const delFeeText = document.getElementById('deliveryFeeText');
+        const payMethText = document.getElementById('paymentMethodText');
+        const totalText = document.getElementById('totalPriceText');
+        const basePrice = 36500;
+
+        function updateSummary() {
+            const loc = locSelect.value;
+            const isLagos = loc === 'Lagos';
+            const fee = isLagos ? 0 : 3000;
+            const total = basePrice + fee;
+
+            delFeeText.innerText = isLagos ? 'FREE' : '₦3,000';
+            delFeeText.className = isLagos ? 'text-green-600' : 'text-pink-600';
+            
+            payMethText.innerText = isLagos ? 'Cash on Delivery' : 'Pay Before Delivery';
+            payMethText.className = isLagos ? 'text-blue-600' : 'text-orange-600';
+            
+            totalText.innerText = `₦${total.toLocaleString()}`;
+        }
+
+        locSelect.addEventListener('change', updateSummary);
+
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
@@ -418,12 +442,19 @@
             const data = Object.fromEntries(formData.entries());
             const timestamp = new Date().toLocaleString();
             
+            const isLagos = data.location === 'Lagos';
+            const deliveryFee = isLagos ? 0 : 3000;
+            const totalPrice = parseInt(data.product_price) + deliveryFee;
+            const paymentType = isLagos ? 'Cash on Delivery' : 'Pay Before Delivery (PBD)';
+
             const message = `🌟 NEW ORDER RECEIVED! 🌟\n\n` +
                             `📅 Date: ${timestamp}\n` +
                             `-------------------------\n` +
                             `🛍️ PRODUCT DETAILS\n` +
                             `Product: ${data.product_name}\n` +
                             `Price: ₦${parseInt(data.product_price).toLocaleString()}\n` +
+                            `Delivery Fee: ${isLagos ? 'FREE' : '₦3,000'}\n` +
+                            `Total: ₦${totalPrice.toLocaleString()}\n` +
                             `-------------------------\n` +
                             `👤 CUSTOMER DETAILS\n` +
                             `Name: ${data.name}\n` +
@@ -432,7 +463,7 @@
                             `Address: ${data.address}\n` +
                             `-------------------------\n` +
                             `💳 PAYMENT METHOD\n` +
-                            `Type: Pay on Delivery\n` +
+                            `Type: ${paymentType}\n` +
                             `-------------------------`;
 
             try {
@@ -452,10 +483,10 @@
                     product_name: data.product_name,
                     product_price: data.product_price,
                     order_date: timestamp,
-                    payment_method: "Pay on Delivery"
+                    payment_method: paymentType
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${data.product_price}`;
+                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 btn.disabled = false;
