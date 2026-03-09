@@ -514,7 +514,7 @@
                     order_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent(data.product_name)}`;
+                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 btn.disabled = false;
