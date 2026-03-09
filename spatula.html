@@ -447,24 +447,22 @@
             const totalPrice = parseInt(data.product_price) + deliveryFee;
             const paymentType = isLagos ? 'Cash on Delivery' : 'Pay Before Delivery (PBD)';
 
-            const message = `🌟 NEW ORDER RECEIVED! 🌟\n\n` +
-                            `📅 Date: ${timestamp}\n` +
-                            `-------------------------\n` +
-                            `🛍️ PRODUCT DETAILS\n` +
-                            `Product: ${data.product_name}\n` +
-                            `Price: ₦${parseInt(data.product_price).toLocaleString()}\n` +
-                            `Delivery Fee: ${isLagos ? 'FREE' : '₦3,000'}\n` +
-                            `Total: ₦${totalPrice.toLocaleString()}\n` +
-                            `-------------------------\n` +
-                            `👤 CUSTOMER DETAILS\n` +
-                            `Name: ${data.name}\n` +
-                            `Phone: ${data.phone}\n` +
-                            `Location: ${data.location}\n` +
-                            `Address: ${data.address}\n` +
-                            `-------------------------\n` +
-                            `💳 PAYMENT METHOD\n` +
-                            `Type: ${paymentType}\n` +
-                            `-------------------------`;
+            const message = `*NEW ORDER RECEIVED* 🛍️\n` +
+                            `--------------------------\n` +
+                            `📅 *Date:* ${timestamp}\n\n` +
+                            `📦 *PRODUCT INFO*\n` +
+                            `• *Product:* ${data.product_name}\n` +
+                            `• *Price:* ₦${parseInt(data.product_price).toLocaleString()}\n` +
+                            `• *Delivery:* ${isLagos ? 'FREE' : '₦3,000'}\n` +
+                            `• *Total:* ₦${totalPrice.toLocaleString()}\n\n` +
+                            `👤 *CUSTOMER INFO*\n` +
+                            `• *Name:* ${data.name}\n` +
+                            `• *Phone:* ${data.phone}\n` +
+                            `• *Location:* ${data.location}\n` +
+                            `• *Address:* ${data.address}\n\n` +
+                            `💳 *PAYMENT*\n` +
+                            `• *Method:* ${paymentType}\n` +
+                            `--------------------------`;
 
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
