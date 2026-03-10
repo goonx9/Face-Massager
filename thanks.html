@@ -87,7 +87,7 @@
         </div>
         
         <div class="space-y-4">
-            <h1 class="text-4xl font-serif font-black">Order Received!</h1>
+            <h1 class="text-4xl font-serif font-black" id="thanksHeading">Order Received!</h1>
             <p class="font-medium opacity-70 leading-relaxed">
                 Thank you for choosing Glamour & Grace. Your order is being processed. 
                 <br><br>
@@ -146,15 +146,49 @@
             }, 3500);
         }
 
-        setInterval(triggerNotif, 5000);
-        setTimeout(triggerNotif, 2000);
-
         const params = new URLSearchParams(window.location.search);
         const waLink = params.get('wa');
+        const customerName = params.get('n');
+        const productName = params.get('pn');
+
+        if (customerName) {
+            document.getElementById('thanksHeading').innerText = `Order Received, ${customerName}!`;
+        }
         
         if (!waLink) {
             window.location.href = 'index.html';
         }
+
+        function triggerNotif(customName, customProd) {
+            const el = document.getElementById('order-notification');
+            const txt = document.getElementById('notif-text');
+            if (!el || !txt) return;
+
+            const name = customName || names[Math.floor(Math.random() * names.length)];
+            const state = customName ? "Just now" : states[Math.floor(Math.random() * states.length)];
+            const prod = customProd || prods[Math.floor(Math.random() * prods.length)];
+
+            if (customName) {
+                txt.innerHTML = `<strong>${name}</strong> just ordered <strong>${prod}</strong>`;
+            } else {
+                txt.innerHTML = `<strong>${name}</strong> from <strong>${state}</strong> ordered <strong>${prod}</strong>`;
+            }
+            
+            el.classList.add('show');
+            setTimeout(() => {
+                el.classList.remove('show');
+            }, 3500);
+        }
+
+        // Trigger real order notification immediately
+        if (customerName && productName) {
+            setTimeout(() => triggerNotif(customerName, productName), 1000);
+        } else {
+            setTimeout(() => triggerNotif(), 2000);
+        }
+
+        // Continue random notifications
+        setInterval(() => triggerNotif(), 8000);
 
         const handleRedirect = () => {
             if (waLink) {
