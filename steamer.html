@@ -75,37 +75,37 @@
     /></noscript>
 
     <!-- Conversion Boosters -->
-    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-xs tracking-widest uppercase shadow-lg">
+    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-[#FF2D55] text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg">
         🔥 Special Offer Ends In: <span id="timer-display">30:00</span>
     </div>
 
     <!-- Exit Intent Popup -->
-    <div id="exit-popup" class="fixed inset-0 bg-black/80 z-[300] hidden items-center justify-center p-6 backdrop-blur-sm">
-        <div class="bg-white rounded-[3rem] p-10 max-w-md w-full text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
+    <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-6 backdrop-blur-md">
+        <div class="bg-white rounded-[3rem] p-10 max-w-md w-full text-center relative overflow-hidden shadow-3xl">
+            <div class="absolute top-0 left-0 w-full h-2 bg-[#FF2D55]"></div>
             <button id="close-exit" class="absolute top-6 right-6 text-gray-400 hover:text-black transition-colors">
                 <i data-lucide="x" size="24"></i>
             </button>
             
-            <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+            <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 text-[#FF2D55]">
                 <i data-lucide="gift" size="40"></i>
             </div>
             
             <h3 class="text-3xl font-serif font-black mb-4">Wait! Don't Go! 😱</h3>
             <p class="text-gray-600 mb-8 leading-relaxed">
-                You're about to miss out on our <span class="text-primary font-bold">FREE SHIPPING</span> and <span class="text-primary font-bold">CASH ON DELIVERY</span> offer.
+                You're about to miss out on our <span class="text-[#FF2D55] font-bold">FREE SHIPPING</span> and <span class="text-[#FF2D55] font-bold">CASH ON DELIVERY</span> offer.
             </p>
             
             <div class="bg-pink-50 p-6 rounded-3xl mb-8 border border-pink-100">
-                <p class="text-xs font-black uppercase tracking-widest text-primary mb-2">Limited Time Bonus</p>
+                <p class="text-xs font-black uppercase tracking-widest text-[#FF2D55] mb-2">Limited Time Bonus</p>
                 <p class="text-xl font-bold">Get a FREE Beauty Guide with your order today!</p>
             </div>
             
-            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">
+            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-[#FF2D55] text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">
                 Claim My Offer Now
             </button>
             
-            <p class="mt-6 text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
+            <p class="mt-6 text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
         </div>
     </div>
 
@@ -120,7 +120,7 @@
         </div>
     </div>
 
-    <nav class="fixed top-0 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
+    <nav class="fixed top-8 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
@@ -492,7 +492,7 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                display.textContent = minutes + ":" + seconds;
+                if (display) display.textContent = minutes + ":" + seconds;
 
                 if (--timer < 0) {
                     timer = duration; // Restart
@@ -500,45 +500,43 @@
             }, 1000);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const thirtyMinutes = 60 * 30;
-            const display = document.querySelector('#timer-display');
-            if (display) startTimer(thirtyMinutes, display);
+        const thirtyMinutes = 60 * 30;
+        const display = document.querySelector('#timer-display');
+        startTimer(thirtyMinutes, display);
 
-            // Exit Intent Logic
-            let exitShown = false;
-            
-            // Desktop: Mouse leave
-            document.addEventListener('mouseleave', (e) => {
-                if (e.clientY < 0 && !exitShown) {
-                    showExitPopup();
-                }
-            });
-
-            // Mobile/All: Back button handling
-            history.pushState(null, null, window.location.href);
-            window.addEventListener('popstate', () => {
-                if (!exitShown) {
-                    showExitPopup();
-                    history.pushState(null, null, window.location.href);
-                }
-            });
-
-            function showExitPopup() {
-                const popup = document.getElementById('exit-popup');
-                if (popup) {
-                    popup.style.display = 'flex';
-                    exitShown = true;
-                }
-            }
-
-            const closeBtn = document.getElementById('close-exit');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    document.getElementById('exit-popup').style.display = 'none';
-                });
+        // Exit Intent Logic
+        let exitShown = false;
+        
+        // Desktop: Mouse leave
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0 && !exitShown) {
+                showExitPopup();
             }
         });
+
+        // Mobile/All: Back button handling
+        history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', () => {
+            if (!exitShown) {
+                showExitPopup();
+                history.pushState(null, null, window.location.href);
+            }
+        });
+
+        function showExitPopup() {
+            const popup = document.getElementById('exit-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                exitShown = true;
+            }
+        }
+
+        const closeExitBtn = document.getElementById('close-exit');
+        if (closeExitBtn) {
+            closeExitBtn.addEventListener('click', () => {
+                document.getElementById('exit-popup').style.display = 'none';
+            });
+        }
 
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
