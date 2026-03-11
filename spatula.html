@@ -530,68 +530,62 @@
             const originalText = btn.innerHTML;
             btn.disabled = true;
             btn.innerText = 'PROCESSING ORDER...';
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+
+            const form = e.target;
+            const customerNameValue = form.name.value;
+            const customerPhoneValue = form.phone.value;
+            const customerAddressValue = form.address.value;
+            const customerLocationValue = form.location.value;
+            const productNameValue = form.product_name.value;
+            const productPriceValue = form.product_price.value;
+
             const timestamp = new Date().toLocaleString();
             
-            const isLagos = data.location === 'Lagos';
+            const isLagos = customerLocationValue === 'Lagos';
             const deliveryFee = isLagos ? 0 : 3000;
-            const totalPrice = parseInt(data.product_price) + deliveryFee;
+            const totalPrice = parseInt(productPriceValue) + deliveryFee;
             const paymentType = isLagos ? 'Cash on Delivery' : 'Pay Before Delivery (PBD)';
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
                             `--------------------------\n` +
-                            `📅 *Date:* ${timestamp}\n\n` +
-                            `📦 *PRODUCT INFO*\n` +
-                            `• *Product:* ${data.product_name}\n` +
-                            `• *Price:* ₦${parseInt(data.product_price).toLocaleString()}\n` +
-                            `• *Delivery:* ${isLagos ? 'FREE' : '₦3,000'}\n` +
-                            `• *Total:* ₦${totalPrice.toLocaleString()}\n\n` +
-                            `👤 *CUSTOMER INFO*\n` +
-                            `• *Name:* ${data.name}\n` +
-                            `• *Phone:* ${data.phone}\n` +
-                            `• *Location:* ${data.location}\n` +
-                            `• *Address:* ${data.address}\n\n` +
-                            `💳 *PAYMENT*\n` +
-                            `• *Method:* ${paymentType}\n` +
+                            `👤 *CUSTOMER:* ${customerNameValue}\n` +
+                            `📞 *PHONE:* ${customerPhoneValue}\n` +
+                            `📍 *LOCATION:* ${customerLocationValue}\n` +
+                            `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
+                            `📦 *PRODUCT:* ${productNameValue}\n` +
+                            `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
+                            `💳 *PAYMENT:* ${paymentType}\n` +
+                            `📅 *DATE:* ${timestamp}\n` +
                             `--------------------------`;
+
+            console.log("Sending Order for:", customerNameValue);
 
             try {
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
-                    from_name: data.name,
+                    from_name: customerNameValue,
+                    customer_name: customerNameValue,
+                    customerName: customerNameValue,
+                    customer: customerNameValue,
+                    name: customerNameValue,
+                    full_name: customerNameValue,
+                    user_name: customerNameValue,
+                    userName: customerNameValue,
+                    contact_name: customerNameValue,
+                    client_name: customerNameValue,
                     message: message,
-                    customer_name: data.name,
-                    customer_phone: data.phone,
-                    customer_address: data.address,
-                    product_name: data.product_name,
-                    product_ordered: data.product_name,
-                    product: data.product_name,
-                    item: data.product_name,
-                    quantity: "1",
-                    qty: "1",
+                    customer_phone: customerPhoneValue,
+                    phone: customerPhoneValue,
+                    customer_address: customerAddressValue,
+                    address: customerAddressValue,
+                    location: customerLocationValue,
+                    product_name: productNameValue,
+                    product: productNameValue,
                     total_amount: `₦${totalPrice.toLocaleString()}`,
-                    total_price: `₦${totalPrice.toLocaleString()}`,
-                    amount: `₦${totalPrice.toLocaleString()}`,
                     total: `₦${totalPrice.toLocaleString()}`,
                     payment_method: paymentType,
-                    payment: paymentType,
-                    method: paymentType,
-                    ordered_at: timestamp,
-                    order_date: timestamp,
                     date: timestamp,
-                    timestamp: timestamp,
-                    name: data.name,
-                    full_name: data.name,
-                    customerName: data.name,
-                    user_name: data.name,
-                    customer: data.name,
-                    phone: data.phone,
-                    address: data.address,
-                    location: data.location,
-                    whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`,
-                    customer_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`,
-                    order_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
+                    whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
