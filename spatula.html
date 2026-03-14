@@ -574,9 +574,18 @@
             });
         }
 
+        let isSubmitting = false;
+        window.addEventListener('beforeunload', (e) => {
+            if (isSubmitting) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
+            isSubmitting = true;
             const originalText = btn.innerHTML;
             btn.disabled = true;
             btn.innerText = 'PROCESSING ORDER...';
@@ -639,8 +648,10 @@
                     whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                isSubmitting = false;
                 window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
             } catch (err) {
+                isSubmitting = false;
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 btn.disabled = false;
                 btn.innerHTML = originalText;
