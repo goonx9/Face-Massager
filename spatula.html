@@ -611,8 +611,8 @@
             console.log("Sending Order for:", customerNameValue);
 
             try {
-                // Fire and forget email sending to speed up redirect
-                emailjs.send("service_gxhivxk", "template_239s5yz", {
+                // Wait for email to be sent to ensure reliability
+                await emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
                     from_name: customerNameValue,
                     customer_name: customerNameValue,
@@ -639,9 +639,7 @@
                     whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
                 });
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                setTimeout(() => {
-                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}`;
-                }, 800);
+                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
             } catch (err) {
                 alert('Connection error. Please contact us on WhatsApp directly.');
                 btn.disabled = false;
