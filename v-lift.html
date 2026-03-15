@@ -82,6 +82,13 @@
             flex: 0 0 100%;
             width: 100%;
         }
+
+        @media (max-width: 768px) {
+            .carousel-slide p {
+                font-size: 11px !important;
+                padding: 12px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -646,40 +653,43 @@
         startTimer(thirtyMinutes, display);
 
         // Exit Intent Logic
-        let exitShown = false;
+        let exitShown = sessionStorage.getItem('exitPopupShown') === 'true';
         
+        function showExitPopup() {
+            if (exitShown) return;
+            const popup = document.getElementById('exit-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                exitShown = true;
+                sessionStorage.setItem('exitPopupShown', 'true');
+                startPopupTimer();
+            }
+        }
+
         // Desktop: Mouse leave
         document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !exitShown) {
-                showExitPopup();
-            }
+            if (e.clientY < 0) showExitPopup();
         });
 
-        // Mobile: Scroll up detection (fast scroll up often means exit intent)
-        let lastScrollTop = 0;
+        // Mobile/All: Scroll depth (70%)
         window.addEventListener('scroll', () => {
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st < lastScrollTop && st < 100 && !exitShown) {
-                // User is scrolling up near the top
-                showExitPopup();
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
-        }, false);
+            const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+            if (scrollPercent > 0.7) showExitPopup();
+        });
 
-        // Mobile: Idle detection (20 seconds)
+        // Idle detection (30 seconds)
         let idleTimer;
         function resetIdleTimer() {
             clearTimeout(idleTimer);
             if (!exitShown) {
-                idleTimer = setTimeout(showExitPopup, 20000);
+                idleTimer = setTimeout(showExitPopup, 30000);
             }
         }
         document.addEventListener('mousemove', resetIdleTimer);
         document.addEventListener('touchstart', resetIdleTimer);
-        document.addEventListener('scroll', resetIdleTimer);
         resetIdleTimer();
         
-        // Mobile/All: Back button handling
+        // Back button handling
         history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', () => {
             if (!exitShown) {
@@ -688,12 +698,19 @@
             }
         });
 
-        function showExitPopup() {
-            const popup = document.getElementById('exit-popup');
-            if (popup) {
-                popup.style.display = 'flex';
-                exitShown = true;
-            }
+        function startPopupTimer() {
+            let timeLeft = 300; // 5 minutes
+            const display = document.createElement('div');
+            display.className = "text-primary font-black text-2xl mt-4";
+            const container = document.querySelector('#exit-popup .bg-pink-50');
+            if (container) container.appendChild(display);
+
+            const timer = setInterval(() => {
+                const mins = Math.floor(timeLeft / 60);
+                const secs = timeLeft % 60;
+                display.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                if (--timeLeft < 0) clearInterval(timer);
+            }, 1000);
         }
 
         const closeExitBtn = document.getElementById('close-exit');
@@ -704,13 +721,7 @@
         }
 
         // Carousel Logic
-        console.log("Carousel script initializing...");
         const track = document.getElementById('testimonial-carousel');
-        if (!track) {
-            console.error("Carousel track not found!");
-        } else {
-            console.log("Carousel track found:", track);
-        }
         const slides = Array.from(track.children);
         const nextBtn = document.getElementById('next-btn');
         const prevBtn = document.getElementById('prev-btn');
@@ -729,6 +740,25 @@
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateCarousel();
         });
+
+        // Touch Swipe Support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, {passive: true});
+
+        track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) {
+                currentSlide = (currentSlide + 1) % slides.length;
+                updateCarousel();
+            } else if (touchEndX - touchStartX > 50) {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                updateCarousel();
+            }
+        }, {passive: true});
 
         // Auto-play carousel
         setInterval(() => {
