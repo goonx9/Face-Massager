@@ -210,7 +210,7 @@
                         <i data-lucide="truck" size="14"></i> Free Delivery
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
-                        <i data-lucide="banknote" size="14"></i> Cash on Delivery
+                        <i data-lucide="banknote" size="14"></i> Pay on Delivery
                     </div>
                     <div class="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-purple-100">
                         <i data-lucide="shield-check" size="14"></i> 7-Day Return Policy
@@ -414,7 +414,7 @@
                             </div>
                             <div class="flex justify-between text-sm font-bold" id="paymentRow">
                                 <span>Payment</span>
-                                <span id="paymentMethodText" class="text-blue-600">Cash on Delivery</span>
+                                <span id="paymentMethodText" class="text-blue-600">Pay on Delivery</span>
                             </div>
                             <div class="pt-3 border-t border-pink-200 flex justify-between text-lg font-black">
                                 <span>Total</span>
@@ -486,7 +486,7 @@
             delFeeText.innerText = isLagos ? 'FREE' : '₦3,000';
             delFeeText.className = isLagos ? 'text-green-600' : 'text-pink-600';
             
-            payMethText.innerText = isLagos ? 'Cash on Delivery' : 'Pay Before Delivery';
+            payMethText.innerText = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery';
             payMethText.className = isLagos ? 'text-blue-600' : 'text-orange-600';
             
             totalText.innerText = `₦${total.toLocaleString()}`;
@@ -603,7 +603,7 @@
             const isLagos = customerLocationValue === 'Lagos';
             const deliveryFee = isLagos ? 0 : 3000;
             const totalPrice = parseInt(productPriceValue) + deliveryFee;
-            const paymentType = isLagos ? 'Cash on Delivery' : 'Pay Before Delivery (PBD)';
+            const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
                             `--------------------------\n` +
