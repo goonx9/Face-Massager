@@ -515,9 +515,15 @@
                         <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
                         <select name="location" id="locationSelect" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest appearance-none focus:ring-2 ring-primary transition-all">
                             <option value="Lagos">Lagos Delivery (Within 24-48hrs) - FREE</option>
-                            <option value="Abuja">Abuja Delivery (Within 48-72hrs) - ₦3,000</option>
-                            <option value="Other">Other Locations (3-5 Days) - ₦3,000</option>
+                            <option value="Outside Lagos">Outside Lagos (3-5 Days) - ₦5,000</option>
                         </select>
+                        
+                        <!-- Conditional Fields for Outside Lagos -->
+                        <div id="outsideLagosFields" class="hidden grid grid-cols-2 gap-4">
+                            <input type="text" name="state" id="stateInput" placeholder="STATE" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
+                            <input type="text" name="city" id="cityInput" placeholder="CITY" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
+                        </div>
+
                         <textarea name="address" placeholder="DELIVERY ADDRESS" required class="w-full px-8 py-5 rounded-[2rem] bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest min-h-[140px] focus:ring-2 ring-primary transition-all"></textarea>
                         
                         <!-- Commitment Notice -->
@@ -565,11 +571,38 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="submitBtn" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Order My V-Lift</button>
+                    <button type="submit" id="submitBtn" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                        Order & Finish on WhatsApp <i data-lucide="message-circle" size="20"></i>
+                    </button>
                 </form>
             </div>
         </section>
     </main>
+
+    <!-- Outside Lagos Warning Modal -->
+    <div id="outsideLagosModal" class="fixed inset-0 bg-black/90 z-[400] hidden items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white rounded-[2rem] p-8 max-w-md w-full text-center relative overflow-hidden shadow-3xl">
+            <div class="absolute top-0 left-0 w-full h-2 bg-red-600"></div>
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 text-red-600">
+                <i data-lucide="alert-circle" size="32"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-black mb-4 text-red-600 uppercase">Important Notice!</h3>
+            <p class="text-lg font-black text-red-700 mb-6 leading-tight">
+                ORDERS OUTSIDE LAGOS IS <span class="underline">PAY BEFORE WAYBILL OR DELIVERY</span>
+            </p>
+            <p class="text-sm text-gray-600 mb-8 font-bold leading-relaxed">
+                Delivery fee for outside Lagos is <span class="text-red-600 font-black">₦5,000</span>. <br>Please proceed only if you agree to these terms.
+            </p>
+            <div class="space-y-4">
+                <button id="proceedOutsideLagos" class="w-full py-4 bg-red-600 text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">
+                    I Agree & Proceed
+                </button>
+                <button id="cancelOutsideLagos" class="w-full py-4 bg-gray-100 text-gray-500 rounded-full font-bold uppercase tracking-widest text-xs">
+                    Go Back
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Deferred Scripts -->
     <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
@@ -611,22 +644,55 @@
         const delFeeText = document.getElementById('deliveryFeeText');
         const payMethText = document.getElementById('paymentMethodText');
         const totalText = document.getElementById('totalPriceText');
+        const outsideLagosFields = document.getElementById('outsideLagosFields');
+        const outsideLagosModal = document.getElementById('outsideLagosModal');
+        const proceedBtn = document.getElementById('proceedOutsideLagos');
+        const cancelBtn = document.getElementById('cancelOutsideLagos');
+        const stateInput = document.getElementById('stateInput');
+        const cityInput = document.getElementById('cityInput');
+        
         const basePrice = 38000;
 
         function updateSummary() {
             const loc = locSelect.value;
             const isLagos = loc === 'Lagos';
-            const fee = isLagos ? 0 : 3000;
+            
+            if (!isLagos) {
+                outsideLagosModal.style.display = 'flex';
+            } else {
+                outsideLagosFields.classList.add('hidden');
+                stateInput.required = false;
+                cityInput.required = false;
+                applySummaryChanges(true);
+            }
+        }
+
+        function applySummaryChanges(isLagos) {
+            const fee = isLagos ? 0 : 5000;
             const total = basePrice + fee;
 
-            delFeeText.innerText = isLagos ? 'FREE' : '₦3,000';
-            delFeeText.className = isLagos ? 'text-green-600' : 'text-pink-600';
+            delFeeText.innerText = isLagos ? 'FREE' : '₦5,000';
+            delFeeText.className = isLagos ? 'text-green-600' : 'text-red-600';
             
             payMethText.innerText = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery';
-            payMethText.className = isLagos ? 'text-blue-600' : 'text-orange-600';
+            payMethText.className = isLagos ? 'text-blue-600' : 'text-red-600 font-black';
             
             totalText.innerText = `₦${total.toLocaleString()}`;
         }
+
+        proceedBtn.addEventListener('click', () => {
+            outsideLagosModal.style.display = 'none';
+            outsideLagosFields.classList.remove('hidden');
+            stateInput.required = true;
+            cityInput.required = true;
+            applySummaryChanges(false);
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            outsideLagosModal.style.display = 'none';
+            locSelect.value = 'Lagos';
+            updateSummary();
+        });
 
         locSelect.addEventListener('change', updateSummary);
 
@@ -786,27 +852,35 @@
             const customerPhoneValue = form.phone.value;
             const customerAddressValue = form.address.value;
             const customerLocationValue = form.location.value;
+            const customerStateValue = form.state ? form.state.value : '';
+            const customerCityValue = form.city ? form.city.value : '';
             const productNameValue = form.product_name.value;
             const productPriceValue = form.product_price.value;
 
             const timestamp = new Date().toLocaleString();
             
             const isLagos = customerLocationValue === 'Lagos';
-            const deliveryFee = isLagos ? 0 : 3000;
+            const deliveryFee = isLagos ? 0 : 5000;
             const totalPrice = parseInt(productPriceValue) + deliveryFee;
             const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
+
+            let locationString = customerLocationValue;
+            if (!isLagos) {
+                locationString = `Outside Lagos (${customerStateValue}, ${customerCityValue})`;
+            }
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
                             `--------------------------\n` +
                             `👤 *CUSTOMER:* ${customerNameValue}\n` +
                             `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📍 *LOCATION:* ${customerLocationValue}\n` +
+                            `📍 *LOCATION:* ${locationString}\n` +
                             `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
                             `📦 *PRODUCT:* ${productNameValue}\n` +
                             `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
                             `💳 *PAYMENT:* ${paymentType}\n` +
                             `📅 *DATE:* ${timestamp}\n` +
-                            `--------------------------`;
+                            `--------------------------\n\n` +
+                            `*I am ready to confirm my order now!*`;
 
             console.log("Sending Order for:", customerNameValue);
 
