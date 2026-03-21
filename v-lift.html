@@ -742,8 +742,8 @@
         });
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Uche", "Bisi", "Femi", "Yinka", "Damilola", "Segun", "Tunde", "Lola", "Kemi", "Ronke", "Tayo", "Jide", "Kunle", "Wale", "Seun", "Toyin", "Eniola", "Bukky", "Dupe", "Nike"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Calabar", "Jos", "Abeokuta", "Akure", "Ilorin", "Minna", "Bauchi", "Gombe", "Sokoto", "Maiduguri", "Yola", "Jalingo", "Lafia", "Makurdi", "Lokoja"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna"];
         const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
 
         function triggerNotif() {
@@ -751,7 +751,6 @@
             const txt = document.getElementById('notif-text');
             if (!el || !txt) return;
 
-            // Use a simple shuffle-like logic to ensure variety
             const name = names[Math.floor(Math.random() * names.length)];
             const state = states[Math.floor(Math.random() * states.length)];
             const prod = prods[Math.floor(Math.random() * prods.length)];
@@ -761,7 +760,7 @@
             el.classList.add('show');
             setTimeout(() => {
                 el.classList.remove('show');
-            }, 3000);
+            }, 3500);
         }
 
         setInterval(triggerNotif, 5000);
@@ -865,7 +864,25 @@
             if (e.clientY < 0) showExitPopup();
         });
 
-        // Back button handling (Mobile)
+        // Mobile/All: Scroll depth (70%)
+        window.addEventListener('scroll', () => {
+            const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+            if (scrollPercent > 0.7) showExitPopup();
+        });
+
+        // Idle detection (30 seconds)
+        let idleTimer;
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            if (!exitShown) {
+                idleTimer = setTimeout(showExitPopup, 30000);
+            }
+        }
+        document.addEventListener('mousemove', resetIdleTimer);
+        document.addEventListener('touchstart', resetIdleTimer);
+        resetIdleTimer();
+        
+        // Back button handling
         history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', () => {
             if (!exitShown) {

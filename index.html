@@ -418,8 +418,8 @@
         }
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Uche", "Bisi", "Femi", "Yinka", "Damilola", "Segun", "Tunde", "Lola", "Kemi", "Ronke", "Tayo", "Jide", "Kunle", "Wale", "Seun", "Toyin", "Eniola", "Bukky", "Dupe", "Nike"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Calabar", "Jos", "Abeokuta", "Akure", "Ilorin", "Minna", "Bauchi", "Gombe", "Sokoto", "Maiduguri", "Yola", "Jalingo", "Lafia", "Makurdi", "Lokoja"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna"];
         const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
 
         function triggerNotif() {
@@ -436,7 +436,7 @@
             el.classList.add('show');
             setTimeout(() => {
                 el.classList.remove('show');
-            }, 3000);
+            }, 3500);
         }
 
         setInterval(triggerNotif, 5000);
