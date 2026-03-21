@@ -492,9 +492,9 @@
         });
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna"];
-        const prods = ["V-Lift Pro™ Sculpting", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Uche", "Bisi", "Femi", "Yinka", "Damilola", "Segun", "Tunde", "Lola", "Kemi", "Ronke", "Tayo", "Jide", "Kunle", "Wale", "Seun", "Toyin", "Eniola", "Bukky", "Dupe", "Nike"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Calabar", "Jos", "Abeokuta", "Akure", "Ilorin", "Minna", "Bauchi", "Gombe", "Sokoto", "Maiduguri", "Yola", "Jalingo", "Lafia", "Makurdi", "Lokoja"];
+        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');
@@ -510,10 +510,10 @@
             el.classList.add('show');
             setTimeout(() => {
                 el.classList.remove('show');
-            }, 3500);
+            }, 3000);
         }
 
-        setInterval(triggerNotif, 5000);
+        setInterval(triggerNotif, 12000);
         setTimeout(triggerNotif, 2000);
 
         // Dynamic Order Summary Logic
@@ -596,40 +596,24 @@
         startTimer(thirtyMinutes, display);
 
         // Exit Intent Logic
-        let exitShown = false;
+        let exitShown = sessionStorage.getItem('exitPopupShown') === 'true';
         
-        // Desktop: Mouse leave
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !exitShown) {
-                showExitPopup();
-            }
-        });
-
-        // Mobile: Scroll up detection (fast scroll up often means exit intent)
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st < lastScrollTop && st < 100 && !exitShown) {
-                // User is scrolling up near the top
-                showExitPopup();
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
-        }, false);
-
-        // Mobile: Idle detection (20 seconds)
-        let idleTimer;
-        function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            if (!exitShown) {
-                idleTimer = setTimeout(showExitPopup, 20000);
+        function showExitPopup() {
+            if (exitShown) return;
+            const popup = document.getElementById('exit-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                exitShown = true;
+                sessionStorage.setItem('exitPopupShown', 'true');
             }
         }
-        document.addEventListener('mousemove', resetIdleTimer);
-        document.addEventListener('touchstart', resetIdleTimer);
-        document.addEventListener('scroll', resetIdleTimer);
-        resetIdleTimer();
-        
-        // Mobile/All: Back button handling
+
+        // Desktop: Mouse leave
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0) showExitPopup();
+        });
+
+        // Back button handling (Mobile)
         history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', () => {
             if (!exitShown) {
@@ -637,14 +621,6 @@
                 history.pushState(null, null, window.location.href);
             }
         });
-
-        function showExitPopup() {
-            const popup = document.getElementById('exit-popup');
-            if (popup) {
-                popup.style.display = 'flex';
-                exitShown = true;
-            }
-        }
 
         const closeExitBtn = document.getElementById('close-exit');
         if (closeExitBtn) {

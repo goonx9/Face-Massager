@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="p-10">
-                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">V-Lift Pro™ Sculpting</h3>
+                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">Face Massage Lifter</h3>
                         <div class="flex items-center gap-3 mb-8">
                             <span class="text-2xl font-black text-pink-600">₦38,000</span>
                             <span class="text-sm line-through opacity-40 font-bold">₦55,000</span>
@@ -418,9 +418,9 @@
         }
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna"];
-        const prods = ["V-Lift Pro™ Sculpting", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Uche", "Bisi", "Femi", "Yinka", "Damilola", "Segun", "Tunde", "Lola", "Kemi", "Ronke", "Tayo", "Jide", "Kunle", "Wale", "Seun", "Toyin", "Eniola", "Bukky", "Dupe", "Nike"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Calabar", "Jos", "Abeokuta", "Akure", "Ilorin", "Minna", "Bauchi", "Gombe", "Sokoto", "Maiduguri", "Yola", "Jalingo", "Lafia", "Makurdi", "Lokoja"];
+        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');
@@ -436,10 +436,10 @@
             el.classList.add('show');
             setTimeout(() => {
                 el.classList.remove('show');
-            }, 3500);
+            }, 3000);
         }
 
-        setInterval(triggerNotif, 5000);
+        setInterval(triggerNotif, 12000);
         setTimeout(triggerNotif, 2000);
     </script>
 <script type="module" src="/index.tsx"></script>
