@@ -8,12 +8,10 @@
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://i.ibb.co">
     <link rel="preconnect" href="https://res.cloudinary.com">
-    <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://i.ibb.co">
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="preload" as="style" href="/src/index.css">
+    <link rel="stylesheet" href="/src/index.css">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -30,7 +28,6 @@
     </script>
     <!-- End Meta Pixel Code -->
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     
     <style>
@@ -99,7 +96,6 @@
             .min-h-screen { min-height: -webkit-fill-available; }
         }
     </style>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <noscript><img height="1" width="1" style="display:none"
@@ -204,7 +200,7 @@
                 <!-- Product Card 1 -->
                 <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
-                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg" alt="V-Lift Pro" width="400" height="500" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
                             Bestseller
                         </div>
@@ -225,7 +221,7 @@
                 <!-- Product Card 2 -->
                 <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" alt="PureSteam" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif" alt="PureSteam" width="400" height="500" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
                             New Arrival
                         </div>
@@ -246,7 +242,7 @@
                 <!-- Product Card 3 -->
                 <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg" alt="Beauty Spatula" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771260611/IMG-20260216-WA0001_1_olnyq8.jpg" alt="Beauty Spatula" width="400" height="500" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
                             Essential
                         </div>
@@ -263,6 +259,74 @@
                             </button>
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-12 bg-white border-y border-pink-50">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center">
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="shield-check" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Secure Payment</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="award" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Dermatologist Approved</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="truck" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Fast Shipping</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="heart" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">100% Satisfaction</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-12 bg-white border-y border-pink-50">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center">
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="shield-check" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Secure Payment</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="award" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Dermatologist Approved</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="truck" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">Fast Shipping</span>
+            </div>
+            <div class="flex flex-col items-center gap-2">
+                <i data-lucide="heart" class="text-pink-600" size="32"></i>
+                <span class="text-[10px] font-black uppercase tracking-widest">100% Satisfaction</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Q&A Section -->
+    <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+        <div class="max-w-4xl mx-auto space-y-16">
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-serif font-black mb-4">Common Questions</h2>
+                <p class="font-bold opacity-60 uppercase text-[10px] tracking-widest">Everything you need to know</p>
+            </div>
+            <div class="grid gap-8">
+                <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
+                    <h4 class="text-lg font-black mb-3">How long does delivery take?</h4>
+                    <p class="opacity-70 leading-relaxed">We offer express 24-48hr delivery within Lagos and Abuja. For other states, it typically takes 3-5 business days.</p>
+                </div>
+                <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
+                    <h4 class="text-lg font-black mb-3">Are these tools safe for sensitive skin?</h4>
+                    <p class="opacity-70 leading-relaxed">Yes! All our tools are dermatologist-approved and designed to be gentle yet effective on all skin types, including sensitive skin.</p>
+                </div>
+                <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
+                    <h4 class="text-lg font-black mb-3">Do you offer pay on delivery?</h4>
+                    <p class="opacity-70 leading-relaxed">We offer Pay on Delivery for orders within Lagos. For orders outside Lagos, we require payment before waybill/delivery due to logistics costs.</p>
                 </div>
             </div>
         </div>

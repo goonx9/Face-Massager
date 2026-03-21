@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/v1773945692/Electric_Ultrasonic_Ion_Skin_Scrubber_Face_Spatula_for_SkinCare_Blackhead_Removal_Facial_Cleansing_a7rkua.jpg">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/v1773945692/Top_4_Ultrasonic_Skin_Scrubber_Benefits_for_Glowing_Healthy_Skin_blvk4i.jpg">
+    <link rel="preload" as="style" href="/src/index.css">
+    <link rel="stylesheet" href="/src/index.css">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -26,8 +26,7 @@
     fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <style>
         :root {
             --primary: #FF2D55;
@@ -392,22 +391,46 @@
         <!-- Trust Badges -->
         <section class="py-12 bg-pink-50/30">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center text-center">
                     <div class="flex flex-col items-center gap-2">
-                        <i data-lucide="shield-check" size="32"></i>
-                        <span class="text-[9px] font-black uppercase tracking-widest">Dermatologist Tested</span>
+                        <i data-lucide="shield-check" class="text-pink-600" size="32"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest">Secure Payment</span>
                     </div>
                     <div class="flex flex-col items-center gap-2">
-                        <i data-lucide="award" size="32"></i>
-                        <span class="text-[9px] font-black uppercase tracking-widest">Premium Quality</span>
+                        <i data-lucide="award" class="text-pink-600" size="32"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest">Dermatologist Approved</span>
                     </div>
                     <div class="flex flex-col items-center gap-2">
-                        <i data-lucide="zap" size="32"></i>
-                        <span class="text-[9px] font-black uppercase tracking-widest">Instant Results</span>
+                        <i data-lucide="truck" class="text-pink-600" size="32"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest">Fast Shipping</span>
                     </div>
                     <div class="flex flex-col items-center gap-2">
-                        <i data-lucide="heart" size="32"></i>
-                        <span class="text-[9px] font-black uppercase tracking-widest">Skin Friendly</span>
+                        <i data-lucide="heart" class="text-pink-600" size="32"></i>
+                        <span class="text-[10px] font-black uppercase tracking-widest">100% Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Q&A Section -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-4xl mx-auto space-y-16">
+                <div class="text-center">
+                    <h2 class="text-4xl md:text-5xl font-serif font-black mb-4">Common Questions</h2>
+                    <p class="font-bold opacity-60 uppercase text-[10px] tracking-widest">Everything you need to know</p>
+                </div>
+                <div class="grid gap-8">
+                    <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
+                        <h4 class="text-lg font-black mb-3">How often should I use it?</h4>
+                        <p class="opacity-70 leading-relaxed">For best results, use 2-3 times a week. Always use on wet skin or with your favorite serum to ensure the spatula glides smoothly.</p>
+                    </div>
+                    <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
+                        <h4 class="text-lg font-black mb-3">Is it painful?</h4>
+                        <p class="opacity-70 leading-relaxed">Not at all! Unlike traditional extraction tools, the ultrasonic vibrations are painless and gentle on the skin while being highly effective.</p>
+                    </div>
+                    <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
+                        <h4 class="text-lg font-black mb-3">What is the warranty?</h4>
+                        <p class="opacity-70 leading-relaxed">We offer a 6-month replacement warranty for any technical defects. Your satisfaction is our priority.</p>
                     </div>
                 </div>
             </div>
@@ -522,10 +545,10 @@
         <p class="text-[10px] font-black tracking-[0.4em] uppercase opacity-40">© 2025 Glamour & Grace Aesthetics. All Rights Reserved.</p>
     </footer>
 
-    <!-- Deferred Scripts -->
-    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
+        lucide.createIcons();
         window.addEventListener('load', () => {
             if (typeof emailjs !== 'undefined') {
                 emailjs.init("_h1UzYlyePtWt0IqM");

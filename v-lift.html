@@ -6,11 +6,12 @@
     <title>V-Lift Pro™ | Glamour & Grace</title>
     
     <!-- Preloads -->
-    <link rel="preload" as="image" href="https://i.ibb.co/NnQBHrBh/NEW-FACE-LIFTER.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://i.ibb.co">
     <link rel="dns-prefetch" href="https://i.ibb.co">
+    <link rel="preload" as="style" href="/src/index.css">
+    <link rel="stylesheet" href="/src/index.css">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -604,10 +605,10 @@
         </div>
     </div>
 
-    <!-- Deferred Scripts -->
-    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
+        lucide.createIcons();
         window.addEventListener('load', () => {
             if (typeof emailjs !== 'undefined') {
                 emailjs.init("_h1UzYlyePtWt0IqM");

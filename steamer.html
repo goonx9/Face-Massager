@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>PureSteam™ Nano-Ionic Hydrator | Glamour & Grace</title>
     
+    <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/v1771087915/afll2t_pnpti9.gif">
+    <link rel="preload" as="style" href="/src/index.css">
+    <link rel="stylesheet" href="/src/index.css">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -25,8 +27,7 @@
     fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <style>
         :root {
             --primary: #FF2D55;
@@ -480,10 +481,10 @@
         <p class="text-[10px] font-black tracking-[0.4em] uppercase opacity-40">© 2025 Glamour & Grace Aesthetics. All Rights Reserved.</p>
     </footer>
 
-    <!-- Deferred Scripts -->
-    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
+        lucide.createIcons();
         window.addEventListener('load', () => {
             if (typeof emailjs !== 'undefined') {
                 emailjs.init("_h1UzYlyePtWt0IqM");
