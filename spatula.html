@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="preload" as="style" href="/src/index.css">
-    <link rel="stylesheet" href="/src/index.css">
+    <link rel="preload" as="style" href="src/index.css">
+    <link rel="stylesheet" href="src/index.css">
     
     <!-- Meta Pixel Code -->
     <script>
@@ -27,6 +27,27 @@
     </script>
     <!-- End Meta Pixel Code -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        text: '#5E002C',
+                        body: '#880E4F',
+                        background: '#FFF5F8',
+                        complement: '#F1FBF3',
+                        accent: '#F06292',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         :root {
             --primary: #FF2D55;
