@@ -575,9 +575,9 @@
         });
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
         const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna"];
-        const prods = ["V-Lift Pro™ Sculpting", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
+        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');
@@ -596,7 +596,7 @@
             }, 3500);
         }
 
-        setInterval(triggerNotif, 5000);
+        setInterval(triggerNotif, 12000);
         setTimeout(triggerNotif, 2000);
 
         // Dynamic Order Summary Logic
@@ -688,30 +688,6 @@
             }
         });
 
-        // Mobile: Scroll up detection (fast scroll up often means exit intent)
-        let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st < lastScrollTop && st < 100 && !exitShown) {
-                // User is scrolling up near the top
-                showExitPopup();
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
-        }, false);
-
-        // Mobile: Idle detection (20 seconds)
-        let idleTimer;
-        function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            if (!exitShown) {
-                idleTimer = setTimeout(showExitPopup, 20000);
-            }
-        }
-        document.addEventListener('mousemove', resetIdleTimer);
-        document.addEventListener('touchstart', resetIdleTimer);
-        document.addEventListener('scroll', resetIdleTimer);
-        resetIdleTimer();
-        
         // Mobile/All: Back button handling
         history.pushState(null, null, window.location.href);
         window.addEventListener('popstate', () => {
