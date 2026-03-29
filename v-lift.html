@@ -133,18 +133,13 @@
                 <i data-lucide="gift" size="40" class="hidden md:block"></i>
             </div>
             
-            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait! Don't Go! 😱</h3>
+            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait! Special Offer 😱</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                You're about to miss out on our <span class="text-[#FF2D55] font-bold">FREE SHIPPING</span> and <span class="text-[#FF2D55] font-bold">CASH ON DELIVERY</span> offer.
+                Order in the next <span id="timer-display-popup" class="font-black text-[#FF2D55]">05:00</span> and get <span class="text-[#FF2D55] font-bold">₦1,000 OFF + FREE DELIVERY</span> anywhere in Nigeria!
             </p>
             
-            <div class="bg-pink-50 p-4 md:p-6 rounded-2xl md:rounded-3xl mb-6 md:mb-8 border border-pink-100">
-                <p class="text-[9px] md:text-xs font-black uppercase tracking-widest text-[#FF2D55] mb-1 md:mb-2">Limited Time Bonus</p>
-                <p class="text-lg md:text-xl font-bold">Get a FREE Beauty Guide with your order today!</p>
-            </div>
-            
             <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-[#FF2D55] text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
-                Claim My Offer Now
+                Claim My Discount Now
             </button>
             
             <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
@@ -488,7 +483,7 @@
             <div class="max-w-5xl mx-auto">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-serif font-black">Real Results, Real People</h2>
-                    <p class="font-bold opacity-60 mt-4 uppercase text-[10px] tracking-widest">Join 15,000+ Happy Customers</p>
+                    <p class="font-bold opacity-60 mt-4 uppercase text-[10px] tracking-widest">Join 250+ Happy Customers</p>
                 </div>
 
                 <div class="carousel-container rounded-[3rem] shadow-3xl border-8 border-white bg-pink-50">
@@ -653,9 +648,7 @@
                     <!-- Review 1 -->
                     <div class="p-10 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full bg-pink-200 overflow-hidden border-2 border-white shadow-md">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&h=150&auto=format&fit=crop" class="w-full h-full object-cover" alt="Reviewer">
-                            </div>
+                            <div class="w-14 h-14 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">NO</div>
                             <div>
                                 <p class="font-black text-sm uppercase tracking-widest">Nneka O.</p>
                                 <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -676,9 +669,7 @@
                     <!-- Review 2 -->
                     <div class="p-10 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full bg-pink-200 overflow-hidden border-2 border-white shadow-md">
-                                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=150&h=150&auto=format&fit=crop" class="w-full h-full object-cover" alt="Reviewer">
-                            </div>
+                            <div class="w-14 h-14 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">AM</div>
                             <div>
                                 <p class="font-black text-sm uppercase tracking-widest">Aisha M.</p>
                                 <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -699,9 +690,7 @@
                     <!-- Review 3 -->
                     <div class="p-10 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full bg-pink-200 overflow-hidden border-2 border-white shadow-md">
-                                <img src="https://images.unsplash.com/photo-1523824921871-d6f1a15151f1?q=80&w=150&h=150&auto=format&fit=crop" class="w-full h-full object-cover" alt="Reviewer">
-                            </div>
+                            <div class="w-14 h-14 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">BE</div>
                             <div>
                                 <p class="font-black text-sm uppercase tracking-widest">Blessing E.</p>
                                 <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -733,7 +722,7 @@
             <div class="max-w-7xl mx-auto">
                 <div class="grid md:grid-cols-4 gap-12 text-center">
                     <div class="space-y-4">
-                        <div class="text-4xl font-black text-primary">15,000+</div>
+                        <div class="text-4xl font-black text-primary">250+</div>
                         <p class="text-[10px] font-black uppercase tracking-widest opacity-60">Happy Customers in Nigeria</p>
                     </div>
                     <div class="space-y-4">
@@ -930,7 +919,7 @@
         // Shared Order Notification Logic
         const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
         const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"];
-        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™"];
+        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');
