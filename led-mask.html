@@ -150,7 +150,7 @@
                 <i data-lucide="gift" size="40"></i>
             </div>
             <h2 class="text-3xl font-serif font-black mb-4">Wait! Special Offer</h2>
-            <p class="text-lg opacity-70 mb-8 font-medium">Order in the next <span id="timer-display-popup" class="font-black text-primary">05:00</span> and get <strong>₦1,000 OFF + FREE DELIVERY</strong> anywhere in Nigeria!</p>
+            <p class="text-lg opacity-70 mb-8 font-medium">Order in the next <span id="timer-display-popup" class="font-black text-primary">05:00</span> and get <strong>₦2,500 OFF + FREE DELIVERY</strong> anywhere in Nigeria!</p>
             <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Claim My Discount</button>
             <p class="mt-4 text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
         </div>
@@ -829,7 +829,7 @@
                         </div>
                         <div id="discount-row" class="hidden flex justify-between items-center font-bold text-green-600">
                             <span>Special Discount</span>
-                            <span>-₦1,000</span>
+                            <span>-₦2,500</span>
                         </div>
                         <div class="flex justify-between items-center font-bold">
                             <span class="opacity-60">Delivery Fee</span>
@@ -934,7 +934,7 @@
         let lastSelectedLoc = '';
 
         function applyDiscount() {
-            discount = 1000;
+            discount = 2500;
             document.getElementById('discount-row').classList.remove('hidden');
             updateSummary();
             // Update hidden input
