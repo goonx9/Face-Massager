@@ -186,7 +186,12 @@
         </div>
     </div>
 
-    <nav class="fixed top-8 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
+    <!-- Limited Time Offer Banner -->
+    <div class="bg-pink-900 text-white py-3 px-6 text-center text-[10px] md:text-xs font-black uppercase tracking-[0.2em] relative z-[110]">
+        <span class="animate-pulse">🔥 FLASH SALE: ₦1,000 OFF + FREE DELIVERY ENDS IN <span id="banner-timer">05:00</span> 🔥</span>
+    </div>
+
+    <nav class="fixed top-12 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-[#FF2D55] flex items-center justify-center text-white shadow-xl">
@@ -268,35 +273,79 @@
                     </div>
                 </div>
                 <div class="flex flex-col justify-center">
-                    <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase mb-6 inline-block w-fit">New Innovation</span>
-                    <h1 class="text-6xl font-serif font-black mb-4">7-Color LED Therapy Mask</h1>
-                    <div class="mb-6">
-                        <span class="text-5xl font-black mr-4 text-primary">₦42,000</span>
-                        <span class="text-2xl line-through opacity-40 font-bold">₦60,000</span>
+                    <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase mb-6 inline-block w-fit">Dermatologist Recommended</span>
+                    <h1 class="text-6xl font-serif font-black mb-4 leading-tight">Get Clinical-Grade <br><span class="text-primary italic">Skin at Home.</span></h1>
+                    <div class="mb-6 flex items-center gap-4">
+                        <span class="text-5xl font-black text-primary">₦42,000</span>
+                        <div class="flex flex-col">
+                            <span class="text-xl line-through opacity-40 font-bold">₦60,000</span>
+                            <span class="text-[10px] font-black text-green-600 uppercase tracking-widest">You Save ₦18,000 Today</span>
+                        </div>
                     </div>
                     <p class="text-xl opacity-70 mb-10 leading-relaxed font-medium">
-                        Transform your skin with the power of 7 clinical-grade light therapies. One mask, infinite possibilities for a clearer, younger, and more radiant complexion.
+                        Stop wasting money on facials that only last a week. Our 7-Color LED Mask uses NASA-backed technology to target acne, wrinkles, and dullness from the inside out. 
                     </p>
-                    <div class="grid grid-cols-2 gap-4 mb-10">
-                        <div class="flex items-center gap-3 bg-pink-50 p-4 rounded-2xl border border-pink-100">
-                            <i data-lucide="check-circle" class="text-primary" size="20"></i>
-                            <span class="text-sm font-bold">7 Therapy Modes</span>
+                    <div class="space-y-4 mb-10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i data-lucide="check" size="12"></i>
+                            </div>
+                            <span class="text-sm font-bold opacity-80">Visible results in as little as 2 weeks</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-pink-50 p-4 rounded-2xl border border-pink-100">
-                            <i data-lucide="check-circle" class="text-primary" size="20"></i>
-                            <span class="text-sm font-bold">Hands-Free Design</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i data-lucide="check" size="12"></i>
+                            </div>
+                            <span class="text-sm font-bold opacity-80">100% Safe, Non-Invasive & Pain-Free</span>
                         </div>
-                        <div class="flex items-center gap-3 bg-pink-50 p-4 rounded-2xl border border-pink-100">
-                            <i data-lucide="check-circle" class="text-primary" size="20"></i>
-                            <span class="text-sm font-bold">Safe for All Skin</span>
-                        </div>
-                        <div class="flex items-center gap-3 bg-pink-50 p-4 rounded-2xl border border-pink-100">
-                            <i data-lucide="check-circle" class="text-primary" size="20"></i>
-                            <span class="text-sm font-bold">USB Rechargeable</span>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                <i data-lucide="check" size="12"></i>
+                            </div>
+                            <span class="text-sm font-bold opacity-80">Free Delivery + Pay on Delivery (Lagos)</span>
                         </div>
                     </div>
-                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full py-6 bg-primary text-white rounded-full font-black text-sm uppercase tracking-[0.3em] shadow-3xl hover:scale-105 transition-transform">Get My Mask Today</button>
+                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full py-6 bg-primary text-white rounded-full font-black text-sm uppercase tracking-[0.3em] shadow-3xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                        Claim My ₦18,000 Discount <i data-lucide="arrow-right" size="18"></i>
+                    </button>
+                    <div class="flex items-center justify-center gap-6 mt-6 opacity-40">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="shield-check" size="14"></i>
+                            <span class="text-[9px] font-black uppercase tracking-widest">1-Year Warranty</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="refresh-cw" size="14"></i>
+                            <span class="text-[9px] font-black uppercase tracking-widest">Money Back Guarantee</span>
+                        </div>
+                    </div>
                     <p class="text-center mt-6 text-[10px] font-black uppercase tracking-widest opacity-40">Limited Stock Available in Nigeria</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: How to Use -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-20 space-y-4">
+                    <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-900">3 Simple Steps to <span class="text-primary italic">Glowing Skin.</span></h2>
+                    <p class="font-black opacity-40 uppercase text-[10px] tracking-[0.4em]">Effortless beauty in minutes</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="text-center space-y-6">
+                        <div class="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center text-primary mx-auto text-2xl font-black border border-pink-100">01</div>
+                        <h3 class="text-2xl font-serif font-black">Cleanse & Prep</h3>
+                        <p class="opacity-70 font-medium">Wash your face and pat dry. For best results, apply your favorite serum before putting on the mask.</p>
+                    </div>
+                    <div class="text-center space-y-6">
+                        <div class="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center text-primary mx-auto text-2xl font-black border border-pink-100">02</div>
+                        <h3 class="text-2xl font-serif font-black">Wear & Relax</h3>
+                        <p class="opacity-70 font-medium">Place the mask on your face, select your desired light color, and relax for 15-20 minutes.</p>
+                    </div>
+                    <div class="text-center space-y-6">
+                        <div class="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center text-primary mx-auto text-2xl font-black border border-pink-100">03</div>
+                        <h3 class="text-2xl font-serif font-black">Glow & Go</h3>
+                        <p class="opacity-70 font-medium">Remove the mask and enjoy your radiant skin. Repeat 3-5 times a week for clinical results.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -343,6 +392,47 @@
                         <div class="w-12 h-12 rounded-2xl bg-white mb-6 shadow-[0_0_20px_rgba(255,255,255,0.5)]"></div>
                         <h4 class="text-xl font-serif font-bold mb-3">White Light</h4>
                         <p class="text-sm opacity-70 leading-relaxed font-medium">Deep Rejuvenation. Penetrates deep to tighten sagging skin.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: What's in the Box -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50/30">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
+                    <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1774634752/anrklj_suaznw.gif" alt="What's in the box" class="w-full h-auto">
+                </div>
+                <div class="space-y-10">
+                    <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-900">Everything You Need for <span class="text-primary italic">Professional Results.</span></h2>
+                    <div class="grid gap-6">
+                        <div class="flex items-center gap-4 p-6 bg-white rounded-3xl border border-pink-100 shadow-sm">
+                            <div class="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center text-primary">
+                                <i data-lucide="monitor" size="24"></i>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">7-Color LED Face Mask</p>
+                                <p class="text-xs opacity-60 font-medium">Clinical-grade phototherapy device</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-6 bg-white rounded-3xl border border-pink-100 shadow-sm">
+                            <div class="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center text-primary">
+                                <i data-lucide="zap" size="24"></i>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">USB Charging Cable</p>
+                                <p class="text-xs opacity-60 font-medium">Universal charging for convenience</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 p-6 bg-white rounded-3xl border border-pink-100 shadow-sm">
+                            <div class="w-12 h-12 bg-pink-100 rounded-2xl flex items-center justify-center text-primary">
+                                <i data-lucide="book-open" size="24"></i>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">User Manual & Guide</p>
+                                <p class="text-xs opacity-60 font-medium">Step-by-step instructions for best results</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -457,7 +547,6 @@
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="p-10 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">TL</div>
                             <div>
                                 <p class="font-black text-sm uppercase tracking-widest">Tolu L.</p>
                                 <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -476,7 +565,6 @@
                     </div>
                     <div class="p-10 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">CO</div>
                             <div>
                                 <p class="font-black text-sm uppercase tracking-widest">Chidi O.</p>
                                 <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -495,7 +583,6 @@
                     </div>
                     <div class="p-10 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
                         <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">AJ</div>
                             <div>
                                 <p class="font-black text-sm uppercase tracking-widest">Amaka J.</p>
                                 <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -632,6 +719,33 @@
                             Absolutely! In fact, using the mask after applying your favorite serums can help them penetrate deeper and work more effectively.
                         </div>
                     </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Risk Free -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-5xl mx-auto bg-pink-50 rounded-[4rem] p-12 md:p-20 border border-pink-100 text-center space-y-8">
+                <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center text-primary mx-auto shadow-xl border-4 border-pink-100">
+                    <i data-lucide="shield-check" size="48"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-900">Your Purchase is <span class="text-primary italic">100% Risk-Free.</span></h2>
+                <p class="text-xl opacity-80 max-w-2xl mx-auto font-medium leading-relaxed">
+                    We are so confident in the results of our LED Mask that we offer a <strong>30-Day Money Back Guarantee</strong>. If you don't see a difference in your skin, we'll refund your money. No questions asked.
+                </p>
+                <div class="flex flex-wrap justify-center gap-8 pt-8 border-t border-pink-200">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="truck" class="text-primary" size="24"></i>
+                        <span class="text-xs font-black uppercase tracking-widest">Free Delivery</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="credit-card" class="text-primary" size="24"></i>
+                        <span class="text-xs font-black uppercase tracking-widest">Secure Payment</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="headphones" class="text-primary" size="24"></i>
+                        <span class="text-xs font-black uppercase tracking-widest">24/7 Support</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -860,7 +974,7 @@
         locSelect.addEventListener('change', updateSummary);
 
         // Countdown Timer
-        function startTimer(duration, display) {
+        function startTimer(duration, displays) {
             let timer = duration, minutes, seconds;
             setInterval(function () {
                 minutes = parseInt(timer / 60, 10);
@@ -869,7 +983,9 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
 
-                if (display) display.textContent = minutes + ":" + seconds;
+                displays.forEach(display => {
+                    if (display) display.textContent = minutes + ":" + seconds;
+                });
 
                 if (--timer < 0) {
                     timer = duration;
@@ -877,18 +993,24 @@
             }, 1000);
         }
 
-        const thirtyMinutes = 60 * 30;
-        const display = document.querySelector('#timer-display');
-        startTimer(thirtyMinutes, display);
+        const fiveMinutes = 60 * 5;
+        const timerDisplays = [
+            document.querySelector('#timer-display-popup'),
+            document.querySelector('#banner-timer')
+        ];
+        startTimer(fiveMinutes, timerDisplays);
 
         // Exit Intent
         let exitShown = false;
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !exitShown) {
-                document.getElementById('exit-popup').style.display = 'flex';
-                exitShown = true;
-            }
-        });
+        if (!sessionStorage.getItem('exitShown')) {
+            document.addEventListener('mouseleave', (e) => {
+                if (e.clientY < 0 && !exitShown) {
+                    document.getElementById('exit-popup').style.display = 'flex';
+                    exitShown = true;
+                    sessionStorage.setItem('exitShown', 'true');
+                }
+            });
+        }
 
         document.getElementById('close-exit').addEventListener('click', () => {
             document.getElementById('exit-popup').style.display = 'none';

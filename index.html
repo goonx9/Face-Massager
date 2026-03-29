@@ -397,7 +397,6 @@
                 <!-- Review 1 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">FE</div>
                         <div>
                             <p class="font-black text-xs uppercase tracking-widest">Funke E.</p>
                             <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -414,7 +413,6 @@
                 <!-- Review 2 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">NJ</div>
                         <div>
                             <p class="font-black text-xs uppercase tracking-widest">Ngozi J.</p>
                             <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -431,7 +429,6 @@
                 <!-- Review 3 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">BA</div>
                         <div>
                             <p class="font-black text-xs uppercase tracking-widest">Bisi A.</p>
                             <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -448,7 +445,6 @@
                 <!-- Review 4 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">CI</div>
                         <div>
                             <p class="font-black text-xs uppercase tracking-widest">Chioma I.</p>
                             <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -465,7 +461,6 @@
                 <!-- Review 5 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">TO</div>
                         <div>
                             <p class="font-black text-xs uppercase tracking-widest">Titi O.</p>
                             <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -482,7 +477,6 @@
                 <!-- Review 6 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-pink-200 flex items-center justify-center font-black text-pink-600">AA</div>
                         <div>
                             <p class="font-black text-xs uppercase tracking-widest">Aisha A.</p>
                             <div class="flex text-yellow-500 scale-75 -ml-4">
@@ -568,11 +562,12 @@
         }
 
         // Exit Intent Logic
-        let exitShown = false;
+        let exitShown = sessionStorage.getItem('exitPopupShown') === 'true';
         document.addEventListener('mouseleave', (e) => {
             if (e.clientY < 0 && !exitShown) {
                 document.getElementById('exit-popup').style.display = 'flex';
                 exitShown = true;
+                sessionStorage.setItem('exitPopupShown', 'true');
                 startTimer();
             }
         });

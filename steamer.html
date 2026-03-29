@@ -678,7 +678,7 @@
         startTimer(thirtyMinutes, display);
 
         // Exit Intent Logic
-        let exitShown = false;
+        let exitShown = sessionStorage.getItem('exitPopupShown') === 'true';
         
         // Desktop: Mouse leave
         document.addEventListener('mouseleave', (e) => {
@@ -697,10 +697,12 @@
         });
 
         function showExitPopup() {
+            if (exitShown) return;
             const popup = document.getElementById('exit-popup');
             if (popup) {
                 popup.style.display = 'flex';
                 exitShown = true;
+                sessionStorage.setItem('exitPopupShown', 'true');
             }
         }
 
