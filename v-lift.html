@@ -174,24 +174,90 @@
 
     <main class="pt-32">
         <!-- Section 1: Problem -->
-        <section class="py-20 px-6 md:px-12 lg:px-24 bg-white">
-            <div class="max-w-4xl mx-auto text-center space-y-8">
-                <h2 class="text-4xl md:text-5xl font-serif font-black text-primary">Tired of seeing a "tired" face in the mirror?</h2>
-                <p class="text-xl leading-relaxed opacity-80 font-medium">
-                    Morning puffiness that won't go away? A jawline that's losing its sharp edge? Or maybe you're spending thousands on spa treatments that only last a few days. 
-                </p>
-                <div class="grid md:grid-cols-3 gap-6 text-left">
-                    <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
-                        <i data-lucide="frown" class="text-pink-400 mb-4"></i>
-                        <p class="text-sm font-bold">Sagging skin & loss of elasticity</p>
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-50 rounded-full blur-[100px] -z-10"></div>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <span class="inline-block px-4 py-1 rounded-full bg-red-50 text-red-600 font-black text-[10px] tracking-widest uppercase">The Reality Check</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950">
+                            Is your skin <span class="text-primary italic">betraying</span> your age?
+                        </h2>
+                        <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-medium">
+                            We spend thousands on expensive serums, but they only treat the surface. Meanwhile, gravity is working 24/7 on your facial muscles.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+                                    <i data-lucide="alert-triangle" size="20"></i>
+                                </div>
+                                <p class="font-bold text-sm">Sagging Jowls & Double Chin</p>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+                                    <i data-lucide="clock" size="20"></i>
+                                </div>
+                                <p class="font-bold text-sm">Morning Puffiness that lingers all day</p>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+                                    <i data-lucide="eye-off" size="20"></i>
+                                </div>
+                                <p class="font-bold text-sm">Dull, "tired-looking" complexion</p>
+                            </div>
+                        </div>
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                            I Want A Solution Now
+                        </button>
                     </div>
-                    <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
-                        <i data-lucide="clock" class="text-pink-400 mb-4"></i>
-                        <p class="text-sm font-bold">Expensive & time-consuming spa visits</p>
+                    <div class="relative">
+                        <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1774827909/Glowing_skin_hzvbv4.jpg" alt="Stunning Glowing Skin Result" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px] animate-bounce">
+                            <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">The Goal</p>
+                            <p class="text-xs font-bold leading-tight italic">"I finally have that glass-skin glow I thought was impossible!"</p>
+                        </div>
                     </div>
-                    <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
-                        <i data-lucide="alert-circle" class="text-pink-400 mb-4"></i>
-                        <p class="text-sm font-bold">Stubborn double chin & fine lines</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1.5: Targeted Solutions -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16 space-y-4">
+                    <h2 class="text-4xl md:text-5xl font-serif font-black">Targeted Solutions for <span class="text-primary italic">Every</span> Concern.</h2>
+                    <p class="font-bold opacity-60 uppercase tracking-widest text-xs">One device. Infinite possibilities.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="trending-up" size="32"></i>
+                        </div>
+                        <h3 class="font-black uppercase tracking-widest text-sm">Double Chin</h3>
+                        <p class="text-xs opacity-70 leading-relaxed">EMS pulses target the submental muscles to tighten and lift the under-chin area.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="sparkles" size="32"></i>
+                        </div>
+                        <h3 class="font-black uppercase tracking-widest text-sm">Dull Skin</h3>
+                        <p class="text-xs opacity-70 leading-relaxed">Thermal therapy and vibration boost circulation for an instant, natural glow.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="smile" size="32"></i>
+                        </div>
+                        <h3 class="font-black uppercase tracking-widest text-sm">Fine Lines</h3>
+                        <p class="text-xs opacity-70 leading-relaxed">Red light therapy stimulates collagen to fill in wrinkles and smooth texture.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 flex flex-col items-center text-center space-y-4">
+                        <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="droplets" size="32"></i>
+                        </div>
+                        <h3 class="font-black uppercase tracking-widest text-sm">Puffiness</h3>
+                        <p class="text-xs opacity-70 leading-relaxed">Green light and vibration flush out excess fluid for a depuffed, sculpted look.</p>
                     </div>
                 </div>
             </div>
@@ -288,38 +354,80 @@
 
         <!-- Section 4: Proof -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-50">
-            <div class="max-w-5xl mx-auto text-center space-y-16">
+            <div class="max-w-6xl mx-auto text-center space-y-16">
                 <div class="space-y-4">
-                    <h2 class="text-4xl md:text-5xl font-serif font-black">Real People. Real Results.</h2>
+                    <span class="text-primary font-black uppercase tracking-widest text-xs">The Transformation Gallery</span>
+                    <h2 class="text-4xl md:text-6xl font-serif font-black">Real Women. <span class="italic">Incredible</span> Results.</h2>
                     <p class="text-lg font-bold opacity-60 uppercase tracking-widest">Clinical Proof of Transformation</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="space-y-4">
-                        <div class="rounded-[3rem] overflow-hidden shadow-xl border-4 border-white">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1773051362/Ethnic-Facelift-Orange-County-300x225_qtxwzx.jpg" alt="Before and After 1" class="w-full h-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <div class="rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white group relative">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1774827909/Real_women_reveal_INCREDIBLE_results_of_at-home_facial_workout_xyvc6x.jpg" alt="Real women reveal INCREDIBLE results" class="w-full h-auto transform group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute top-6 left-6 bg-primary text-white px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Verified Result</div>
                         </div>
-                        <p class="font-black text-sm uppercase tracking-widest text-primary">Visible Jawline Definition</p>
+                        <div class="bg-pink-50 p-6 rounded-3xl border border-pink-100">
+                            <p class="font-bold text-sm italic">"I was skeptical about 'at-home facial workouts' until I tried this. My jawline is back and my skin feels 10 years younger!"</p>
+                        </div>
                     </div>
-                    <div class="space-y-4">
-                        <div class="rounded-[3rem] overflow-hidden shadow-xl border-4 border-white">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1773051363/Ethnic-Facelift-Orange-County-1-300x225_j1s5y2.jpg" alt="Before and After 2" class="w-full h-auto">
+                    <div class="grid gap-8">
+                        <div class="space-y-4">
+                            <div class="rounded-[3rem] overflow-hidden shadow-xl border-4 border-white">
+                                <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1773051362/Ethnic-Facelift-Orange-County-300x225_qtxwzx.jpg" alt="Before and After 1" class="w-full h-auto">
+                            </div>
+                            <p class="font-black text-sm uppercase tracking-widest text-primary">Visible Jawline Definition</p>
                         </div>
-                        <p class="font-black text-sm uppercase tracking-widest text-primary">Reduced Puffiness & Lifting</p>
+                        <div class="space-y-4">
+                            <div class="rounded-[3rem] overflow-hidden shadow-xl border-4 border-white">
+                                <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1773051363/Ethnic-Facelift-Orange-County-1-300x225_j1s5y2.jpg" alt="Before and After 2" class="w-full h-auto">
+                            </div>
+                            <p class="font-black text-sm uppercase tracking-widest text-primary">Reduced Puffiness & Lifting</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-pink-50 p-10 rounded-[4rem] border border-pink-100">
-                    <p class="text-xl font-serif italic leading-relaxed">
-                        "I was skeptical at first, but after 2 weeks of using the Glamour & Grace Face Massage Lifter, my double chin has visibly reduced and my skin feels much firmer. It's like a workout for my face!"
-                    </p>
-                    <div class="mt-6 flex items-center justify-center gap-2 text-primary">
-                        <i data-lucide="star" fill="currentColor" size="16"></i>
-                        <i data-lucide="star" fill="currentColor" size="16"></i>
-                        <i data-lucide="star" fill="currentColor" size="16"></i>
-                        <i data-lucide="star" fill="currentColor" size="16"></i>
-                        <i data-lucide="star" fill="currentColor" size="16"></i>
-                        <span class="ml-2 font-black text-xs uppercase tracking-widest">Verified Purchase</span>
+                <div class="pt-8">
+                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                        Start My Transformation Today
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4.5: The Gua Sha Upgrade -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50/30">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-black text-[10px] tracking-widest uppercase">The Evolution of Beauty</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950">
+                            Beyond the <span class="text-primary italic">Traditional</span> Gua Sha.
+                        </h2>
+                        <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-medium">
+                            Traditional Gua Sha tools are great, but they lack the **EMS Microcurrents** and **Thermal Therapy** needed for deep structural lifting. 
+                        </p>
+                        <p class="text-lg leading-relaxed text-gray-600">
+                            The Glamour & Grace Face Massage Lifter takes the ancient wisdom of Gua Sha and supercharges it with modern technology. See the incredible difference consistent "facial workouts" can make.
+                        </p>
+                        <div class="flex items-center gap-6 p-6 bg-white rounded-3xl shadow-xl border border-pink-100">
+                            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
+                                <i data-lucide="trending-up" size="24"></i>
+                            </div>
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">3x Faster Results</p>
+                                <p class="text-xs opacity-60 font-medium">Compared to manual massage tools alone.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1774828080/Gua_Sha_Before_and_After_aa2ieb.jpg" alt="Gua Sha Before and After" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[220px]">
+                            <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">Clinical Case</p>
+                            <p class="text-xs font-bold leading-tight italic">"The definition in my jawline is something I could never achieve with just a stone."</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -366,6 +474,47 @@
                         </div>
                         <h3 class="text-2xl font-serif font-black">Visible Transformation</h3>
                         <p class="text-sm font-medium opacity-70">Witness the immediate reduction in morning puffiness and long-term tightening of the jawline.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5.5: The 10-Minute Ritual -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-950 text-white rounded-[4rem] md:rounded-[6rem] mx-6 md:mx-12 my-20 overflow-hidden relative">
+            <div class="max-w-5xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <span class="inline-block px-4 py-1 rounded-full bg-white/10 text-primary font-black text-[10px] tracking-widest uppercase">Easy To Use</span>
+                    <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight">Your 10-Minute <br><span class="italic text-primary">Daily Ritual.</span></h2>
+                    <p class="text-lg opacity-80 font-medium leading-relaxed">
+                        Professional results don't have to be complicated. Follow these 3 simple steps to unlock your best skin yet.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white font-black flex-shrink-0">01</div>
+                            <div>
+                                <h4 class="font-black text-sm uppercase tracking-widest mb-1">Apply Serum</h4>
+                                <p class="text-xs opacity-60">Cleanse your face and apply your favorite water-based serum or gel.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white font-black flex-shrink-0">02</div>
+                            <div>
+                                <h4 class="font-black text-sm uppercase tracking-widest mb-1">Glide & Lift</h4>
+                                <p class="text-xs opacity-60">Choose your mode and glide the device upwards along your jawline and cheeks.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white font-black flex-shrink-0">03</div>
+                            <div>
+                                <h4 class="font-black text-sm uppercase tracking-widest mb-1">Glow All Day</h4>
+                                <p class="text-xs opacity-60">Pat in any remaining serum and enjoy your instantly sculpted, glowing face.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/10">
+                        <img src="https://i.ibb.co/pvgYZT5N/aa1voq.gif" alt="How to use V-Lift" class="w-full h-auto">
                     </div>
                 </div>
             </div>
@@ -478,6 +627,41 @@
             </div>
         </section>
 
+        <!-- Section 7.5: Who is this for? -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-4xl mx-auto text-center space-y-12">
+                <h2 class="text-4xl md:text-5xl font-serif font-black">Is this <span class="text-primary italic">right</span> for you?</h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="p-8 bg-green-50 rounded-[2.5rem] border border-green-100 space-y-4">
+                        <div class="flex items-center gap-3 text-green-600">
+                            <i data-lucide="check-circle" size="24"></i>
+                            <h3 class="font-black uppercase tracking-widest text-sm">This is for you if...</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm font-medium opacity-80">
+                            <li>• You want a sharper, more defined jawline.</li>
+                            <li>• You struggle with morning facial puffiness.</li>
+                            <li>• You want to reduce the appearance of a double chin.</li>
+                            <li>• You want your skincare products to work harder.</li>
+                        </ul>
+                    </div>
+                    <div class="p-8 bg-red-50 rounded-[2.5rem] border border-red-100 space-y-4">
+                        <div class="flex items-center gap-3 text-red-600">
+                            <i data-lucide="x-circle" size="24"></i>
+                            <h3 class="font-black uppercase tracking-widest text-sm">This is NOT for you if...</h3>
+                        </div>
+                        <ul class="space-y-3 text-sm font-medium opacity-80">
+                            <li>• You are looking for a surgical facelift result overnight.</li>
+                            <li>• You are not willing to spend 10 minutes 3x a week.</li>
+                            <li>• You have active metallic implants in your face.</li>
+                        </ul>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                    Yes, I'm Ready To Lift
+                </button>
+            </div>
+        </section>
+
         <!-- Customer Testimonials Carousel -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
             <div class="max-w-5xl mx-auto">
@@ -555,6 +739,55 @@
                         <div class="p-6 text-center">
                             <p class="font-black text-sm uppercase tracking-widest text-primary">Instant Lifting Effect</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9.5: Filter-Free Confidence -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1 relative">
+                        <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1774827909/Glowing_skin_hzvbv4.jpg" alt="Filter-Free Confidence" class="w-full h-auto">
+                        </div>
+                        <div class="absolute -top-6 -left-6 bg-primary text-white p-6 rounded-3xl shadow-2xl border border-white/20 max-w-[180px]">
+                            <p class="text-[10px] font-black uppercase tracking-widest mb-2">The Result</p>
+                            <p class="text-xs font-bold leading-tight italic">"No makeup, no filters. Just my skin at its absolute best."</p>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 space-y-8">
+                        <span class="inline-block px-4 py-1 rounded-full bg-pink-50 text-primary font-black text-[10px] tracking-widest uppercase">The End Goal</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950">
+                            Unlock <span class="text-primary italic">Filter-Free</span> Confidence.
+                        </h2>
+                        <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-medium">
+                            Imagine waking up every day with skin so firm and glowing that you don't even reach for your concealer. That's the power of the Glamour & Grace Face Massage Lifter.
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-4">
+                                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i data-lucide="check" size="14"></i>
+                                </div>
+                                <span class="font-bold text-sm">Natural, Glass-Skin Glow</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i data-lucide="check" size="14"></i>
+                                </div>
+                                <span class="font-bold text-sm">Sculpted, High Cheekbones</span>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i data-lucide="check" size="14"></i>
+                                </div>
+                                <span class="font-bold text-sm">Sharp, Defined Jawline</span>
+                            </li>
+                        </ul>
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                            I Want This Confidence
+                        </button>
                     </div>
                 </div>
             </div>
