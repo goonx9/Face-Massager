@@ -151,7 +151,7 @@
             </div>
             <h2 class="text-3xl font-serif font-black mb-4">Wait! Special Offer</h2>
             <p class="text-lg opacity-70 mb-8 font-medium">Order in the next <span id="timer-display-popup" class="font-black text-primary">05:00</span> and get <strong>₦1,000 OFF + FREE DELIVERY</strong> anywhere in Nigeria!</p>
-            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Claim My Discount</button>
+            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Claim My Discount</button>
             <p class="mt-4 text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
         </div>
     </div>
@@ -827,6 +827,10 @@
                             <span class="opacity-60">Subtotal</span>
                             <span>₦42,000</span>
                         </div>
+                        <div id="discount-row" class="hidden flex justify-between items-center font-bold text-green-600">
+                            <span>Special Discount</span>
+                            <span>-₦1,000</span>
+                        </div>
                         <div class="flex justify-between items-center font-bold">
                             <span class="opacity-60">Delivery Fee</span>
                             <span id="delivery-fee" class="text-green-600">FREE</span>
@@ -926,27 +930,41 @@
         const payMethText = document.getElementById('payment-method');
 
         const basePrice = 42000;
+        let discount = 0;
         let lastSelectedLoc = '';
+
+        function applyDiscount() {
+            discount = 1000;
+            document.getElementById('discount-row').classList.remove('hidden');
+            updateSummary();
+            // Update hidden input
+            document.querySelector('input[name="product_price"]').value = basePrice - discount;
+        }
 
         function updateSummary() {
             const loc = locSelect.value;
-            if (!loc) return;
+            if (!loc) {
+                applySummaryChanges(true); // Default to Lagos view if nothing selected yet
+                return;
+            }
 
             const isLagos = loc === 'Lagos';
             
-            if (!isLagos) {
+            if (!isLagos && lastSelectedLoc !== loc) {
                 outsideLagosModal.style.display = 'flex';
             } else {
-                lastSelectedLoc = 'Lagos';
-                outsideLagosFields.classList.add('hidden');
-                cityInput.required = false;
-                applySummaryChanges(true);
+                lastSelectedLoc = loc;
+                if (isLagos) {
+                    outsideLagosFields.classList.add('hidden');
+                    cityInput.required = false;
+                }
+                applySummaryChanges(isLagos);
             }
         }
 
         function applySummaryChanges(isLagos) {
             const fee = isLagos ? 0 : 3500;
-            const total = basePrice + fee;
+            const total = basePrice - discount + fee;
 
             delFeeText.innerText = isLagos ? 'FREE' : '₦3,500';
             delFeeText.className = isLagos ? 'text-green-600' : 'text-red-600';
