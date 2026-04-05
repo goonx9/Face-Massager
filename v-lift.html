@@ -1087,52 +1087,6 @@
                         <button onclick="selectBundle('Pro', 75000)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all">Select Pro</button>
                     </div>
                 </div>
-
-                <!-- Value Comparison Table -->
-                <div class="max-w-4xl mx-auto overflow-hidden rounded-[3rem] border border-pink-100 shadow-2xl">
-                    <table class="w-full text-left bg-white">
-                        <thead>
-                            <tr class="bg-pink-50">
-                                <th class="p-8 font-black uppercase text-[10px] tracking-widest">Value Comparison</th>
-                                <th class="p-8 font-black uppercase text-[10px] tracking-widest text-center">Standard</th>
-                                <th class="p-8 font-black uppercase text-[10px] tracking-widest text-center text-primary">Premium</th>
-                                <th class="p-8 font-black uppercase text-[10px] tracking-widest text-center">Pro</th>
-                            </tr>
-                        </thead>
-                        <tbody class="font-bold text-sm">
-                            <tr class="border-b border-pink-50">
-                                <td class="p-8">Muscle Lifting & Sculpting</td>
-                                <td class="p-8 text-center text-green-500"><i data-lucide="check" class="mx-auto"></i></td>
-                                <td class="p-8 text-center text-green-500"><i data-lucide="check" class="mx-auto"></i></td>
-                                <td class="p-8 text-center text-green-500"><i data-lucide="check" class="mx-auto"></i></td>
-                            </tr>
-                            <tr class="border-b border-pink-50">
-                                <td class="p-8">Nano-Ionic Deep Hydration</td>
-                                <td class="p-8 text-center text-red-300"><i data-lucide="x" class="mx-auto"></i></td>
-                                <td class="p-8 text-center text-green-500"><i data-lucide="check" class="mx-auto"></i></td>
-                                <td class="p-8 text-center text-green-500"><i data-lucide="check" class="mx-auto"></i></td>
-                            </tr>
-                            <tr class="border-b border-pink-50">
-                                <td class="p-8">7-Color LED Phototherapy</td>
-                                <td class="p-8 text-center text-red-300"><i data-lucide="x" class="mx-auto"></i></td>
-                                <td class="p-8 text-center text-red-300"><i data-lucide="x" class="mx-auto"></i></td>
-                                <td class="p-8 text-center text-green-500"><i data-lucide="check" class="mx-auto"></i></td>
-                            </tr>
-                            <tr class="border-b border-pink-50">
-                                <td class="p-8">Total Value</td>
-                                <td class="p-8 text-center">₦38,000</td>
-                                <td class="p-8 text-center">₦72,500</td>
-                                <td class="p-8 text-center">₦114,500</td>
-                            </tr>
-                            <tr class="bg-pink-50/50">
-                                <td class="p-8 font-black">Bundle Price</td>
-                                <td class="p-8 text-center font-black">₦38,000</td>
-                                <td class="p-8 text-center font-black text-primary">₦55,000</td>
-                                <td class="p-8 text-center font-black">₦75,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </section>
 
@@ -1194,16 +1148,16 @@
                         Only 7 Left in Stock!
                     </div>
                     <h2 class="text-4xl font-serif font-black mb-8 text-center">Place Your Order</h2>
-                    <div class="mb-8 p-6 bg-pink-50 rounded-3xl border border-pink-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Selected Package</p>
-                            <p id="selected-package-name" class="text-lg font-black text-pink-900">Premium Package</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Price</p>
-                            <p id="selected-package-price" class="text-lg font-black text-primary">₦55,000</p>
-                        </div>
+                    
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest opacity-40 ml-4">Choose Your Package</label>
+                        <select id="packageSelect" onchange="handlePackageChange(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50 border-2 border-pink-100 outline-none font-black text-[13px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                            <option value="Standard">Standard Package (₦38,000)</option>
+                            <option value="Premium" selected>Premium Package (₦55,000)</option>
+                            <option value="Pro">Pro Package (₦75,000)</option>
+                        </select>
                     </div>
+
                     <input type="hidden" name="product_name" id="hidden_product_name" value="V-Lift Pro™ Premium Bundle (Massager + Steamer)">
                     <input type="hidden" name="product_price" id="hidden_product_price" value="55000">
                     <div class="grid gap-6">
@@ -1390,15 +1344,22 @@
         let discount = 0;
         let lastSelectedLoc = 'Lagos';
 
-        function selectBundle(name, price) {
+        function handlePackageChange(val) {
+            const prices = {
+                'Standard': 38000,
+                'Premium': 55000,
+                'Pro': 75000
+            };
+            selectBundle(val, prices[val], false);
+        }
+
+        function selectBundle(name, price, shouldScroll = true) {
             basePrice = price;
-            const nameEl = document.getElementById('selected-package-name');
-            const priceEl = document.getElementById('selected-package-price');
+            const packageSelect = document.getElementById('packageSelect');
             const hiddenName = document.getElementById('hidden_product_name');
             const hiddenPrice = document.getElementById('hidden_product_price');
 
-            nameEl.innerText = name + ' Package';
-            priceEl.innerText = `₦${price.toLocaleString()}`;
+            if (packageSelect) packageSelect.value = name;
             
             let fullName = `V-Lift Pro™ ${name} Bundle`;
             if (name === 'Standard') fullName = "V-Lift Pro™ Standard (Massager Only)";
@@ -1410,8 +1371,9 @@
 
             updateSummary();
             
-            // Scroll to order form
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+            if (shouldScroll) {
+                document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function applyDiscount() {
