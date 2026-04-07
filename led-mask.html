@@ -966,7 +966,7 @@
                     <div class="p-8 bg-pink-50 rounded-[2.5rem] border border-pink-100 space-y-4">
                         <div class="flex justify-between items-center font-bold">
                             <span class="opacity-60">Subtotal</span>
-                            <span id="summary-subtotal">₦60,000</span>
+                            <span>₦42,000</span>
                         </div>
                         <div id="discount-row" class="hidden flex justify-between items-center font-bold text-green-600">
                             <span>Special Discount</span>
@@ -976,14 +976,10 @@
                             <span class="opacity-60">Delivery Fee</span>
                             <span id="delivery-fee" class="text-green-600">FREE</span>
                         </div>
-                        <div class="flex justify-between items-center font-bold">
-                            <span class="opacity-60">Commitment Fee</span>
-                            <span class="text-primary">₦5,000</span>
-                        </div>
                         <div class="h-px bg-pink-200 w-full"></div>
                         <div class="flex justify-between items-center">
                             <span class="font-black text-xl">Total</span>
-                            <span id="total-price" class="font-black text-3xl text-primary">₦65,000</span>
+                            <span id="total-price" class="font-black text-3xl text-primary">₦42,000</span>
                         </div>
                         <div class="flex items-center gap-3 pt-4">
                             <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
@@ -1132,9 +1128,8 @@
         }
 
         function applySummaryChanges(isLagos) {
-            const deliveryFee = isLagos ? 0 : 3500;
-            const commitmentFee = 5000;
-            const total = basePrice - discount + deliveryFee + commitmentFee;
+            const fee = isLagos ? 0 : 3500;
+            const total = basePrice - discount + fee;
 
             delFeeText.innerText = isLagos ? 'FREE' : '₦3,500';
             delFeeText.className = isLagos ? 'text-green-600' : 'text-red-600';
