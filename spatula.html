@@ -288,6 +288,11 @@
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="18"></i> Clears Clogged Pores</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="18"></i> Reduces Oily Shine</li>
                         </ul>
+                        <div class="pt-6">
+                            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-10 py-4 bg-primary text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform">
+                                Order Now & Clear Your Pores
+                            </button>
+                        </div>
                     </div>
                 </div>
 
@@ -326,6 +331,11 @@
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="18"></i> Reduces Fine Lines</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="18"></i> Sculpts Jawline & Cheekbones</li>
                         </ul>
+                        <div class="pt-6">
+                            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-10 py-4 bg-primary text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform">
+                                Order Now & Lift Your Face
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -649,8 +659,18 @@
                         Only 5 Left in Stock!
                     </div>
                     <h2 class="text-4xl font-serif font-black mb-8 text-center">Place Your Order</h2>
-                    <input type="hidden" name="product_name" value="Ultrasonic Glow Spatula™">
-                    <input type="hidden" name="product_price" value="36500">
+                    <div class="mb-8 p-6 bg-pink-50 rounded-3xl border border-pink-100 shadow-sm">
+                        <div class="w-full">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-2 block ml-2">Choose Your Package</label>
+                            <select id="packageSelect" onchange="selectBundle(this.value, getPrice(this.value))" class="w-full px-6 py-4 rounded-2xl bg-white border-2 border-pink-100 outline-none font-black text-[13px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="Standard">Ultrasonic Glow Spatula™ (₦36,500)</option>
+                                <option value="Premium" selected>Premium Package (₦47,500)</option>
+                                <option value="Pro">Pro Package (₦58,500)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="product_name" id="hidden_product_name" value="Ultrasonic Glow Spatula™">
+                    <input type="hidden" name="product_price" id="hidden_product_price" value="36500">
                     <div class="grid gap-6">
                         <input type="text" name="name" placeholder="FULL NAME" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
@@ -863,9 +883,37 @@
         const stateInput = document.getElementById('stateInput');
         const cityInput = document.getElementById('cityInput');
         
-        const basePrice = 36500;
+        let basePrice = 36500;
         let discount = 0;
         let lastSelectedLoc = 'Lagos';
+
+        function getPrice(name) {
+            const prices = {
+                'Standard': 36500,
+                'Premium': 47500,
+                'Pro': 58500
+            };
+            return prices[name] || 36500;
+        }
+
+        function selectBundle(name, price) {
+            basePrice = price;
+            const hiddenName = document.getElementById('hidden_product_name');
+            const hiddenPrice = document.getElementById('hidden_product_price');
+            const packageSelect = document.getElementById('packageSelect');
+
+            if (packageSelect) packageSelect.value = name;
+            
+            let fullName = `Ultrasonic Glow Spatula™ ${name} Bundle`;
+            if (name === 'Standard') fullName = "Ultrasonic Glow Spatula™ Standard";
+            if (name === 'Premium') fullName = "Ultrasonic Glow Spatula™ Premium Bundle (+ Massager)";
+            if (name === 'Pro') fullName = "Ultrasonic Glow Spatula™ Pro Bundle (+ Massager + Steamer)";
+
+            if (hiddenName) hiddenName.value = fullName;
+            if (hiddenPrice) hiddenPrice.value = price - discount;
+
+            updateSummary();
+        }
 
         function applyDiscount() {
             discount = 2500;
@@ -1012,22 +1060,22 @@
             const customerNameValue = form.name.value;
             const customerPhoneValue = form.phone.value;
             const customerAddressValue = form.address.value;
-            const customerLocationValue = form.location.value;
+            const customerStateValue = form.location.value;
             const customerCityValue = form.city ? form.city.value : '';
             const productNameValue = form.product_name.value;
             const productPriceValue = form.product_price.value;
 
             const timestamp = new Date().toLocaleString();
             
-            const isLagos = customerLocationValue === 'Lagos';
+            const isLagos = customerStateValue === 'Lagos';
             const deliveryFee = isLagos ? 0 : 3500;
             const commitmentFee = 5000;
             const totalPrice = parseInt(productPriceValue) + deliveryFee + commitmentFee;
             const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
 
-            let locationString = customerLocationValue;
+            let locationString = customerStateValue;
             if (!isLagos) {
-                locationString = `${customerLocationValue} (${customerCityValue})`;
+                locationString = `${customerStateValue} (${customerCityValue})`;
             }
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
@@ -1064,7 +1112,11 @@
                     phone: customerPhoneValue,
                     customer_address: customerAddressValue,
                     address: customerAddressValue,
-                    location: customerLocationValue,
+                    location: customerStateValue,
+                    state: customerStateValue,
+                    city: customerCityValue,
+                    customer_state: customerStateValue,
+                    customer_city: customerCityValue,
                     product_name: productNameValue,
                     product: productNameValue,
                     total_amount: `₦${totalPrice.toLocaleString()}`,

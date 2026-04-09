@@ -247,6 +247,11 @@
                     <p class="text-lg leading-relaxed opacity-80">
                         Different wavelengths of light penetrate different depths of the skin, triggering biological processes that kill acne-causing bacteria, stimulate collagen, and reduce inflammation.
                     </p>
+                    <div class="pt-6">
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-10 py-4 bg-primary text-white rounded-full font-black text-[10px] uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform">
+                            Order Now & Start Your Transformation
+                        </button>
+                    </div>
                 </div>
                 <div class="bg-white p-8 rounded-[3rem] shadow-xl border border-pink-100">
                     <div class="space-y-4">
@@ -289,6 +294,11 @@
                     <p class="text-xl opacity-70 mb-10 leading-relaxed font-medium">
                         Stop wasting money on facials that only last a week. Our 7-Color LED Mask uses NASA-backed technology to target acne, wrinkles, and dullness from the inside out. 
                     </p>
+                    <div class="flex gap-4 mb-10">
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center gap-3">
+                            Order Now <i data-lucide="arrow-right" size="16"></i>
+                        </button>
+                    </div>
                     <div class="space-y-4 mb-10">
                         <div class="flex items-center gap-3">
                             <div class="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center text-green-600">
@@ -398,6 +408,11 @@
                         <p class="text-sm opacity-70 leading-relaxed font-medium">Deep Rejuvenation. Penetrates deep to tighten sagging skin.</p>
                     </div>
                 </div>
+                <div class="flex justify-center mt-16">
+                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center gap-3">
+                        Order Now & Save ₦24,000 <i data-lucide="arrow-right" size="16"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -437,6 +452,11 @@
                                 <p class="text-xs opacity-60 font-medium">Step-by-step instructions for best results</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="pt-6">
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center gap-3">
+                            Claim My Mask Now <i data-lucide="shopping-cart" size="16"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -890,14 +910,14 @@
         <section id="order" class="py-24 px-6 md:px-12 lg:px-24 border-t border-pink-50 bg-white">
             <div class="max-w-3xl mx-auto">
                 <form id="orderForm" class="space-y-6 bg-white p-12 rounded-[4rem] border border-pink-100 shadow-xl relative">
-                    <div class="mb-8 p-6 bg-pink-50 rounded-3xl border border-pink-100 flex items-center justify-between">
-                        <div>
-                            <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Selected Package</p>
-                            <p id="selected-package-name" class="text-lg font-black text-pink-900">Premium Package</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Price</p>
-                            <p id="selected-package-price" class="text-lg font-black text-primary">₦58,500</p>
+                    <div class="mb-8 p-6 bg-pink-50 rounded-3xl border border-pink-100 shadow-sm">
+                        <div class="w-full">
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-2 block ml-2">Choose Your Package</label>
+                            <select id="packageSelect" onchange="selectBundle(this.value, getPrice(this.value))" class="w-full px-6 py-4 rounded-2xl bg-white border-2 border-pink-100 outline-none font-black text-[13px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="Standard">LED Mask Standard (₦36,000)</option>
+                                <option value="Premium" selected>Premium Package (₦47,500)</option>
+                                <option value="Pro">Pro Package (₦58,500)</option>
+                            </select>
                         </div>
                     </div>
                     <input type="hidden" name="product_name" id="hidden_product_name" value="LED Mask Premium Bundle (Mask + Massager)">
@@ -1075,9 +1095,18 @@
         const totalText = document.getElementById('total-price');
         const payMethText = document.getElementById('payment-method');
 
-        let basePrice = 60000; // Default to Premium
+        let basePrice = 47500; // Default to Premium
         let discount = 0;
         let lastSelectedLoc = '';
+
+        function getPrice(name) {
+            const prices = {
+                'Standard': 36000,
+                'Premium': 47500,
+                'Pro': 58500
+            };
+            return prices[name] || 47500;
+        }
 
         function selectBundle(name, price) {
             basePrice = price;
@@ -1085,9 +1114,12 @@
             const priceEl = document.getElementById('selected-package-price');
             const hiddenName = document.getElementById('hidden_product_name');
             const hiddenPrice = document.getElementById('hidden_product_price');
+            const packageSelect = document.getElementById('packageSelect');
 
-            nameEl.innerText = name + ' Package';
-            priceEl.innerText = `₦${price.toLocaleString()}`;
+            if (packageSelect) packageSelect.value = name;
+
+            if (nameEl) nameEl.innerText = name + ' Package';
+            if (priceEl) priceEl.innerText = `₦${price.toLocaleString()}`;
             
             let fullName = `LED Mask ${name} Bundle`;
             if (name === 'Standard') fullName = "7-Color LED Mask Standard (Mask Only)";
@@ -1225,21 +1257,22 @@
             const customerNameValue = form.name.value;
             const customerPhoneValue = form.phone.value;
             const customerAddressValue = form.address.value;
-            const customerLocationValue = form.state.value;
+            const customerStateValue = form.state.value;
             const customerCityValue = form.city ? form.city.value : '';
             const productNameValue = form.product_name.value;
             const productPriceValue = form.product_price.value;
 
             const timestamp = new Date().toLocaleString();
             
-            const isLagos = customerLocationValue === 'Lagos';
+            const isLagos = customerStateValue === 'Lagos';
             const deliveryFee = isLagos ? 0 : 3500;
-            const totalPrice = parseInt(productPriceValue) + deliveryFee;
+            const commitmentFee = 5000;
+            const totalPrice = parseInt(productPriceValue) + deliveryFee + commitmentFee;
             const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
 
-            let locationString = customerLocationValue;
+            let locationString = customerStateValue;
             if (!isLagos) {
-                locationString = `${customerLocationValue} (${customerCityValue})`;
+                locationString = `${customerStateValue} (${customerCityValue})`;
             }
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
@@ -1276,7 +1309,11 @@
                     phone: customerPhoneValue,
                     customer_address: customerAddressValue,
                     address: customerAddressValue,
-                    location: customerLocationValue,
+                    location: customerStateValue,
+                    state: customerStateValue,
+                    city: customerCityValue,
+                    customer_state: customerStateValue,
+                    customer_city: customerCityValue,
                     product_name: productNameValue,
                     product: productNameValue,
                     total_amount: `₦${totalPrice.toLocaleString()}`,
