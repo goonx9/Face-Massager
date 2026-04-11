@@ -30,8 +30,12 @@
     fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
+    
+    <link rel="preload" href="https://res.cloudinary.com/dmy2yiax9/image/upload/Electric_Ultrasonic_Ion_Skin_Scrubber_Face_Spatula_for_SkinCare_Blackhead_Removal_Facial_Cleansing_a7rkua.jpg" as="image" fetchpriority="high">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -53,15 +57,21 @@
             }
         }
     </script>
+    
     <style>
         :root {
-            --primary: #FF2D55;
-            --text: #5E002C;
-            --body: #880E4F;
-            --background: #FFF5F8;
-            --complement: #F1FBF3;
-            --accent: #F06292;
+            --color-primary: #FF2D55;
+            --color-text: #5E002C;
+            --color-body: #880E4F;
+            --color-background: #FFF5F8;
+            --color-complement: #F1FBF3;
+            --color-accent: #F06292;
         }
+        
+        /* Fallback classes */
+        .bg-primary { background-color: #FF2D55 !important; color: white !important; }
+        .text-primary { color: #FF2D55 !important; }
+
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
@@ -102,29 +112,29 @@
     /></noscript>
 
     <!-- Conversion Boosters -->
-    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-[#FF2D55] text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg">
+    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg">
         🔥 Special Offer Ends In: <span id="timer-display">30:00</span>
     </div>
 
     <!-- Exit Intent Popup -->
     <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 md:p-6 backdrop-blur-md">
         <div class="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 max-w-md w-full text-center relative overflow-hidden shadow-3xl mx-4">
-            <div class="absolute top-0 left-0 w-full h-2 bg-[#FF2D55]"></div>
+            <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
             <button id="close-exit" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-black transition-colors">
                 <i data-lucide="x" size="24"></i>
             </button>
             
-            <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-[#FF2D55]">
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-primary">
                 <i data-lucide="gift" size="32" class="md:hidden"></i>
                 <i data-lucide="gift" size="40" class="hidden md:block"></i>
             </div>
             
             <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait! Special Offer 😱</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Order in the next <span id="timer-display-popup" class="font-black text-[#FF2D55]">05:00</span> and get <span class="text-[#FF2D55] font-bold">₦2,500 OFF + FREE DELIVERY</span> anywhere in Nigeria!
+                Order in the next <span id="timer-display-popup" class="font-black text-primary">05:00</span> and get <span class="text-primary font-bold">₦2,500 OFF + FREE DELIVERY</span> anywhere in Nigeria!
             </p>
             
-            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-[#FF2D55] text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
+            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
                 Claim My Discount Now
             </button>
             

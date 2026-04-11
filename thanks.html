@@ -39,8 +39,6 @@
     src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -59,7 +57,18 @@
             }
         }
     </script>
+    
     <style>
+        :root {
+            --color-primary: #FF2D55;
+            --color-background: #FFF5F8;
+            --color-text: #1A1A1A;
+        }
+        
+        /* Fallback classes */
+        .bg-primary { background-color: #FF2D55 !important; color: white !important; }
+        .text-primary { color: #FF2D55 !important; }
+        
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
@@ -91,7 +100,7 @@
             </p>
         </div>
 
-        <button id="waRedirectBtn" class="w-full py-5 bg-[#FF2D55] text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+        <button id="waRedirectBtn" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
             <i data-lucide="message-circle" size="18"></i> Finish on WhatsApp
         </button>
         

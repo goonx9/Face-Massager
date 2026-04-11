@@ -31,6 +31,12 @@
     fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
+    
+    <link rel="preload" href="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg" as="image" fetchpriority="high">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -52,17 +58,21 @@
             }
         }
     </script>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
+    
     <style>
         :root {
-            --primary: #FF2D55;
-            --text: #5E002C;
-            --body: #880E4F;
-            --background: #FFF5F8;
-            --complement: #F1FBF3;
-            --accent: #F06292;
+            --color-primary: #FF2D55;
+            --color-text: #5E002C;
+            --color-body: #880E4F;
+            --color-background: #FFF5F8;
+            --color-complement: #F1FBF3;
+            --color-accent: #F06292;
         }
+        
+        /* Fallback classes */
+        .bg-primary { background-color: #FF2D55 !important; color: white !important; }
+        .text-primary { color: #FF2D55 !important; }
+
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
@@ -105,8 +115,15 @@
             width: 100%;
         }
         .carousel-slide {
-            min-width: 100%;
-            flex-shrink: 0;
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide p {
+                font-size: 11px !important;
+                padding: 12px !important;
+            }
         }
 
         /* Custom Scrollbar */
@@ -203,7 +220,7 @@
     <nav class="fixed top-12 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-[#FF2D55] flex items-center justify-center text-white shadow-xl">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
                     <i data-lucide="sparkles"></i>
                 </div>
                 <span class="text-2xl font-serif font-black tracking-tight uppercase">GLAMOUR & GRACE</span>
