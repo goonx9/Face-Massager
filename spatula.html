@@ -30,7 +30,7 @@
     fbq('track', 'PageView');
     </script>
     <!-- End Meta Pixel Code -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -315,15 +315,15 @@
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="18"></i> Radiant, Glowing Finish</li>
                         </ul>
                     </div>
-                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-white order-1 md:order-2 min-h-[250px]">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/an2nwc_pcockx.gif" loading="lazy" decoding="async" width="500" height="500" class="w-full h-auto" alt="Nutrient Infusion Mode" referrerPolicy="no-referrer">
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-white order-1 md:order-2 aspect-square">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/an2nwc_pcockx.gif" loading="lazy" decoding="async" width="500" height="500" class="w-full h-full object-cover" alt="Nutrient Infusion Mode" referrerPolicy="no-referrer">
                     </div>
                 </div>
 
                 <!-- Step 3: Lifting -->
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-white min-h-[250px]">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/an2o12_d9qwrp.gif" loading="lazy" decoding="async" width="500" height="500" class="w-full h-auto" alt="EMS Lifting Mode" referrerPolicy="no-referrer">
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-white aspect-square">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/an2o12_d9qwrp.gif" loading="lazy" decoding="async" width="500" height="500" class="w-full h-full object-cover" alt="EMS Lifting Mode" referrerPolicy="no-referrer">
                     </div>
                     <div class="space-y-6">
                         <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-black text-xl shadow-lg">3</div>
@@ -356,8 +356,8 @@
 
                 <div class="grid md:grid-cols-2 gap-12">
                     <div class="space-y-6">
-                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-pink-50 bg-white group min-h-[250px]">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/aka6l9_q02v1h.gif" class="w-full h-auto transition-transform duration-700 group-hover:scale-105" alt="Usage Demo 1" referrerPolicy="no-referrer">
+                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-pink-50 bg-white group aspect-square">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/aka6l9_q02v1h.gif" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Usage Demo 1" referrerPolicy="no-referrer" width="500" height="500" loading="lazy" decoding="async">
                         </div>
                         <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
                             <h4 class="font-black text-lg mb-2">Deep Pore Cleansing</h4>
@@ -365,8 +365,8 @@
                         </div>
                     </div>
                     <div class="space-y-6">
-                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-pink-50 bg-white group min-h-[250px]">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/aka6n8_srl2ar.gif" class="w-full h-auto transition-transform duration-700 group-hover:scale-105" alt="Usage Demo 2" referrerPolicy="no-referrer">
+                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-pink-50 bg-white group aspect-square">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/aka6n8_srl2ar.gif" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Usage Demo 2" referrerPolicy="no-referrer" width="500" height="500" loading="lazy" decoding="async">
                         </div>
                         <div class="p-6 bg-pink-50 rounded-3xl border border-pink-100">
                             <h4 class="font-black text-lg mb-2">Instant Glow & Lift</h4>
@@ -384,12 +384,14 @@
                     <h2 class="text-4xl md:text-5xl font-serif font-black">Loved by Thousands</h2>
                     <p class="font-bold opacity-60 uppercase tracking-widest text-xs">Real users, real results, real glow</p>
                 </div>
-                <div class="aspect-[9/16] max-w-[400px] mx-auto rounded-[3rem] overflow-hidden shadow-3xl border-8 border-pink-50 relative group bg-pink-50 min-h-[500px]">
+                <div class="aspect-[9/16] max-w-[400px] mx-auto rounded-[3rem] overflow-hidden shadow-3xl border-8 border-pink-50 relative group bg-pink-50">
                     <video 
                         class="w-full h-full object-cover" 
                         controls 
                         preload="metadata" 
                         poster="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto/v1773945692/Electric_Ultrasonic_Ion_Skin_Scrubber_Face_Spatula_for_SkinCare_Blackhead_Removal_Facial_Cleansing_a7rkua.jpg"
+                        width="400"
+                        height="711"
                     >
                         <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1773945926/tiktok_fabfitfun_7426859338968485162_xv5dg1.mp4" type="video/mp4">
                         Your browser does not support the video tag.
