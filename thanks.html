@@ -38,6 +38,24 @@
     <!-- End Meta Pixel Code -->
     <link rel="stylesheet" href="/src/index.css">
     <script type="module" src="/src/main.ts"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        background: '#FFF5F8',
+                        text: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     
     <style>
         :root {
