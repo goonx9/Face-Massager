@@ -18,6 +18,29 @@
     <link rel="dns-prefetch" href="https://unpkg.com">
     
     <link rel="stylesheet" href="/src/index.css">
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        secondary: '#F06292',
+                        text: '#4A0E2E',
+                        body: '#701D44',
+                        background: '#FFF0F5',
+                        complement: '#E8F5E9',
+                        border: '#F8BBD0',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- Meta Pixel Code -->
     <script>
