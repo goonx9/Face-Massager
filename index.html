@@ -17,6 +17,8 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://unpkg.com">
     
+    <link rel="stylesheet" href="/src/index.css">
+    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -36,32 +38,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF1493',
-                        secondary: '#F06292',
-                        text: '#4A0E2E',
-                        body: '#701D44',
-                        background: '#FFF0F5',
-                        complement: '#E8F5E9',
-                        border: '#F8BBD0',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
     <style>
         :root {
-            --color-primary: #FF1493;
+            --color-primary: #FF2D55;
             --color-secondary: #F06292;
             --color-text: #4A0E2E;
             --color-body: #701D44;
@@ -70,9 +49,9 @@
             --color-border: #F8BBD0;
         }
         
-        /* Fallback classes in case of CDN delay */
-        .bg-primary { background-color: #FF1493 !important; color: white !important; }
-        .text-primary { color: #FF1493 !important; }
+        /* Critical CSS for FCP */
+        .bg-primary { background-color: #FF2D55 !important; color: white !important; }
+        .text-primary { color: #FF2D55 !important; }
         
         .floating-heart {
             position: absolute;
