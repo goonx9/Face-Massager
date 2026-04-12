@@ -36,8 +36,6 @@
     });
     </script>
     <!-- End Meta Pixel Code -->
-    <link rel="stylesheet" href="/src/index.css">
-    <script type="module" src="/src/main.ts"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -64,15 +62,15 @@
             --color-text: #1A1A1A;
         }
         
-        /* Critical CSS for FCP */
+        /* Fallback classes */
         .bg-primary { background-color: #FF2D55 !important; color: white !important; }
         .text-primary { color: #FF2D55 !important; }
         
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #FFF5F8; 
-            color: #1A1A1A; 
+            background-color: var(--color-background); 
+            color: var(--color-text); 
             display: flex;
             align-items: center;
             justify-content: center;

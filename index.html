@@ -17,8 +17,6 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://unpkg.com">
     
-    <link rel="stylesheet" href="/src/index.css">
-    <script type="module" src="/src/main.ts"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -72,7 +70,7 @@
             --color-border: #F8BBD0;
         }
         
-        /* Critical CSS for FCP */
+        /* Fallback classes */
         .bg-primary { background-color: #FF2D55 !important; color: white !important; }
         .text-primary { color: #FF2D55 !important; }
         
@@ -84,7 +82,12 @@
             will-change: transform, opacity;
         }
         
-        /* Critical CSS for Hero */
+        body {
+            background-color: var(--color-background);
+            color: var(--color-text);
+        }
+
+        /* Hero Section */
         .hero-section {
             background-color: var(--color-complement);
             min-height: 80vh;

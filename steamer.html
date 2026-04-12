@@ -17,8 +17,6 @@
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="dns-prefetch" href="https://unpkg.com">
     
-    <link rel="stylesheet" href="/src/index.css">
-    <script type="module" src="/src/main.ts"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -69,17 +67,16 @@
             --color-accent: #F06292;
         }
         
-        /* Critical CSS for FCP */
+        /* Fallback classes */
         .bg-primary { background-color: #FF2D55 !important; color: white !important; }
         .text-primary { color: #FF2D55 !important; }
 
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #FFF5F8; 
-            color: #5E002C; 
+            background-color: var(--color-background); 
+            color: var(--color-text); 
             -webkit-font-smoothing: antialiased;
-            margin: 0;
         }
         
         .font-serif { font-family: 'Playfair Display', serif; }
