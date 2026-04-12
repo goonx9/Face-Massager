@@ -749,6 +749,29 @@
         <p class="text-[10px] font-black tracking-[0.4em] uppercase opacity-40">© 2025 Glamour & Grace Aesthetics. All Rights Reserved.</p>
     </footer>
 
+    <!-- Processing Order Modal -->
+    <div id="processing-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[10000] hidden items-center justify-center p-6">
+        <div class="bg-white rounded-[3rem] p-10 max-w-md w-full text-center space-y-8 shadow-3xl">
+            <div class="relative w-24 h-24 mx-auto">
+                <div class="absolute inset-0 border-4 border-pink-100 rounded-full"></div>
+                <div id="progress-spinner" class="absolute inset-0 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span id="progress-percent" class="text-xl font-black text-primary">0%</span>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-2xl font-serif font-black">Processing Your Order</h3>
+                <p class="text-sm font-medium opacity-60">Please do not refresh or close this page...</p>
+            </div>
+            <div class="w-full bg-pink-50 h-2 rounded-full overflow-hidden">
+                <div id="progress-bar" class="bg-primary h-full w-0 transition-all duration-300 ease-out"></div>
+            </div>
+            <div id="status-text" class="text-[10px] font-black uppercase tracking-[0.2em] text-primary animate-pulse">
+                Securing your discount...
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
@@ -993,13 +1016,45 @@
         document.getElementById('confirmOrderBtn').addEventListener('click', async function() {
             const btn = document.getElementById('confirmOrderBtn');
             const submitBtn = document.getElementById('submitBtn');
+            const modal = document.getElementById('processing-modal');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            const statusText = document.getElementById('status-text');
             
             if (isSubmitting) return;
             
             isSubmitting = true;
             btn.disabled = true;
             btn.innerText = 'Processing...';
-            submitBtn.innerText = 'PROCESSING ORDER...';
+            submitBtn.innerText = 'PROCESSING...';
+            
+            // Hide commitment modal and show processing modal
+            document.getElementById('commitmentModal').style.display = 'none';
+            modal.style.display = 'flex';
+            
+            let progress = 0;
+            const updateProgress = (target, text, duration) => {
+                return new Promise(resolve => {
+                    const start = progress;
+                    const startTime = performance.now();
+                    statusText.innerText = text;
+                    
+                    function animate(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const p = Math.min(elapsed / duration, 1);
+                        progress = start + (target - start) * p;
+                        progressBar.style.width = `${progress}%`;
+                        progressPercent.innerText = `${Math.round(progress)}%`;
+                        
+                        if (p < 1) {
+                            requestAnimationFrame(animate);
+                        } else {
+                            resolve();
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                });
+            };
 
             const form = document.getElementById('orderForm');
             const customerNameValue = form.name.value;
@@ -1036,11 +1091,13 @@
                             `--------------------------\n\n` +
                             `*I am ready to confirm my order and pay the commitment fee now!*`;
 
-            console.log("Sending Order for:", customerNameValue);
-
             try {
-                // Wait for email to be sent to ensure reliability
-                await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                // Phase 1: Validation & Prep
+                await updateProgress(35, "Validating Order Details...", 800);
+                
+                // Phase 2: Sending to Server (EmailJS)
+                statusText.innerText = "Securing Your Discount...";
+                const emailPromise = emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
                     from_name: customerNameValue,
                     customer_name: customerNameValue,
@@ -1070,12 +1127,26 @@
                     date: timestamp,
                     whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
                 });
+
+                await updateProgress(75, "Connecting to Warehouse...", 1200);
+                await emailPromise;
+                
+                // Phase 3: Finalizing
+                await updateProgress(100, "Order Confirmed! Redirecting...", 600);
+
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 isSubmitting = false;
-                window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
+                
+                // Small delay to let user see 100%
+                setTimeout(() => {
+                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
+                }, 500);
+
             } catch (err) {
                 isSubmitting = false;
+                modal.style.display = 'none';
                 alert('Connection error. Please contact us on WhatsApp directly.');
+                console.error(err);
                 btn.disabled = false;
                 btn.innerText = 'Yes, I Am Ready!';
                 submitBtn.innerText = 'Order & Finish on WhatsApp';
