@@ -8,35 +8,9 @@
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://connect.facebook.net">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://connect.facebook.net">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://unpkg.com">
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '4029546293858823');
-    fbq('track', 'PageView');
     
-    const urlParams = new URLSearchParams(window.location.search);
-    const price = urlParams.get('p') || '0';
-    
-    fbq('track', 'Purchase', {
-        value: parseFloat(price),
-        currency: 'NGN'
-    });
-    </script>
-    <!-- End Meta Pixel Code -->
-    <link rel="stylesheet" href="/src/index.css">
+    <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
     
     <style>
         :root {
@@ -95,7 +69,7 @@
     </div>
 
     <!-- Deferred Scripts -->
-    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+
     <script>
         const params = new URLSearchParams(window.location.search);
         const waLink = params.get('wa');
@@ -114,5 +88,35 @@
         document.getElementById('waRedirectBtn').addEventListener('click', handleRedirect);
         setTimeout(handleRedirect, 6000);
     </script>
+    <script>
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/lucide@latest';
+        script.defer = true;
+        script.onload = () => lucide.createIcons();
+        document.body.appendChild(script);
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4029546293858823');
+    fbq('track', 'PageView');
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const price = urlParams.get('p') || '0';
+    
+    fbq('track', 'Purchase', {
+        value: parseFloat(price),
+        currency: 'NGN'
+    });
+    </script>
+    <!-- End Meta Pixel Code -->
 </body>
 </html>
