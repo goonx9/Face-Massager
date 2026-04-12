@@ -21,9 +21,6 @@
     <!-- Preload Hero Image for LCP -->
     <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto/f_auto/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" fetchpriority="high">
     
-    <link rel="stylesheet" href="./src/index.css">
-    <script type="module" src="./src/main.ts"></script>
-    
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -42,6 +39,30 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
+    <link rel="preload" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto/f_auto/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" as="image" fetchpriority="high">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        text: '#5E002C',
+                        body: '#880E4F',
+                        background: '#FFF5F8',
+                        complement: '#F1FBF3',
+                        accent: '#F06292',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
         :root {
             --color-primary: #FF2D55;
@@ -52,20 +73,21 @@
             --color-accent: #F06292;
         }
         
-        /* Critical CSS for FCP */
+        /* Fallback classes */
         .bg-primary { background-color: #FF2D55 !important; color: white !important; }
         .text-primary { color: #FF2D55 !important; }
 
         html { scroll-behavior: smooth; }
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #FFF5F8; 
-            color: #5E002C; 
+            background-color: var(--background); 
+            color: var(--text); 
             -webkit-font-smoothing: antialiased;
-            margin: 0;
         }
         
         .font-serif { font-family: 'Playfair Display', serif; }
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
         .shadow-3xl { box-shadow: 0 35px 60px -15px rgba(216, 27, 96, 0.2); }
 
         /* Order Notification Styles */
