@@ -35,28 +35,9 @@
         currency: 'NGN'
     });
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
-    /></noscript>
     <!-- End Meta Pixel Code -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF2D55',
-                        background: '#FFF5F8',
-                        text: '#1A1A1A',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="./src/index.css">
+    <script type="module" src="./src/main.ts"></script>
     
     <style>
         :root {
@@ -65,7 +46,7 @@
             --color-text: #1A1A1A;
         }
         
-        /* Fallback classes */
+        /* Critical CSS for FCP */
         .bg-primary { background-color: #FF2D55 !important; color: white !important; }
         .text-primary { color: #FF2D55 !important; }
         
@@ -86,6 +67,9 @@
     </style>
 </head>
 <body class="text-center">
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
+    /></noscript>
     <div class="max-w-md w-full bg-white p-12 rounded-[4rem] shadow-2xl border border-pink-100 space-y-8">
         <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
             <i data-lucide="check-circle-2" size="48"></i>
