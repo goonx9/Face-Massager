@@ -29,11 +29,6 @@
     
     const urlParams = new URLSearchParams(window.location.search);
     const price = urlParams.get('p') || '0';
-    
-    fbq('track', 'Purchase', {
-        value: parseFloat(price),
-        currency: 'NGN'
-    });
     </script>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -117,12 +112,21 @@
         const params = new URLSearchParams(window.location.search);
         const waLink = params.get('wa');
         const customerName = params.get('n');
+        const orderPrice = params.get('p') || '0';
 
         if (customerName) {
             document.getElementById('thanksHeading').innerText = `Order Received, ${customerName}!`;
         }
         
         const handleRedirect = () => {
+            // Track Purchase on WhatsApp button click or redirect
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {
+                    value: parseFloat(orderPrice),
+                    currency: 'NGN'
+                });
+            }
+            
             if (waLink) {
                 window.location.href = decodeURIComponent(waLink);
             }
