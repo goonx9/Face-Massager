@@ -237,10 +237,19 @@
             <div class="text-center mb-20">
                 <h2 class="text-5xl md:text-7xl font-serif font-black mb-6 text-pink-900">The Essentials</h2>
                 <p class="max-w-xl mx-auto opacity-60 font-bold uppercase text-[10px] tracking-[0.4em]">Our Best-Selling Skincare Innovations</p>
+                
+                <!-- Size Filter -->
+                <div class="mt-12 flex flex-wrap justify-center gap-3">
+                    <button onclick="filterMainListing('all')" class="filter-chip px-6 py-2 rounded-full border-2 border-pink-100 font-bold text-[10px] uppercase tracking-widest active-chip bg-primary text-white border-primary">All</button>
+                    <button onclick="filterMainListing('onesize')" class="filter-chip px-6 py-2 rounded-full border-2 border-pink-100 font-bold text-[10px] uppercase tracking-widest hover:border-primary transition-all">One Size</button>
+                    <button onclick="filterMainListing('s')" class="filter-chip px-6 py-2 rounded-full border-2 border-pink-100 font-bold text-[10px] uppercase tracking-widest hover:border-primary transition-all">Small</button>
+                    <button onclick="filterMainListing('m')" class="filter-chip px-6 py-2 rounded-full border-2 border-pink-100 font-bold text-[10px] uppercase tracking-widest hover:border-primary transition-all">Medium</button>
+                    <button onclick="filterMainListing('l')" class="filter-chip px-6 py-2 rounded-full border-2 border-pink-100 font-bold text-[10px] uppercase tracking-widest hover:border-primary transition-all">Large</button>
+                </div>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div id="product-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                 <!-- Product Card: Invisible Push Up Bra -->
-                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="s,m,l">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
                         <video autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                             <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378285/download_3_1_o1ctn8.mp4" type="video/mp4">
@@ -263,7 +272,7 @@
                     </div>
                 </div>
                 <!-- Product Card 1 -->
-                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
                         <video autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg">
                             <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/ezgif-74770f439746b60c_rdk6qq.mp4" type="video/mp4">
@@ -286,7 +295,7 @@
                     </div>
                 </div>
                 <!-- Product Card 2 -->
-                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
                         <video autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg">
                             <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1775921287/ezgif-54a2f5d9b3a00319_keocod.mp4" type="video/mp4">
@@ -309,7 +318,7 @@
                     </div>
                 </div>
                 <!-- Product Card 3 -->
-                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
                         <video autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto/v1773945692/Electric_Ultrasonic_Ion_Skin_Scrubber_Face_Spatula_for_SkinCare_Blackhead_Removal_Facial_Cleansing_a7rkua.jpg">
                             <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1773945926/tiktok_fabfitfun_7426859338968485162_xv5dg1.mp4" type="video/mp4">
@@ -332,7 +341,7 @@
                     </div>
                 </div>
                 <!-- Product Card 4 -->
-                <div class="bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300">
+                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
                         <video autoplay loop muted playsinline class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg">
                             <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.mp4" type="video/mp4">
@@ -647,6 +656,41 @@
 
         setInterval(triggerNotif, 12000);
         setTimeout(triggerNotif, 2000);
+
+        function filterMainListing(size) {
+            // Update chip styles
+            const chips = document.querySelectorAll('.filter-chip');
+            chips.forEach(chip => {
+                const chipText = chip.innerText.toLowerCase();
+                if (chipText === size || (size === 'all' && chipText === 'all')) {
+                    chip.classList.add('bg-primary', 'text-white', 'border-primary');
+                    chip.classList.remove('border-pink-100', 'text-pink-900');
+                } else {
+                    chip.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    chip.classList.add('border-pink-100', 'text-pink-900');
+                }
+            });
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                const sizesStr = card.getAttribute('data-sizes');
+                if (!sizesStr) return;
+                const sizes = sizesStr.split(',');
+                if (size === 'all' || sizes.includes(size)) {
+                    card.classList.remove('hidden');
+                    card.style.animation = 'fadeIn 0.5s ease forwards';
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
     </script>
+    <style>
+        .filter-chip.active-chip { @apply bg-primary text-white border-primary; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </body>
 </html>

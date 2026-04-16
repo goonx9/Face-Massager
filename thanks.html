@@ -118,7 +118,11 @@
             document.getElementById('thanksHeading').innerText = `Order Received, ${customerName}!`;
         }
         
+        let purchaseFired = false;
         const handleRedirect = () => {
+            if (purchaseFired) return;
+            purchaseFired = true;
+
             // Track Purchase on WhatsApp button click or redirect
             if (typeof fbq !== 'undefined') {
                 fbq('track', 'Purchase', {

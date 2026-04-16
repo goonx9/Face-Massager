@@ -54,6 +54,14 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '4029546293858823');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'Glamour & Grace Face Massage Lifter',
+        content_category: 'Skincare Tech',
+        content_ids: ['vlift_001'],
+        content_type: 'product',
+        value: 31500,
+        currency: 'NGN'
+    });
     </script>
     <!-- End Meta Pixel Code -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
@@ -1359,6 +1367,15 @@
                             `*I am ready to confirm my order now!*`;
 
             try {
+                // Track InitiateCheckout when form begins processing
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: productNameValue,
+                        value: totalPrice,
+                        currency: 'NGN'
+                    });
+                }
+
                 // Phase 1: Validation & Prep
                 await updateProgress(35, "Validating Order Details...", 800);
                 
