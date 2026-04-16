@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Invisible Push Up Bra | Glamour & Grace</title>
+    
+    <!-- Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://res.cloudinary.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    
+    <!-- Preload Hero Image for LCP -->
+    <link rel="preload" as="video" href="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378285/download_3_1_o1ctn8.mp4">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        text: '#5E002C',
+                        body: '#880E4F',
+                        background: '#FFF5F8',
+                        complement: '#F1FBF3',
+                        accent: '#F06292',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4029546293858823');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
+    
+    <style>
+        :root {
+            --color-primary: #FF2D55;
+            --color-text: #5E002C;
+            --color-body: #880E4F;
+            --color-background: #FFF5F8;
+            --color-complement: #F1FBF3;
+            --color-accent: #F06292;
+        }
+        
+        /* Fallback classes */
+        .bg-primary { background-color: #FF2D55 !important; color: white !important; }
+        .text-primary { color: #FF2D55 !important; }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--color-background); 
+            color: var(--color-text); 
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .shadow-3xl { box-shadow: 0 35px 60px -15px rgba(216, 27, 96, 0.2); }
+
+        /* Order Notification Styles */
+        #order-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #order-notification.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-slide p {
+                font-size: 11px !important;
+                padding: 12px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
+    /></noscript>
+
+    <!-- Conversion Boosters -->
+    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg">
+        🔥 Flash Sale Ends In: <span id="timer-display">30:00</span>
+    </div>
+
+    <!-- Exit Intent Popup -->
+    <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 md:p-6 backdrop-blur-md">
+        <div class="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 max-w-md w-full text-center relative overflow-hidden shadow-3xl mx-4">
+            <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
+            <button id="close-exit" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-black transition-colors">
+                <i data-lucide="x" size="24"></i>
+            </button>
+            
+            <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-primary">
+                <i data-lucide="gift" size="32" class="md:hidden"></i>
+                <i data-lucide="gift" size="40" class="hidden md:block"></i>
+            </div>
+            
+            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Special Gift for You! 🎀</h3>
+            <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
+                Complete your order now and get ₦1,500 OFF instantly!
+            </p>
+            
+            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
+                Claim My Discount
+            </button>
+            
+            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">I'll pass on this deal</p>
+        </div>
+    </div>
+
+    <!-- Order Notification -->
+    <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
+        <div class="w-12 h-12 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white shadow-lg">
+            <i data-lucide="shopping-bag" size="20"></i>
+        </div>
+        <div>
+            <p class="text-[12px] text-pink-900 font-medium leading-snug" id="notif-text">Ada from Lagos ordered Invisible Push Up Bra</p>
+            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest mt-1">Just now</p>
+        </div>
+    </div>
+
+    <nav class="fixed top-8 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
+                    <i data-lucide="sparkles"></i>
+                </div>
+                <span class="text-2xl font-serif font-black tracking-tight uppercase">GLAMOUR & GRACE</span>
+            </a>
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black tracking-[0.3em] uppercase hidden md:block">Home</a>
+                <a href="#order" class="px-8 py-4 bg-primary text-white rounded-full font-bold text-[10px] uppercase tracking-[0.2em] shadow-xl">Shop Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32">
+        <!-- Section 1: Hero / Problem -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-50 rounded-full blur-[100px] -z-10"></div>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
+                        <span class="inline-block px-4 py-1 rounded-full bg-red-50 text-red-600 font-black text-[10px] tracking-widest uppercase">The Invisible Lift</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950">
+                            The Only Bra You'll <span class="text-primary italic">Never See</span> but Always Feel.
+                        </h2>
+                        <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-medium">
+                            Say goodbye to visible straps and uncomfortable underwires. Perfect for backless, strapless, and low-cut outfits.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+                                    <i data-lucide="droplets" size="20"></i>
+                                </div>
+                                <p class="font-bold text-sm">100% Waterproof & Sweatproof</p>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+                                    <i data-lucide="eye-off" size="20"></i>
+                                </div>
+                                <p class="font-bold text-sm">Completely Invisible Under Clothing</p>
+                            </div>
+                            <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
+                                <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
+                                    <i data-lucide="heart" size="20"></i>
+                                </div>
+                                <p class="font-bold text-sm">Medical Grade Silicone - Skin Safe</p>
+                            </div>
+                        </div>
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                            Get My Perfect Lift
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3]">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378285/download_3_1_o1ctn8.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px] animate-bounce">
+                            <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">Real Result</p>
+                            <p class="text-xs font-bold leading-tight italic">"Finally, a strapless bra that actually stays up and lifts!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Demonstration -->
+        <section class="py-20 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-pink-50 bg-pink-50 aspect-[4/3]">
+                            <video autoplay loop muted playsinline preload="none" loading="lazy" class="w-full h-full object-cover">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776341798/download_1_pcqmez.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 space-y-8">
+                        <span class="bg-pink-100 text-primary px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase inline-block w-fit">Instant Transformation</span>
+                        <h2 class="text-5xl font-serif font-black leading-tight text-pink-900">Push Up & Sculpt</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            Our unique toggle-pull design allows you to adjust the level of "push" to your liking. Enhance your cleavage and shape instantly without any surgery or padding.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i data-lucide="check" size="16"></i>
+                                </div>
+                                <p class="font-bold">Adjustable Cleavage Control</p>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                                    <i data-lucide="check" size="16"></i>
+                                </div>
+                                <p class="font-bold">Reusable up to 100 Times</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Product Detail -->
+        <section class="py-20 px-6 md:px-12 lg:px-24 border-t border-pink-50">
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
+                <div class="space-y-8">
+                    <div class="rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white bg-pink-50 aspect-square">
+                        <video autoplay loop muted playsinline preload="none" loading="lazy" class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378375/download_4_1_oyyrai.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase mb-6 inline-block w-fit">New Arrival</span>
+                    <h1 class="text-6xl font-serif font-black mb-4">Invisible Push Up Bra</h1>
+                    <div class="mb-6">
+                        <span class="text-5xl font-black mr-4 text-primary">₦18,000</span>
+                        <span class="text-2xl line-through opacity-40 font-bold">₦28,000</span>
+                    </div>
+                    
+                    <!-- Offer Badges -->
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <div class="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-red-100">
+                            <i data-lucide="sparkles" size="14"></i> 35% OFF Today
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
+                            <i data-lucide="truck" size="14"></i> Free Delivery Included
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
+                            <i data-lucide="waves" size="14"></i> Waterproof
+                        </div>
+                    </div>
+
+                    <p class="text-lg leading-relaxed mb-12" style="color: var(--body)">
+                        The ultimate lingerie secret. Made from ultra-soft silicone with a strong self-adhesive, this bra provides the lift and support you need without the burden of straps. Perfect for your most daring outfits.
+                    </p>
+                    
+                    <a href="#order" class="w-full py-5 bg-primary text-white rounded-full font-bold text-center uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Claim My Pair Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Tiered Offers -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 space-y-4">
+                    <h2 class="text-4xl md:text-6xl font-serif font-black text-pink-900">Choose Your <span class="text-primary italic">Perfect Fit.</span></h2>
+                    <p class="font-black opacity-60 uppercase text-[10px] tracking-[0.4em]">Bundle & Save up to ₦6,000 Today</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
+                    <!-- Standard Tier -->
+                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500">
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
+                            <video autoplay loop muted playsinline preload="none" loading="lazy" class="w-full h-full object-cover">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378285/download_3_1_o1ctn8.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-serif font-black">Single Pack</h3>
+                            <p class="text-xs font-black uppercase tracking-widest opacity-40">The Essential Lift</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl font-black text-primary">₦18,000</span>
+                        </div>
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1 Pair Invisible Bra</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Choice of Size (S, M, L)</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
+                        </ul>
+                        <button onclick="selectBundle('Single', 18000)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all">Select Single Pack</button>
+                    </div>
+
+                    <!-- Bundle Tier -->
+                    <div class="bg-white rounded-[3rem] p-10 border-4 border-primary shadow-2xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500 scale-105 z-10">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl whitespace-nowrap">
+                            Best Value
+                        </div>
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
+                            <video autoplay loop muted playsinline preload="none" loading="lazy" class="w-full h-full object-cover">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378375/download_4_1_oyyrai.mp4" type="video/mp4">
+                            </video>
+                            <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-pink-100 shadow-lg">
+                                <p class="text-[10px] font-black text-primary uppercase">2-Pair Bundle</p>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-2xl font-serif font-black">Duo Pack</h3>
+                            <p class="text-xs font-black uppercase tracking-widest text-primary">The Ultimate Value</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl font-black text-primary">₦30,000</span>
+                            <span class="text-sm line-through opacity-30 font-bold">₦36,000</span>
+                        </div>
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 2 Pairs Invisible Bra</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Choice of Sizes</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
+                            <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦6,000 Instantly</li>
+                        </ul>
+                        <button onclick="selectBundle('Duo', 30000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all">Select Duo Pack</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Order Form -->
+        <section id="order" class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50 relative overflow-hidden">
+            <div class="max-w-3xl mx-auto relative z-10">
+                <div class="text-center mb-16 space-y-4">
+                    <span class="text-primary font-black uppercase tracking-[0.4em] text-[10px]">Secure Checkout</span>
+                    <h2 class="text-4xl md:text-6xl font-serif font-black">Place Your Order</h2>
+                    <p class="font-bold opacity-60">Complete the form below to secure your delivery</p>
+                </div>
+
+                <form id="orderForm" class="bg-white rounded-[3rem] p-8 md:p-12 shadow-3xl border border-pink-100 space-y-8">
+                    <!-- Progress Tracker for Form (Hidden visually but used for structure) -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Full Name</label>
+                            <input type="text" name="name" placeholder="YOUR FULL NAME" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Phone Number</label>
+                            <input type="tel" name="phone" placeholder="PHONE NUMBER (WHATSAPP)" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery Location</label>
+                            <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="" disabled selected>SELECT STATE</option>
+                                <option value="Lagos">Lagos State</option>
+                                <option value="Abuja">Abuja FCT</option>
+                                <option value="Rivers">Rivers State</option>
+                                <option value="Oyo">Oyo State</option>
+                                <option value="Edo">Edo State</option>
+                                <option value="Delta">Delta State</option>
+                                <option value="Anambra">Anambra State</option>
+                                <option value="Kano">Kano State</option>
+                                <option value="Kaduna">Kaduna State</option>
+                                <option value="Enugu">Enugu State</option>
+                                <option value="Akwa Ibom">Akwa Ibom State</option>
+                                <option value="Ogun">Ogun State</option>
+                                <option value="Ondo">Ondo State</option>
+                                <option value="Kwara">Kwara State</option>
+                                <option value="Others">Other States</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2" id="outsideLagosFields">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">City</label>
+                            <input type="text" name="city" id="cityInput" placeholder="CITY" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery Address</label>
+                        <textarea name="address" placeholder="DETAILED DELIVERY ADDRESS" required class="w-full px-8 py-5 rounded-[2rem] bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest min-h-[120px] focus:ring-2 ring-primary transition-all"></textarea>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Select Size</label>
+                            <select name="size" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="Small">Small (32-34)</option>
+                                <option value="Medium" selected>Medium (36-38)</option>
+                                <option value="Large">Large (40-42)</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Choose Package</label>
+                            <select name="package" id="packageSelect" onchange="handlePackageChange(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="Single">1 Pair (₦18,000)</option>
+                                <option value="Duo">2 Pairs Duo Pack (₦30,000)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Fields -->
+                    <input type="hidden" name="product_name" id="hidden_product_name" value="Invisible Push Up Bra (Single Pack)">
+                    <input type="hidden" name="product_price" id="hidden_product_price" value="18000">
+
+                    <!-- Commitment Notice -->
+                    <div class="p-6 bg-red-50 rounded-3xl border border-red-100 space-y-4">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-red-600 flex items-center gap-2">
+                            <i data-lucide="alert-triangle" size="14"></i> Important Delivery Notice
+                        </p>
+                        <div class="space-y-4">
+                            <p class="text-[11px] font-bold text-red-800">📍 OUTSIDE LAGOS: Payment is strictly BEFORE delivery. No Pay on Delivery.</p>
+                            
+                            <label class="flex items-start gap-3 cursor-pointer group">
+                                <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-red-300 text-red-600 focus:ring-red-500">
+                                <span class="text-[10px] font-black uppercase tracking-wider text-red-900 group-hover:text-red-600 transition-colors">
+                                    I understand and agree to the terms
+                                </span>
+                            </label>
+
+                            <p class="text-[11px] font-bold text-red-800">💰 FINANCIALLY READY: Please only order if you have the cash ready to pay. cash or transfer</p>
+
+                            <p class="text-[11px] font-bold text-red-800">🏠 AVAILABILITY: Only order if you are NOT travelling and will be physically present within 24-48 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary Card -->
+                    <div class="p-8 bg-pink-50 rounded-[2.5rem] border border-pink-100 space-y-4 shadow-inner">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-2">
+                            <i data-lucide="shopping-cart" size="14"></i> Order Summary
+                        </p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm font-bold">
+                                <span id="summaryProductName">Invisible Push Up Bra</span>
+                                <span id="summaryProductPrice">₦18,000</span>
+                            </div>
+                            <div id="discount-row" class="hidden flex justify-between text-sm font-bold text-green-600">
+                                <span>Special Discount</span>
+                                <span>-₦1,500</span>
+                            </div>
+                            <div class="flex justify-between text-sm font-bold">
+                                <span>Delivery</span>
+                                <span id="deliveryFeeText" class="text-green-600">FREE</span>
+                            </div>
+                            <div class="flex justify-between text-sm font-bold">
+                                <span>Payment</span>
+                                <span id="paymentMethodText" class="text-blue-600">Pay on Delivery</span>
+                            </div>
+                            <div class="pt-4 border-t border-pink-200 flex justify-between text-xl font-black">
+                                <span>Total</span>
+                                <span id="totalPriceText">₦18,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="w-full py-6 bg-primary text-white rounded-full font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                        Order & Finish on WhatsApp <i data-lucide="message-circle" size="20"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Outside Lagos Warning Modal -->
+    <div id="outsideLagosModal" class="fixed inset-0 bg-black/90 z-[400] hidden items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white rounded-[2rem] p-8 max-w-md w-full text-center relative overflow-hidden shadow-3xl">
+            <div class="absolute top-0 left-0 w-full h-2 bg-red-600"></div>
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6 text-red-600">
+                <i data-lucide="alert-circle" size="32"></i>
+            </div>
+            <h3 class="text-2xl font-serif font-black mb-4 text-red-600 uppercase">Important Notice!</h3>
+            <p class="text-lg font-black text-red-700 mb-6 leading-tight">📍 OUTSIDE LAGOS: Payment is strictly BEFORE delivery.</p>
+            <div class="flex gap-4">
+                <button id="cancelOutsideLagos" class="flex-1 py-4 border-2 border-gray-100 rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-gray-50">Go Back</button>
+                <button id="proceedOutsideLagos" class="flex-1 py-4 bg-red-600 text-white rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">I Understand</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Processing Modal -->
+    <div id="processing-modal" class="fixed inset-0 bg-pink-950/95 z-[500] hidden items-center justify-center p-6 backdrop-blur-xl">
+        <div class="max-w-md w-full text-center space-y-12">
+            <div class="relative w-32 h-32 mx-auto">
+                <div class="absolute inset-0 border-4 border-pink-500/20 rounded-full"></div>
+                <div id="spinner" class="absolute inset-0 border-4 border-t-pink-500 rounded-full animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span id="progress-percent" class="text-3xl font-serif font-black text-white">0%</span>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <h3 id="status-text" class="text-2xl font-serif font-black text-white px-4">Processing Secure Order...</h3>
+                <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden max-w-[200px] mx-auto">
+                    <div id="progress-bar" class="h-full bg-pink-500 transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-12 bg-white text-center border-t border-pink-50">
+        <p class="font-black text-[10px] tracking-widest opacity-30 mt-4 uppercase">© 2026 GLAMOUR & GRACE. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("service_gxhivxk"); 
+        })();
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+
+        // Notification Logic
+        function triggerNotif() {
+            const el = document.getElementById('order-notification');
+            const txt = document.getElementById('notif-text');
+            const names = ['Ada', 'Fatima', 'Chioma', 'Nneka', 'Blessing', 'Aisha', 'Funke', 'Zainab', 'Esther', 'Mary', 'Titi', 'Ronke'];
+            const states = ['Lagos', 'Abuja', 'Port Harcourt', 'Ibadan', 'Benin City', 'Warri', 'Enugu', 'Kano', 'Kaduna', 'Uyo', 'Abeokuta', 'Akure'];
+            const prods = ['Invisible Push Up Bra (Single)', 'Invisible Push Up Bra (Duo Pack)'];
+            
+            const name = names[Math.floor(Math.random() * names.length)];
+            const state = states[Math.floor(Math.random() * states.length)];
+            const prod = prods[Math.floor(Math.random() * prods.length)];
+
+            txt.innerHTML = `<strong>${name}</strong> from <strong>${state}</strong> ordered <strong>${prod}</strong>`;
+            
+            el.classList.add('show');
+            setTimeout(() => {
+                el.classList.remove('show');
+            }, 3500);
+        }
+        setInterval(triggerNotif, 12000);
+        setTimeout(triggerNotif, 2000);
+
+        // Dynamic Order Summary Logic
+        const locSelect = document.getElementById('locationSelect');
+        const delFeeText = document.getElementById('deliveryFeeText');
+        const payMethText = document.getElementById('paymentMethodText');
+        const totalText = document.getElementById('totalPriceText');
+        const outsideLagosFields = document.getElementById('outsideLagosFields');
+        const outsideLagosModal = document.getElementById('outsideLagosModal');
+        const proceedBtn = document.getElementById('proceedOutsideLagos');
+        const cancelBtn = document.getElementById('cancelOutsideLagos');
+        const stateInput = document.getElementById('stateInput');
+        const cityInput = document.getElementById('cityInput');
+        
+        let basePrice = 18000;
+        let discount = 0;
+        let lastSelectedLoc = 'Lagos';
+
+        function handlePackageChange(val) {
+            const prices = {
+                'Single': 18000,
+                'Duo': 30000
+            };
+            selectBundle(val, prices[val], false);
+        }
+
+        function selectBundle(name, price, shouldScroll = true) {
+            basePrice = price;
+            const packageSelect = document.getElementById('packageSelect');
+            const hiddenName = document.getElementById('hidden_product_name');
+            const hiddenPrice = document.getElementById('hidden_product_price');
+            const summaryName = document.getElementById('summaryProductName');
+            const summaryPrice = document.getElementById('summaryProductPrice');
+
+            if (packageSelect) packageSelect.value = name;
+            
+            let fullName = `Invisible Push Up Bra (${name} Pack)`;
+            if (name === 'Single') fullName = "Invisible Push Up Bra (Single Pack)";
+            if (name === 'Duo') fullName = "Invisible Push Up Bra (2 Pairs Duo Pack)";
+
+            hiddenName.value = fullName;
+            hiddenPrice.value = price - discount;
+            if (summaryName) summaryName.innerText = fullName;
+            if (summaryPrice) summaryPrice.innerText = `₦${price.toLocaleString()}`;
+
+            updateSummary();
+            
+            if (shouldScroll) {
+                document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function applyDiscount() {
+            discount = 1500;
+            document.getElementById('discount-row').classList.remove('hidden');
+            updateSummary();
+            document.getElementById('hidden_product_price').value = basePrice - discount;
+        }
+
+        function updateSummary() {
+            const loc = locSelect.value;
+            if (!loc) {
+                applySummaryChanges(true);
+                return;
+            }
+            const isLagos = loc === 'Lagos';
+            if (!isLagos && lastSelectedLoc !== loc) {
+                outsideLagosModal.style.display = 'flex';
+            } else {
+                lastSelectedLoc = loc;
+                if (isLagos) {
+                    outsideLagosFields.classList.add('hidden');
+                    cityInput.required = false;
+                }
+                applySummaryChanges(isLagos);
+            }
+        }
+
+        function applySummaryChanges(isLagos) {
+            const deliveryFee = 0; // User said "offer free delivery" across board or already included? 
+            // Delivery cost was 5000 included in price. So I'll keep it FREE as per instructions.
+            const total = basePrice - discount + deliveryFee;
+
+            delFeeText.innerText = 'FREE';
+            delFeeText.className = 'text-green-600';
+            
+            payMethText.innerText = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery';
+            payMethText.className = isLagos ? 'text-blue-600' : 'text-red-600 font-black';
+            
+            totalText.innerText = `₦${total.toLocaleString()}`;
+        }
+
+        proceedBtn.addEventListener('click', () => {
+            lastSelectedLoc = locSelect.value;
+            outsideLagosModal.style.display = 'none';
+            outsideLagosFields.classList.remove('hidden');
+            cityInput.required = true;
+            applySummaryChanges(false);
+        });
+
+        cancelBtn.addEventListener('click', () => {
+            outsideLagosModal.style.display = 'none';
+            locSelect.value = lastSelectedLoc;
+            updateSummary();
+        });
+
+        locSelect.addEventListener('change', updateSummary);
+
+        // Countdown Timer Logic
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                if (display) display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) timer = duration;
+            }, 1000);
+        }
+        startTimer(60 * 30, document.querySelector('#timer-display'));
+
+        // Exit Intent Logic
+        let exitShown = sessionStorage.getItem('exitPopupShownBra') === 'true';
+        function showExitPopup() {
+            if (exitShown) return;
+            const popup = document.getElementById('exit-popup');
+            if (popup) {
+                popup.style.display = 'flex';
+                exitShown = true;
+                sessionStorage.setItem('exitPopupShownBra', 'true');
+            }
+        }
+        document.addEventListener('mouseleave', (e) => { if (e.clientY < 0) showExitPopup(); });
+        history.pushState(null, null, window.location.href);
+        window.addEventListener('popstate', () => {
+            if (!exitShown) {
+                showExitPopup();
+                history.pushState(null, null, window.location.href);
+            }
+        });
+        const closeExitBtn = document.getElementById('close-exit');
+        if (closeExitBtn) { closeExitBtn.addEventListener('click', () => { document.getElementById('exit-popup').style.display = 'none'; }); }
+
+        // Form Submission
+        let isSubmitting = false;
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const modal = document.getElementById('processing-modal');
+            const progressBar = document.getElementById('progress-bar');
+            const progressPercent = document.getElementById('progress-percent');
+            const statusText = document.getElementById('status-text');
+            
+            isSubmitting = true;
+            btn.disabled = true;
+            btn.innerText = 'Processing...';
+            modal.style.display = 'flex';
+            
+            let progress = 0;
+            const updateProgress = (target, text, duration) => {
+                return new Promise(resolve => {
+                    const start = progress;
+                    const startTime = performance.now();
+                    statusText.innerText = text;
+                    function animate(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const p = Math.min(elapsed / duration, 1);
+                        progress = start + (target - start) * p;
+                        progressBar.style.width = `${progress}%`;
+                        progressPercent.innerText = `${Math.round(progress)}%`;
+                        if (p < 1) requestAnimationFrame(animate); else resolve();
+                    }
+                    requestAnimationFrame(animate);
+                });
+            };
+
+            const form = e.target;
+            const customerNameValue = form.name.value;
+            const customerPhoneValue = form.phone.value;
+            const customerAddressValue = form.address.value;
+            const customerStateValue = form.location.value;
+            const customerCityValue = form.city ? form.city.value : '';
+            const productNameValue = form.product_name.value;
+            const productPriceValue = form.product_price.value;
+            const productSizeValue = form.size.value;
+
+            const timestamp = new Date().toLocaleString();
+            const isLagos = customerStateValue === 'Lagos';
+            const totalPrice = parseInt(productPriceValue);
+            const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
+            let locationString = isLagos ? customerStateValue : `${customerStateValue} (${customerCityValue})`;
+
+            const message = `*NEW ORDER RECEIVED (BRA)* 👙\n` +
+                            `--------------------------\n` +
+                            `👤 *CUSTOMER:* ${customerNameValue}\n` +
+                            `📞 *PHONE:* ${customerPhoneValue}\n` +
+                            `📍 *LOCATION:* ${locationString}\n` +
+                            `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
+                            `📦 *PRODUCT:* ${productNameValue}\n` +
+                            `📏 *SIZE:* ${productSizeValue}\n` +
+                            `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
+                            `💳 *PAYMENT:* ${paymentType}\n` +
+                            `📅 *DATE:* ${timestamp}\n` +
+                            `--------------------------\n\n` +
+                            `*I am ready to confirm my order now!*`;
+
+            try {
+                await updateProgress(40, "Validating Order Details...", 800);
+                statusText.innerText = "Securing Your Order...";
+                await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    message: message,
+                    customer_name: customerNameValue,
+                    product_name: productNameValue,
+                    total_amount: `₦${totalPrice.toLocaleString()}`,
+                });
+                await updateProgress(80, "Connecting to Logistics...", 1200);
+                await updateProgress(100, "Order Confirmed! Redirecting...", 600);
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                isSubmitting = false;
+                setTimeout(() => {
+                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
+                }, 500);
+            } catch (err) {
+                isSubmitting = false;
+                modal.style.display = 'none';
+                alert('Connection error. Please contact us on WhatsApp directly.');
+                console.error(err);
+                btn.disabled = false;
+                btn.innerText = 'Order Now';
+            }
+        });
+    </script>
+</body>
+</html>
