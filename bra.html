@@ -535,7 +535,7 @@
                             <i data-lucide="alert-triangle" size="14"></i> Important Delivery Notice
                         </p>
                         <div class="space-y-4">
-                            <p class="text-[11px] font-bold text-red-800">📍 OUTSIDE LAGOS: Payment is strictly BEFORE delivery. No Pay on Delivery.</p>
+                            <p class="text-[11px] font-bold text-red-800">📍 OUTSIDE LAGOS: ₦2,500 Delivery Fee. Payment is strictly BEFORE delivery. No Pay on Delivery.</p>
                             
                             <label class="flex items-start gap-3 cursor-pointer group">
                                 <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-red-300 text-red-600 focus:ring-red-500">
@@ -595,7 +595,7 @@
                 <i data-lucide="alert-circle" size="32"></i>
             </div>
             <h3 class="text-2xl font-serif font-black mb-4 text-red-600 uppercase">Important Notice!</h3>
-            <p class="text-lg font-black text-red-700 mb-6 leading-tight">📍 OUTSIDE LAGOS: Payment is strictly BEFORE delivery.</p>
+            <p class="text-lg font-black text-red-700 mb-6 leading-tight">📍 OUTSIDE LAGOS: ₦2,500 Delivery Fee. Payment is strictly BEFORE delivery.</p>
             <div class="flex gap-4">
                 <button id="cancelOutsideLagos" class="flex-1 py-4 border-2 border-gray-100 rounded-full font-black uppercase text-[10px] tracking-widest hover:bg-gray-50">Go Back</button>
                 <button id="proceedOutsideLagos" class="flex-1 py-4 bg-red-600 text-white rounded-full font-black uppercase text-[10px] tracking-widest shadow-xl">I Understand</button>
@@ -630,7 +630,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            emailjs.init("service_gxhivxk"); 
+            emailjs.init("_h1UzYlyePtWt0IqM"); 
         })();
     </script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -698,7 +698,6 @@
             if (name === 'Duo') fullName = "Invisible Push Up Bra (2 Pairs Duo Pack)";
 
             hiddenName.value = fullName;
-            hiddenPrice.value = price - discount;
             if (summaryName) summaryName.innerText = fullName;
             if (summaryPrice) summaryPrice.innerText = `₦${price.toLocaleString()}`;
 
@@ -737,7 +736,6 @@
             discount = 1500;
             document.getElementById('discount-row').classList.remove('hidden');
             updateSummary();
-            document.getElementById('hidden_product_price').value = basePrice - discount;
         }
 
         function updateSummary() {
@@ -760,17 +758,22 @@
         }
 
         function applySummaryChanges(isLagos) {
-            const deliveryFee = 0; // User said "offer free delivery" across board or already included? 
-            // Delivery cost was 5000 included in price. So I'll keep it FREE as per instructions.
+            const deliveryFee = isLagos ? 0 : 2500;
             const total = basePrice - discount + deliveryFee;
 
-            delFeeText.innerText = 'FREE';
-            delFeeText.className = 'text-green-600';
+            if (isLagos) {
+                delFeeText.innerText = 'FREE';
+                delFeeText.className = 'text-green-600';
+            } else {
+                delFeeText.innerText = `₦${deliveryFee.toLocaleString()}`;
+                delFeeText.className = 'text-red-600 font-black';
+            }
             
             payMethText.innerText = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery';
             payMethText.className = isLagos ? 'text-blue-600' : 'text-red-600 font-black';
             
             totalText.innerText = `₦${total.toLocaleString()}`;
+            document.getElementById('hidden_product_price').value = total;
         }
 
         proceedBtn.addEventListener('click', () => {
@@ -871,6 +874,7 @@
             const timestamp = new Date().toLocaleString();
             const isLagos = customerStateValue === 'Lagos';
             const totalPrice = parseInt(productPriceValue);
+            const deliveryFee = isLagos ? 0 : 2500;
             const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
             let locationString = isLagos ? customerStateValue : `${customerStateValue} (${customerCityValue})`;
 
@@ -882,6 +886,7 @@
                             `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
                             `📦 *PRODUCT:* ${productNameValue}\n` +
                             `📏 *SIZE:* ${productSizeValue}\n` +
+                            `🚚 *DELIVERY:* ${isLagos ? 'FREE' : '₦2,500'}\n` +
                             `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
                             `💳 *PAYMENT:* ${paymentType}\n` +
                             `📅 *DATE:* ${timestamp}\n` +
