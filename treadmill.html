@@ -702,11 +702,43 @@
                                     <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery Location</label>
                                     <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-white/10 border border-white/20 outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all text-white appearance-none cursor-pointer">
                                         <option value="" disabled selected class="text-black">SELECT STATE</option>
-                                        <option value="Lagos" class="text-black">Lagos State</option>
-                                        <option value="Abuja" class="text-black">Abuja FCT</option>
-                                        <option value="Rivers" class="text-black">Rivers State</option>
-                                        <option value="Oyo" class="text-black">Oyo State</option>
-                                        <option value="Others" class="text-black">Other States</option>
+                                        <option value="Lagos" class="text-black">Lagos</option>
+                                        <option value="Abia" class="text-black">Abia</option>
+                                        <option value="Adamawa" class="text-black">Adamawa</option>
+                                        <option value="Akwa Ibon" class="text-black">Akwa Ibom</option>
+                                        <option value="Anambra" class="text-black">Anambra</option>
+                                        <option value="Bauchi" class="text-black">Bauchi</option>
+                                        <option value="Bayelsa" class="text-black">Bayelsa</option>
+                                        <option value="Benue" class="text-black">Benue</option>
+                                        <option value="Borno" class="text-black">Borno</option>
+                                        <option value="Cross River" class="text-black">Cross River</option>
+                                        <option value="Delta" class="text-black">Delta</option>
+                                        <option value="Ebonyi" class="text-black">Ebonyi</option>
+                                        <option value="Edo" class="text-black">Edo</option>
+                                        <option value="Ekiti" class="text-black">Ekiti</option>
+                                        <option value="Enugu" class="text-black">Enugu</option>
+                                        <option value="FCT - Abuja" class="text-black">FCT - Abuja</option>
+                                        <option value="Gombe" class="text-black">Gombe</option>
+                                        <option value="Imo" class="text-black">Imo</option>
+                                        <option value="Jigawa" class="text-black">Jigawa</option>
+                                        <option value="Kaduna" class="text-black">Kaduna</option>
+                                        <option value="Kano" class="text-black">Kano</option>
+                                        <option value="Katsina" class="text-black">Katsina</option>
+                                        <option value="Kebbi" class="text-black">Kebbi</option>
+                                        <option value="Kogi" class="text-black">Kogi</option>
+                                        <option value="Kwara" class="text-black">Kwara</option>
+                                        <option value="Nasarawa" class="text-black">Nasarawa</option>
+                                        <option value="Niger" class="text-black">Niger</option>
+                                        <option value="Ogun" class="text-black">Ogun</option>
+                                        <option value="Ondo" class="text-black">Ondo</option>
+                                        <option value="Osun" class="text-black">Osun</option>
+                                        <option value="Oyo" class="text-black">Oyo</option>
+                                        <option value="Plateau" class="text-black">Plateau</option>
+                                        <option value="Rivers" class="text-black">Rivers</option>
+                                        <option value="Sokoto" class="text-black">Sokoto</option>
+                                        <option value="Taraba" class="text-black">Taraba</option>
+                                        <option value="Yobe" class="text-black">Yobe</option>
+                                        <option value="Zamfara" class="text-black">Zamfara</option>
                                     </select>
                                 </div>
                                 <div class="space-y-2" id="cityContainer">
@@ -753,12 +785,12 @@
                 <i data-lucide="alert-triangle" size="40"></i>
             </div>
             <div class="space-y-4">
-                <h3 class="text-3xl font-serif font-black text-red-600 uppercase">External Region Notice</h3>
-                <p class="text-gray-600 font-medium">For orders outside Lagos, we require <strong>Payment Before Delivery</strong> due to shipping weight and logistics costs.</p>
+                <h3 class="text-3xl font-serif font-black text-red-600 uppercase text-center">High Ticket Security</h3>
+                <p class="text-gray-600 font-medium leading-relaxed">For orders outside Lagos, we require a <strong>₦42,000 commitment fee</strong> before dispatch due to the heavy nature of this product. The balance is paid upon delivery.</p>
             </div>
             <div class="flex gap-4">
-                <button onclick="document.getElementById('locModal').style.display = 'none'; document.getElementById('locationSelect').value = 'Lagos'; updateSummary();" class="flex-1 py-4 border-2 border-gray-100 rounded-full font-black uppercase text-[10px] tracking-widest">Go Back</button>
-                <button onclick="document.getElementById('locModal').style.display = 'none';" class="flex-1 py-4 bg-red-600 text-white rounded-full font-black uppercase text-[10px] tracking-widest">I Understand</button>
+                <button onclick="document.getElementById('locModal').style.display = 'none'; document.getElementById('locationSelect').value = 'Lagos'; updateSummary();" class="flex-1 py-4 border-2 border-gray-100 rounded-full font-black uppercase text-[10px] tracking-widest uppercase">Go Back</button>
+                <button onclick="document.getElementById('locModal').style.display = 'none';" class="flex-1 py-4 bg-red-600 text-white rounded-full font-black uppercase text-[10px] tracking-widest uppercase">I Understand</button>
             </div>
         </div>
     </div>
@@ -844,7 +876,7 @@
                 paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2';
             } else if (loc) {
                 if (loc !== 'Lagos') locModal.style.display = 'flex';
-                paymentNote.innerText = 'Full Payment Required Before Shipping (O/H Regions)';
+                paymentNote.innerText = '₦42,000 Commitment Fee Required (Order Protection)';
                 paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-red-400 pt-2';
             }
         }
@@ -897,21 +929,47 @@
                     });
                 }
 
+                const paymentType = data.location === 'Lagos' ? 'Pay on Delivery' : '₦42k Commitment (PBD)';
+                const fullMessage = `📦 PRODUCT: Pro-Run™ Smart Treadmill\n` +
+                                   `💰 TOTAL: ${total}\n` +
+                                   `👤 CUSTOMER: ${data.name}\n` +
+                                   `📞 PHONE: ${data.phone}\n` +
+                                   `📍 LOCATION: ${data.location} (${data.city || 'N/A'})\n` +
+                                   `🏠 ADDRESS: ${data.address}\n` +
+                                   `💳 PAYMENT: ${paymentType}\n` +
+                                   `📅 DATE: ${timestamp}`;
+
                 await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    to_name: "Glamour & Grace",
+                    from_name: data.name,
                     customer_name: data.name,
+                    customerName: data.name,
+                    customer: data.name,
+                    name: data.name,
+                    full_name: data.name,
+                    message: fullMessage,
+                    customer_phone: data.phone,
                     phone: data.phone,
-                    address: `${data.location}, ${data.city || ''} - ${data.address}`,
+                    customer_address: data.address,
+                    address: data.address,
+                    location: data.location,
+                    state: data.location,
+                    city: data.city,
+                    customer_state: data.location,
+                    customer_city: data.city,
                     product_name: "Pro-Run™ Smart Treadmill",
+                    product: "Pro-Run™ Smart Treadmill",
                     total_amount: total,
-                    payment_method: data.location === 'Lagos' ? 'POD' : 'PBD',
+                    total: total,
+                    payment_method: paymentType,
                     date: timestamp,
-                    message: `Treadmill Order: ${data.name} | ${data.phone} | ${data.location}`
+                    whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
                 });
 
                 await updateProgress(85, "Allocating Logistics...");
                 await updateProgress(100, "Secure Connection Verified!");
 
-                const waMessage = `*NEW TREADMILL ORDER*%0A------------------%0A*Name:* ${data.name}%0A*Phone:* ${data.phone}%0A*State:* ${data.location}%0A*Address:* ${data.address}%0A*Total:* ${total}%0A*Date:* ${timestamp}%0A------------------%0A*I'm ready to fitness!*`;
+                const waMessage = `*NEW TREADMILL ORDER*%0A------------------%0A*Name:* ${data.name}%0A*Phone:* ${data.phone}%0A*State:* ${data.location}%0A*Address:* ${data.address}%0A*Total:* ${total}%0A*Payment:* ${paymentType}%0A*Date:* ${timestamp}%0A------------------%0A*I'm ready to fitness!*`;
                 
                 window.location.href = `https://wa.me/2348039940408?text=${waMessage}`;
             } catch (err) {
