@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Pro-Run™ Smart Treadmill | Glamour & Grace Fitness</title>
+    
+    <!-- Preloads -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        text: '#1A202C',
+                        body: '#4A5568',
+                        background: '#FAFAFA',
+                        accent: '#F06292',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4029546293858823');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+        content_name: 'Pro-Run Smart Treadmill',
+        content_category: 'Fitness',
+        content_ids: ['treadmill_001'],
+        content_type: 'product',
+        value: 306000,
+        currency: 'NGN'
+    });
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #FAFAFA; 
+            color: #1A202C; 
+            -webkit-font-smoothing: antialiased;
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .shadow-3xl { box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.1); }
+
+        /* Auto-play Image Slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        .slide.active { opacity: 1; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating { animation: float 3s ease-in-out infinite; }
+
+        #order-notification {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        #order-notification.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Conversion Boosters -->
+    <div class="fixed top-0 left-0 w-full bg-black text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg">
+        ⚡ Limited Inventory: Only 4 Units Left in Lagos Warehouse
+    </div>
+
+    <!-- Exit Intent Popup -->
+    <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white rounded-[2rem] p-10 max-w-md w-full text-center relative overflow-hidden shadow-3xl">
+            <button id="close-exit" class="absolute top-6 right-6 text-gray-400 hover:text-black transition-colors">
+                <i data-lucide="x" size="24"></i>
+            </button>
+            <div class="w-20 h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+                <i data-lucide="gift" size="40"></i>
+            </div>
+            <h3 class="text-3xl font-serif font-black mb-4">Wait! Exclusive Offer 🎁</h3>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+                Complete your treadmill order in the next 10 minutes and get a <strong>FREE Fitness Tracker</strong> + ₦5,000 Coupon!
+            </p>
+            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">
+                Claim My Bonus
+            </button>
+        </div>
+    </div>
+
+    <!-- Order Notification -->
+    <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
+        <div class="w-12 h-12 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white shadow-lg">
+            <i data-lucide="shopping-bag" size="20"></i>
+        </div>
+        <div>
+            <p class="text-[12px] text-pink-900 font-medium leading-snug" id="notif-text">Chioma from Lagos ordered Pro-Run™ Treadmill</p>
+            <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest mt-1">Just now</p>
+        </div>
+    </div>
+
+    <nav class="fixed top-8 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-gray-100 px-6 py-4 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white shadow-xl">
+                    <i data-lucide="sparkles"></i>
+                </div>
+                <span class="text-2xl font-serif font-black tracking-tight uppercase">GLAMOUR & GRACE</span>
+            </a>
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-[10px] font-black tracking-[0.3em] uppercase hidden md:block">Home</a>
+                <a href="#order" class="px-8 py-4 bg-black text-white rounded-full font-bold text-[10px] uppercase tracking-[0.2em] shadow-xl">Buy Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32">
+        <!-- Hero Section with Auto-play Images -->
+        <section class="min-h-[85vh] grid lg:grid-cols-2">
+            <div class="relative h-[50vh] lg:h-full overflow-hidden">
+                <div class="slider-container" id="hero-slider">
+                    <div class="slide active">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777627798/202605011006_1_fcdio1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628003/202605011006_3_1_qvbvw9.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628374/202605011006_4_1_knqdbq.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="slide">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628501/202605011006_5_1_jqqtux.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div class="absolute bottom-10 left-10 text-white z-10">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="px-4 py-1 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest">Premium Fitness</div>
+                        <div class="flex text-yellow-400">
+                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-4xl font-serif font-black leading-tight italic">Transform Your Home into a Private Gym.</h2>
+                </div>
+            </div>
+            <div class="p-8 md:p-16 lg:p-24 bg-white flex flex-col justify-center space-y-10">
+                <div class="space-y-4">
+                    <span class="inline-block px-4 py-1 rounded-full bg-black text-white font-black text-[10px] tracking-widest uppercase">Elite Fitness Evolution</span>
+                    <h1 class="text-5xl md:text-7xl font-serif font-black text-gray-900 leading-[0.9]">
+                        Pro-Run™ <br><span class="text-primary">Elite Series.</span>
+                    </h1>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="flex text-yellow-400">
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                        <i data-lucide="star" size="14" fill="currentColor"></i>
+                    </div>
+                    <span class="text-xs font-black uppercase tracking-widest text-gray-900">4.9/5 Rating • 1.2k+ Orders</span>
+                </div>
+                <p class="text-xl text-gray-600 font-medium leading-relaxed">
+                    Designed for high-performance home cardio. The Pro-Run™ Elite Series features a silent-drive motor and advanced shock absorption to protect your joints while you sculpt your dream body from home.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-[9px] font-black uppercase tracking-widest border border-green-100">
+                        <i data-lucide="truck" size="12"></i> Free Nationwide Shipping
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-[9px] font-black uppercase tracking-widest border border-blue-100">
+                        <i data-lucide="shield-check" size="12"></i> 2-Year Warranty
+                    </div>
+                    <div class="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-full text-[9px] font-black uppercase tracking-widest border border-red-100">
+                        <i data-lucide="clock" size="12"></i> Limited Stock Left
+                    </div>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Limited Price</p>
+                        <p class="text-5xl font-black text-primary">₦306,000</p>
+                    </div>
+                    <div class="h-12 w-px bg-gray-100"></div>
+                    <div>
+                        <p class="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Regular Price</p>
+                        <p class="text-2xl font-black text-gray-300 line-through">₦450,000</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-2">
+                        <i data-lucide="volume-2" class="text-primary" size="20"></i>
+                        <p class="text-[10px] font-black uppercase tracking-widest">Ultra Silent</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-2">
+                        <i data-lucide="zap" class="text-primary" size="20"></i>
+                        <p class="text-[10px] font-black uppercase tracking-widest">High Torque</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-2">
+                        <i data-lucide="smartphone" class="text-primary" size="20"></i>
+                        <p class="text-[10px] font-black uppercase tracking-widest">App Sync</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-2xl border border-gray-100 space-y-2">
+                        <i data-lucide="shield" class="text-primary" size="20"></i>
+                        <p class="text-[10px] font-black uppercase tracking-widest">2-Yr Warranty</p>
+                    </div>
+                </div>
+                <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full py-5 bg-black text-white rounded-full font-black uppercase tracking-[0.3em] text-xs shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-4">
+                    Secure Yours Today <i data-lucide="arrow-right" size="18"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section: Pure Performance -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8 order-2 lg:order-1">
+                    <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-black text-[10px] tracking-widest uppercase">Engineered for Results</span>
+                    <h2 class="text-5xl md:text-7xl font-serif font-black leading-tight text-gray-900">Elite Cardio, <br><span class="italic text-primary">Zero Compromise.</span></h2>
+                    <p class="text-xl text-gray-600 leading-relaxed font-medium">
+                        The Pro-Run™ isn't just a treadmill; it's a precision-engineered fitness station. Featuring a high-torque 3.5HP silent motor, it delivers smooth, consistent power from a gentle walk to a high-speed sprint.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-primary shadow-inner">
+                                <i data-lucide="wind" size="24"></i>
+                            </div>
+                            <h4 class="font-black text-sm uppercase tracking-widest text-gray-900">Silent Orbit</h4>
+                            <p class="text-xs text-gray-500 font-medium">Reduced decibel output for late-night or early-morning runs.</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 bg-gray-100 rounded-2xl flex items-center justify-center text-primary shadow-inner">
+                                <i data-lucide="activity" size="24"></i>
+                            </div>
+                            <h4 class="font-black text-sm uppercase tracking-widest text-gray-900">Joint Shield</h4>
+                            <p class="text-xs text-gray-500 font-medium">8-point suspension system mimics natural terrain impact.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative order-1 lg:order-2">
+                    <div class="rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-8 border-white bg-gray-100 aspect-square lg:aspect-[4/5] relative">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628374/202605011006_4_1_knqdbq.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute bottom-8 left-8 right-8 bg-white/20 backdrop-blur-xl p-6 rounded-[2rem] border border-white/20">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white">
+                                    <i data-lucide="play" fill="currentColor"></i>
+                                </div>
+                                <p class="text-white font-black text-xs uppercase tracking-widest">In Motion: High-Torque Test</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Decorative elements -->
+                    <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl animate-pulse"></div>
+                    <div class="absolute -bottom-10 -left-10 w-60 h-60 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The 10-Second Space Hack -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-black text-white overflow-hidden relative">
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative">
+                    <div class="rounded-[4rem] overflow-hidden shadow-2xl border-4 border-white/10 bg-white/5 aspect-video relative group">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777630283/202605011006_6_tmxpnb.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-10 left-10">
+                            <span class="inline-block px-4 py-1 rounded-full bg-primary text-white font-black text-[9px] tracking-widest uppercase mb-4">Elite Space Hack</span>
+                            <h3 class="text-3xl font-serif font-black italic">Folded in 10 Seconds.</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-10">
+                    <div class="space-y-4">
+                        <span class="text-primary font-black uppercase tracking-widest text-xs">Architectural Fitness</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-white">Your Living Room <br><span class="italic text-primary">Still Belongs to You.</span></h2>
+                        <p class="text-lg opacity-60 font-medium leading-relaxed">
+                            Stop letting bulky equipment dictate your home décor. Our proprietary hydraulic "soft-drop" and "easy-lift" system allows the Pro-Run™ to occupy 70% less floor space when not in use.
+                        </p>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <i data-lucide="layers" size="24"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-sm uppercase tracking-widest mb-1">Ultra-Low Profile</h4>
+                                <p class="text-xs opacity-40 font-medium">Slides under most high-profile bed frames or stands upright against any wall.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                                <i data-lucide="move" size="24"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-sm uppercase tracking-widest mb-1">EZ-Glide Wheels</h4>
+                                <p class="text-xs opacity-40 font-medium">Precision-bearing wheels for effortless transport across hardwood or carpet.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-8 flex flex-col md:flex-row gap-6">
+                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                            Reclaim My Space Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Vitality in Motion -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white border-y border-gray-100">
+            <div class="max-w-6xl mx-auto space-y-20">
+                <div class="text-center space-y-4">
+                    <span class="text-primary font-black uppercase tracking-widest text-xs">Versatility Unleashed</span>
+                    <h2 class="text-4xl md:text-6xl font-serif font-black">Built for Every <span class="italic text-primary text-5xl md:text-7xl">Stride.</span></h2>
+                    <p class="max-w-2xl mx-auto opacity-50 font-medium italic">From high-intensity sprints to productive walking meetings.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl bg-black aspect-video relative">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628003/202605011006_3_1_qvbvw9.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-6 right-6 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white font-black text-[9px] uppercase tracking-widest">Endurance Mode</div>
+                    </div>
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl bg-black aspect-video relative">
+                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628501/202605011006_5_1_jqqtux.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-6 right-6 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-white font-black text-[9px] uppercase tracking-widest">Dynamic Stride</div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-12">
+                    <div class="bg-gray-50 p-10 rounded-[3rem] border border-gray-100 text-center space-y-6 group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="w-16 h-16 bg-white rounded-2xl mx-auto shadow-xl flex items-center justify-center text-primary">
+                            <i data-lucide="zap" size="28"></i>
+                        </div>
+                        <h4 class="text-xl font-serif font-black text-gray-900">Shock-Sync Pro</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed font-medium">8-point elastomeric cushioning absorbs up to 40% more impact than concrete, saving your joints for longevity.</p>
+                    </div>
+                    <div class="bg-gray-50 p-10 rounded-[3rem] border border-gray-100 text-center space-y-6 group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="w-16 h-16 bg-white rounded-2xl mx-auto shadow-xl flex items-center justify-center text-primary">
+                            <i data-lucide="smartphone" size="28"></i>
+                        </div>
+                        <h4 class="text-xl font-serif font-black text-gray-900">Bio-Metric App</h4>
+                        <p class="text-sm text-gray-500 leading-relaxed font-medium">Connect via Bluetooth to track distance, calories, and cardiovascular health in real-time on your mobile device.</p>
+                    </div>
+                    <div class="bg-gray-50 p-10 rounded-[3rem] border border-gray-100 text-center space-y-6 group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="w-16 h-16 bg-white rounded-2xl mx-auto shadow-xl flex items-center justify-center text-primary">
+                            <i data-lucide="music" size="28"></i>
+                        </div>
+                        <h4 class="text-xl font-serif font-black text-gray-900">Dual Hi-Fi Audio</h4>
+                        <p class="text-xl font-serif font-bold text-gray-900 sr-only">Speaker System</p>
+                        <p class="text-sm text-gray-500 leading-relaxed font-medium">Integrated high-fidelity speakers allow you to blast your workout playlist without the need for headphones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Smart Investment -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-blue-950 text-white rounded-[4rem] md:rounded-[6rem] mx-6 md:mx-12 my-20 overflow-hidden relative shadow-2xl">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 blur-[100px] -z-10 animate-pulse"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 blur-[100px] -z-10 animate-pulse delay-700"></div>
+            
+            <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-10">
+                    <div class="space-y-6">
+                        <span class="inline-block px-4 py-1 rounded-full bg-white/10 text-primary font-black text-[10px] tracking-widest uppercase">Smart Fitness Economics</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-[0.9]">Ditch the <br><span class="italic text-primary">Membership Fees.</span></h2>
+                        <div class="flex items-center gap-3 px-4 py-2 bg-red-600/20 text-red-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-red-400/20 w-fit">
+                            <i data-lucide="calculator" size="14"></i> Math for the Modern Achiever
+                        </div>
+                        <p class="text-lg opacity-70 font-medium leading-relaxed max-w-lg">
+                            Why waste ₦20,000 monthly on a gym you barely visit? The Pro-Run™ Smart Treadmill is a one-time investment that saves you time, traffic, and over ₦240,000 every single year.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="p-6 bg-white/5 rounded-3xl border border-white/10 flex items-center gap-6">
+                            <div class="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white flex-shrink-0">
+                                <i data-lucide="trending-down" size="24"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-sm uppercase tracking-widest mb-1 text-white">Full ROI in 12 Months</h4>
+                                <p class="text-xs opacity-50 font-medium">Save on gas, membership, and time starting from day one of your purchase.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6 relative">
+                    <div class="bg-white/5 p-8 rounded-[3rem] border border-white/10 flex items-center justify-between opacity-40 scale-95 blur-[1px]">
+                        <div>
+                            <p class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">High-End Gym</p>
+                            <p class="text-xl font-serif font-bold">Annual Membership</p>
+                        </div>
+                        <span class="text-2xl font-black">₦240,000+</span>
+                    </div>
+                    <div class="bg-white/5 p-8 rounded-[3rem] border border-white/10 flex items-center justify-between opacity-40 scale-95 blur-[1px]">
+                        <div>
+                            <p class="text-[10px] font-black uppercase tracking-widest opacity-60 mb-1">Commuter Costs</p>
+                            <p class="text-xl font-serif font-bold">Fuel & Parking Yearly</p>
+                        </div>
+                        <span class="text-2xl font-black">₦120,000+</span>
+                    </div>
+                    <div class="bg-gradient-to-br from-primary to-pink-600 p-10 rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(255,45,85,0.4)] relative z-10">
+                        <div class="flex items-center justify-between mb-8">
+                            <div>
+                                <h4 class="text-[10px] font-black uppercase tracking-widest text-white/70 mb-1">The Pro-Run™ Solution</h4>
+                                <h3 class="text-3xl font-serif font-black">One-Time Asset</h3>
+                            </div>
+                            <div class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 text-[9px] font-black tracking-widest uppercase">No Hidden Fees</div>
+                        </div>
+                        <div class="flex items-end justify-between border-t border-white/20 pt-8">
+                            <div>
+                                <p class="text-[10px] font-black uppercase tracking-widest text-white/50 mb-1 underline decoration-primary underline-offset-4">Nationwide Delivery</p>
+                                <p class="text-sm font-bold text-white">Included FREE</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-4xl font-black text-white">₦306,000</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-[10px] font-black uppercase tracking-[0.4em] opacity-30 pt-6 italic">Precision durability. Five years of peak performance guaranteed.</p>
+                </div>
+            </div>
+            <div class="flex justify-center mt-20">
+                <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-14 py-6 bg-white text-blue-950 rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                    Start My Investment in Health Today
+                </button>
+            </div>
+        </section>
+
+        <!-- Verified Reviews Section -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row items-end justify-between mb-20 gap-10">
+                    <div class="space-y-4 text-center md:text-left">
+                        <span class="text-primary font-black uppercase tracking-widest text-xs">Customer Satisfaction</span>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black text-gray-900">Verified <br><span class="text-primary italic font-serif">Pro-Runner Reviews.</span></h2>
+                        <div class="flex items-center justify-center md:justify-start gap-4">
+                            <div class="flex text-yellow-500">
+                                <i data-lucide="star" size="20" fill="currentColor"></i>
+                                <i data-lucide="star" size="20" fill="currentColor"></i>
+                                <i data-lucide="star" size="20" fill="currentColor"></i>
+                                <i data-lucide="star" size="20" fill="currentColor"></i>
+                                <i data-lucide="star" size="20" fill="currentColor"></i>
+                            </div>
+                            <span class="font-black text-xl text-gray-900">4.9/5.0</span>
+                            <span class="text-xs opacity-40 font-bold uppercase tracking-widest">(120+ Verified Orders)</span>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 px-8 py-5 rounded-3xl border border-blue-100 flex items-center gap-4 shadow-sm">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full animate-ping"></div>
+                        <span class="text-blue-800 font-black text-[10px] uppercase tracking-widest">Order Status: High Demand</span>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-10">
+                    <div class="p-8 bg-gray-50 rounded-[3rem] border border-gray-100 space-y-6 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop" alt="Reviewer" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest text-gray-900">Adaeze O.</p>
+                                <p class="text-[9px] font-bold text-green-600 uppercase tracking-widest">Verified Buyer • Lagos</p>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium italic leading-relaxed text-gray-600">"Setup was super easy. I run every morning before my kids wake up, and it's so silent I don't disturb anyone. The apps are a great touch!"</p>
+                    </div>
+                    <div class="p-8 bg-gray-50 rounded-[3rem] border border-gray-100 space-y-6 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Reviewer" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest text-gray-900">Tunde B.</p>
+                                <p class="text-[9px] font-bold text-green-600 uppercase tracking-widest">Verified Buyer • Abuja</p>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium italic leading-relaxed text-gray-600">"I live in a small apartment and the folding feature is what sold me. It literally folds flat against the wall. Best fitness investment of my life."</p>
+                    </div>
+                    <div class="p-8 bg-gray-50 rounded-[3rem] border border-gray-100 space-y-6 hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop" alt="Reviewer" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest text-gray-900">Chioma E.</p>
+                                <p class="text-[9px] font-bold text-green-600 uppercase tracking-widest">Verified Buyer • Port Harcourt</p>
+                            </div>
+                        </div>
+                        <p class="text-sm font-medium italic leading-relaxed text-gray-600">"The shock absorption is real. I used to have knee pain running outside, but with this, I can go for 45 minutes with zero issues. Love it!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: No More Excuses (Pain Points) -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-gray-900 text-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center space-y-4 mb-20">
+                    <span class="text-primary font-black uppercase tracking-widest text-xs">Zero Friction Fitness</span>
+                    <h2 class="text-4xl md:text-6xl font-serif font-black italic">We Solved the <span class="text-primary">"Gym Problems."</span></h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Space -->
+                    <div class="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 space-y-6">
+                        <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="maximize" size="24"></i>
+                        </div>
+                        <h4 class="text-lg font-serif font-black italic">"I have zero space."</h4>
+                        <p class="text-sm opacity-50 font-medium">Folds to just 15cm thickness. Slides behind sofas, under beds, or stands vertically in any corner. Reclaim your room in seconds.</p>
+                    </div>
+                    <!-- Noise -->
+                    <div class="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 space-y-6">
+                        <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="volume-x" size="24"></i>
+                        </div>
+                        <h4 class="text-lg font-serif font-black italic">"My neighbors will complain."</h4>
+                        <p class="text-sm opacity-50 font-medium">Whisper-Quiet™ motor technology operates under 60dB—quieter than a normal conversation. Run at 4 AM without waking a soul.</p>
+                    </div>
+                    <!-- Assembly -->
+                    <div class="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 space-y-6">
+                        <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="wrench" size="24"></i>
+                        </div>
+                        <h4 class="text-lg font-serif font-black italic">"I'm not good with tools."</h4>
+                        <p class="text-sm opacity-50 font-medium">Arrives 95% pre-assembled. No complex wiring or heavy lifting. Just unbox, plug in, and start your transformation.</p>
+                    </div>
+                    <!-- Joints -->
+                    <div class="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 space-y-6">
+                        <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center text-primary">
+                            <i data-lucide="shield-check" size="24"></i>
+                        </div>
+                        <h4 class="text-lg font-serif font-black italic">"Running hurts my knees."</h4>
+                        <p class="text-sm opacity-50 font-medium">Our Air-Cushion™ deck absorbs 40% more impact than asphalt, protecting your joints and allowing for longer, pain-free workouts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
+            <div class="max-w-4xl mx-auto space-y-16">
+                <div class="text-center space-y-4">
+                    <h2 class="text-4xl md:text-6xl font-serif font-black">Pre-Order <span class="italic text-primary">Questions.</span></h2>
+                    <p class="opacity-50 font-bold uppercase tracking-widest text-[10px]">Everything you need to know before joining the elite.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="group border-b border-gray-100 pb-8">
+                        <button class="flex items-center justify-between w-full text-left">
+                            <h4 class="text-xl font-serif font-black text-gray-900 italic">How long does delivery take?</h4>
+                        </button>
+                        <p class="mt-4 text-gray-600 font-medium leading-relaxed">Lagos orders are delivered within 24-48 hours. Orders outside Lagos typically take 3-5 business days via our premium logistics partners.</p>
+                    </div>
+
+                    <div class="group border-b border-gray-100 pb-8">
+                        <button class="flex items-center justify-between w-full text-left">
+                            <h4 class="text-xl font-serif font-black text-gray-900 italic">Is there a warranty?</h4>
+                        </button>
+                        <p class="mt-4 text-gray-600 font-medium leading-relaxed">Yes! Every Pro-Run™ Treadmill comes with a 1-year comprehensive warranty and a lifetime motor guarantee. We have service technicians available for home visits if needed.</p>
+                    </div>
+
+                    <div class="group border-b border-gray-100 pb-8">
+                        <button class="flex items-center justify-between w-full text-left">
+                            <h4 class="text-xl font-serif font-black text-gray-900 italic">What is the maximum weight capacity?</h4>
+                        </button>
+                        <p class="mt-4 text-gray-600 font-medium leading-relaxed">The high-tensile steel frame is engineered to support users up to 130kg (286 lbs) with full stability at high speeds.</p>
+                    </div>
+
+                    <div class="group border-b border-gray-100 pb-8">
+                        <button class="flex items-center justify-between w-full text-left">
+                            <h4 class="text-xl font-serif font-black text-gray-900 italic">Do I need a stabilizer?</h4>
+                        </button>
+                        <p class="mt-4 text-gray-600 font-medium leading-relaxed">For the best performance and to protect the digital console from power surges, we highly recommend using a high-quality voltage stabilizer (2000W+).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Trust Bar -->
+        <section class="py-12 bg-gray-50 border-y border-gray-100">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-12 md:gap-24">
+                <div class="flex items-center gap-4">
+                    <i data-lucide="shield-check" class="text-primary" size="32"></i>
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-widest">Secure Payments</p>
+                        <p class="text-[10px] opacity-40 font-bold uppercase">Encrypted Handshake</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <i data-lucide="truck" class="text-primary" size="32"></i>
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-widest">Tracked Delivery</p>
+                        <p class="text-[10px] opacity-40 font-bold uppercase">Nationwide Shipping</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <i data-lucide="headphones" class="text-primary" size="32"></i>
+                    <div>
+                        <p class="text-xs font-black uppercase tracking-widest">Expert Support</p>
+                        <p class="text-[10px] opacity-40 font-bold uppercase">24/7 VIP Concierge</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Section -->
+        <section id="order" class="py-24 px-6 md:px-12 lg:px-24 bg-white relative">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-black text-white rounded-[4rem] p-8 md:p-16 shadow-3xl overflow-hidden relative">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[100px] -z-0"></div>
+                    
+                    <div class="relative z-10 space-y-12">
+                        <div class="text-center space-y-4">
+                            <span class="text-primary font-black uppercase tracking-[0.4em] text-[10px]">Secure Order Form</span>
+                            <h2 class="text-4xl md:text-6xl font-serif font-black">Secure Your Pro-Run™ Today</h2>
+                            <p class="opacity-60 font-medium">Free Express Shipping Included Nationwide + Professional In-Home Setup for Lagos Orders.</p>
+                        </div>
+
+                        <form id="orderForm" class="grid gap-8">
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Full Name</label>
+                                    <input type="text" name="name" required placeholder="YOUR FULL NAME" class="w-full px-8 py-5 rounded-full bg-white/10 border border-white/20 outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all text-white placeholder-white/30">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Phone Number</label>
+                                    <input type="tel" name="phone" required placeholder="PHONE NUMBER (WHATSAPP)" class="w-full px-8 py-5 rounded-full bg-white/10 border border-white/20 outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all text-white placeholder-white/30">
+                                </div>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-8">
+                                <div class="space-y-2">
+                                    <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery Location</label>
+                                    <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-white/10 border border-white/20 outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all text-white appearance-none cursor-pointer">
+                                        <option value="" disabled selected class="text-black">SELECT STATE</option>
+                                        <option value="Lagos" class="text-black">Lagos State</option>
+                                        <option value="Abuja" class="text-black">Abuja FCT</option>
+                                        <option value="Rivers" class="text-black">Rivers State</option>
+                                        <option value="Oyo" class="text-black">Oyo State</option>
+                                        <option value="Others" class="text-black">Other States</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-2" id="cityContainer">
+                                    <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">City</label>
+                                    <input type="text" name="city" id="cityInput" placeholder="CITY" class="w-full px-8 py-5 rounded-full bg-white/10 border border-white/20 outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all text-white placeholder-white/30">
+                                </div>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Full Address</label>
+                                <textarea name="address" required placeholder="HOUSE NO, STREET NAME, AREA" class="w-full px-8 py-5 rounded-[2rem] bg-white/10 border border-white/20 outline-none font-black text-[11px] tracking-widest min-h-[120px] focus:ring-2 ring-primary transition-all text-white placeholder-white/30"></textarea>
+                            </div>
+
+                            <div class="p-8 bg-white/5 rounded-[2.5rem] border border-white/10 space-y-4">
+                                <div class="flex justify-between items-center text-sm font-bold">
+                                    <span class="opacity-60">Pro-Run™ Smart Treadmill</span>
+                                    <span>₦306,000</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm font-bold">
+                                    <span class="opacity-60">Delivery Fee</span>
+                                    <span id="deliveryText" class="text-green-400">FREE</span>
+                                </div>
+                                <div class="pt-4 border-t border-white/10 flex justify-between items-center">
+                                    <span class="text-lg font-black uppercase tracking-widest">Total Price</span>
+                                    <span id="totalText" class="text-3xl font-black text-primary">₦306,000</span>
+                                </div>
+                                <p id="paymentNote" class="text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2">Payment on Delivery available for Lagos orders</p>
+                            </div>
+
+                            <button type="submit" class="w-full py-6 bg-primary text-white rounded-full font-black uppercase tracking-[0.3em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-4">
+                                Complete Order via WhatsApp <i data-lucide="message-circle" size="22"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal: Outside Lagos -->
+    <div id="locModal" class="fixed inset-0 bg-black/95 z-[500] hidden items-center justify-center p-6 backdrop-blur-xl">
+        <div class="bg-white rounded-[3rem] p-10 max-w-md w-full text-center space-y-8 relative">
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto">
+                <i data-lucide="alert-triangle" size="40"></i>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-3xl font-serif font-black text-red-600 uppercase">External Region Notice</h3>
+                <p class="text-gray-600 font-medium">For orders outside Lagos, we require <strong>Payment Before Delivery</strong> due to shipping weight and logistics costs.</p>
+            </div>
+            <div class="flex gap-4">
+                <button onclick="document.getElementById('locModal').style.display = 'none'; document.getElementById('locationSelect').value = 'Lagos'; updateSummary();" class="flex-1 py-4 border-2 border-gray-100 rounded-full font-black uppercase text-[10px] tracking-widest">Go Back</button>
+                <button onclick="document.getElementById('locModal').style.display = 'none';" class="flex-1 py-4 bg-red-600 text-white rounded-full font-black uppercase text-[10px] tracking-widest">I Understand</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-12 bg-white text-center border-t border-gray-100">
+        <p class="font-black text-[10px] tracking-widest opacity-30 uppercase">© 2026 GLAMOUR & GRACE FITNESS. ELITE CRAFTSMANSHIP.</p>
+    </footer>
+
+    <!-- Processing Modal -->
+    <div id="processing-modal" class="fixed inset-0 bg-black/95 z-[600] hidden items-center justify-center p-6 backdrop-blur-2xl">
+        <div class="max-w-md w-full text-center space-y-12">
+            <div class="relative w-32 h-32 mx-auto">
+                <div class="absolute inset-0 border-4 border-white/10 rounded-full"></div>
+                <div class="absolute inset-0 border-4 border-t-primary rounded-full animate-spin"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-white font-serif text-3xl font-black" id="progress-text">0%</div>
+            </div>
+            <h3 class="text-2xl font-serif font-black text-white italic" id="status-label">Routing Secure Request...</h3>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("_h1UzYlyePtWt0IqM"); 
+        })();
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+
+        // Shared Order Notification Logic
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
+        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"];
+        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill"];
+
+        function triggerNotif() {
+            const el = document.getElementById('order-notification');
+            const txt = document.getElementById('notif-text');
+            if (!el || !txt) return;
+
+            const name = names[Math.floor(Math.random() * names.length)];
+            const state = states[Math.floor(Math.random() * states.length)];
+            const prod = prods[Math.floor(Math.random() * prods.length)];
+
+            txt.innerHTML = `<strong>${name}</strong> from <strong>${state}</strong> ordered <strong>${prod}</strong>`;
+            
+            el.classList.add('show');
+            setTimeout(() => {
+                el.classList.remove('show');
+            }, 3500);
+        }
+
+        setInterval(triggerNotif, 12000);
+        setTimeout(triggerNotif, 2000);
+
+        // Auto-play Slider
+        const slider = document.getElementById('hero-slider');
+        const slides = slider.querySelectorAll('.slide');
+        let currentSlide = 0;
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 4000);
+
+        // Location & Price Logic
+        const locSelect = document.getElementById('locationSelect');
+        const deliveryText = document.getElementById('deliveryText');
+        const totalText = document.getElementById('totalText');
+        const paymentNote = document.getElementById('paymentNote');
+        const locModal = document.getElementById('locModal');
+
+        function updateSummary() {
+            const loc = locSelect.value;
+            deliveryText.innerText = 'FREE';
+            deliveryText.className = 'text-green-400';
+            totalText.innerText = '₦306,000';
+            
+            if (loc === 'Lagos') {
+                paymentNote.innerText = 'Payment on Delivery available for Lagos orders';
+                paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2';
+            } else if (loc) {
+                if (loc !== 'Lagos') locModal.style.display = 'flex';
+                paymentNote.innerText = 'Full Payment Required Before Shipping (O/H Regions)';
+                paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-red-400 pt-2';
+            }
+        }
+        locSelect.addEventListener('change', updateSummary);
+
+        // Exit Intent
+        let exitShown = false;
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY < 0 && !exitShown) {
+                document.getElementById('exit-popup').style.display = 'flex';
+                exitShown = true;
+            }
+        });
+        document.getElementById('close-exit').addEventListener('click', () => {
+            document.getElementById('exit-popup').style.display = 'none';
+        });
+
+        // Order Handling
+        const form = document.getElementById('orderForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const modal = document.getElementById('processing-modal');
+            const progressText = document.getElementById('progress-text');
+            const statusLabel = document.getElementById('status-label');
+            modal.style.display = 'flex';
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            const total = totalText.innerText;
+            const timestamp = new Date().toLocaleString();
+
+            const updateProgress = (pct, label) => {
+                return new Promise(res => {
+                    progressText.innerText = pct + '%';
+                    statusLabel.innerText = label;
+                    setTimeout(res, 800);
+                });
+            };
+
+            try {
+                await updateProgress(20, "Establishing Handshake...");
+                await updateProgress(45, "Encoding Payload...");
+                
+                // Track Checkout
+                if (typeof fbq !== 'undefined') {
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: 'Pro-Run Smart Treadmill',
+                        value: 306000,
+                        currency: 'NGN'
+                    });
+                }
+
+                await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    customer_name: data.name,
+                    phone: data.phone,
+                    address: `${data.location}, ${data.city || ''} - ${data.address}`,
+                    product_name: "Pro-Run™ Smart Treadmill",
+                    total_amount: total,
+                    payment_method: data.location === 'Lagos' ? 'POD' : 'PBD',
+                    date: timestamp,
+                    message: `Treadmill Order: ${data.name} | ${data.phone} | ${data.location}`
+                });
+
+                await updateProgress(85, "Allocating Logistics...");
+                await updateProgress(100, "Secure Connection Verified!");
+
+                const waMessage = `*NEW TREADMILL ORDER*%0A------------------%0A*Name:* ${data.name}%0A*Phone:* ${data.phone}%0A*State:* ${data.location}%0A*Address:* ${data.address}%0A*Total:* ${total}%0A*Date:* ${timestamp}%0A------------------%0A*I'm ready to fitness!*`;
+                
+                window.location.href = `https://wa.me/2348039940408?text=${waMessage}`;
+            } catch (err) {
+                console.error(err);
+                alert("Order link failed. Please message us directly on WhatsApp: +2348039940408");
+                modal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
