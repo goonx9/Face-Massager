@@ -348,9 +348,7 @@
                             Best Value
                         </div>
                         <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
-                            <video autoplay loop muted playsinline preload="none" loading="lazy" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1776378375/download_4_1_oyyrai.jpg">
-                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/f_auto/v1776378375/download_4_1_oyyrai.mp4" type="video/mp4">
-                            </video>
+                            <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1776378375/download_4_1_oyyrai.jpg" alt="Invisible Bra Bundle" class="w-full h-full object-cover" loading="lazy">
                             <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-pink-100 shadow-lg">
                                 <p class="text-[10px] font-black text-primary uppercase">2-Pair Bundle</p>
                             </div>
@@ -725,7 +723,7 @@
         }
 
         function applyDiscount() {
-            discount = 1500;
+            discount = 1000;
             document.getElementById('discount-row').classList.remove('hidden');
             updateSummary();
         }
@@ -750,7 +748,7 @@
         }
 
         function applySummaryChanges(isLagos) {
-            const deliveryFee = isLagos ? 0 : 2500;
+            const deliveryFee = isLagos ? 0 : 1500;
             const total = basePrice - discount + deliveryFee;
 
             if (isLagos) {
@@ -866,7 +864,7 @@
             const timestamp = new Date().toLocaleString();
             const isLagos = customerStateValue === 'Lagos';
             const totalPrice = parseInt(productPriceValue);
-            const deliveryFee = isLagos ? 0 : 2500;
+            const deliveryFee = isLagos ? 0 : 1500;
             const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
             let locationString = isLagos ? customerStateValue : `${customerStateValue} (${customerCityValue})`;
 
@@ -878,7 +876,7 @@
                             `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
                             `📦 *PRODUCT:* ${productNameValue}\n` +
                             `📏 *SIZE:* ${productSizeValue}\n` +
-                            `🚚 *DELIVERY:* ${isLagos ? 'FREE' : '₦2,500'}\n` +
+                            `🚚 *DELIVERY:* ${isLagos ? 'FREE' : '₦1,500'}\n` +
                             `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
                             `💳 *PAYMENT:* ${paymentType}\n` +
                             `📅 *DATE:* ${timestamp}\n` +
