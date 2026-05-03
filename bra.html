@@ -328,57 +328,57 @@
                     </div>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-8 mb-20 max-w-4xl mx-auto items-stretch">
                     <!-- Standard Tier -->
-                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1776378285/download_3_1_o1ctn8.jpg">
+                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 h-full">
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative mb-6">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg">
                                 <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1776378285/download_3_1_o1ctn8.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2 mb-6">
                             <h3 class="text-2xl font-serif font-black">Single Pack</h3>
                             <p class="text-xs font-black uppercase tracking-widest opacity-40">The Essential Lift</p>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦18,000</span>
                         </div>
-                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1 Pair Invisible Bra</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Choice of Size (S, M, L)</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
                         </ul>
-                        <button onclick="selectBundle('Single', 18000)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all">Select Single Pack</button>
+                        <button onclick="selectBundle('Single', 18000)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all mt-auto">Select Single Pack</button>
                     </div>
 
                     <!-- Bundle Tier -->
-                    <div class="bg-white rounded-[3rem] p-10 border-4 border-primary shadow-2xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500 scale-105 z-10">
+                    <div class="bg-white rounded-[3rem] p-10 border-4 border-primary shadow-2xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 scale-105 z-10 h-full">
                         <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl whitespace-nowrap">
                             Best Value
                         </div>
-                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1776378375/download_4_1_oyyrai.jpg">
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative mb-6">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_800/v1776378375/download_4_1_oyyrai.jpg">
                                 <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1776378375/download_4_1_oyyrai.mp4" type="video/mp4">
                             </video>
                             <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-pink-100 shadow-lg">
                                 <p class="text-[10px] font-black text-primary uppercase">2-Pair Bundle</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2 mb-4">
                             <h3 class="text-2xl font-serif font-black">Duo Pack</h3>
                             <p class="text-xs font-black uppercase tracking-widest text-primary">The Ultimate Value</p>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦30,000</span>
                             <span class="text-sm line-through opacity-30 font-bold">₦36,000</span>
                         </div>
-                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 2 Pairs Invisible Bra</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Choice of Sizes</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
                             <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦6,000 Instantly</li>
                         </ul>
-                        <button onclick="selectBundle('Duo', 30000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all">Select Duo Pack</button>
+                        <button onclick="selectBundle('Duo', 30000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all mt-auto">Select Duo Pack</button>
                     </div>
                 </div>
             </div>

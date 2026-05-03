@@ -237,7 +237,9 @@
                     </div>
                     <div class="relative">
                         <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3]">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" alt="Stunning Glowing Skin Result" class="w-full h-full object-cover" fetchpriority="high" loading="eager" width="300" height="225" decoding="async">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1776010456/VID_20260412_171026_1_pgw2av.mp4" type="video/mp4">
+                            </video>
                         </div>
                         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px] animate-bounce">
                             <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">The Goal</p>
@@ -431,7 +433,7 @@
                 </div>
                 <div class="relative">
                         <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white/10 bg-pink-900/20 min-h-[300px]">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover">
                                 <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1776010456/VID_20260412_171026_1_pgw2av.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -727,87 +729,87 @@
                     <p class="font-black opacity-60 uppercase text-[10px] tracking-[0.4em]">Bundle & Save up to ₦39,500 Today</p>
                 </div>
 
-                <div class="grid lg:grid-cols-3 gap-8 mb-20">
+                <div class="grid lg:grid-cols-3 gap-8 mb-20 items-stretch">
                     <!-- Standard Tier -->
-                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg">
+                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 h-full">
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative mb-6">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg">
                                 <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/ezgif-74770f439746b60c_rdk6qq.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2 mb-6">
                             <h3 class="text-2xl font-serif font-black">Face Massager</h3>
                             <p class="text-xs font-black uppercase tracking-widest opacity-40">The Essential Sculpt</p>
                         </div>
-                        <div class="flex items-center gap-3">
+                        <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦31,500</span>
                         </div>
-                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x Face Massager</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> USB Charging Cable</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
                             <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦23,500 Today</li>
                         </ul>
-                        <button onclick="selectBundle('Standard', 31500)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all">Select Face Massager</button>
+                        <button onclick="selectBundle('Standard', 31500)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all mt-auto">Select Face Massager</button>
                     </div>
 
                     <!-- Premium Tier (Recommended) -->
-                    <div class="bg-white rounded-[3rem] p-10 border-4 border-primary shadow-2xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500 scale-105 z-10">
+                    <div class="bg-white rounded-[3rem] p-10 border-4 border-primary shadow-2xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 scale-105 z-10 h-full">
                         <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl">
                             Recommended
                         </div>
-                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775920927/ezgif-5eb430c37ef24573_xoicuk.jpg">
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative mb-6">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775920927/ezgif-5eb430c37ef24573_xoicuk.jpg">
                                 <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775920927/ezgif-5eb430c37ef24573_xoicuk.mp4" type="video/mp4">
                             </video>
                             <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-pink-100 shadow-lg">
                                 <p class="text-[10px] font-black text-primary uppercase">2-in-1 Bundle</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2 mb-4">
                             <h3 class="text-2xl font-serif font-black">Premium</h3>
                             <p class="text-xs font-black uppercase tracking-widest text-primary">The Glow Up Bundle</p>
                         </div>
-                        <p class="text-xs opacity-60 font-medium px-4">Includes the <strong>PureSteam™ Hydrator</strong>: Nano-Ionic steam that penetrates 10x deeper to melt blackheads and hydrate skin at a cellular level.</p>
-                        <div class="flex items-center gap-3">
+                        <p class="text-xs opacity-60 font-medium px-4 mb-6">Includes the <strong>PureSteam™ Hydrator</strong>: Nano-Ionic steam that penetrates 10x deeper to melt blackheads and hydrate skin at a cellular level.</p>
+                        <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦43,500</span>
                             <span class="text-sm line-through opacity-30 font-bold">₦72,500</span>
                         </div>
-                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x Face Massager</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x PureSteam™ Hydrator</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
                             <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦29,000 Today</li>
                         </ul>
-                        <button onclick="selectBundle('Premium', 43500)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all">Select Premium</button>
+                        <button onclick="selectBundle('Premium', 43500)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all mt-auto">Select Premium</button>
                     </div>
 
                     <!-- Pro Tier -->
-                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center space-y-6 relative group hover:-translate-y-2 transition-all duration-500">
-                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg">
+                    <div class="bg-white rounded-[3rem] p-10 border border-pink-100 shadow-xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 h-full">
+                        <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative mb-6">
+                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg">
                                 <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.mp4" type="video/mp4">
                             </video>
                             <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-pink-100 shadow-lg">
                                 <p class="text-[10px] font-black text-primary uppercase">3-in-1 Bundle</p>
                             </div>
                         </div>
-                        <div class="space-y-2">
+                        <div class="space-y-2 mb-4">
                             <h3 class="text-2xl font-serif font-black">Pro</h3>
                             <p class="text-xs font-black uppercase tracking-widest opacity-40">The Ultimate Spa Experience</p>
                         </div>
-                        <p class="text-xs opacity-60 font-medium px-4">Includes the <strong>7-Color LED Mask</strong>: NASA-backed phototherapy that targets acne, wrinkles, and dullness for clinical results at home.</p>
-                        <div class="flex items-center gap-3">
+                        <p class="text-xs opacity-60 font-medium px-4 mb-6">Includes the <strong>7-Color LED Mask</strong>: Phototherapy that targets acne and wrinkles for clinical results at home.</p>
+                        <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦58,500</span>
                             <span class="text-sm line-through opacity-30 font-bold">₦114,500</span>
                         </div>
-                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left">
+                        <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x Face Massager</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x PureSteam™ Hydrator</li>
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x 7-Color LED Mask</li>
                             <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦56,000 Today</li>
                         </ul>
-                        <button onclick="selectBundle('Pro', 58500)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all">Select Pro</button>
+                        <button onclick="selectBundle('Pro', 58500)" class="w-full py-4 bg-gray-100 text-gray-600 rounded-full font-black uppercase tracking-widest text-[10px] hover:bg-primary hover:text-white transition-all mt-auto">Select Pro</button>
                     </div>
                 </div>
             </div>
