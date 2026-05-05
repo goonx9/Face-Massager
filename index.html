@@ -661,7 +661,7 @@
             const interval = setInterval(() => {
                 let mins = Math.floor(time / 60);
                 let secs = time % 60;
-                display.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                if (display) display.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
                 if (--time < 0) clearInterval(interval);
             }, 1000);
         }

@@ -776,6 +776,50 @@
                         </form>
                     </div>
                 </div>
+
+                <!-- Section: You Might Also Love -->
+                <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50/20 border-t border-pink-100 mt-24 rounded-[4rem]">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 text-center md:text-left">
+                            <div class="space-y-4">
+                                <span class="text-primary font-black uppercase tracking-widest text-[10px]">Lifestyle Upgrade</span>
+                                <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-900">Recommended for you</h2>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                            <!-- V-Lift Upsell -->
+                            <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
+                                <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
+                                    <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                </div>
+                                <div class="space-y-4">
+                                    <h3 class="text-2xl font-serif font-black">Glamour & Grace Massage Lifter</h3>
+                                    <p class="text-sm opacity-60 leading-relaxed text-gray-600">Perfect for recovery and facial relaxation after a workout.</p>
+                                    <div class="flex items-center justify-between pt-4">
+                                        <span class="text-xl font-black text-primary">₦31,500</span>
+                                        <a href="v-lift.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Steamer Upsell -->
+                            <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
+                                <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
+                                    <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775921808/ezgif-115f0122e2b34720_g8clp7.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                </div>
+                                <div class="space-y-4">
+                                    <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
+                                    <p class="text-sm opacity-60 leading-relaxed text-gray-600">Open your pores and hydrate deeply after sweating.</p>
+                                    <div class="flex items-center justify-between pt-4">
+                                        <span class="text-xl font-black text-primary">₦32,000</span>
+                                        <a href="steamer.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -853,48 +897,58 @@
         const locModal = document.getElementById('locModal');
 
         function updateSummary() {
-            deliveryText.innerText = 'FREE';
-            deliveryText.className = 'text-green-400';
-            totalText.innerText = '₦306,000';
+            if (deliveryText) {
+                deliveryText.innerText = 'FREE';
+                deliveryText.className = 'text-green-400';
+            }
+            if (totalText) totalText.innerText = '₦306,000';
             
-            paymentNote.innerText = 'Payment on Delivery available for Lagos orders';
-            paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2';
+            if (paymentNote) {
+                paymentNote.innerText = 'Payment on Delivery available for Lagos orders';
+                paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2';
+            }
         }
-        locSelect.addEventListener('change', updateSummary);
+        if (locSelect) locSelect.addEventListener('change', updateSummary);
 
         // Exit Intent
         let exitShown = false;
         document.addEventListener('mouseleave', (e) => {
             if (0.1 > e.clientY && !exitShown) {
-                document.getElementById('exit-popup').style.display = 'flex';
+                const exitPopup = document.getElementById('exit-popup');
+                if (exitPopup) exitPopup.style.display = 'flex';
                 exitShown = true;
             }
         });
-        document.getElementById('close-exit').addEventListener('click', () => {
-            document.getElementById('exit-popup').style.display = 'none';
-        });
+        const closeExitBtn = document.getElementById('close-exit');
+        if (closeExitBtn) {
+            closeExitBtn.addEventListener('click', () => {
+                const exitPopup = document.getElementById('exit-popup');
+                if (exitPopup) exitPopup.style.display = 'none';
+            });
+        }
 
         // Order Handling
         const form = document.getElementById('orderForm');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const modal = document.getElementById('processing-modal');
-            const progressText = document.getElementById('progress-text');
-            const statusLabel = document.getElementById('status-label');
-            modal.style.display = 'flex';
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const modal = document.getElementById('processing-modal');
+                const progressText = document.getElementById('progress-text');
+                const statusLabel = document.getElementById('status-label');
+                if (modal) modal.style.display = 'flex';
 
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-            const total = totalText.innerText;
-            const timestamp = new Date().toLocaleString();
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                const total = totalText ? totalText.innerText : '₦306,000';
+                const timestamp = new Date().toLocaleString();
 
-            const updateProgress = (pct, label) => {
-                return new Promise(res => {
-                    progressText.innerText = pct + '%';
-                    statusLabel.innerText = label;
-                    setTimeout(res, 800);
-                });
-            };
+                const updateProgress = (pct, label) => {
+                    return new Promise(res => {
+                        if (progressText) progressText.innerText = pct + '%';
+                        if (statusLabel) statusLabel.innerText = label;
+                        setTimeout(res, 800);
+                    });
+                };
 
             try {
                 await updateProgress(20, "Establishing Handshake...");
@@ -949,9 +1003,12 @@
                 await updateProgress(85, "Allocating Logistics...");
                 await updateProgress(100, "Secure Connection Verified!");
 
-                const waMessage = `*NEW TREADMILL ORDER*%0A------------------%0A*Name:* ${data.name}%0A*Phone:* ${data.phone}%0A*State:* ${data.location}%0A*Address:* ${data.address}%0A*Total:* ${total}%0A*Payment:* ${paymentType}%0A*Date:* ${timestamp}%0A------------------%0A*I'm ready to fitness!*`;
+                const waMessageText = `*NEW TREADMILL ORDER*\n------------------\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*State:* ${data.location}\n*Address:* ${data.address}\n*Total:* ${total}\n*Payment:* ${paymentType}\n*Date:* ${timestamp}\n------------------\n*I'm ready to fitness!*`;
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(waMessageText)}`;
                 
-                window.location.href = `https://wa.me/2348039940408?text=${waMessage}`;
+                setTimeout(() => {
+                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=306000&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent('Pro-Run Smart Treadmill')}`;
+                }, 500);
             } catch (err) {
                 console.error(err);
                 alert("Order link failed. Please message us directly on WhatsApp: +2348039940408");

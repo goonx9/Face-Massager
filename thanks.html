@@ -115,7 +115,8 @@
         const orderPrice = params.get('p') || '0';
 
         if (customerName) {
-            document.getElementById('thanksHeading').innerText = `Order Received, ${customerName}!`;
+            const h = document.getElementById('thanksHeading');
+            if (h) h.innerText = `Order Received, ${customerName}!`;
         }
         
         let purchaseFired = false;
@@ -136,7 +137,8 @@
             }
         };
 
-        document.getElementById('waRedirectBtn').addEventListener('click', handleRedirect);
+        const btn = document.getElementById('waRedirectBtn');
+        if (btn) btn.addEventListener('click', handleRedirect);
         setTimeout(handleRedirect, 6000);
     </script>
 </body>

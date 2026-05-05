@@ -601,8 +601,11 @@
             discountApplied = true;
             discountAmount = 1000;
             // Show the discount row in summary
-            const discountRow = document.getElementById('summary-discount').closest('div');
-            discountRow.classList.remove('opacity-0', 'pointer-events-none');
+            const discountItem = document.getElementById('summary-discount');
+            if (discountItem) {
+                const discountRow = discountItem.closest('div');
+                if (discountRow) discountRow.classList.remove('opacity-0', 'pointer-events-none');
+            }
             updateSummary();
         }
 
@@ -611,13 +614,20 @@
             const currentDiscount = discountApplied ? discountAmount : 0;
             const total = basePrice - currentDiscount;
 
-            document.getElementById('summary-subtotal').innerText = `₦${basePrice.toLocaleString()}`;
-            document.getElementById('summary-discount').innerText = `-₦${currentDiscount.toLocaleString()}`;
-            document.getElementById('summary-shipping').innerText = 'FREE';
-            document.getElementById('summary-total').innerText = `₦${total.toLocaleString()}`;
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const discountEl = document.getElementById('summary-discount');
+            const shippingEl = document.getElementById('summary-shipping');
+            const totalEl = document.getElementById('summary-total');
+
+            if (subtotalEl) subtotalEl.innerText = `₦${basePrice.toLocaleString()}`;
+            if (discountEl) discountEl.innerText = `-₦${currentDiscount.toLocaleString()}`;
+            if (shippingEl) shippingEl.innerText = 'FREE';
+            if (totalEl) totalEl.innerText = `₦${total.toLocaleString()}`;
             
-            paymentNote.innerText = 'Payment on Delivery Available (Lagos)';
-            paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-500 pt-2';
+            if (paymentNote) {
+                paymentNote.innerText = 'Payment on Delivery Available (Lagos)';
+                paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-500 pt-2';
+            }
             
             return total;
         }
@@ -711,7 +721,11 @@
                 statusEl.innerText = "Order Secured! Redirecting...";
                 
                 const waMsg = encodeURIComponent(`*NEW PORE VACUUM ORDER*\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.state}\n*Address:* ${data.address}\n*Price:* ${totalStr}`);
-                window.location.href = `https://wa.me/2348039940408?text=${waMsg}`;
+                const waUrl = `https://wa.me/2348039940408?text=${waMsg}`;
+                
+                setTimeout(() => {
+                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${finalTotal}&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent('Ultrasonic Pore Vacuum™')}`;
+                }, 1000);
             } catch (err) {
                 clearInterval(progressInt);
                 modal.style.display = 'none';

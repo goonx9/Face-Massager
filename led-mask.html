@@ -1025,6 +1025,51 @@
                 </form>
             </div>
         </section>
+
+        <!-- Section: You Might Also Love -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50/20 border-t border-pink-100">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 text-center md:text-left">
+                    <div class="space-y-4">
+                        <span class="text-primary font-black uppercase tracking-widest text-[10px]">Complete Your Glow</span>
+                        <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-900">Customers also love</h2>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                    <!-- V-Lift Upsell -->
+                    <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-serif font-black">Glamour & Grace Massage Lifter</h3>
+                            <p class="text-sm opacity-60 leading-relaxed">The viral V-Lift tool for a sculpted, snatched face in 5 minutes a day.</p>
+                            <div class="flex items-center justify-between pt-4">
+                                <span class="text-xl font-black text-primary">₦31,500</span>
+                                <a href="v-lift.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Steamer Upsell -->
+                    <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
+                        <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775921808/ezgif-115f0122e2b34720_g8clp7.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
+                            <p class="text-sm opacity-60 leading-relaxed">Deeply hydrates and opens pores for 10x better serum absorption.</p>
+                            <div class="flex items-center justify-between pt-4">
+                                <span class="text-xl font-black text-primary">₦32,000</span>
+                                <a href="steamer.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="py-20 px-6 md:px-12 lg:px-24 bg-pink-900 text-white text-center rounded-t-[4rem] md:rounded-t-[6rem]">
@@ -1170,13 +1215,17 @@
             const loc = locSelect.value;
             const total = basePrice - discount;
 
-            delFeeText.innerText = 'FREE';
-            delFeeText.className = 'text-green-600';
+            if (delFeeText) {
+                delFeeText.innerText = 'FREE';
+                delFeeText.className = 'text-green-600';
+            }
             
-            payMethText.innerText = 'Pay on Delivery Available';
-            payMethText.className = 'text-blue-600';
+            if (payMethText) {
+                payMethText.innerText = 'Pay on Delivery Available';
+                payMethText.className = 'text-blue-600';
+            }
             
-            totalText.innerText = `₦${total.toLocaleString()}`;
+            if (totalText) totalText.innerText = `₦${total.toLocaleString()}`;
         }
 
         proceedBtn.addEventListener('click', () => {
@@ -1343,8 +1392,8 @@
                     customer_city: customerCityValue,
                     product_name: productNameValue,
                     product: productNameValue,
-                    total_amount: `₦${totalPrice.toLocaleString()}`,
-                    total: `₦${totalPrice.toLocaleString()}`,
+                    total_amount: `₦${total.toLocaleString()}`,
+                    total: `₦${total.toLocaleString()}`,
                     payment_method: paymentType,
                     date: timestamp,
                     whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
@@ -1361,7 +1410,7 @@
                 
                 // Small delay to let user see 100%
                 setTimeout(() => {
-                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
+                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${total}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
                 }, 500);
 
             } catch (err) {
