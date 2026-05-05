@@ -81,28 +81,73 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
     /></noscript>
-    <div class="max-w-md w-full bg-white p-12 rounded-[4rem] shadow-2xl border border-pink-100 space-y-8">
-        <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
-            <i data-lucide="check-circle-2" size="48"></i>
-        </div>
-        
-        <div class="space-y-4">
-            <h1 class="text-4xl font-serif font-black" id="thanksHeading">Order Received!</h1>
-            <p class="font-medium opacity-70 leading-relaxed">
-                Thank you for choosing Glamour & Grace. Your order is being processed. 
-                <br><br>
-                Please click the button below to confirm your order via WhatsApp and speed up delivery.
-            </p>
+    <div class="max-w-4xl w-full space-y-12 my-12 px-4">
+        <!-- Success Card -->
+        <div class="bg-white p-12 rounded-[4rem] shadow-2xl border border-pink-100 space-y-8 text-center">
+            <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                <i data-lucide="check-circle-2" size="48"></i>
+            </div>
+            
+            <div class="space-y-4">
+                <h1 class="text-4xl md:text-5xl font-serif font-black" id="thanksHeading">Order Received!</h1>
+                <p class="font-medium opacity-70 leading-relaxed text-lg">
+                    Thank you for choosing Glamour & Grace. Your order is being processed. 
+                    <br><br>
+                    <span class="text-primary font-bold underline">CRITICAL STEP:</span> Please click the button below to confirm your order via WhatsApp. This ensures your delivery is prioritized.
+                </p>
+            </div>
+
+            <button id="waRedirectBtn" class="w-full py-6 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-3 text-lg">
+                <i data-lucide="message-circle" size="24"></i> Finish on WhatsApp
+            </button>
+            
+            <p id="timerCountdown" class="text-[10px] font-black opacity-30 uppercase tracking-widest italic">Redirecting to WhatsApp in 15 seconds...</p>
         </div>
 
-        <button id="waRedirectBtn" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
-            <i data-lucide="message-circle" size="18"></i> Finish on WhatsApp
-        </button>
-        
-        <p class="text-[10px] font-black opacity-30 uppercase tracking-widest">You will be redirected automatically in 6 seconds...</p>
+        <!-- Upsell Section -->
+        <section class="space-y-12">
+            <div class="text-center space-y-4">
+                <span class="text-primary font-black uppercase tracking-widest text-[11px] block">Wait! Don't Miss Out</span>
+                <h2 class="text-4xl font-serif font-black text-pink-900">Add to your ritual</h2>
+            </div>
 
-        <div class="pt-8 border-t border-pink-100">
-            <a href="/" class="text-[10px] font-black uppercase tracking-widest text-primary hover:underline">Return to Home</a>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- V-Lift Upsell -->
+                <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
+                    <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-black">V-Lift Pro™ Massage</h3>
+                        <p class="text-sm opacity-60 leading-relaxed">The viral tool for a sculpted, snatched face in minutes.</p>
+                        <div class="flex items-center justify-between pt-4">
+                            <span class="text-xl font-black text-primary">₦31,500</span>
+                            <a href="v-lift.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Steamer Upsell -->
+                <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
+                    <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775921808/ezgif-115f0122e2b34720_g8clp7.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="space-y-4">
+                        <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
+                        <p class="text-sm opacity-60 leading-relaxed">Deeply hydrates and opens pores for 10x better results.</p>
+                        <div class="flex items-center justify-between pt-4">
+                            <span class="text-xl font-black text-primary">₦32,000</span>
+                            <a href="steamer.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="text-center pt-8">
+            <a href="/" class="text-[11px] font-black uppercase tracking-[0.3em] text-primary hover:underline group inline-flex items-center gap-2">
+                <i data-lucide="arrow-left" size="12"></i> Back to Home
+            </a>
         </div>
     </div>
 
@@ -133,13 +178,26 @@
             }
             
             if (waLink) {
-                window.location.href = decodeURIComponent(waLink);
+                // Ensure the link opens properly
+                const decWaLink = decodeURIComponent(waLink);
+                window.location.href = decWaLink;
             }
         };
 
         const btn = document.getElementById('waRedirectBtn');
         if (btn) btn.addEventListener('click', handleRedirect);
-        setTimeout(handleRedirect, 6000);
+        
+        // Auto-redirect after longer duration to allow viewing upsells
+        let timeLeft = 15;
+        const timerText = document.getElementById('timerCountdown');
+        const countdown = setInterval(() => {
+            timeLeft--;
+            if (timerText) timerText.innerText = `Redirecting to WhatsApp in ${timeLeft} seconds...`;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                handleRedirect();
+            }
+        }, 1000);
     </script>
 </body>
 </html>

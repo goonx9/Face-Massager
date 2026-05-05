@@ -959,7 +959,10 @@
                     fbq('track', 'InitiateCheckout', {
                         content_name: 'Pro-Run Smart Treadmill',
                         value: 306000,
-                 const paymentType = data.location === 'Lagos' ? 'Pay on Delivery' : '₦42k Commitment (PBD)';
+                        currency: 'NGN'
+                    });
+                }
+                const paymentType = data.location === 'Lagos' ? 'Pay on Delivery' : '₦42k Commitment (PBD)';
                 const fullMessage = `📦 PRODUCT: Pro-Run™ Smart Treadmill\n` +
                                    `💰 TOTAL: ${total}\n` +
                                    `👤 CUSTOMER: ${data.name}\n` +
