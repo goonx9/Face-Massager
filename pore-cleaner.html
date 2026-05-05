@@ -65,7 +65,7 @@
         }
     </style>
     <script type="text/javascript">
-        (function() { emailjs.init("user_Xv9vO7L9m6GqHj1H3"); })(); // Using the shared service
+ 
     </script>
 </head>
 <body class="bg-white text-gray-900">
@@ -568,11 +568,11 @@
     </div>
 
     <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
         window.addEventListener('load', () => {
             if (typeof emailjs !== 'undefined') {
-                emailjs.init("user_Xv9vO7L9m6GqHj1H3");
+                emailjs.init("_h1UzYlyePtWt0IqM");
             }
         });
     </script>
@@ -706,7 +706,8 @@
                         `📅 Date: ${new Date().toLocaleString()}`;
 
             try {
-                await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                // Fire EmailJS but don't wait for it to block UI if it's slow/fails
+                emailjs.send("service_gxhivxk", "template_239s5yz", {
                     customer_name: data.name,
                     phone: data.phone,
                     address: data.address,
@@ -714,23 +715,27 @@
                     product_name: "Ultrasonic Pore Vacuum™",
                     message: msg,
                     total_amount: totalStr
-                });
+                }).then(() => console.log("Email sent")).catch(e => console.error("Email failed", e));
                 
-                clearInterval(progressInt);
-                percentEl.innerText = "100%";
-                statusEl.innerText = "Order Secured! Redirecting...";
-                
-                const waMsg = encodeURIComponent(`*NEW PORE VACUUM ORDER*\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.state}\n*Address:* ${data.address}\n*Price:* ${totalStr}`);
-                const waUrl = `https://wa.me/2348039940408?text=${waMsg}`;
-                
+                // Continue progress regardless
                 setTimeout(() => {
-                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${finalTotal}&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent('Ultrasonic Pore Vacuum™')}`;
-                }, 1000);
+                    clearInterval(progressInt);
+                    percentEl.innerText = "100%";
+                    statusEl.innerText = "Order Secured! Redirecting...";
+                    
+                    const waMsg = encodeURIComponent(`*NEW PORE VACUUM ORDER*\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.state}\n*Address:* ${data.address}\n*Price:* ${totalStr}`);
+                    const waUrl = `https://wa.me/2348039940408?text=${waMsg}`;
+                    
+                    setTimeout(() => {
+                        window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${finalTotal}&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent('Ultrasonic Pore Vacuum™')}`;
+                    }, 1000);
+                }, 1500);
             } catch (err) {
+                console.error("Order processing error:", err);
+                // Fallback: Proceed to WhatsApp anyway
                 clearInterval(progressInt);
-                modal.style.display = 'none';
-                alert("Order failed to send. Please check your connection and try again.");
-                btn.disabled = false;
+                const waMsg = encodeURIComponent(`*NEW PORE VACUUM ORDER*\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.state}\n*Address:* ${data.address}\n*Price:* ${totalStr}`);
+                window.location.href = `https://wa.me/2348039940408?text=${waMsg}`;
             }
         });
     </script>

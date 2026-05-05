@@ -873,7 +873,7 @@
 
                 await updateProgress(40, "Validating Order Details...", 800);
                 statusText.innerText = "Securing Your Order...";
-                await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
                     from_name: customerNameValue,
                     customer_name: customerNameValue,
@@ -902,7 +902,8 @@
                     payment_method: paymentType,
                     date: timestamp,
                     whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
-                });
+                }).catch(e => console.error("Email failed:", e));
+
                 await updateProgress(80, "Connecting to Logistics...", 1200);
                 await updateProgress(100, "Order Confirmed! Redirecting...", 600);
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
@@ -911,12 +912,9 @@
                     window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
                 }, 500);
             } catch (err) {
-                isSubmitting = false;
-                modal.style.display = 'none';
-                alert('Connection error. Please contact us on WhatsApp directly.');
-                console.error(err);
-                btn.disabled = false;
-                btn.innerText = 'Order Now';
+                console.error("Order process error:", err);
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                window.location.href = waUrl;
             }
         });
     </script>

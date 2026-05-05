@@ -1077,7 +1077,7 @@
                 
                 // Phase 2: Sending to Server
                 statusText.innerText = "Securing Your Discount...";
-                const emailPromise = emailjs.send("service_gxhivxk", "template_239s5yz", {
+                emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
                     from_name: customerNameValue,
                     customer_name: customerNameValue,
@@ -1089,10 +1089,9 @@
                     total_amount: `₦${total.toLocaleString()}`,
                     payment_method: paymentType,
                     date: timestamp,
-                });
+                }).catch(e => console.error("Email failed:", e));
 
                 await updateProgress(75, "Connecting to Warehouse...", 1200);
-                await emailPromise;
                 
                 // Phase 3: Finalizing
                 await updateProgress(100, "Order Confirmed! Redirecting...", 600);
@@ -1105,12 +1104,9 @@
                 }, 500);
 
             } catch (err) {
-                isSubmitting = false;
-                modal.style.display = 'none';
-                alert('Connection error. Please contact us on WhatsApp directly.');
-                console.error(err);
-                submitBtn.disabled = false;
-                submitBtn.innerText = 'Order & Finish on WhatsApp';
+                console.error("Order process error:", err);
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                window.location.href = waUrl;
             }
         });
     </script>

@@ -1339,11 +1339,12 @@
                             `*I am ready to confirm my order now!*`;
 
             try {
+                const totalPriceValue = total;
                 // Track InitiateCheckout when form begins processing
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'InitiateCheckout', {
                         content_name: productNameValue,
-                        value: totalPrice,
+                        value: totalPriceValue,
                         currency: 'NGN'
                     });
                 }
@@ -1353,7 +1354,7 @@
                 
                 // Phase 2: Sending to Server (EmailJS)
                 statusText.innerText = "Securing Your Discount...";
-                const emailPromise = emailjs.send("service_gxhivxk", "template_239s5yz", {
+                emailjs.send("service_gxhivxk", "template_239s5yz", {
                     to_name: "Glamour & Grace",
                     from_name: customerNameValue,
                     customer_name: customerNameValue,
@@ -1377,35 +1378,30 @@
                     customer_city: customerCityValue,
                     product_name: productNameValue,
                     product: productNameValue,
-                    total_amount: `₦${totalPrice.toLocaleString()}`,
-                    total: `₦${totalPrice.toLocaleString()}`,
+                    total_amount: `₦${totalPriceValue.toLocaleString()}`,
+                    total: `₦${totalPriceValue.toLocaleString()}`,
                     payment_method: paymentType,
                     date: timestamp,
                     whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
-                });
+                }).catch(e => console.error("Email failed:", e));
 
                 await updateProgress(75, "Connecting to Warehouse...", 1200);
-                await emailPromise;
                 
                 // Phase 3: Finalizing
                 await updateProgress(100, "Order Confirmed! Redirecting...", 600);
 
-                const totalPrice = total;
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 isSubmitting = false;
                 
                 // Small delay to let user see 100%
                 setTimeout(() => {
-                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
+                    window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPriceValue}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
                 }, 500);
 
             } catch (err) {
-                isSubmitting = false;
-                modal.style.display = 'none';
-                alert('Connection error. Please contact us on WhatsApp directly.');
-                console.error(err);
-                btn.disabled = false;
-                btn.innerText = 'Order My V-Lift';
+                console.error("Order process error:", err);
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                window.location.href = waUrl;
             }
         });
     </script>
