@@ -613,7 +613,7 @@
                         <button class="flex items-center justify-between w-full text-left">
                             <h4 class="text-xl font-serif font-black text-gray-900 italic">How long does delivery take?</h4>
                         </button>
-                        <p class="mt-4 text-gray-600 font-medium leading-relaxed">Lagos orders are delivered within 24-48 hours. Orders outside Lagos typically take 3-5 business days via our premium logistics partners.</p>
+                        <p class="mt-4 text-gray-600 font-medium leading-relaxed">Lagos orders are delivered within 24-48 hours with professional in-home setup included for any elite treadmill choice.</p>
                     </div>
 
                     <div class="group border-b border-gray-100 pb-8">
@@ -677,7 +677,7 @@
                         <div class="text-center space-y-4">
                             <span class="text-primary font-black uppercase tracking-[0.4em] text-[10px]">Secure Order Form</span>
                             <h2 class="text-4xl md:text-6xl font-serif font-black">Secure Your Pro-Run™ Today</h2>
-                            <p class="opacity-60 font-medium">Free Express Shipping Included Nationwide + Professional In-Home Setup for Lagos Orders.</p>
+                            <p class="opacity-60 font-medium">Free Express Shipping Included + Professional In-Home Setup for all Lagos Orders.</p>
                             
                             <!-- Small Thumbnail in Summary -->
                             <div class="mt-8 flex justify-center">
@@ -780,22 +780,7 @@
         </section>
     </main>
 
-    <!-- Modal: Outside Lagos -->
-    <div id="locModal" class="fixed inset-0 bg-black/95 z-[500] hidden items-center justify-center p-6 backdrop-blur-xl">
-        <div class="bg-white rounded-[3rem] p-10 max-w-md w-full text-center space-y-8 relative">
-            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto">
-                <i data-lucide="alert-triangle" size="40"></i>
-            </div>
-            <div class="space-y-4">
-                <h3 class="text-3xl font-serif font-black text-red-600 uppercase text-center">High Ticket Security</h3>
-                <p class="text-gray-600 font-medium leading-relaxed">For orders outside Lagos, we require a <strong>₦42,000 commitment fee</strong> before dispatch due to the heavy nature of this product. The balance is paid upon delivery.</p>
-            </div>
-            <div class="flex gap-4">
-                <button onclick="document.getElementById('locModal').style.display = 'none'; document.getElementById('locationSelect').value = 'Lagos'; updateSummary();" class="flex-1 py-4 border-2 border-gray-100 rounded-full font-black uppercase text-[10px] tracking-widest uppercase">Go Back</button>
-                <button onclick="document.getElementById('locModal').style.display = 'none';" class="flex-1 py-4 bg-red-600 text-white rounded-full font-black uppercase text-[10px] tracking-widest uppercase">I Understand</button>
-            </div>
-        </div>
-    </div>
+
 
     <footer class="py-12 bg-white text-center border-t border-gray-100">
         <p class="font-black text-[10px] tracking-widest opacity-30 uppercase">© 2026 GLAMOUR & GRACE FITNESS. ELITE CRAFTSMANSHIP.</p>
@@ -826,7 +811,7 @@
 
         // Shared Order Notification Logic
         const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"];
+        const states = ["Lagos Island", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Maryland", "Ikoyi", "Yaba"];
         const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "Ultrasonic Pore Vacuum™"];
 
         function triggerNotif() {
@@ -868,26 +853,19 @@
         const locModal = document.getElementById('locModal');
 
         function updateSummary() {
-            const loc = locSelect.value;
             deliveryText.innerText = 'FREE';
             deliveryText.className = 'text-green-400';
             totalText.innerText = '₦306,000';
             
-            if (loc === 'Lagos') {
-                paymentNote.innerText = 'Payment on Delivery available for Lagos orders';
-                paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2';
-            } else if (loc) {
-                if (loc !== 'Lagos') locModal.style.display = 'flex';
-                paymentNote.innerText = '₦42,000 Commitment Fee Required (Order Protection)';
-                paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-red-400 pt-2';
-            }
+            paymentNote.innerText = 'Payment on Delivery available for Lagos orders';
+            paymentNote.className = 'text-[9px] font-black uppercase tracking-widest text-center text-blue-400 pt-2';
         }
         locSelect.addEventListener('change', updateSummary);
 
         // Exit Intent
         let exitShown = false;
         document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !exitShown) {
+            if (0.1 > e.clientY && !exitShown) {
                 document.getElementById('exit-popup').style.display = 'flex';
                 exitShown = true;
             }

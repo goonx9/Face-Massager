@@ -183,7 +183,7 @@
                 <i data-lucide="gift" size="40"></i>
             </div>
             <h2 class="text-3xl font-serif font-black mb-4">Wait! Special Offer</h2>
-            <p class="text-lg opacity-70 mb-8 font-medium">Order in the next <span id="timer-display-popup" class="font-black text-primary">05:00</span> and get <strong>₦2,500 OFF + FREE DELIVERY</strong> anywhere in Nigeria!</p>
+            <p class="text-lg opacity-70 mb-8 font-medium">Order within Lagos today and get <strong>₦2,500 OFF + FREE DELIVERY</strong>!</p>
             <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Claim My Discount</button>
             <p class="mt-4 text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
         </div>
@@ -969,52 +969,20 @@
                             <input type="tel" name="phone" required placeholder="Enter your active phone number" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border border-pink-100 focus:outline-none focus:border-primary font-bold">
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40 ml-4">Delivery State</label>
+                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40 ml-4">Delivery Area (Lagos Only)</label>
                             <select name="state" id="stateSelect" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border border-pink-100 focus:outline-none focus:border-primary font-bold appearance-none">
-                                <option value="">Select your state</option>
-                                <option value="Lagos">Lagos</option>
-                                <option value="Abuja">Abuja</option>
-                                <option value="Abia">Abia</option>
-                                <option value="Adamawa">Adamawa</option>
-                                <option value="Akwa Ibom">Akwa Ibom</option>
-                                <option value="Anambra">Anambra</option>
-                                <option value="Bauchi">Bauchi</option>
-                                <option value="Bayelsa">Bayelsa</option>
-                                <option value="Benue">Benue</option>
-                                <option value="Borno">Borno</option>
-                                <option value="Cross River">Cross River</option>
-                                <option value="Delta">Delta</option>
-                                <option value="Ebonyi">Ebonyi</option>
-                                <option value="Edo">Edo</option>
-                                <option value="Ekiti">Ekiti</option>
-                                <option value="Enugu">Enugu</option>
-                                <option value="Gombe">Gombe</option>
-                                <option value="Imo">Imo</option>
-                                <option value="Jigawa">Jigawa</option>
-                                <option value="Kaduna">Kaduna</option>
-                                <option value="Kano">Kano</option>
-                                <option value="Katsina">Katsina</option>
-                                <option value="Kebbi">Kebbi</option>
-                                <option value="Kogi">Kogi</option>
-                                <option value="Kwara">Kwara</option>
-                                <option value="Nasarawa">Nasarawa</option>
-                                <option value="Niger">Niger</option>
-                                <option value="Ogun">Ogun</option>
-                                <option value="Ondo">Ondo</option>
-                                <option value="Osun">Osun</option>
-                                <option value="Oyo">Oyo</option>
-                                <option value="Plateau">Plateau</option>
-                                <option value="Rivers">Rivers</option>
-                                <option value="Sokoto">Sokoto</option>
-                                <option value="Taraba">Taraba</option>
-                                <option value="Yobe">Yobe</option>
-                                <option value="Zamfara">Zamfara</option>
+                                <option value="" disabled selected>SELECT AREA IN LAGOS</option>
+                                <option value="Lagos Island">Lagos Island</option>
+                                <option value="Mainland">Lagos Mainland</option>
+                                <option value="Ikeja">Ikeja</option>
+                                <option value="Lekki">Lekki/Ajah</option>
+                                <option value="Victoria Island">Victoria Island</option>
+                                <option value="Surulere">Surulere</option>
+                                <option value="Ikorodu">Ikorodu</option>
+                                <option value="Epe">Epe</option>
                             </select>
                         </div>
-                        <div id="outside-lagos-fields" class="hidden space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest opacity-40 ml-4">City / Area</label>
-                            <input type="text" name="city" id="cityInput" placeholder="Enter your specific city or area" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border border-pink-100 focus:outline-none focus:border-primary font-bold">
-                        </div>
+
                         <div class="space-y-2">
                             <label class="text-[10px] font-black uppercase tracking-widest opacity-40 ml-4">Full Delivery Address</label>
                             <textarea name="address" required placeholder="Enter your complete delivery address" class="w-full px-8 py-5 rounded-[2rem] bg-pink-50/50 border border-pink-100 focus:outline-none focus:border-primary font-bold min-h-[120px]"></textarea>
@@ -1024,7 +992,7 @@
                     <div class="p-8 bg-pink-50 rounded-[2.5rem] border border-pink-100 space-y-4">
                         <div class="flex justify-between items-center font-bold">
                             <span class="opacity-60">Subtotal</span>
-                            <span id="summary-subtotal">₦58,500</span>
+                            <span id="summary-subtotal">₦47,500</span>
                         </div>
                         <div id="discount-row" class="hidden flex justify-between items-center font-bold text-green-600">
                             <span>Special Discount</span>
@@ -1034,14 +1002,10 @@
                             <span class="opacity-60">Delivery Fee</span>
                             <span id="delivery-fee" class="text-green-600">FREE</span>
                         </div>
-                        <div class="flex justify-between items-center font-bold">
-                            <span class="opacity-60">Commitment Fee</span>
-                            <span class="text-primary">₦5,000</span>
-                        </div>
                         <div class="h-px bg-pink-200 w-full"></div>
                         <div class="flex justify-between items-center">
                             <span class="font-black text-xl">Total</span>
-                            <span id="total-price" class="font-black text-3xl text-primary">₦65,000</span>
+                            <span id="total-price" class="font-black text-3xl text-primary">₦47,500</span>
                         </div>
                         <div class="flex items-center gap-3 pt-4">
                             <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
@@ -1118,8 +1082,8 @@
         });
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Aisha", "Blessing", "Zainab", "Funke", "Ngozi", "Amaka", "Bolu", "Nneka", "Sade", "Chioma", "Joy", "Grace", "Faith", "Hope", "Love", "Peace", "Mary", "Martha", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Lola", "Titi", "Dupe", "Remi"];
+        const states = ["Lagos Island", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Maryland", "Ikoyi", "Yaba"];
         const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "Ultrasonic Pore Vacuum™"];
 
         function triggerNotif() {
@@ -1204,35 +1168,13 @@
 
         function updateSummary() {
             const loc = locSelect.value;
-            if (!loc) {
-                applySummaryChanges(true); // Default to Lagos view if nothing selected yet
-                return;
-            }
+            const total = basePrice - discount;
 
-            const isLagos = loc === 'Lagos';
+            delFeeText.innerText = 'FREE';
+            delFeeText.className = 'text-green-600';
             
-            if (!isLagos && lastSelectedLoc !== loc) {
-                outsideLagosModal.style.display = 'flex';
-            } else {
-                lastSelectedLoc = loc;
-                if (isLagos) {
-                    outsideLagosFields.classList.add('hidden');
-                    cityInput.required = false;
-                }
-                applySummaryChanges(isLagos);
-            }
-        }
-
-        function applySummaryChanges(isLagos) {
-            const deliveryFee = isLagos ? 0 : 3500;
-            const commitmentFee = 5000;
-            const total = basePrice - discount + deliveryFee + commitmentFee;
-
-            delFeeText.innerText = isLagos ? 'FREE' : '₦3,500';
-            delFeeText.className = isLagos ? 'text-green-600' : 'text-red-600';
-            
-            payMethText.innerText = isLagos ? 'Pay on Delivery Available' : 'Pay Before Delivery Required';
-            payMethText.className = isLagos ? 'text-blue-600' : 'text-red-600 font-black';
+            payMethText.innerText = 'Pay on Delivery Available';
+            payMethText.className = 'text-blue-600';
             
             totalText.innerText = `₦${total.toLocaleString()}`;
         }
@@ -1284,7 +1226,7 @@
         let exitShown = false;
         if (!sessionStorage.getItem('exitShown')) {
             document.addEventListener('mouseleave', (e) => {
-                if (e.clientY < 0 && !exitShown) {
+                if (0.1 > e.clientY && !exitShown) {
                     document.getElementById('exit-popup').style.display = 'flex';
                     exitShown = true;
                     sessionStorage.setItem('exitShown', 'true');
@@ -1355,25 +1297,17 @@
 
             const timestamp = new Date().toLocaleString();
             
-            const isLagos = customerStateValue === 'Lagos';
-            const deliveryFee = isLagos ? 0 : 3500;
-            const commitmentFee = 5000;
-            const totalPrice = parseInt(productPriceValue) + deliveryFee + commitmentFee;
-            const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
-
-            let locationString = customerStateValue;
-            if (!isLagos) {
-                locationString = `${customerStateValue} (${customerCityValue})`;
-            }
+            const total = basePrice - discount;
+            const paymentType = 'Pay on Delivery';
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
                             `--------------------------\n` +
                             `👤 *CUSTOMER:* ${customerNameValue}\n` +
                             `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📍 *LOCATION:* ${locationString}\n` +
+                            `📍 *LOCATION:* ${customerStateValue} (Lagos)\n` +
                             `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
                             `📦 *PRODUCT:* ${productNameValue}\n` +
-                            `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
+                            `💰 *TOTAL:* ₦${total.toLocaleString()}\n` +
                             `💳 *PAYMENT:* ${paymentType}\n` +
                             `📅 *DATE:* ${timestamp}\n` +
                             `--------------------------\n\n` +

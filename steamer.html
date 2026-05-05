@@ -139,7 +139,7 @@
             
             <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait! Special Offer 😱</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Order in the next <span id="timer-display-popup" class="font-black text-primary">05:00</span> and get <span class="text-primary font-bold">₦2,500 OFF + FREE DELIVERY</span> anywhere in Nigeria!
+                Order within Lagos today and get <span>₦2,500 OFF + FREE DELIVERY</span>!
             </p>
             
             <div class="bg-pink-50 p-4 md:p-6 rounded-2xl md:rounded-3xl mb-6 md:mb-8 border border-pink-100">
@@ -589,50 +589,16 @@
                         <input type="text" name="name" placeholder="FULL NAME" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <input type="tel" name="phone" placeholder="PHONE NUMBER" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
                         <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all appearance-none cursor-pointer shadow-sm">
-                            <option value="" disabled selected>SELECT YOUR STATE</option>
-                            <option value="Lagos">Lagos</option>
-                            <option value="Abia">Abia</option>
-                            <option value="Adamawa">Adamawa</option>
-                            <option value="Akwa Ibom">Akwa Ibom</option>
-                            <option value="Anambra">Anambra</option>
-                            <option value="Bauchi">Bauchi</option>
-                            <option value="Bayelsa">Bayelsa</option>
-                            <option value="Benue">Benue</option>
-                            <option value="Borno">Borno</option>
-                            <option value="Cross River">Cross River</option>
-                            <option value="Delta">Delta</option>
-                            <option value="Ebonyi">Ebonyi</option>
-                            <option value="Edo">Edo</option>
-                            <option value="Ekiti">Ekiti</option>
-                            <option value="Enugu">Enugu</option>
-                            <option value="FCT - Abuja">FCT - Abuja</option>
-                            <option value="Gombe">Gombe</option>
-                            <option value="Imo">Imo</option>
-                            <option value="Jigawa">Jigawa</option>
-                            <option value="Kaduna">Kaduna</option>
-                            <option value="Kano">Kano</option>
-                            <option value="Katsina">Katsina</option>
-                            <option value="Kebbi">Kebbi</option>
-                            <option value="Kogi">Kogi</option>
-                            <option value="Kwara">Kwara</option>
-                            <option value="Nasarawa">Nasarawa</option>
-                            <option value="Niger">Niger</option>
-                            <option value="Ogun">Ogun</option>
-                            <option value="Ondo">Ondo</option>
-                            <option value="Osun">Osun</option>
-                            <option value="Oyo">Oyo</option>
-                            <option value="Plateau">Plateau</option>
-                            <option value="Rivers">Rivers</option>
-                            <option value="Sokoto">Sokoto</option>
-                            <option value="Taraba">Taraba</option>
-                            <option value="Yobe">Yobe</option>
-                            <option value="Zamfara">Zamfara</option>
+                            <option value="" disabled selected>SELECT AREA IN LAGOS</option>
+                            <option value="Lagos Island">Lagos Island</option>
+                            <option value="Mainland">Lagos Mainland</option>
+                            <option value="Ikeja">Ikeja</option>
+                            <option value="Lekki">Lekki/Ajah</option>
+                            <option value="Victoria Island">Victoria Island</option>
+                            <option value="Surulere">Surulere</option>
+                            <option value="Ikorodu">Ikorodu</option>
+                            <option value="Epe">Epe</option>
                         </select>
-                        
-                        <!-- Conditional Fields for Outside Lagos -->
-                        <div id="outsideLagosFields" class="hidden">
-                            <input type="text" name="city" id="cityInput" placeholder="CITY" class="w-full px-8 py-5 rounded-full bg-white outline-none font-black text-[11px] tracking-widest border border-transparent focus:border-primary transition-all shadow-sm">
-                        </div>
 
                         <textarea name="address" placeholder="DELIVERY ADDRESS" required class="w-full px-8 py-5 rounded-[2.5rem] bg-white outline-none font-black text-[11px] tracking-widest min-h-[140px] border border-transparent focus:border-primary transition-all shadow-sm"></textarea>
                         
@@ -652,17 +618,13 @@
                                 <span>Delivery</span>
                                 <span id="deliveryFeeText" class="text-green-600">FREE</span>
                             </div>
-                            <div class="flex justify-between text-sm font-bold">
-                                <span>Commitment Fee</span>
-                                <span class="text-primary">₦5,000</span>
-                            </div>
                             <div class="flex justify-between text-sm font-bold" id="paymentRow">
                                 <span>Payment</span>
                                 <span id="paymentMethodText" class="text-blue-600">Pay on Delivery</span>
                             </div>
                             <div class="pt-3 border-t border-pink-200 flex justify-between text-lg font-black">
                                 <span>Total</span>
-                                <span id="totalPriceText">₦48,500</span>
+                                <span id="totalPriceText">₦43,500</span>
                             </div>
                         </div>
                     </div>
@@ -787,16 +749,9 @@
         const delFeeText = document.getElementById('deliveryFeeText');
         const payMethText = document.getElementById('paymentMethodText');
         const totalText = document.getElementById('totalPriceText');
-        const outsideLagosFields = document.getElementById('outsideLagosFields');
-        const outsideLagosModal = document.getElementById('outsideLagosModal');
-        const proceedBtn = document.getElementById('proceedOutsideLagos');
-        const cancelBtn = document.getElementById('cancelOutsideLagos');
-        const stateInput = document.getElementById('stateInput');
-        const cityInput = document.getElementById('cityInput');
         
         let basePrice = 43500; // Default to Premium
         let discount = 0;
-        let lastSelectedLoc = 'Lagos';
 
         function getPrice(name) {
             const prices = {
@@ -844,35 +799,13 @@
 
         function updateSummary() {
             const loc = locSelect.value;
-            if (!loc) {
-                applySummaryChanges(true);
-                return;
-            }
+            const total = basePrice - discount;
 
-            const isLagos = loc === 'Lagos';
+            delFeeText.innerText = 'FREE';
+            delFeeText.className = 'text-green-600';
             
-            if (!isLagos && lastSelectedLoc !== loc) {
-                outsideLagosModal.style.display = 'flex';
-            } else {
-                lastSelectedLoc = loc;
-                if (isLagos) {
-                    outsideLagosFields.classList.add('hidden');
-                    cityInput.required = false;
-                }
-                applySummaryChanges(isLagos);
-            }
-        }
-
-        function applySummaryChanges(isLagos) {
-            const deliveryFee = isLagos ? 0 : 1500;
-            const commitmentFee = 5000;
-            const total = basePrice - discount + deliveryFee + commitmentFee;
-
-            delFeeText.innerText = isLagos ? 'FREE' : '₦1,500';
-            delFeeText.className = isLagos ? 'text-green-600' : 'text-red-600';
-            
-            payMethText.innerText = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery';
-            payMethText.className = isLagos ? 'text-blue-600' : 'text-red-600 font-black';
+            payMethText.innerText = 'Pay on Delivery';
+            payMethText.className = 'text-blue-600';
             
             totalText.innerText = `₦${total.toLocaleString()}`;
         }
@@ -894,8 +827,8 @@
         locSelect.addEventListener('change', updateSummary);
 
         // Shared Order Notification Logic
-        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"];
+        const names = ["Ada", "Tobi", "Chinelo", "Folake", "Aisha", "Blessing", "Zainab", "Funke", "Ngozi", "Amaka", "Bolu", "Nneka", "Sade", "Chioma", "Joy", "Grace", "Faith", "Hope", "Love", "Peace", "Mary", "Martha", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Lola", "Titi", "Dupe", "Remi"];
+        const states = ["Lagos Island", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Maryland", "Ikoyi", "Yaba"];
         const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "Ultrasonic Pore Vacuum™"];
 
         function triggerNotif() {
@@ -945,7 +878,7 @@
         
         // Desktop: Mouse leave
         document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !exitShown) {
+            if (0.1 > e.clientY && !exitShown) {
                 showExitPopup();
             }
         });
@@ -984,13 +917,9 @@
             }
         });
 
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
+        document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            document.getElementById('commitmentModal').style.display = 'flex';
-        });
-
-        document.getElementById('confirmOrderBtn').addEventListener('click', async function() {
-            const btn = document.getElementById('confirmOrderBtn');
+            const btn = document.getElementById('submitBtn');
             const submitBtn = document.getElementById('submitBtn');
             const modal = document.getElementById('processing-modal');
             const progressBar = document.getElementById('progress-bar');
@@ -1002,10 +931,7 @@
             isSubmitting = true;
             btn.disabled = true;
             btn.innerText = 'Processing...';
-            submitBtn.innerText = 'PROCESSING...';
             
-            // Hide commitment modal and show processing modal
-            document.getElementById('commitmentModal').style.display = 'none';
             modal.style.display = 'flex';
             
             let progress = 0;
@@ -1043,29 +969,21 @@
 
             const timestamp = new Date().toLocaleString();
             
-            const isLagos = customerStateValue === 'Lagos';
-            const deliveryFee = isLagos ? 0 : 1500;
-            const commitmentFee = 5000;
-            const totalPrice = parseInt(productPriceValue) + deliveryFee + commitmentFee;
-            const paymentType = isLagos ? 'Pay on Delivery' : 'Pay Before Delivery (PBD)';
-
-            let locationString = customerStateValue;
-            if (!isLagos) {
-                locationString = `${customerStateValue} (${customerCityValue})`;
-            }
+            const total = basePrice - discount;
+            const paymentType = 'Pay on Delivery';
 
             const message = `*NEW ORDER RECEIVED* 🛍️\n` +
                             `--------------------------\n` +
                             `👤 *CUSTOMER:* ${customerNameValue}\n` +
                             `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📍 *LOCATION:* ${locationString}\n` +
+                            `📍 *LOCATION:* ${customerStateValue} (Lagos)\n` +
                             `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
                             `📦 *PRODUCT:* ${productNameValue}\n` +
-                            `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
+                            `💰 *TOTAL:* ₦${total.toLocaleString()}\n` +
                             `💳 *PAYMENT:* ${paymentType}\n` +
                             `📅 *DATE:* ${timestamp}\n` +
                             `--------------------------\n\n` +
-                            `*I am ready to confirm my order and pay the commitment fee now!*`;
+                            `*I am ready to confirm my order now!*`;
 
             try {
                 // Phase 1: Validation & Prep

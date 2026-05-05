@@ -153,7 +153,7 @@
                 <i data-lucide="gift" size="40"></i>
             </div>
             <h2 class="text-3xl font-serif font-black mb-4 text-pink-900">Wait! Special Offer</h2>
-            <p class="text-lg opacity-70 mb-8 font-medium text-pink-900">Order in the next <span id="timer-display" class="font-black text-pink-600">05:00</span> and get <span class="text-pink-600 font-black">₦2,500 OFF + FREE DELIVERY</span> anywhere in Nigeria!</p>
+            <p class="text-lg opacity-70 mb-8 font-medium text-pink-900">Wait — get <span class="text-pink-600 font-black">₦1,000 OFF</span> your order right now. No timer. No tricks. In Lagos only!</p>
             <button onclick="document.getElementById('collection').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-5 bg-pink-600 text-white rounded-full font-black uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Claim My Discount</button>
             <p class="mt-4 text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
         </div>
@@ -231,7 +231,7 @@
                     <i data-lucide="truck" size="28"></i>
                 </div>
                 <h3 class="text-2xl font-serif font-black">Fast Delivery</h3>
-                <p class="opacity-70 font-medium">Express 24-48hr shipping within Lagos and Abuja. Nationwide delivery in 3-5 days.</p>
+                <p class="opacity-70 font-medium">Express 24-48hr shipping within Lagos only. We currently focus exclusively on Lagos for the best experience.</p>
             </div>
         </div>
     </section>
@@ -433,7 +433,7 @@
             <div class="grid gap-8">
                 <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
                     <h4 class="text-lg font-black mb-3">How long does delivery take?</h4>
-                    <p class="opacity-70 leading-relaxed">We offer express 24-48hr delivery within Lagos and Abuja. For other states, it typically takes 3-5 business days.</p>
+                    <p class="opacity-70 leading-relaxed">We offer express 24-48hr delivery within Lagos. We currently only deliver within Lagos to ensure speed and quality.</p>
                 </div>
                 <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
                     <h4 class="text-lg font-black mb-3">Are these tools safe for sensitive skin?</h4>
@@ -441,7 +441,7 @@
                 </div>
                 <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
                     <h4 class="text-lg font-black mb-3">Do you offer pay on delivery?</h4>
-                    <p class="opacity-70 leading-relaxed">We offer Pay on Delivery for orders within Lagos. For orders outside Lagos, we require payment before waybill/delivery due to logistics costs.</p>
+                    <p class="opacity-70 leading-relaxed">We offer Pay on Delivery for all orders within Lagos. We currently only serve the Lagos area.</p>
                 </div>
             </div>
         </div>
@@ -535,7 +535,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"Fast delivery to Port Harcourt! The packaging was beautiful and the product works exactly as described. Very happy."</p>
+                    <p class="font-medium opacity-70 leading-relaxed italic">"Fast delivery to Lekki! The packaging was beautiful and the product works exactly as described. Very happy."</p>
                 </div>
                 <!-- Review 5 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
@@ -643,7 +643,7 @@
         // Exit Intent Logic
         let exitShown = sessionStorage.getItem('exitPopupShown') === 'true';
         document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 0 && !exitShown) {
+            if (0.1 > e.clientY && !exitShown) {
                 document.getElementById('exit-popup').style.display = 'flex';
                 exitShown = true;
                 sessionStorage.setItem('exitPopupShown', 'true');
@@ -668,7 +668,7 @@
 
         // Shared Order Notification Logic
         const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
-        const states = ["Lagos", "Lagos", "Lagos", "Lagos", "Abuja", "Abuja", "Port Harcourt", "Enugu", "Ibadan", "Kano", "Benin City", "Asaba", "Owerri", "Uyo", "Warri", "Kaduna", "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"];
+        const states = ["Lagos", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Festac", "Maryland", "Ikoyi", "Gbagada", "Yaba", "Magodo", "Amuwo Odofin", "Badagry"];
         const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "Ultrasonic Pore Vacuum™"];
 
         function triggerNotif() {
