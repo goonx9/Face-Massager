@@ -501,15 +501,60 @@
         </div>
         
         <!-- Cross-sell section -->
-        <div style="text-align:center; padding:20px; border-top:1px solid #eee; margin-top:20px;">
-            <p style="font-size:14px; color:#666; margin-bottom:12px;">
-                Customers who bought this also love
-            </p>
-            <a href="/v-lift.html" style="display:inline-block; padding:12px 24px; background:#000; color:#fff; border-radius:8px; font-size:14px; text-decoration:none;">
-                View V-Lift Face Massager →
-            </a>
+        <div class="bg-white py-12 px-6 border-t border-gray-100">
+            <div class="max-w-4xl mx-auto text-center space-y-6">
+                <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Complete Your Routine</p>
+                <h3 class="text-2xl font-serif font-black italic">Customers also love</h3>
+                <div class="flex justify-center">
+                    <a href="v-lift.html" class="group flex items-center gap-4 bg-pink-50 hover:bg-primary hover:text-white px-8 py-4 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl overflow-hidden bg-white">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_100/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift" class="w-full h-full object-cover">
+                        </div>
+                        <div class="text-left">
+                            <p class="text-xs font-black uppercase tracking-widest">V-Lift Pro™</p>
+                            <p class="text-[10px] opacity-60 font-bold">Face Massage Lifter</p>
+                        </div>
+                        <i data-lucide="arrow-right" size="16" class="ml-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-100 text-center md:text-left">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-16">
+            <div class="md:col-span-2 space-y-8">
+                <div class="flex items-center gap-3 justify-center md:justify-start">
+                    <div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center text-white">
+                        <i data-lucide="sparkles" size="20"></i>
+                    </div>
+                    <span class="text-2xl font-serif font-black tracking-tight uppercase text-pink-900">GLAMOUR & GRACE</span>
+                </div>
+                <p class="text-lg opacity-60 leading-relaxed max-w-sm mx-auto md:mx-0">
+                    Democratizing professional skincare tech for the modern Nigerian woman. Elegance meets efficiency.
+                </p>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-black text-[11px] uppercase tracking-[0.3em] text-pink-900">Support</h4>
+                <ul class="space-y-4 font-bold text-sm opacity-60">
+                    <li><a href="#" class="hover:text-pink-600">Shipping Policy</a></li>
+                    <li><a href="#" class="hover:text-pink-600">Returns & Refunds</a></li>
+                    <li><a href="#" class="hover:text-pink-600">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="space-y-6">
+                <h4 class="font-black text-[11px] uppercase tracking-[0.3em] text-pink-900">Contact</h4>
+                <ul class="space-y-4 font-bold text-sm opacity-60">
+                    <li class="flex items-center gap-3 justify-center md:justify-start"><i data-lucide="message-circle" size="16"></i> +234 803 994 0408</li>
+                    <li class="flex items-center gap-3 justify-center md:justify-start"><i data-lucide="mail" size="16"></i> support@glamourandgrace.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-pink-50 text-center">
+            <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">© 2025 GLAMOUR & GRACE AESTHETICS. NIGERIA.</p>
+        </div>
+    </footer>
 
     <!-- Global Order Notification (Shared) -->
     <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(236,72,153,0.15)] rounded-2xl p-4 border border-pink-100 flex items-center gap-4 max-w-[320px]">
@@ -532,6 +577,7 @@
         });
     </script>
 
+    <script>
         // Slider logic
         const slides = document.querySelectorAll('.slide');
         let currentSlide = 0;
