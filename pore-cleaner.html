@@ -697,24 +697,50 @@
                 if (progress > 80) statusEl.innerText = "Connecting to Agent...";
             }, 200);
 
+            const timestamp = new Date().toLocaleString();
+            const waLink = `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`;
+
             const msg = `📦 NEW ORDER: Ultrasonic Pore Vacuum™\n` +
                         `👤 Name: ${data.name}\n` +
                         `📞 Phone: ${data.phone}\n` +
                         `📍 Location: ${data.state}\n` +
                         `🏠 Address: ${data.address}\n` +
                         `💰 Total: ${totalStr}\n` +
-                        `📅 Date: ${new Date().toLocaleString()}`;
+                        `📅 Date: ${timestamp}\n` +
+                        `--------------------------\n` +
+                        `I am ready to confirm my order now!`;
 
             try {
-                // Fire EmailJS but don't wait for it to block UI if it's slow/fails
+                // Fire EmailJS with full payload to match template expectations
                 emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    to_name: "Glamour & Grace",
+                    from_name: data.name,
                     customer_name: data.name,
-                    phone: data.phone,
-                    address: data.address,
-                    state: data.state,
-                    product_name: "Ultrasonic Pore Vacuum™",
+                    customerName: data.name,
+                    customer: data.name,
+                    name: data.name,
+                    full_name: data.name,
+                    user_name: data.name,
+                    userName: data.name,
+                    contact_name: data.name,
+                    client_name: data.name,
                     message: msg,
-                    total_amount: totalStr
+                    customer_phone: data.phone,
+                    phone: data.phone,
+                    customer_address: data.address,
+                    address: data.address,
+                    location: data.state,
+                    state: data.state,
+                    city: "", // No city field in this form yet
+                    customer_state: data.state,
+                    customer_city: "",
+                    product_name: "Ultrasonic Pore Vacuum™",
+                    product: "Ultrasonic Pore Vacuum™",
+                    total_amount: totalStr,
+                    total: totalStr,
+                    payment_method: "Pay on Delivery (Lagos)",
+                    date: timestamp,
+                    whatsapp_link: waLink,
                 }).then(() => console.log("Email sent")).catch(e => console.error("Email failed", e));
                 
                 // Continue progress regardless
