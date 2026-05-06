@@ -1039,7 +1039,7 @@
                 // Phase 2: Sending to Server (EmailJS)
                 statusText.innerText = "Securing Your Discount...";
                 if (typeof emailjs !== 'undefined') {
-                    await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    emailjs.send("service_gxhivxk", "template_239s5yz", {
                         to_name: "Glamour & Grace",
                         from_name: customerNameValue,
                         customer_name: customerNameValue,

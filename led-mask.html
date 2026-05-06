@@ -1368,7 +1368,7 @@
                 statusText.innerText = "Securing Your Discount...";
                 // Fire and forget EmailJS
                 if (typeof emailjs !== 'undefined') {
-                    await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    emailjs.send("service_gxhivxk", "template_239s5yz", {
                         to_name: "Glamour & Grace",
                         from_name: customerNameValue,
                         customer_name: customerNameValue,

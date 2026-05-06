@@ -866,9 +866,6 @@
                     });
                 }
 
-                if (isSubmitting) return;
-                isSubmitting = true;
-
                 await updateProgress(40, "Validating Order Details...", 800);
                 statusText.innerText = "Securing Your Order...";
                 

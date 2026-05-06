@@ -704,7 +704,7 @@
 
             try {
                 if (typeof emailjs !== 'undefined') {
-                    await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    emailjs.send("service_gxhivxk", "template_239s5yz", {
                         to_name: "Glamour & Grace",
                         from_name: data.name,
                         customer_name: data.name,
