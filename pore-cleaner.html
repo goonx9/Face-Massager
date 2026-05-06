@@ -663,12 +663,17 @@
         setTimeout(triggerNotif, 2000);
 
         // Form Submit with Processing Animation
+        let isSubmitting = false;
         document.getElementById('orderForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (isSubmitting) return;
+            
             const btn = document.getElementById('submitBtn');
             const modal = document.getElementById('processing-modal');
             const percentEl = document.getElementById('progress-percent');
             const statusEl = document.getElementById('status-text');
+            
+            isSubmitting = true;
             const data = Object.fromEntries(new FormData(e.target));
             
             const finalTotal = updateSummary();

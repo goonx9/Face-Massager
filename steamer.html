@@ -1006,33 +1006,34 @@
             };
 
             const form = document.getElementById('orderForm');
-            const customerNameValue = form.name.value;
-            const customerPhoneValue = form.phone.value;
-            const customerAddressValue = form.address.value;
-            const customerStateValue = form.location.value;
-            const customerCityValue = form.city ? form.city.value : '';
-            const productNameValue = form.product_name.value;
-            const productPriceValue = form.product_price.value;
-
-            const timestamp = new Date().toLocaleString();
             
-            const total = basePrice - discount;
-            const paymentType = 'Pay on Delivery';
-
-            const message = `*NEW ORDER RECEIVED* 🛍️\n` +
-                            `--------------------------\n` +
-                            `👤 *CUSTOMER:* ${customerNameValue}\n` +
-                            `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📍 *LOCATION:* ${customerStateValue} (Lagos)\n` +
-                            `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
-                            `📦 *PRODUCT:* ${productNameValue}\n` +
-                            `💰 *TOTAL:* ₦${total.toLocaleString()}\n` +
-                            `💳 *PAYMENT:* ${paymentType}\n` +
-                            `📅 *DATE:* ${timestamp}\n` +
-                            `--------------------------\n\n` +
-                            `*I am ready to confirm my order now!*`;
-
             try {
+                const customerNameValue = form.name.value;
+                const customerPhoneValue = form.phone.value;
+                const customerAddressValue = form.address.value;
+                const customerStateValue = form.location.value;
+                const customerCityValue = form.city ? form.city.value : '';
+                const productNameValue = form.product_name.value;
+                const productPriceValue = form.product_price.value;
+
+                const timestamp = new Date().toLocaleString();
+                
+                const total = basePrice - discount;
+                const paymentType = 'Pay on Delivery';
+
+                const message = `*NEW ORDER RECEIVED* 🛍️\n` +
+                                `--------------------------\n` +
+                                `👤 *CUSTOMER:* ${customerNameValue}\n` +
+                                `📞 *PHONE:* ${customerPhoneValue}\n` +
+                                `📍 *LOCATION:* ${customerStateValue} (Lagos)\n` +
+                                `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
+                                `📦 *PRODUCT:* ${productNameValue}\n` +
+                                `💰 *TOTAL:* ₦${total.toLocaleString()}\n` +
+                                `💳 *PAYMENT:* ${paymentType}\n` +
+                                `📅 *DATE:* ${timestamp}\n` +
+                                `--------------------------\n\n` +
+                                `*I am ready to confirm my order now!*`;
+
                 // Phase 1: Validation & Prep
                 await updateProgress(35, "Validating Order Details...", 800);
                 
@@ -1086,7 +1087,7 @@
 
             } catch (err) {
                 console.error("Order process error:", err);
-                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent("Steamer Order Error")}`;
                 window.location.href = waUrl;
             }
         });

@@ -1308,33 +1308,34 @@
             };
 
             const form = e.target;
-            const customerNameValue = form.name.value;
-            const customerPhoneValue = form.phone.value;
-            const customerAddressValue = form.address.value;
-            const customerStateValue = form.location.value;
-            const customerCityValue = form.city ? form.city.value : '';
-            const productNameValue = form.product_name.value;
-            const productPriceValue = form.product_price.value;
-
-            const timestamp = new Date().toLocaleString();
             
-            const total = basePrice - discount;
-            const paymentType = 'Pay on Delivery';
-
-            const message = `*NEW ORDER RECEIVED* 🛍️\n` +
-                            `--------------------------\n` +
-                            `👤 *CUSTOMER:* ${customerNameValue}\n` +
-                            `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📍 *LOCATION:* ${customerStateValue} (Lagos)\n` +
-                            `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
-                            `📦 *PRODUCT:* ${productNameValue}\n` +
-                            `💰 *TOTAL:* ₦${total.toLocaleString()}\n` +
-                            `💳 *PAYMENT:* ${paymentType}\n` +
-                            `📅 *DATE:* ${timestamp}\n` +
-                            `--------------------------\n\n` +
-                            `*I am ready to confirm my order now!*`;
-
             try {
+                const customerNameValue = form.name.value;
+                const customerPhoneValue = form.phone.value;
+                const customerAddressValue = form.address.value;
+                const customerStateValue = form.location.value;
+                const customerCityValue = form.city ? form.city.value : '';
+                const productNameValue = form.product_name.value;
+                const productPriceValue = form.product_price.value;
+
+                const timestamp = new Date().toLocaleString();
+                
+                const total = basePrice - discount;
+                const paymentType = 'Pay on Delivery';
+
+                const message = `*NEW ORDER RECEIVED* 🛍️\n` +
+                                `--------------------------\n` +
+                                `👤 *CUSTOMER:* ${customerNameValue}\n` +
+                                `📞 *PHONE:* ${customerPhoneValue}\n` +
+                                `📍 *LOCATION:* ${customerStateValue} (Lagos)\n` +
+                                `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
+                                `📦 *PRODUCT:* ${productNameValue}\n` +
+                                `💰 *TOTAL:* ₦${total.toLocaleString()}\n` +
+                                `💳 *PAYMENT:* ${paymentType}\n` +
+                                `📅 *DATE:* ${timestamp}\n` +
+                                `--------------------------\n\n` +
+                                `*I am ready to confirm my order now!*`;
+
                 const totalPriceValue = total;
                 // Track InitiateCheckout when form begins processing
                 if (typeof fbq !== 'undefined') {
@@ -1350,36 +1351,38 @@
                 
                 // Phase 2: Sending to Server (EmailJS)
                 statusText.innerText = "Securing Your Discount...";
-                emailjs.send("service_gxhivxk", "template_239s5yz", {
-                    to_name: "Glamour & Grace",
-                    from_name: customerNameValue,
-                    customer_name: customerNameValue,
-                    customerName: customerNameValue,
-                    customer: customerNameValue,
-                    name: customerNameValue,
-                    full_name: customerNameValue,
-                    user_name: customerNameValue,
-                    userName: customerNameValue,
-                    contact_name: customerNameValue,
-                    client_name: customerNameValue,
-                    message: message,
-                    customer_phone: customerPhoneValue,
-                    phone: customerPhoneValue,
-                    customer_address: customerAddressValue,
-                    address: customerAddressValue,
-                    location: customerStateValue,
-                    state: customerStateValue,
-                    city: customerCityValue,
-                    customer_state: customerStateValue,
-                    customer_city: customerCityValue,
-                    product_name: productNameValue,
-                    product: productNameValue,
-                    total_amount: `₦${totalPriceValue.toLocaleString()}`,
-                    total: `₦${totalPriceValue.toLocaleString()}`,
-                    payment_method: paymentType,
-                    date: timestamp,
-                    whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
-                }).catch(e => console.error("Email failed:", e));
+                if (typeof emailjs !== 'undefined') {
+                    emailjs.send("service_gxhivxk", "template_239s5yz", {
+                        to_name: "Glamour & Grace",
+                        from_name: customerNameValue,
+                        customer_name: customerNameValue,
+                        customerName: customerNameValue,
+                        customer: customerNameValue,
+                        name: customerNameValue,
+                        full_name: customerNameValue,
+                        user_name: customerNameValue,
+                        userName: customerNameValue,
+                        contact_name: customerNameValue,
+                        client_name: customerNameValue,
+                        message: message,
+                        customer_phone: customerPhoneValue,
+                        phone: customerPhoneValue,
+                        customer_address: customerAddressValue,
+                        address: customerAddressValue,
+                        location: customerStateValue,
+                        state: customerStateValue,
+                        city: customerCityValue,
+                        customer_state: customerStateValue,
+                        customer_city: customerCityValue,
+                        product_name: productNameValue,
+                        product: productNameValue,
+                        total_amount: `₦${totalPriceValue.toLocaleString()}`,
+                        total: `₦${totalPriceValue.toLocaleString()}`,
+                        payment_method: paymentType,
+                        date: timestamp,
+                        whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
+                    }).catch(e => console.error("Email failed:", e));
+                }
 
                 await updateProgress(75, "Connecting to Warehouse...", 1200);
                 
@@ -1396,7 +1399,7 @@
 
             } catch (err) {
                 console.error("Order process error:", err);
-                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent("V-Lift Order Error")}`;
                 window.location.href = waUrl;
             }
         });

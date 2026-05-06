@@ -797,6 +797,8 @@
         let isSubmitting = false;
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            if (isSubmitting) return;
+            
             const btn = document.getElementById('submitBtn');
             const modal = document.getElementById('processing-modal');
             const progressBar = document.getElementById('progress-bar');
@@ -827,36 +829,37 @@
             };
 
             const form = e.target;
-            const customerNameValue = form.name.value;
-            const customerPhoneValue = form.phone.value;
-            const customerAddressValue = form.address.value;
-            const customerStateValue = form.location.value;
-            const customerCityValue = ''; 
-            const productNameValue = form.product_name.value;
-            const productPriceValue = form.product_price.value;
-            const productSizeValue = form.size.value;
-
-            const timestamp = new Date().toLocaleString();
-            const totalPrice = parseInt(productPriceValue);
-            const paymentType = 'Pay on Delivery';
-            let locationString = `${customerStateValue} (Lagos)`;
-
-            const message = `*NEW ORDER RECEIVED (BRA)* 👙\n` +
-                            `--------------------------\n` +
-                            `👤 *CUSTOMER:* ${customerNameValue}\n` +
-                            `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📍 *LOCATION:* ${locationString}\n` +
-                            `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
-                            `📦 *PRODUCT:* ${productNameValue}\n` +
-                            `📏 *SIZE:* ${productSizeValue}\n` +
-                            `🚚 *DELIVERY:* FREE\n` +
-                            `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
-                            `💳 *PAYMENT:* ${paymentType}\n` +
-                            `📅 *DATE:* ${timestamp}\n` +
-                            `--------------------------\n\n` +
-                            `*I am ready to confirm my order now!*`;
-
+            
             try {
+                const customerNameValue = form.elements.name.value;
+                const customerPhoneValue = form.elements.phone.value;
+                const customerAddressValue = form.elements.address.value;
+                const customerStateValue = form.elements.location.value;
+                const customerCityValue = ''; 
+                const productNameValue = form.elements.product_name.value;
+                const productPriceValue = form.elements.product_price.value;
+                const productSizeValue = form.elements.size.value;
+
+                const timestamp = new Date().toLocaleString();
+                const totalPrice = parseInt(productPriceValue);
+                const paymentType = 'Pay on Delivery';
+                let locationString = `${customerStateValue} (Lagos)`;
+
+                const message = `*NEW ORDER RECEIVED (BRA)* 👙\n` +
+                                `--------------------------\n` +
+                                `👤 *CUSTOMER:* ${customerNameValue}\n` +
+                                `📞 *PHONE:* ${customerPhoneValue}\n` +
+                                `📍 *LOCATION:* ${locationString}\n` +
+                                `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
+                                `📦 *PRODUCT:* ${productNameValue}\n` +
+                                `📏 *SIZE:* ${productSizeValue}\n` +
+                                `🚚 *DELIVERY:* FREE\n` +
+                                `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
+                                `💳 *PAYMENT:* ${paymentType}\n` +
+                                `📅 *DATE:* ${timestamp}\n` +
+                                `--------------------------\n\n` +
+                                `*I am ready to confirm my order now!*`;
+
                 // Track InitiateCheckout when form begins processing
                 if (typeof fbq !== 'undefined') {
                     fbq('track', 'InitiateCheckout', {
@@ -869,7 +872,7 @@
                 await updateProgress(40, "Validating Order Details...", 800);
                 statusText.innerText = "Securing Your Order...";
                 
-                // Fire and forget EmailJS to avoid blocking on network issues
+                // Fire and forget EmailJS
                 if (typeof emailjs !== 'undefined') {
                     emailjs.send("service_gxhivxk", "template_239s5yz", {
                         to_name: "Glamour & Grace",
@@ -905,6 +908,7 @@
 
                 await updateProgress(80, "Connecting to Logistics...", 1200);
                 await updateProgress(100, "Order Confirmed! Redirecting...", 600);
+                
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
                 isSubmitting = false;
                 setTimeout(() => {
@@ -912,7 +916,8 @@
                 }, 1000);
             } catch (err) {
                 console.error("Order process error:", err);
-                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                // Fallback to WhatsApp even if extraction fails
+                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent("Strap on Bra Order Error")}`;
                 window.location.href = waUrl;
             }
         });

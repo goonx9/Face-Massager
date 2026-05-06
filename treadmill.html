@@ -891,18 +891,19 @@
         if (closeExitBtn) {
             closeExitBtn.addEventListener('click', () => {
                 const exitPopup = document.getElementById('exit-popup');
-                if (exitPopup) exitPopup.style.display = 'none';
-            });
-        }
-
-        // Order Handling
+                  // Order Handling
+        let isSubmitting = false;
         const form = document.getElementById('orderForm');
         if (form) {
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                if (isSubmitting) return;
+
                 const modal = document.getElementById('processing-modal');
                 const progressText = document.getElementById('progress-text');
                 const statusLabel = document.getElementById('status-label');
+                
+                isSubmitting = true;
                 if (modal) modal.style.display = 'flex';
 
                 const formData = new FormData(form);
@@ -940,32 +941,34 @@
                                    `💳 PAYMENT: ${paymentType}\n` +
                                    `📅 DATE: ${timestamp}`;
 
-                emailjs.send("service_gxhivxk", "template_239s5yz", {
-                    to_name: "Glamour & Grace",
-                    from_name: data.name,
-                    customer_name: data.name,
-                    customerName: data.name,
-                    customer: data.name,
-                    name: data.name,
-                    full_name: data.name,
-                    message: fullMessage,
-                    customer_phone: data.phone,
-                    phone: data.phone,
-                    customer_address: data.address,
-                    address: data.address,
-                    location: data.location,
-                    state: data.location,
-                    city: data.city,
-                    customer_state: data.location,
-                    customer_city: data.city,
-                    product_name: "Pro-Run™ Smart Treadmill",
-                    product: "Pro-Run™ Smart Treadmill",
-                    total_amount: total,
-                    total: total,
-                    payment_method: paymentType,
-                    date: timestamp,
-                    whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
-                }).catch(e => console.error("Email failed:", e));
+                if (typeof emailjs !== 'undefined') {
+                    emailjs.send("service_gxhivxk", "template_239s5yz", {
+                        to_name: "Glamour & Grace",
+                        from_name: data.name,
+                        customer_name: data.name,
+                        customerName: data.name,
+                        customer: data.name,
+                        name: data.name,
+                        full_name: data.name,
+                        message: fullMessage,
+                        customer_phone: data.phone,
+                        phone: data.phone,
+                        customer_address: data.address,
+                        address: data.address,
+                        location: data.location,
+                        state: data.location,
+                        city: data.city,
+                        customer_state: data.location,
+                        customer_city: data.city,
+                        product_name: "Pro-Run™ Smart Treadmill",
+                        product: "Pro-Run™ Smart Treadmill",
+                        total_amount: total,
+                        total: total,
+                        payment_method: paymentType,
+                        date: timestamp,
+                        whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
+                    }).catch(e => console.error("Email failed:", e));
+                }
 
                 await updateProgress(85, "Allocating Logistics...");
                 await updateProgress(100, "Secure Connection Verified!");
@@ -973,6 +976,7 @@
                 const waMessageText = `*NEW TREADMILL ORDER*\n------------------\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*State:* ${data.location}\n*Address:* ${data.address}\n*Total:* ${total}\n*Payment:* ${paymentType}\n*Date:* ${timestamp}\n------------------\n*I'm ready to fitness!*`;
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(waMessageText)}`;
                 
+                isSubmitting = false;
                 setTimeout(() => {
                     window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=306000&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent('Pro-Run Smart Treadmill')}`;
                 }, 500);
@@ -982,7 +986,8 @@
                 const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(waMessageText)}`;
                 window.location.href = waUrl;
             }
-        });
+          });
+        }
     </script>
 </body>
 </html>
