@@ -213,9 +213,7 @@
                     </div>
                     <div class="relative">
                         <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3] relative">
-                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg" width="800" height="600">
-                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1776378285/download_3_1_o1ctn8.mp4" type="video/mp4">
-                            </video>
+                            <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg" fetchpriority="high" width="800" height="600" class="w-full h-full object-cover" alt="Invisible Push Up Bra">
                         </div>
                         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px] animate-bounce">
                             <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">Real Result</p>
@@ -580,7 +578,7 @@
                     <!-- V-Lift Upsell -->
                     <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="space-y-4">
                             <h3 class="text-2xl font-serif font-black">Glamour & Grace Massage Lifter</h3>
@@ -644,8 +642,6 @@
     </script>
     <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
     <script>
-        lucide.createIcons();
-
         // Notification Logic
         function triggerNotif() {
             const el = document.getElementById('order-notification');
@@ -870,11 +866,15 @@
                     });
                 }
 
+                if (isSubmitting) return;
+                isSubmitting = true;
+
                 await updateProgress(40, "Validating Order Details...", 800);
                 statusText.innerText = "Securing Your Order...";
                 
+                // Fire and forget EmailJS to avoid blocking on network issues
                 if (typeof emailjs !== 'undefined') {
-                    await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                    emailjs.send("service_gxhivxk", "template_239s5yz", {
                         to_name: "Glamour & Grace",
                         from_name: customerNameValue,
                         customer_name: customerNameValue,
@@ -903,7 +903,7 @@
                         payment_method: paymentType,
                         date: timestamp,
                         whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
-                    }).catch(e => console.error("Email failed:", e));
+                    }).then(() => console.log("Email sent")).catch(e => console.error("Email failed:", e));
                 }
 
                 await updateProgress(80, "Connecting to Logistics...", 1200);

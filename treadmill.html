@@ -170,28 +170,7 @@
         <!-- Hero Section with Auto-play Images -->
         <section class="min-h-[85vh] grid lg:grid-cols-2">
             <div class="relative h-[50vh] lg:h-full overflow-hidden">
-                <div class="slider-container" id="hero-slider">
-                    <div class="slide active">
-                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777627798/202605011006_1_fcdio1.jpg">
-                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/v1777627798/202605011006_1_fcdio1.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="slide">
-                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628003/202605011006_3_1_qvbvw9.jpg">
-                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/v1777628003/202605011006_3_1_qvbvw9.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="slide">
-                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628374/202605011006_4_1_knqdbq.jpg">
-                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/v1777628374/202605011006_4_1_knqdbq.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="slide">
-                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/v1777628501/202605011006_5_1_jqqtux.jpg">
-                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto/v1777628501/202605011006_5_1_jqqtux.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
+                <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_1200/v1775924764/ezgif-6bf298716df798f0_yis6n4.jpg" class="w-full h-full object-cover" alt="Pro-Run™ Elite Treadmill">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 <div class="absolute bottom-10 left-10 text-white z-10">
                     <div class="flex items-center gap-4 mb-4">
@@ -791,7 +770,7 @@
                             <!-- V-Lift Upsell -->
                             <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                                 <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                                    <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                    <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 </div>
                                 <div class="space-y-4">
                                     <h3 class="text-2xl font-serif font-black">Glamour & Grace Massage Lifter</h3>
@@ -877,17 +856,6 @@
 
         setInterval(triggerNotif, 12000);
         setTimeout(triggerNotif, 2000);
-
-        // Auto-play Slider
-        const slider = document.getElementById('hero-slider');
-        const slides = slider.querySelectorAll('.slide');
-        let currentSlide = 0;
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }
-        setInterval(nextSlide, 4000);
 
         // Location & Price Logic
         const locSelect = document.getElementById('locationSelect');
