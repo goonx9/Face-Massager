@@ -709,37 +709,38 @@
                         `I am ready to confirm my order now!`;
 
             try {
-                // Fire EmailJS with full payload to match template expectations
-                emailjs.send("service_gxhivxk", "template_239s5yz", {
-                    to_name: "Glamour & Grace",
-                    from_name: data.name,
-                    customer_name: data.name,
-                    customerName: data.name,
-                    customer: data.name,
-                    name: data.name,
-                    full_name: data.name,
-                    user_name: data.name,
-                    userName: data.name,
-                    contact_name: data.name,
-                    client_name: data.name,
-                    message: msg,
-                    customer_phone: data.phone,
-                    phone: data.phone,
-                    customer_address: data.address,
-                    address: data.address,
-                    location: data.state,
-                    state: data.state,
-                    city: "", // No city field in this form yet
-                    customer_state: data.state,
-                    customer_city: "",
-                    product_name: "Ultrasonic Pore Vacuum™",
-                    product: "Ultrasonic Pore Vacuum™",
-                    total_amount: totalStr,
-                    total: totalStr,
-                    payment_method: "Pay on Delivery (Lagos)",
-                    date: timestamp,
-                    whatsapp_link: waLink,
-                }).then(() => console.log("Email sent")).catch(e => console.error("Email failed", e));
+                if (typeof emailjs !== 'undefined') {
+                    await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                        to_name: "Glamour & Grace",
+                        from_name: data.name,
+                        customer_name: data.name,
+                        customerName: data.name,
+                        customer: data.name,
+                        name: data.name,
+                        full_name: data.name,
+                        user_name: data.name,
+                        userName: data.name,
+                        contact_name: data.name,
+                        client_name: data.name,
+                        message: msg,
+                        customer_phone: data.phone,
+                        phone: data.phone,
+                        customer_address: data.address,
+                        address: data.address,
+                        location: data.state,
+                        state: data.state,
+                        city: "", // No city field in this form yet
+                        customer_state: data.state,
+                        customer_city: "",
+                        product_name: "Ultrasonic Pore Vacuum™",
+                        product: "Ultrasonic Pore Vacuum™",
+                        total_amount: totalStr,
+                        total: totalStr,
+                        payment_method: "Pay on Delivery (Lagos)",
+                        date: timestamp,
+                        whatsapp_link: waLink,
+                    }).then(() => console.log("Email sent")).catch(e => console.error("Email failed", e));
+                }
                 
                 // Continue progress regardless
                 setTimeout(() => {

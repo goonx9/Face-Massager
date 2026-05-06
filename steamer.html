@@ -1038,37 +1038,38 @@
                 
                 // Phase 2: Sending to Server (EmailJS)
                 statusText.innerText = "Securing Your Discount...";
-                // Fire and forget EmailJS to avoid blocking on network issues
-                emailjs.send("service_gxhivxk", "template_239s5yz", {
-                    to_name: "Glamour & Grace",
-                    from_name: customerNameValue,
-                    customer_name: customerNameValue,
-                    customerName: customerNameValue,
-                    customer: customerNameValue,
-                    name: customerNameValue,
-                    full_name: customerNameValue,
-                    user_name: customerNameValue,
-                    userName: customerNameValue,
-                    contact_name: customerNameValue,
-                    client_name: customerNameValue,
-                    message: message,
-                    customer_phone: customerPhoneValue,
-                    phone: customerPhoneValue,
-                    customer_address: customerAddressValue,
-                    address: customerAddressValue,
-                    location: customerStateValue,
-                    state: customerStateValue,
-                    city: customerCityValue,
-                    customer_state: customerStateValue,
-                    customer_city: customerCityValue,
-                    product_name: productNameValue,
-                    product: productNameValue,
-                    total_amount: `₦${total.toLocaleString()}`,
-                    total: `₦${total.toLocaleString()}`,
-                    payment_method: paymentType,
-                    date: timestamp,
-                    whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
-                }).catch(e => console.error("EmailJS failed:", e));
+                if (typeof emailjs !== 'undefined') {
+                    await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                        to_name: "Glamour & Grace",
+                        from_name: customerNameValue,
+                        customer_name: customerNameValue,
+                        customerName: customerNameValue,
+                        customer: customerNameValue,
+                        name: customerNameValue,
+                        full_name: customerNameValue,
+                        user_name: customerNameValue,
+                        userName: customerNameValue,
+                        contact_name: customerNameValue,
+                        client_name: customerNameValue,
+                        message: message,
+                        customer_phone: customerPhoneValue,
+                        phone: customerPhoneValue,
+                        customer_address: customerAddressValue,
+                        address: customerAddressValue,
+                        location: customerStateValue,
+                        state: customerStateValue,
+                        city: customerCityValue,
+                        customer_state: customerStateValue,
+                        customer_city: customerCityValue,
+                        product_name: productNameValue,
+                        product: productNameValue,
+                        total_amount: `₦${total.toLocaleString()}`,
+                        total: `₦${total.toLocaleString()}`,
+                        payment_method: paymentType,
+                        date: timestamp,
+                        whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
+                    }).catch(e => console.error("EmailJS failed:", e));
+                }
 
                 await updateProgress(75, "Connecting to Warehouse...", 1200);
                 
