@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://unpkg.com">
     
     <!-- Preload Hero Image for LCP -->
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_800/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" fetchpriority="high">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775924764/ezgif-6bf298716df798f0_yis6n4.jpg" fetchpriority="high">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -151,7 +151,13 @@
         </div>
     </div>
 
-    <nav class="fixed top-8 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-gray-100 px-6 py-4 md:px-12">
+    <!-- Navbar -->
+    <div class="bg-red-600 text-white py-2 px-4 text-center">
+        <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.1em]">
+            🚫 NOTICE: Do not order if you are not sure, or you are travelling, or you are outside Lagos.
+        </p>
+    </div>
+    <nav class="fixed top-12 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-gray-100 px-6 py-4 md:px-12">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white shadow-xl">
@@ -170,7 +176,7 @@
         <!-- Hero Section with Auto-play Images -->
         <section class="min-h-[85vh] grid lg:grid-cols-2">
             <div class="relative h-[50vh] lg:h-full overflow-hidden">
-                <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_1200/v1775924764/ezgif-6bf298716df798f0_yis6n4.jpg" class="w-full h-full object-cover" alt="Pro-Run™ Elite Treadmill">
+                <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_1200/v1775924764/ezgif-6bf298716df798f0_yis6n4.jpg" fetchpriority="high" class="w-full h-full object-cover" alt="Pro-Run™ Elite Treadmill">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 <div class="absolute bottom-10 left-10 text-white z-10">
                     <div class="flex items-center gap-4 mb-4">
@@ -781,7 +787,7 @@
                             <!-- V-Lift Upsell -->
                             <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                                 <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                                    <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                     <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift Pro" width="400" height="400" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 </div>
                                 <div class="space-y-4">
                                     <h3 class="text-2xl font-serif font-black">Glamour & Grace Massage Lifter</h3>
@@ -833,14 +839,16 @@
     </div>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
     <script>
-        (function() {
-            emailjs.init("_h1UzYlyePtWt0IqM"); 
-        })();
-    </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
+        // Initialize EmailJS safely
+        window.addEventListener('load', function() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("_h1UzYlyePtWt0IqM");
+            }
+        });
+
         lucide.createIcons();
 
         // Shared Order Notification Logic
@@ -968,9 +976,9 @@
                         address: data.address,
                         location: data.location,
                         state: data.location,
-                        city: data.city,
+                        city: data.city || data.location,
                         customer_state: data.location,
-                        customer_city: data.city,
+                        customer_city: data.city || data.location,
                         product_name: "Pro-Run™ Smart Treadmill",
                         product: "Pro-Run™ Smart Treadmill",
                         total_amount: total,

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Ultrasonic Glow Spatula™ | Glamour & Grace</title>
     
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg" fetchpriority="high">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
@@ -204,7 +206,7 @@
                 <div class="order-1 lg:order-2 relative">
                     <div class="absolute inset-0 bg-pink-100/50 rounded-[4rem] blur-3xl -z-10 transform rotate-6"></div>
                     <div class="min-h-[300px] md:min-h-[500px]">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_800/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg" fetchpriority="high" width="800" height="800" class="w-full h-auto rounded-[3rem] shadow-3xl border-8 border-white transform lg:rotate-2 hover:rotate-0 transition-transform duration-700" alt="Ultrasonic Glow Spatula™" referrerPolicy="no-referrer" decoding="async">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921644/ezgif-5be51ffef2ef0717_qamfm2.jpg" fetchpriority="high" width="800" height="800" class="w-full h-auto rounded-[3rem] shadow-3xl border-8 border-white transform lg:rotate-2 hover:rotate-0 transition-transform duration-700" alt="Ultrasonic Glow Spatula™" referrerPolicy="no-referrer" decoding="async">
                     </div>
                 </div>
             </div>
@@ -781,7 +783,7 @@
                     <!-- Pore Vacuum Upsell -->
                     <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png" alt="Pore Vacuum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png" alt="Pore Vacuum" width="400" height="400" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="space-y-4">
                             <h3 class="text-2xl font-serif font-black">Ultrasonic Pore Vacuum™</h3>
@@ -796,7 +798,7 @@
                     <!-- Steamer Upsell -->
                     <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano Steamer" width="400" height="480" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
                         <div class="space-y-4">
                             <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
@@ -843,11 +845,14 @@
     </div>
 
     <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
-        (function() {
-            emailjs.init("_h1UzYlyePtWt0IqM");
-        })();
+        // Initialize EmailJS safely
+        window.addEventListener('load', function() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("_h1UzYlyePtWt0IqM");
+            }
+        });
 
         // Shared Order Notification Logic
         const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
@@ -1051,7 +1056,7 @@
                 const customerPhoneValue = form.phone.value;
                 const customerAddressValue = form.address.value;
                 const customerStateValue = form.location.value;
-                const customerCityValue = '';
+                const customerCityValue = customerStateValue;
                 const productNameValue = form.product_name.value;
                 const productPriceValue = form.product_price.value;
 
