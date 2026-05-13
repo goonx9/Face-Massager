@@ -116,7 +116,7 @@
     /></noscript>
 
     <!-- Conversion Boosters -->
-    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg">
+    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg h-8 flex items-center justify-center">
         🔥 Flash Sale Ends In: <span id="timer-display">30:00</span>
     </div>
 
@@ -157,13 +157,13 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <div class="bg-red-600 text-white py-2 px-4 text-center">
-        <p class="text-[10px] md:text-xs font-black uppercase tracking-[0.1em]">
+    <!-- Notice Bar -->
+    <div class="fixed top-8 left-0 w-full bg-red-600 text-white py-2 px-4 z-[200] text-center h-10 flex items-center justify-center border-t border-red-500/20">
+        <p class="text-[9px] md:text-xs font-black uppercase tracking-[0.1em]">
             🚫 NOTICE: Do not order if you are not sure, or you are travelling, or you are outside Lagos.
         </p>
     </div>
-    <nav class="fixed top-12 inset-x-0 z-[100] bg-white/90 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12">
+    <nav class="fixed top-[72px] inset-x-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12 h-20 flex items-center">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
@@ -178,7 +178,7 @@
         </div>
     </nav>
 
-    <main class="pt-32">
+    <main class="pt-[152px]">
         <!-- Section 1: Hero / Problem -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-50 rounded-full blur-[100px] -z-10"></div>
@@ -566,13 +566,6 @@
                     <button type="submit" id="submitBtn" class="w-full py-6 bg-primary text-white rounded-full font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
                         Order & Finish on WhatsApp <i data-lucide="message-circle" size="20"></i>
                     </button>
-                    <!-- Shipping Disclaimer -->
-                    <div class="mt-8 p-6 bg-blue-50 rounded-2xl border border-blue-100 flex gap-4 items-start">
-                        <i data-lucide="info" class="text-blue-600 flex-shrink-0 mt-1" size="20"></i>
-                        <p class="text-xs font-bold text-blue-900 leading-relaxed uppercase tracking-widest">
-                            🚨 PLEASE: DO NOT ORDER IF YOU ARE NOT SURE, OR IF YOU ARE TRAVELLING, OR IF YOU ARE OUTSIDE LAGOS BUT NOT READY TO PAY THE ₦3,500 COMMITMENT FEE.
-                        </p>
-                    </div>
                 </form>
             </div>
         </section>
