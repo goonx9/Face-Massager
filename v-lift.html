@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Glamour & Grace Face Massage Lifter | Glamour & Grace</title>
     
-    <!-- Preloads -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://res.cloudinary.com">
-    <link rel="preconnect" href="https://connect.facebook.net">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="dns-prefetch" href="https://connect.facebook.net">
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_500/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" fetchpriority="high">
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     
-    <!-- Preload Hero Assets for LCP -->
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" fetchpriority="high">
-    <link rel="preconnect" href="https://res.cloudinary.com">
-    
+    <style>
+        /* Minimal Critical CSS for FCP */
+        body { background-color: #FFF5F8; margin: 0; padding: 0; }
+        .bg-primary { background-color: #FF2D55 !important; }
+        .bg-red-600 { background-color: #dc2626 !important; }
+        .fixed { position: fixed; }
+        .top-0 { top: 0; }
+        .top-8 { top: 2rem; }
+        .w-full { width: 100%; }
+        .z-\[200\] { z-index: 200; }
+        .h-8 { height: 2rem; }
+        .h-10 { height: 2.5rem; }
+        .text-white { color: #ffffff !important; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .text-center { text-align: center; }
+    </style>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -42,6 +48,10 @@
             }
         }
     </script>
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Meta Pixel Code -->
     <script>
@@ -65,9 +75,6 @@
     });
     </script>
     <!-- End Meta Pixel Code -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
     <style>
         :root {
@@ -192,7 +199,7 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
-                    <i data-lucide="sparkles"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
                 </div>
                 <span class="text-2xl font-serif font-black tracking-tight uppercase">GLAMOUR & GRACE</span>
             </a>
@@ -220,19 +227,19 @@
                         <div class="space-y-4">
                             <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
                                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
-                                    <i data-lucide="alert-triangle" size="20"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alert-triangle"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
                                 </div>
                                 <p class="font-bold text-sm">Sagging Jowls & Double Chin</p>
                             </div>
                             <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
                                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
-                                    <i data-lucide="clock" size="20"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                                 </div>
                                 <p class="font-bold text-sm">Morning Puffiness that lingers all day</p>
                             </div>
                             <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
                                 <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-primary shadow-sm">
-                                    <i data-lucide="eye-off" size="20"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off"><path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" x2="22" y1="2" y2="22"/></svg>
                                 </div>
                                 <p class="font-bold text-sm">Dull, "tired-looking" complexion</p>
                             </div>
@@ -243,7 +250,7 @@
                     </div>
                     <div class="relative">
                         <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3]">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" fetchpriority="high" width="800" height="600" class="w-full h-full object-cover" alt="V-Lift Pro™ Massage">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" fetchpriority="high" width="600" height="450" class="w-full h-full object-cover" alt="V-Lift Pro™ Massage" decoding="async">
                         </div>
                         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px] animate-bounce">
                             <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">The Goal</p>
@@ -459,8 +466,8 @@
 
                 <div class="grid md:grid-cols-1 gap-8 max-w-2xl mx-auto">
                     <div class="rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white bg-white min-h-[300px]">
-                        <video autoplay loop muted playsinline class="w-full h-full object-cover">
-                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1775915537/ezgif-773cf5b75e789cef_he0lro.mp4" type="video/mp4">
+                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto,w_600/v1775915537/ezgif-773cf5b75e789cef_he0lro.mp4" type="video/mp4">
                         </video>
                         <div class="p-6 text-center">
                             <p class="font-black text-sm uppercase tracking-widest text-primary">Instant Lifting Effect</p>
@@ -1037,7 +1044,7 @@
                     <!-- Steamer Upsell -->
                     <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_600/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                         </div>
                         <div class="space-y-4">
                             <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
