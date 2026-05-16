@@ -543,9 +543,12 @@
     <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
-        (function() {
-            emailjs.init("_h1UzYlyePtWt0IqM");
-        })();
+        // Initialize EmailJS safely
+        window.addEventListener('load', function() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("_h1UzYlyePtWt0IqM");
+            }
+        });
     </script>
 
     <script>
@@ -688,38 +691,43 @@
 
             try {
                 if (typeof emailjs !== 'undefined') {
-                    emailjs.send("service_gxhivxk", "template_239s5yz", {
-                        to_name: "Glamour & Grace",
-                        from_name: data.name,
-                        customer_name: data.name,
-                        customerName: data.name,
-                        customer: data.name,
-                        name: data.name,
-                        full_name: data.name,
-                        user_name: data.name,
-                        userName: data.name,
-                        contact_name: data.name,
-                        client_name: data.name,
-                        message: msg,
-                        customer_phone: data.phone,
-                        phone: data.phone,
-                        customer_address: data.address,
-                        address: data.address,
-                        location: data.state,
-                        state: data.state,
-                        city: data.state,
-                        user_city: data.state,
-                        customer_state: data.state,
-                        customer_city: data.state,
-                        Area: data.state,
-                        product_name: "Ultrasonic Pore Vacuum™",
-                        product: "Ultrasonic Pore Vacuum™",
-                        total_amount: totalStr,
-                        total: totalStr,
-                        payment_method: "Pay on Delivery (Lagos)",
-                        date: timestamp,
-                        whatsapp_link: waLink,
-                    }).then(() => console.log("Email sent")).catch(e => console.error("Email failed", e));
+                    try {
+                        await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                            to_name: "Glamour & Grace",
+                            from_name: data.name,
+                            customer_name: data.name,
+                            customerName: data.name,
+                            customer: data.name,
+                            name: data.name,
+                            full_name: data.name,
+                            user_name: data.name,
+                            userName: data.name,
+                            contact_name: data.name,
+                            client_name: data.name,
+                            message: msg,
+                            customer_phone: data.phone,
+                            phone: data.phone,
+                            customer_address: data.address,
+                            address: data.address,
+                            location: data.state,
+                            state: data.state,
+                            city: data.state,
+                            user_city: data.state,
+                            customer_state: data.state,
+                            customer_city: data.state,
+                            Area: data.state,
+                            product_name: "Ultrasonic Pore Vacuum™",
+                            product: "Ultrasonic Pore Vacuum™",
+                            total_amount: totalStr,
+                            total: totalStr,
+                            payment_method: "Pay on Delivery (Lagos)",
+                            date: timestamp,
+                            whatsapp_link: waLink,
+                        });
+                        console.log("Email sent successfully");
+                    } catch (emailError) {
+                        console.error("Email sending failed:", emailError);
+                    }
                 }
                 
                 // Continue progress regardless

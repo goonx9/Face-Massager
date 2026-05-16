@@ -961,32 +961,37 @@
                                    `📅 DATE: ${timestamp}`;
 
                 if (typeof emailjs !== 'undefined') {
-                    emailjs.send("service_gxhivxk", "template_239s5yz", {
-                        to_name: "Glamour & Grace",
-                        from_name: data.name,
-                        customer_name: data.name,
-                        customerName: data.name,
-                        customer: data.name,
-                        name: data.name,
-                        full_name: data.name,
-                        message: fullMessage,
-                        customer_phone: data.phone,
-                        phone: data.phone,
-                        customer_address: data.address,
-                        address: data.address,
-                        location: data.location,
-                        state: data.location,
-                        city: data.city || data.location,
-                        customer_state: data.location,
-                        customer_city: data.city || data.location,
-                        product_name: "Pro-Run™ Smart Treadmill",
-                        product: "Pro-Run™ Smart Treadmill",
-                        total_amount: total,
-                        total: total,
-                        payment_method: paymentType,
-                        date: timestamp,
-                        whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
-                    }).catch(e => console.error("Email failed:", e));
+                    try {
+                        await emailjs.send("service_gxhivxk", "template_239s5yz", {
+                            to_name: "Glamour & Grace",
+                            from_name: data.name,
+                            customer_name: data.name,
+                            customerName: data.name,
+                            customer: data.name,
+                            name: data.name,
+                            full_name: data.name,
+                            message: fullMessage,
+                            customer_phone: data.phone,
+                            phone: data.phone,
+                            customer_address: data.address,
+                            address: data.address,
+                            location: data.location,
+                            state: data.location,
+                            city: data.city || data.location,
+                            customer_state: data.location,
+                            customer_city: data.city || data.location,
+                            product_name: "Pro-Run™ Smart Treadmill",
+                            product: "Pro-Run™ Smart Treadmill",
+                            total_amount: total,
+                            total: total,
+                            payment_method: paymentType,
+                            date: timestamp,
+                            whatsapp_link: `https://wa.me/${data.phone.replace(/\D/g, '').startsWith('0') ? '234' + data.phone.replace(/\D/g, '').substring(1) : data.phone.replace(/\D/g, '')}`
+                        });
+                        console.log("Email sent successfully");
+                    } catch (emailError) {
+                        console.error("Email delivery failed:", emailError);
+                    }
                 }
 
                 await updateProgress(85, "Allocating Logistics...");
