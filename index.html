@@ -55,7 +55,10 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '4029546293858823');
-        fbq('track', 'PageView');
+        if (!sessionStorage.getItem('fb_pageview_index')) {
+            sessionStorage.setItem('fb_pageview_index', 'true');
+            fbq('track', 'PageView');
+        }
     });
     </script>
     <!-- End Meta Pixel Code -->
@@ -294,7 +297,7 @@
                     <div class="p-10">
                         <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">Glamour & Grace Face Massage Lifter</h3>
                         <div class="flex items-center gap-3 mb-8">
-                            <span class="text-2xl font-black text-pink-600">₦31,500</span>
+                            <span class="text-2xl font-black text-pink-600">₦29,500</span>
                             <span class="text-sm line-through opacity-40 font-bold">₦55,000</span>
                         </div>
                         <a href="v-lift.html" class="block">
@@ -304,49 +307,7 @@
                         </a>
                     </div>
                 </div>
-                <!-- Product Card 2 -->
-                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_600/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano-Ionic Facial Steamer" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" width="600" height="750">
-                        <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
-                            New Arrival
-                        </div>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">PureSteam™ Nano-Ionic</h3>
-                        <div class="flex items-center gap-3 mb-8">
-                            <span class="text-2xl font-black text-pink-600">₦32,000</span>
-                            <span class="text-sm line-through opacity-40 font-bold">₦43,800</span>
-                        </div>
-                        <a href="steamer.html" class="block">
-                            <button class="w-full px-10 py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] bg-primary text-white">
-                                Explore Results
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_600/v1773945692/Electric_Ultrasonic_Ion_Skin_Scrubber_Face_Spatula_for_SkinCare_Blackhead_Removal_Facial_Cleansing_a7rkua.jpg" alt="Ultrasonic Glow Spatula" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" width="600" height="750">
-                        <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
-                            Essential
-                        </div>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">Ultrasonic Glow Spatula™</h3>
-                        <div class="flex items-center gap-3 mb-8">
-                            <span class="text-2xl font-black text-pink-600">₦36,500</span>
-                            <span class="text-sm line-through opacity-40 font-bold">₦48,000</span>
-                        </div>
-                        <a href="spatula.html" class="block">
-                            <button class="w-full px-10 py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] bg-primary text-white">
-                                Explore Results
-                            </button>
-                        </a>
-                    </div>
-                </div>
-                <!-- Product Card: Pore Vacuum (NEW) -->
+                <!-- Product Card: Pore Vacuum -->
                 <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
                         <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png">
@@ -376,30 +337,6 @@
                                 <i data-lucide="arrow-right" size="20"></i>
                             </a>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Product Card: Home Fitness Treadmill -->
-                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
-                    <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
-                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1777627798/202605011006_1_fcdio1.jpg">
-                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto,f_auto/v1777627798/202605011006_1_fcdio1.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
-                            New Category
-                        </div>
-                    </div>
-                    <div class="p-10">
-                        <h3 class="text-2xl font-serif font-black mb-2 text-pink-900">Pro-Run™ Smart Treadmill</h3>
-                        <div class="flex items-center gap-3 mb-8">
-                            <span class="text-2xl font-black text-pink-600">₦306,000</span>
-                            <span class="text-sm line-through opacity-40 font-bold">₦450,000</span>
-                        </div>
-                        <a href="treadmill.html" class="block">
-                            <button class="w-full px-10 py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-3 uppercase tracking-[0.2em] text-[10px] bg-primary text-white">
-                                Explore Fitness
-                            </button>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -508,7 +445,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"I was skeptical about the LED mask but after 2 weeks, my acne scars are actually fading. It's so easy to use while reading."</p>
+                    <p class="font-medium opacity-70 leading-relaxed italic">"I was skeptical about the invisible bra but it is incredibly secure, comfortable, and perfect for all my backless and off-shoulder outfits. A total lifesaver!"</p>
                 </div>
                 <!-- Review 3 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
@@ -524,7 +461,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"The spatula is my favorite. It gets everything out of my pores without the pain of manual extractions. My skin feels so smooth."</p>
+                    <p class="font-medium opacity-70 leading-relaxed italic">"The pore vacuum is my favorite. It gets everything out of my skin without any pain of manual extraction. My face feels clean and smooth!"</p>
                 </div>
                 <!-- Review 4 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
@@ -556,7 +493,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"Finally found a brand that understands Nigerian skin. The facial steamer is so relaxing, it feels like a spa at home."</p>
+                    <p class="font-medium opacity-70 leading-relaxed italic">"Finally found a brand that understands Nigerian skin. The V-Lift face massager is so relaxing and really defines my jawline!"</p>
                 </div>
                 <!-- Review 6 -->
                 <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
@@ -674,7 +611,7 @@
         // Shared Order Notification Logic
         const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi", "Ibrahim", "Mustapha", "Nnamdi", "Chioma", "Efe", "Tega", "Omoni", "Rita", "Mercy", "Sandra", "Joy", "Patience", "Grace", "Faith", "Hope", "Love", "Peace", "Victor", "Samuel", "David", "Daniel", "Joseph", "Mary", "Martha", "Tunde", "Segun", "Kunle", "Femi", "Yemi", "Wale", "Leke", "Deji", "Bayo", "Sola", "Bukky", "Ronke", "Yinka", "Toyin", "Bose", "Moji", "Nike", "Seyi", "Dayo", "Lola", "Titi", "Kofo", "Dupe", "Remi", "Shola", "Gboyega", "Kayode", "Jide", "Lekan", "Biodun", "Abiodun", "Olu", "Fola", "Bisi", "Tayò", "Idowu", "Alaba", "Kehinde", "Taiwo", "Zubairu", "Musa", "Usman", "Abubakar", "Sani", "Bello", "Garba", "Aminu", "Yakubu", "Inuwa", "Danjuma", "Shehu"];
         const states = ["Lagos", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Festac", "Maryland", "Ikoyi", "Gbagada", "Yaba", "Magodo", "Amuwo Odofin", "Badagry"];
-        const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "Ultrasonic Pore Vacuum™"];
+        const prods = ["Glamour & Grace Face Massage Lifter", "Invisible Push Up Bra", "Ultrasonic Pore Vacuum™"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');

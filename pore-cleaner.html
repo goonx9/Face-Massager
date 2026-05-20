@@ -15,6 +15,41 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Deferred Meta Pixel Code with Session Deduplication -->
+    <script>
+    window.addEventListener('load', function() {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '4029546293858823');
+        
+        // Single PageView per page load
+        if (!sessionStorage.getItem('fb_pageview_porecleaner')) {
+            sessionStorage.setItem('fb_pageview_porecleaner', 'true');
+            fbq('track', 'PageView');
+        }
+        
+        // Single ViewContent per session
+        if (!sessionStorage.getItem('fb_viewcontent_porecleaner')) {
+            sessionStorage.setItem('fb_viewcontent_porecleaner', 'true');
+            fbq('track', 'ViewContent', {
+                content_name: 'Ultrasonic Pore Vacuum™',
+                content_category: 'Skincare Tech',
+                content_ids: ['porecleaner_001'],
+                content_type: 'product',
+                value: 18000,
+                currency: 'NGN'
+            });
+        }
+    });
+    </script>
+    <!-- End Meta Pixel Code -->
     <style>
         :root { --primary: #ec4899; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
@@ -476,7 +511,7 @@
             <div class="max-w-4xl mx-auto text-center space-y-6">
                 <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Complete Your Routine</p>
                 <h3 class="text-2xl font-serif font-black italic">Customers also love</h3>
-                <div class="flex justify-center">
+                <div class="flex flex-wrap justify-center gap-6">
                     <a href="v-lift.html" class="group flex items-center gap-4 bg-pink-50 hover:bg-primary hover:text-white px-8 py-4 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1">
                         <div class="w-12 h-12 rounded-xl overflow-hidden bg-white">
                             <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg" alt="V-Lift" width="48" height="48" class="w-full h-full object-cover" loading="lazy">
@@ -484,6 +519,17 @@
                         <div class="text-left">
                             <p class="text-xs font-black uppercase tracking-widest">V-Lift Pro™</p>
                             <p class="text-[10px] opacity-60 font-bold">Face Massage Lifter</p>
+                        </div>
+                        <i data-lucide="arrow-right" size="16" class="ml-4 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+
+                    <a href="bra.html" class="group flex items-center gap-4 bg-pink-50 hover:bg-primary hover:text-white px-8 py-4 rounded-2xl transition-all duration-500 shadow-sm hover:shadow-xl hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl overflow-hidden bg-white">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg" alt="Invisible Bra" width="48" height="48" class="w-full h-full object-cover" loading="lazy">
+                        </div>
+                        <div class="text-left">
+                            <p class="text-xs font-black uppercase tracking-widest">Invisible Push Up Bra</p>
+                            <p class="text-[10px] opacity-60 font-bold">Lingerie Essential</p>
                         </div>
                         <i data-lucide="arrow-right" size="16" class="ml-4 transform group-hover:translate-x-1 transition-transform"></i>
                     </a>
@@ -627,7 +673,7 @@
         // Notifications
         const names = ["Ada", "Tobi", "Chinelo", "Folake", "Emeka", "Aisha", "Blessing", "Kwam", "Chidi", "Zainab", "Obinna", "Funke", "Ngozi", "Amaka", "Bolu", "Ifeanyi", "Nneka", "Yusuf", "Kelechi", "Sade", "Chiamaka", "Damilola", "Uche", "Bisi", "Kemi"];
         const statesList = ["Lagos Island", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Maryland", "Ikoyi", "Yaba"];
-        const productsList = ["Ultrasonic Pore Vacuum™", "Glamour & Grace Massage Lifter", "PureSteam™ Steamer", "Ultrasonic Glow Spatula™", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "7-Color LED Therapy Mask"];
+        const productsList = ["Ultrasonic Pore Vacuum™", "Glamour & Grace Face Massage Lifter", "Invisible Push Up Bra"];
 
         function triggerNotif() {
             const el = document.getElementById('order-notification');
@@ -660,6 +706,19 @@
             
             const finalTotal = updateSummary();
             const totalStr = `₦${finalTotal.toLocaleString()}`;
+
+            // Track InitiateCheckout with session storage deduplication
+            if (typeof fbq !== 'undefined') {
+                const icKey = `fb_ic_porecleaner_${finalTotal}`;
+                if (!sessionStorage.getItem(icKey)) {
+                    sessionStorage.setItem(icKey, 'true');
+                    fbq('track', 'InitiateCheckout', {
+                        content_name: 'Ultrasonic Pore Vacuum™',
+                        value: finalTotal,
+                        currency: 'NGN'
+                    });
+                }
+            }
 
             btn.disabled = true;
             modal.style.display = 'flex';

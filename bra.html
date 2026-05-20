@@ -44,15 +44,21 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '4029546293858823');
-        fbq('track', 'PageView');
-        fbq('track', 'ViewContent', {
-            content_name: 'Invisible Push Up Bra',
-            content_category: 'Apparel',
-            content_ids: ['bra_001'],
-            content_type: 'product',
-            value: 18000,
-            currency: 'NGN'
-        });
+        if (!sessionStorage.getItem('fb_pageview_bra')) {
+            sessionStorage.setItem('fb_pageview_bra', 'true');
+            fbq('track', 'PageView');
+        }
+        if (!sessionStorage.getItem('fb_viewcontent_bra')) {
+            sessionStorage.setItem('fb_viewcontent_bra', 'true');
+            fbq('track', 'ViewContent', {
+                content_name: 'Invisible Push Up Bra',
+                content_category: 'Apparel',
+                content_ids: ['bra_001'],
+                content_type: 'product',
+                value: 18000,
+                currency: 'NGN'
+            });
+        }
     });
     </script>
     <!-- End Meta Pixel Code -->
@@ -187,10 +193,10 @@
                     <div class="space-y-8">
                         <span class="inline-block px-4 py-1 rounded-full bg-red-50 text-red-600 font-black text-[10px] tracking-widest uppercase">The Invisible Lift</span>
                         <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950">
-                            The Only Bra You'll <span class="text-primary italic">Never See</span> but Always Feel.
+                            The Secret to <span class="text-primary italic">Perfect Curves</span> in Every Outfit.
                         </h2>
                         <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-medium">
-                            Say goodbye to visible straps and uncomfortable underwires. Perfect for backless, strapless, and low-cut outfits.
+                            Finally, the freedom to wear anything. No straps, no wires, just a flawless lift that stays secure from morning till night.
                         </p>
                         <div class="space-y-4">
                             <div class="flex items-center gap-4 p-4 bg-pink-50/50 rounded-2xl border border-pink-100">
@@ -278,11 +284,18 @@
                 <div class="flex flex-col justify-center">
                     <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase mb-6 inline-block w-fit">New Arrival</span>
                     <h1 class="text-6xl font-serif font-black mb-4">Invisible Push Up Bra</h1>
-                    <div class="mb-6">
-                        <span class="text-5xl font-black mr-4 text-primary">₦18,000</span>
+                    <div class="mb-6 flex items-baseline gap-4">
+                        <span class="text-5xl font-black text-primary">₦18,000</span>
                         <span class="text-2xl line-through opacity-40 font-bold">₦28,000</span>
+                        <span class="bg-red-100 text-red-600 px-3 py-1 rounded-lg text-[10px] font-black uppercase">Save ₦10,000</span>
                     </div>
                     
+                    <!-- Urgency -->
+                    <div class="mb-8 p-4 bg-orange-50 border border-orange-100 rounded-2xl flex items-center gap-3">
+                        <div class="w-2 h-2 bg-orange-500 rounded-full animate-ping"></div>
+                        <p class="text-[11px] font-black text-orange-800 uppercase tracking-wider">High Demand: Only 14 pairs left for today's shipping</p>
+                    </div>
+
                     <!-- Offer Badges -->
                     <div class="flex flex-wrap gap-3 mb-10">
                         <div class="flex items-center gap-2 px-4 py-2 bg-red-50 text-red-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-red-100">
@@ -291,8 +304,11 @@
                         <div class="flex items-center gap-2 px-4 py-2 bg-green-50 text-green-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
                             <i data-lucide="truck" size="14"></i> Free Delivery Included
                         </div>
-                        <div class="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-blue-100">
-                            <i data-lucide="waves" size="14"></i> Waterproof
+                        <div class="flex items-center gap-2 px-4 py-2 bg-purple-50 text-purple-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-purple-100">
+                            <i data-lucide="shield-check" size="14"></i> Bio-Silicone Skin Safe
+                        </div>
+                        <div class="flex items-center gap-2 px-4 py-2 bg-yellow-50 text-yellow-700 rounded-full text-[10px] font-black uppercase tracking-widest border border-yellow-100">
+                            <i data-lucide="award" size="14"></i> #1 Choice in Nigeria
                         </div>
                     </div>
 
@@ -305,13 +321,195 @@
             </div>
         </section>
 
+        <!-- Benefits & Unboxing Section -->
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-pink-50/20 border-t border-pink-100/50">
+            <div class="max-w-6xl mx-auto space-y-20">
+                
+                <!-- Tabular Benefits Comparison -->
+                <div class="space-y-12">
+                    <div class="text-center max-w-3xl mx-auto space-y-4">
+                        <span class="inline-block px-4 py-1 rounded-full bg-pink-100 text-primary font-black text-[10px] tracking-widest uppercase">The Comparison</span>
+                        <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-950 leading-tight">
+                            Why Glamour & Grace Outperforms <br><span class="italic text-primary">Traditional Bras.</span>
+                        </h2>
+                        <p class="text-gray-600 font-medium">
+                            No slipping down, no painful underwires, and zero awkward plastic straps. See how our unique draw-toggle bio-silicone bra compares.
+                        </p>
+                    </div>
+
+                    <!-- Responsive Table Container -->
+                    <div class="bg-white rounded-[3rem] border border-pink-100 shadow-2xl overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-pink-950 text-white">
+                                        <th class="p-8 font-serif text-lg font-black tracking-wide">Key Benefits & Features</th>
+                                        <th class="p-8 bg-primary text-center font-serif text-lg font-black tracking-wide border-x border-pink-905 text-white">
+                                            Glamour & Grace
+                                        </th>
+                                        <th class="p-8 text-center opacity-85 font-medium text-sm text-white/80">Typical Strapless Bra</th>
+                                        <th class="p-8 text-center opacity-85 font-medium text-sm text-white/80">Clear Strap Bra</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-pink-50 font-bold text-sm text-pink-950">
+                                    <tr class="hover:bg-pink-50/30 transition-colors">
+                                        <td class="p-8">
+                                            <div class="font-black text-base text-pink-950 mb-1">100% Invisible Back & Side Profile</div>
+                                            <div class="text-[11px] text-gray-400 font-normal">Completely backless design suited for deep necklines & open back dresses</div>
+                                        </td>
+                                        <td class="p-8 text-center bg-primary/5 border-x border-pink-100/50">
+                                            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                            </div>
+                                        </td>
+                                        <td class="p-8 text-center text-red-500 font-semibold">Ruined by back strap</td>
+                                        <td class="p-8 text-center text-red-500 font-semibold">Highly visible plastic strap</td>
+                                    </tr>
+
+                                    <tr class="hover:bg-pink-50/30 transition-colors">
+                                        <td class="p-8">
+                                            <div class="font-black text-base text-pink-950 mb-1">Instant Lift & Cleavage Adjustment</div>
+                                            <div class="text-[11px] text-gray-400 font-normal">Our proprietary draw-string system lets you control your dramatic cleavage</div>
+                                        </td>
+                                        <td class="p-8 text-center bg-primary/5 border-x border-pink-100/50">
+                                            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                            </div>
+                                        </td>
+                                        <td class="p-8 text-center text-gray-400 font-normal">Fixed padding only</td>
+                                        <td class="p-8 text-center text-gray-400 font-normal">None (flat visual profile)</td>
+                                    </tr>
+
+                                    <tr class="hover:bg-pink-50/30 transition-colors">
+                                        <td class="p-8">
+                                            <div class="font-black text-base text-pink-950 mb-1">Pain-Free & Zero Pressure Points</div>
+                                            <div class="text-[11px] text-gray-400 font-normal">Ergonomic underwire-free construction avoids red rib marks</div>
+                                        </td>
+                                        <td class="p-8 text-center bg-primary/5 border-x border-pink-100/50">
+                                            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                            </div>
+                                        </td>
+                                        <td class="p-8 text-center text-red-500 font-semibold">Tights digging on sides</td>
+                                        <td class="p-8 text-center text-red-500 font-semibold">Plastic straps pinch neck & shoulders</td>
+                                    </tr>
+
+                                    <tr class="hover:bg-pink-50/30 transition-colors">
+                                        <td class="p-8">
+                                            <div class="font-black text-base text-pink-950 mb-1">Smart Bio-Silicone Adhesive Grip</div>
+                                            <div class="text-[11px] text-gray-400 font-normal">Stays incredibly sticky through intense dancing, sweat, and warm weather</div>
+                                        </td>
+                                        <td class="p-8 text-center bg-primary/5 border-x border-pink-100/50">
+                                            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-green-100 text-green-600">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><path d="M20 6 9 17l-5-5"/></svg>
+                                            </div>
+                                        </td>
+                                        <td class="p-8 text-center text-red-500 font-semibold">Continually slips under breast</td>
+                                        <td class="p-8 text-center text-gray-400 font-normal">Slips without strap tension</td>
+                                    </tr>
+
+                                    <tr class="hover:bg-pink-50/30 transition-colors">
+                                        <td class="p-8">
+                                            <div class="font-black text-base text-pink-950 mb-1">Durability & Reusability Lifecycle</div>
+                                            <div class="text-[11px] text-gray-400 font-normal">Average times you can wash and wear comfortably</div>
+                                        </td>
+                                        <td class="p-8 text-center bg-primary/5 border-x border-pink-100/50 font-black text-primary text-base">
+                                            Up to 100+ Times
+                                        </td>
+                                        <td class="p-8 text-center text-gray-400 font-normal">30-40 wears before stretch</td>
+                                        <td class="p-8 text-center text-red-500 font-semibold">Straps turn yellow & break</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- what's in the box Section -->
+                <div class="space-y-12 pt-12 border-t border-pink-100/50">
+                    <div class="text-center max-w-3xl mx-auto space-y-4">
+                        <span class="inline-block px-4 py-1 rounded-full bg-pink-100 text-primary font-black text-[10px] tracking-widest uppercase">Unboxing</span>
+                        <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-950 leading-tight">
+                            What's Included <span class="italic text-primary">In Your Box?</span>
+                        </h2>
+                        <p class="text-gray-600 font-medium">
+                            Designed to preserve the lifespan of your silicone adhesive. Unbox a set engineered to remain perfect for years of wear.
+                        </p>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+                        <!-- Box Item 1 -->
+                        <div class="bg-white rounded-3xl p-6 border border-pink-50 shadow-lg text-center space-y-4 group hover:-translate-y-1 transition-transform">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-50 text-primary flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"/><path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5.5Z"/><path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1Z"/></svg>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-serif font-black text-lg text-pink-950">Invisible Bra</h4>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Premium Pair</p>
+                            </div>
+                            <p class="text-[11px] text-gray-400 font-normal">Selected size in ultra-lightweight, seamless skin-toned contouring fabric.</p>
+                        </div>
+
+                        <!-- Box Item 2 -->
+                        <div class="bg-white rounded-3xl p-6 border border-pink-50 shadow-lg text-center space-y-4 group hover:-translate-y-1 transition-transform">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-50 text-primary flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-serif font-black text-lg text-pink-950">Rigid Gift Box</h4>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Magnetic Lock</p>
+                            </div>
+                            <p class="text-[11px] text-gray-400 font-normal">Signature hard box specifically shaped to prevent cup deformation during storage.</p>
+                        </div>
+
+                        <!-- Box Item 3 -->
+                        <div class="bg-white rounded-3xl p-6 border border-pink-50 shadow-lg text-center space-y-4 group hover:-translate-y-1 transition-transform">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-50 text-primary flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-serif font-black text-lg text-pink-950">Dust Shields</h4>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Left & Right</p>
+                            </div>
+                            <p class="text-[11px] text-gray-400 font-normal">Re-applicable clear protective liners to keep dirt and lint off active bio-silicone.</p>
+                        </div>
+
+                        <!-- Box Item 4 -->
+                        <div class="bg-white rounded-3xl p-6 border border-pink-50 shadow-lg text-center space-y-4 group hover:-translate-y-1 transition-transform">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-50 text-primary flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-serif font-black text-lg text-pink-950">Cleavage Guide</h4>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Angle & Pull</p>
+                            </div>
+                            <p class="text-[11px] text-gray-400 font-normal">Visual booklet with pro styling angles for backless, plunge, and sweetheart wear.</p>
+                        </div>
+
+                        <!-- Box Item 5 -->
+                        <div class="bg-white rounded-3xl p-6 border border-pink-50 shadow-lg text-center space-y-4 group hover:-translate-y-1 transition-transform">
+                            <div class="w-16 h-16 rounded-2xl bg-pink-50 text-primary flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-heart-handshake"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l1.1 1a1.9 1.9 0 0 1 0 2.8l-1 .9a1.9 1.9 0 0 1-2.83 0l-1.9-1.9a2.1 2.1 0 0 0-2.8 0L9 15"/></svg>
+                            </div>
+                            <div class="space-y-1">
+                                <h4 class="font-serif font-black text-lg text-pink-950">Care Card</h4>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Wash Support</p>
+                            </div>
+                            <p class="text-[11px] text-gray-400 font-normal">Cleaning instructions to maximize adhesive stickiness wear after wear.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
         <!-- Section: Tiered Offers -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16 space-y-8">
                     <div class="space-y-4">
-                        <h2 class="text-4xl md:text-6xl font-serif font-black text-pink-900">Choose Your <span class="text-primary italic">Perfect Fit.</span></h2>
-                        <p class="font-black opacity-60 uppercase text-[10px] tracking-[0.4em]">Bundle & Save up to ₦6,000 Today</p>
+                        <h2 class="text-4xl md:text-6xl font-serif font-black text-pink-900">Choose Your <span class="text-primary italic">Confidence level.</span></h2>
+                        <p class="font-black opacity-60 uppercase text-[10px] tracking-[0.4em]">The more you lift, the more you save</p>
                     </div>
 
                     <!-- Size Filter -->
@@ -332,8 +530,8 @@
                             </video>
                         </div>
                         <div class="space-y-2 mb-6">
-                            <h3 class="text-2xl font-serif font-black">Single Pack</h3>
-                            <p class="text-xs font-black uppercase tracking-widest opacity-40">The Essential Lift</p>
+                            <h3 class="text-2xl font-serif font-black">Lingerie Essential</h3>
+                            <p class="text-xs font-black uppercase tracking-widest opacity-40">1 Single Pair</p>
                         </div>
                         <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦18,000</span>
@@ -359,9 +557,9 @@
                                 <p class="text-[10px] font-black text-primary uppercase">2-Pair Bundle</p>
                             </div>
                         </div>
-                        <div class="space-y-2 mb-4">
-                            <h3 class="text-2xl font-serif font-black">Duo Pack</h3>
-                            <p class="text-xs font-black uppercase tracking-widest text-primary">The Ultimate Value</p>
+                        <div class="space-y-2 mb-4 text-center">
+                            <h3 class="text-2xl font-serif font-black">The "Glamour Goddess" Duo</h3>
+                            <p class="text-xs font-black uppercase tracking-widest text-primary">Best for Backless & Strapless</p>
                         </div>
                         <div class="flex items-center gap-3 mb-6">
                             <span class="text-3xl font-black text-primary">₦30,000</span>
@@ -590,23 +788,23 @@
                             <h3 class="text-2xl font-serif font-black">Glamour & Grace Massage Lifter</h3>
                             <p class="text-sm opacity-60 leading-relaxed">The viral V-Lift tool for a sculpted, snatched face in 5 minutes a day.</p>
                             <div class="flex items-center justify-between pt-4">
-                                <span class="text-xl font-black text-primary">₦31,500</span>
+                                <span class="text-xl font-black text-primary">₦29,500</span>
                                 <a href="v-lift.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Steamer Upsell -->
+                    <!-- Pore Vacuum Upsell -->
                     <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                         <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano Steamer" width="800" height="800" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_500/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png" alt="Ultrasonic Pore Vacuum" width="500" height="500" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy">
                         </div>
                         <div class="space-y-4">
-                            <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
-                            <p class="text-sm opacity-60 leading-relaxed">Deeply hydrates and opens pores for 10x better serum absorption.</p>
+                            <h3 class="text-2xl font-serif font-black">Ultrasonic Pore Vacuum™</h3>
+                            <p class="text-sm opacity-60 leading-relaxed">The professional-grade blackhead & pimple remover vac for clear, smooth skin.</p>
                             <div class="flex items-center justify-between pt-4">
-                                <span class="text-xl font-black text-primary">₦32,000</span>
-                                <a href="steamer.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
+                                <span class="text-xl font-black text-primary">₦18,000</span>
+                                <a href="pore-cleaner.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">View Product</a>
                             </div>
                         </div>
                     </div>
@@ -656,7 +854,7 @@
             const txt = document.getElementById('notif-text');
             const names = ['Ada', 'Fatima', 'Chioma', 'Nneka', 'Blessing', 'Aisha', 'Funke', 'Zainab', 'Esther', 'Mary', 'Titi', 'Ronke', 'Yinka', 'Bolu', 'Tobi'];
             const states = ["Lagos Island", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Maryland", "Ikoyi", "Yaba"];
-            const prods = ["Glamour & Grace Face Massage Lifter", "PureSteam™ Nano-Ionic", "Ultrasonic Glow Spatula™", "7-Color LED Therapy Mask", "Invisible Push Up Bra", "Pro-Run™ Smart Treadmill", "Ultrasonic Pore Vacuum™"];
+            const prods = ["Glamour & Grace Face Massage Lifter", "Invisible Push Up Bra", "Ultrasonic Pore Vacuum™"];
             
             const name = names[Math.floor(Math.random() * names.length)];
             const state = states[Math.floor(Math.random() * states.length)];
@@ -863,13 +1061,17 @@
             }, 200);
 
             try {
-                // Track InitiateCheckout
+                // Track InitiateCheckout with session storage deduplication
                 if (typeof fbq !== 'undefined') {
-                    fbq('track', 'InitiateCheckout', {
-                        content_name: productNameValue,
-                        value: totalPrice,
-                        currency: 'NGN'
-                    });
+                    const icKey = `fb_ic_bra_${totalPrice}`;
+                    if (!sessionStorage.getItem(icKey)) {
+                        sessionStorage.setItem(icKey, 'true');
+                        fbq('track', 'InitiateCheckout', {
+                            content_name: productNameValue,
+                            value: totalPrice,
+                            currency: 'NGN'
+                        });
+                    }
                 }
                 
                 // Send Email via EmailJS

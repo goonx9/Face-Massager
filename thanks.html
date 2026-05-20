@@ -25,10 +25,29 @@
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '4029546293858823');
-    fbq('track', 'PageView');
+    
+    if (!sessionStorage.getItem('fb_pageview_thanks')) {
+        sessionStorage.setItem('fb_pageview_thanks', 'true');
+        fbq('track', 'PageView');
+    }
     
     const urlParams = new URLSearchParams(window.location.search);
     const price = urlParams.get('p') || '0';
+    const customerName = urlParams.get('n') || '';
+    const productName = urlParams.get('pn') || '';
+
+    // Fire Purchase IMMEDIATELY on first landing on thanks.html (once per order)
+    if (price && parseFloat(price) > 0) {
+        const orderKey = `fb_purchase_fired_${price}_${customerName}_${productName}`;
+        if (!sessionStorage.getItem(orderKey)) {
+            sessionStorage.setItem(orderKey, 'true');
+            fbq('track', 'Purchase', {
+                value: parseFloat(price),
+                currency: 'NGN',
+                content_name: productName
+            });
+        }
+    }
     </script>
     <!-- End Meta Pixel Code -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -115,29 +134,29 @@
                 <!-- V-Lift Upsell -->
                 <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                     <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_500/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
                     <div class="space-y-4">
                         <h3 class="text-2xl font-serif font-black">V-Lift Pro™ Massage</h3>
                         <p class="text-sm opacity-60 leading-relaxed">The viral tool for a sculpted, snatched face in minutes.</p>
                         <div class="flex items-center justify-between pt-4">
-                            <span class="text-xl font-black text-primary">₦31,500</span>
+                            <span class="text-xl font-black text-primary">₦29,500</span>
                             <a href="v-lift.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Steamer Upsell -->
+                <!-- Pore Vacuum Upsell -->
                 <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
                     <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1775921287/ezgif-54a2f5d9b3a00319_keocod.jpg" alt="Nano Steamer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_500/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png" alt="Ultrasonic Pore Vacuum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                     </div>
                     <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-black">PureSteam™ nano-ionic</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">Deeply hydrates and opens pores for 10x better results.</p>
+                        <h3 class="text-2xl font-serif font-black">Ultrasonic Pore Vacuum™</h3>
+                        <p class="text-sm opacity-60 leading-relaxed">The professional-grade blackhead & pimple remover vac for clear, smooth skin.</p>
                         <div class="flex items-center justify-between pt-4">
-                            <span class="text-xl font-black text-primary">₦32,000</span>
-                            <a href="steamer.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
+                            <span class="text-xl font-black text-primary">₦18,000</span>
+                            <a href="pore-cleaner.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
                         </div>
                     </div>
                 </div>
@@ -168,14 +187,6 @@
         const handleRedirect = () => {
             if (purchaseFired) return;
             purchaseFired = true;
-
-            // Track Purchase on WhatsApp button click or redirect
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'Purchase', {
-                    value: parseFloat(orderPrice),
-                    currency: 'NGN'
-                });
-            }
             
             if (waLink) {
                 // Ensure the link opens properly

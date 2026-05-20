@@ -13,13 +13,9 @@ export default defineConfig(({ mode }) => {
           input: {
             main: path.resolve(__dirname, 'index.html'),
             vlift: path.resolve(__dirname, 'v-lift.html'),
-            steamer: path.resolve(__dirname, 'steamer.html'),
-            ledmask: path.resolve(__dirname, 'led-mask.html'),
-            spatula: path.resolve(__dirname, 'spatula.html'),
             thanks: path.resolve(__dirname, 'thanks.html'),
             bra: path.resolve(__dirname, 'bra.html'),
             porecleaner: path.resolve(__dirname, 'pore-cleaner.html'),
-            treadmill: path.resolve(__dirname, 'treadmill.html'),
           },
         },
       },
