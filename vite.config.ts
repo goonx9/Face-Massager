@@ -1,9 +1,13 @@
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      plugins: [
+        tailwindcss(),
+      ],
       server: {
         port: 3000,
         host: '0.0.0.0',
@@ -16,6 +20,7 @@ export default defineConfig(({ mode }) => {
             thanks: path.resolve(__dirname, 'thanks.html'),
             bra: path.resolve(__dirname, 'bra.html'),
             porecleaner: path.resolve(__dirname, 'pore-cleaner.html'),
+            shaver: path.resolve(__dirname, 'shaver.html'),
           },
         },
       },

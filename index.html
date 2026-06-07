@@ -260,7 +260,7 @@
                     <button onclick="filterMainListing('l')" class="filter-chip px-6 py-2 rounded-full border-2 border-pink-100 font-bold text-[10px] uppercase tracking-widest hover:border-primary transition-all">Large</button>
                 </div>
             </div>
-            <div id="product-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div id="product-grid" class="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-12">
                 <!-- Product Card: Invisible Push Up Bra -->
                 <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="s,m,l">
                     <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
@@ -334,6 +334,38 @@
                                 <p class="text-2xl font-black text-gray-900">₦18,000</p>
                             </div>
                             <a href="pore-cleaner.html" class="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
+                                <i data-lucide="arrow-right" size="20"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card: Lady Shaver -->
+                <div class="product-card bg-white rounded-[3rem] overflow-hidden border border-pink-100 shadow-xl group hover:-translate-y-2 transition-transform duration-300" data-sizes="onesize">
+                    <div class="relative aspect-[4/5] overflow-hidden bg-pink-50 min-h-[300px]">
+                        <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1780837406/202606071348_nphb7u.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute top-6 left-6 bg-pink-600 text-white px-4 py-1 rounded-full text-[9px] font-black tracking-widest uppercase">
+                            New Arrival
+                        </div>
+                    </div>
+                    <div class="p-8 space-y-6">
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-serif font-black italic">Smooth Precision Lady Shaver</h3>
+                            <div class="flex text-yellow-400 scale-75 origin-left">
+                                <i data-lucide="star" size="16" fill="currentColor"></i>
+                                <i data-lucide="star" size="16" fill="currentColor"></i>
+                                <i data-lucide="star" size="16" fill="currentColor"></i>
+                                <i data-lucide="star" size="16" fill="currentColor"></i>
+                                <i data-lucide="star" size="16" fill="currentColor"></i>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="space-y-1">
+                                <p class="text-[10px] uppercase font-black tracking-widest opacity-30">Painless Trimmer</p>
+                                <p class="text-2xl font-black text-gray-900">₦31,000</p>
+                            </div>
+                            <a href="shaver.html" class="w-12 h-12 bg-pink-50 rounded-full flex items-center justify-center text-pink-600 hover:bg-pink-600 hover:text-white transition-colors">
                                 <i data-lucide="arrow-right" size="20"></i>
                             </a>
                         </div>
@@ -662,7 +694,11 @@
         }
     </script>
     <style>
-        .filter-chip.active-chip { @apply bg-primary text-white border-primary; }
+        .filter-chip.active-chip {
+            background-color: #FF2D55 !important;
+            color: #ffffff !important;
+            border-color: #FF2D55 !important;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
