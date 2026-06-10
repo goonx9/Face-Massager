@@ -8,33 +8,16 @@
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
           imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w"
+                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w"
           imagesizes="(max-width: 600px) 400px, 600px"
           fetchpriority="high">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF2D55',
-                        text: '#5E002C',
-                        body: '#880E4F',
-                        background: '#FFF5F8',
-                        complement: '#F1FBF3',
-                        accent: '#F06292',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="/src/index.css">
     
     <!-- Deferred Meta Pixel Code -->
     <script>
@@ -230,10 +213,10 @@
                     </div>
                     <div class="relative">
                         <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3] relative">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
                                  srcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w,
-                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w,
-                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w"
+                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w,
+                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w"
                                  sizes="(max-width: 600px) 400px, (max-width: 1200px) 600px, 800px"
                                  fetchpriority="high" loading="eager" width="600" height="450" class="w-full h-full object-cover" alt="Invisible Push Up Bra">
                         </div>
@@ -1150,19 +1133,7 @@ level. Done in under 60 seconds.
 
         locSelect.addEventListener('change', updateSummary);
 
-        // Countdown Timer Logic
-        function startTimer(duration, display) {
-            let timer = duration, minutes, seconds;
-            setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                if (display) display.textContent = minutes + ":" + seconds;
-                if (--timer < 0) timer = duration;
-            }, 1000);
-        }
-        startTimer(60 * 30, document.querySelector('#timer-display'));
+
 
         // Exit Intent Logic
         let exitShown = sessionStorage.getItem('exitPopupShownBra') === 'true';
