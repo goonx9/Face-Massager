@@ -700,31 +700,35 @@ level. Done in under 60 seconds.
                     <!-- Bundle Tier -->
                     <div class="bg-white rounded-[3rem] p-10 border-4 border-primary shadow-2xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 scale-105 z-10 h-full">
                         <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-primary text-white px-8 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-xl whitespace-nowrap">
-                            Best Value
+                            Premium Offer
                         </div>
                         <div class="w-full aspect-square rounded-[2.5rem] overflow-hidden bg-pink-50 min-h-[250px] relative mb-6">
                             <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1776378375/download_4_1_oyyrai.jpg" width="600" height="600" loading="lazy">
-                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:eco,f_auto/v1776378375/download_4_1_oyyrai.mp4" type="video/mp4">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:eco,f_auto/v1781171997/202606111014_1_pwuw48.mp4" type="video/mp4">
                             </video>
                             <div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border border-pink-100 shadow-lg">
-                                <p class="text-[10px] font-black text-primary uppercase">2-Pair Bundle</p>
+                                <p class="text-[10px] font-black text-primary uppercase">Tape &amp; Covers Combo</p>
                             </div>
                         </div>
                         <div class="space-y-2 mb-4 text-center">
-                            <h3 class="text-2xl font-serif font-black">The "Glamour Goddess" Duo</h3>
-                            <p class="text-xs font-black uppercase tracking-widest text-primary">Best for Backless & Strapless</p>
+                            <h3 class="text-2xl font-serif font-black">The "Perfect Lift" Premium Combo</h3>
+                            <p class="text-xs font-black uppercase tracking-widest text-primary">Invisible Bra + Breast Tape &amp; Nipple Covers</p>
                         </div>
+                        <p class="text-[11px] text-gray-500 font-medium leading-relaxed mb-4 text-center px-2">
+                            Provides customized lift &amp; support for backless or plunged necklines. The 5-meter medical-grade tape is sweatproof and elastic, while silicone nipple covers guarantee smooth coverage in sheer tops.
+                        </p>
                         <div class="flex items-center gap-3 mb-6">
-                            <span class="text-3xl font-black text-primary">₦30,000</span>
-                            <span class="text-sm line-through opacity-30 font-bold">₦36,000</span>
+                            <span class="text-3xl font-black text-primary">₦28,000</span>
+                            <span class="text-sm line-through opacity-30 font-bold">₦38,000</span>
                         </div>
                         <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 2 Pairs Invisible Bra</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Choice of Sizes</li>
-                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
-                            <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦6,000 Instantly</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1 Pair Invisible Wings Bra</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1 Roll Premium Breast Lift Tape (5 Meters)</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1 Pair Reusable Silicone Nipple Covers (Free)</li>
+                            <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Express Delivery</li>
+                            <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦10,000 Instantly</li>
                         </ul>
-                        <button onclick="selectBundle('Duo', 30000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all mt-auto">Select Duo Pack</button>
+                        <button onclick="selectBundle('Premium', 28000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all mt-auto">Select Premium Combo</button>
                     </div>
                 </div>
             </div>
@@ -860,7 +864,7 @@ level. Done in under 60 seconds.
                             <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Choose Package</label>
                             <select name="package" id="packageSelect" onchange="handlePackageChange(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
                                 <option value="Single">1 Pair (₦18,000)</option>
-                                <option value="Duo">2 Pairs Duo Pack (₦30,000)</option>
+                                <option value="Premium">Bra + Tape &amp; Nipple Covers Combo (₦28,000)</option>
                             </select>
                         </div>
                     </div>
@@ -1072,7 +1076,7 @@ level. Done in under 60 seconds.
         function handlePackageChange(val) {
             const prices = {
                 'Single': 18000,
-                'Duo': 30000
+                'Premium': 28000
             };
             selectBundle(val, prices[val], false);
         }
@@ -1089,7 +1093,7 @@ level. Done in under 60 seconds.
             
             let fullName = `Invisible Push Up Bra (${name} Pack)`;
             if (name === 'Single') fullName = "Invisible Push Up Bra (Single Pack)";
-            if (name === 'Duo') fullName = "Invisible Push Up Bra (2 Pairs Duo Pack)";
+            if (name === 'Premium') fullName = "Premium Double Lift Combo (Bra + Tape & Nipple Covers)";
 
             hiddenName.value = fullName;
             if (summaryName) summaryName.innerText = fullName;

@@ -404,18 +404,51 @@
                 <h2 class="text-4xl md:text-5xl font-serif font-black mb-4">Common Questions</h2>
                 <p class="font-bold opacity-60 uppercase text-[10px] tracking-widest">Everything you need to know</p>
             </div>
-            <div class="grid gap-8">
-                <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
-                    <h4 class="text-lg font-black mb-3">How long does delivery take?</h4>
-                    <p class="opacity-70 leading-relaxed">We offer express 24-48hr delivery within Lagos. We currently only deliver within Lagos to ensure speed and quality.</p>
+            
+            <div id="index-faq-accordion" class="space-y-4 max-w-3xl mx-auto">
+                <!-- Accordion Item 1 -->
+                <div class="accordion-item bg-pink-50/10 rounded-3xl border border-pink-100 overflow-hidden transition-all duration-300">
+                    <button class="w-full flex justify-between items-center p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion(this)">
+                        <span class="text-base md:text-lg font-black text-pink-950 group-hover:text-primary transition-colors">How long does delivery take?</span>
+                        <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 md:px-8 pb-6 md:pb-8 opacity-70 leading-relaxed font-semibold text-sm text-pink-900">
+                            We offer express 24-48hr delivery within Lagos. We currently only deliver within Lagos to ensure speed and quality.
+                        </div>
+                    </div>
                 </div>
-                <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
-                    <h4 class="text-lg font-black mb-3">Are these tools safe for sensitive skin?</h4>
-                    <p class="opacity-70 leading-relaxed">Yes! All our tools are dermatologist-approved and designed to be gentle yet effective on all skin types, including sensitive skin.</p>
+
+                <!-- Accordion Item 2 -->
+                <div class="accordion-item bg-pink-50/10 rounded-3xl border border-pink-100 overflow-hidden transition-all duration-300">
+                    <button class="w-full flex justify-between items-center p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion(this)">
+                        <span class="text-base md:text-lg font-black text-pink-950 group-hover:text-primary transition-colors">Are these tools safe for sensitive skin?</span>
+                        <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 md:px-8 pb-6 md:pb-8 opacity-70 leading-relaxed font-semibold text-sm text-pink-900">
+                            Yes! All our tools are dermatologist-approved and designed to be gentle yet effective on all skin types, including sensitive skin.
+                        </div>
+                    </div>
                 </div>
-                <div class="p-8 bg-pink-50/30 rounded-3xl border border-pink-100">
-                    <h4 class="text-lg font-black mb-3">Do you offer pay on delivery?</h4>
-                    <p class="opacity-70 leading-relaxed">We offer Pay on Delivery for all orders within Lagos. We currently only serve the Lagos area.</p>
+
+                <!-- Accordion Item 3 -->
+                <div class="accordion-item bg-pink-50/10 rounded-3xl border border-pink-100 overflow-hidden transition-all duration-300">
+                    <button class="w-full flex justify-between items-center p-6 md:p-8 text-left focus:outline-none group" onclick="toggleAccordion(this)">
+                        <span class="text-base md:text-lg font-black text-pink-950 group-hover:text-primary transition-colors">Do you offer pay on delivery?</span>
+                        <div class="w-8 h-8 rounded-full bg-pink-50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down transition-transform duration-300"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </button>
+                    <div class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <div class="px-6 md:px-8 pb-6 md:pb-8 opacity-70 leading-relaxed font-semibold text-sm text-pink-900">
+                            We offer Pay on Delivery for all orders within Lagos. We currently only serve the Lagos area.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -440,110 +473,145 @@
     </section>
 
     <!-- More Reviews Section -->
-    <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
-        <div class="max-w-7xl mx-auto">
+    <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto relative select-none">
             <div class="text-center mb-16 space-y-4">
+                <span class="text-primary font-black uppercase tracking-[0.4em] text-xs">Customer Stories</span>
                 <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-900">What Our <span class="text-pink-600 italic">Community Says.</span></h2>
                 <p class="font-black opacity-40 uppercase text-[10px] tracking-[0.4em]">Real Feedback from Real Women</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Review 1 -->
-                <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div>
-                            <p class="font-black text-xs uppercase tracking-widest">Funke E.</p>
-                            <div class="flex text-yellow-500 scale-75 -ml-4">
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
+            
+            <!-- Carousel Outer Viewport -->
+            <div class="relative w-full max-w-6xl mx-auto px-4 py-4 md:px-12">
+                <div class="overflow-hidden">
+                    <div id="review-track" class="flex transition-transform duration-500 ease-in-out gap-6" style="transform: translateX(0px);">
+                        <!-- Review 1 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Funke E.</p>
+                                        <div class="flex text-yellow-500 scale-75 -ml-4 mt-1">
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"The V-Lift is a game changer! I use it every morning for 10 minutes and the puffiness is gone. My face looks so much more sculpted."</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Review 2 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Ngozi J.</p>
+                                        <div class="flex text-yellow-500 scale-75 -ml-4 mt-1">
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"I was skeptical about the invisible bra but it is incredibly secure, comfortable, and perfect for all my backless and off-shoulder outfits. A total lifesaver!"</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Review 3 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Bisi A.</p>
+                                        <div class="flex text-yellow-500 scale-75 -ml-4 mt-1">
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"The pore vacuum is my favorite. It gets everything out of my skin without any pain of manual extraction. My face feels clean and smooth!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Chioma I.</p>
+                                        <div class="flex text-yellow-500 scale-75 -ml-4 mt-1">
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Fast delivery to Lekki! The packaging was beautiful and the product works exactly as described. Very happy with my purchase."</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 5 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Titi O.</p>
+                                        <div class="flex text-yellow-500 scale-75 -ml-4 mt-1">
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Finally found a brand that understands Nigerian skin. The V-Lift face massager is so relaxing and really defines my jawline!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 6 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Aisha A.</p>
+                                        <div class="flex text-yellow-500 scale-75 -ml-4 mt-1">
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                            <i data-lucide="star" size="14" fill="currentColor"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Excellent customer service. They answered all my questions on WhatsApp before I ordered. Product arrived in 2 days."</p>
                             </div>
                         </div>
                     </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"The V-Lift is a game changer! I use it every morning for 10 minutes and the puffiness is gone. My face looks so much more sculpted."</p>
                 </div>
-                <!-- Review 2 -->
-                <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div>
-                            <p class="font-black text-xs uppercase tracking-widest">Ngozi J.</p>
-                            <div class="flex text-yellow-500 scale-75 -ml-4">
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"I was skeptical about the invisible bra but it is incredibly secure, comfortable, and perfect for all my backless and off-shoulder outfits. A total lifesaver!"</p>
-                </div>
-                <!-- Review 3 -->
-                <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div>
-                            <p class="font-black text-xs uppercase tracking-widest">Bisi A.</p>
-                            <div class="flex text-yellow-500 scale-75 -ml-4">
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"The pore vacuum is my favorite. It gets everything out of my skin without any pain of manual extraction. My face feels clean and smooth!"</p>
-                </div>
-                <!-- Review 4 -->
-                <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div>
-                            <p class="font-black text-xs uppercase tracking-widest">Chioma I.</p>
-                            <div class="flex text-yellow-500 scale-75 -ml-4">
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"Fast delivery to Lekki! The packaging was beautiful and the product works exactly as described. Very happy."</p>
-                </div>
-                <!-- Review 5 -->
-                <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div>
-                            <p class="font-black text-xs uppercase tracking-widest">Titi O.</p>
-                            <div class="flex text-yellow-500 scale-75 -ml-4">
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"Finally found a brand that understands Nigerian skin. The V-Lift face massager is so relaxing and really defines my jawline!"</p>
-                </div>
-                <!-- Review 6 -->
-                <div class="p-10 bg-pink-50 rounded-[3rem] border border-pink-100 space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div>
-                            <p class="font-black text-xs uppercase tracking-widest">Aisha A.</p>
-                            <div class="flex text-yellow-500 scale-75 -ml-4">
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                                <i data-lucide="star" size="14" fill="currentColor"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="font-medium opacity-70 leading-relaxed italic">"Excellent customer service. They answered all my questions on WhatsApp before I ordered. Product arrived in 2 days."</p>
-                </div>
+
+                <!-- Carousel Controls -->
+                <button onclick="prevSlide()" class="absolute -left-2 md:left-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 border border-pink-100 shadow-lg flex items-center justify-center text-primary hover:bg-white hover:scale-105 transition-all z-10 focus:outline-none focus:ring-2 focus:ring-primary/20" aria-label="Previous review">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <button onclick="nextSlide()" class="absolute -right-2 md:right-2 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/95 border border-pink-100 shadow-lg flex items-center justify-center text-primary hover:bg-white hover:scale-105 transition-all z-10 focus:outline-none focus:ring-2 focus:ring-primary/20" aria-label="Next review">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
             </div>
+
+            <!-- Dots Indicator Container -->
+            <div id="carousel-dots" class="flex justify-center gap-2 mt-4"></div>
         </div>
     </section>
 
@@ -692,6 +760,132 @@
                 }
             });
         }
+
+        // Accordion Slide Toggle Logic
+        function toggleAccordion(button) {
+            const item = button.closest('.accordion-item');
+            if (!item) return;
+            const content = item.querySelector('.accordion-content');
+            const chevron = button.querySelector('svg');
+            const allItems = document.querySelectorAll('#index-faq-accordion .accordion-item');
+            
+            // Close other accordion items smoothly
+            allItems.forEach(i => {
+                if (i !== item) {
+                    const c = i.querySelector('.accordion-content');
+                    const ch = i.querySelector('button svg');
+                    if (c) c.style.maxHeight = '0px';
+                    i.classList.remove('bg-pink-50/60', 'border-primary/50');
+                    if (ch) ch.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle current item
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                item.classList.remove('bg-pink-50/60', 'border-primary/50');
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                item.classList.add('bg-pink-50/60', 'border-primary/50');
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Auto-playing Testimonials Review Carousel Logic
+        let currentSlideIndex = 0;
+        const track = document.getElementById('review-track');
+        const dotsContainer = document.getElementById('carousel-dots');
+        const reviewsCount = 6; 
+
+        function getVisibleSlidesCount() {
+            if (window.innerWidth >= 1024) return 3; 
+            if (window.innerWidth >= 768) return 2;  
+            return 1; 
+        }
+
+        function updateCarousel() {
+            if (!track) return;
+            const visibleCount = getVisibleSlidesCount();
+            const maxIndex = Math.max(0, reviewsCount - visibleCount);
+            if (currentSlideIndex > maxIndex) {
+                currentSlideIndex = 0;
+            }
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = maxIndex;
+            }
+            
+            const firstCard = track.firstElementChild;
+            if (firstCard) {
+                // Determine card width + 24px gap styling
+                const cardWidth = firstCard.getBoundingClientRect().width;
+                const offset = currentSlideIndex * (cardWidth + 24);
+                track.style.transform = `translateX(-${offset}px)`;
+            }
+
+            updateDots();
+        }
+
+        function updateDots() {
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
+            const visibleCount = getVisibleSlidesCount();
+            const dotsCount = Math.max(1, reviewsCount - visibleCount + 1);
+            
+            for (let i = 0; i < dotsCount; i++) {
+                const dot = document.createElement('button');
+                dot.className = `w-2.5 h-2.5 rounded-full transition-all duration-300 ${i === currentSlideIndex ? 'bg-primary scale-125' : 'bg-pink-200 hover:bg-pink-300'}`;
+                dot.ariaLabel = `Go to review slide ${i + 1}`;
+                dot.onclick = () => {
+                    currentSlideIndex = i;
+                    updateCarousel();
+                    resetAutoPlay();
+                };
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function nextSlide() {
+            const visibleCount = getVisibleSlidesCount();
+            const maxIndex = Math.max(0, reviewsCount - visibleCount);
+            if (currentSlideIndex >= maxIndex) {
+                currentSlideIndex = 0;
+            } else {
+                currentSlideIndex++;
+            }
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            const visibleCount = getVisibleSlidesCount();
+            const maxIndex = Math.max(0, reviewsCount - visibleCount);
+            if (currentSlideIndex <= 0) {
+                currentSlideIndex = maxIndex;
+            } else {
+                currentSlideIndex--;
+            }
+            updateCarousel();
+        }
+
+        let autoplayTimer = setInterval(nextSlide, 5000);
+        function resetAutoPlay() {
+            clearInterval(autoplayTimer);
+            autoplayTimer = setInterval(nextSlide, 5000);
+        }
+
+        window.addEventListener('resize', () => {
+            updateCarousel();
+        });
+
+        window.addEventListener('load', () => {
+            updateCarousel();
+        });
+
+        // Safe immediate initialization
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(updateCarousel, 300);
+        }
+
     </script>
     <style>
         .filter-chip.active-chip {
