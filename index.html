@@ -6,19 +6,29 @@
     <title>Glamour & Grace | Professional Skincare Solutions</title>
     
     <!-- Resource Hints -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
     <link rel="preconnect" href="https://connect.facebook.net">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://unpkg.com">
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
     <link rel="dns-prefetch" href="https://connect.facebook.net">
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://unpkg.com">
     
-    <!-- Preload Hero Assets for LCP -->
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg" fetchpriority="high">
+    <!-- Preload Critical Base Scripts -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    
+    <!-- Critical Inline Styles for Instant Paint -->
+    <style>
+        body {
+            background-color: #FFF0F5 !important;
+            color: #4A0E2E !important;
+            margin: 0;
+            padding: 0;
+            opacity: 0.99;
+        }
+    </style>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -656,7 +666,7 @@
     </footer>
 
     <!-- Deferred Scripts -->
-    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="lucide.createIcons();"></script>
     <script>
         // Optimization for Background Hearts using requestIdleCallback
         const initHearts = () => {
@@ -730,8 +740,13 @@
             }, 3500);
         }
 
-        setInterval(triggerNotif, 12000);
-        setTimeout(triggerNotif, 2000);
+        window.addEventListener('load', () => {
+            // Delay non-critical notification prompts till 6s to minimize TBT
+            setTimeout(() => {
+                triggerNotif();
+                setInterval(triggerNotif, 12000);
+            }, 6000);
+        });
 
         function filterMainListing(size) {
             // Update chip styles
@@ -867,9 +882,9 @@
             updateCarousel();
         }
 
-        let autoplayTimer = setInterval(nextSlide, 5000);
+        let autoplayTimer;
         function resetAutoPlay() {
-            clearInterval(autoplayTimer);
+            if (autoplayTimer) clearInterval(autoplayTimer);
             autoplayTimer = setInterval(nextSlide, 5000);
         }
 
@@ -879,6 +894,8 @@
 
         window.addEventListener('load', () => {
             updateCarousel();
+            // Start autoplay after page loads to reduce TBT
+            autoplayTimer = setInterval(nextSlide, 5000);
         });
 
         // Safe immediate initialization
