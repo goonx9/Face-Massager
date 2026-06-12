@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Glamour & Grace Face Massage Lifter | Glamour & Grace</title>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    
-    <!-- Built Production Tailwindv4 stylesheet -->
-    <link rel="stylesheet" href="/src/index.css">
-    
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
     <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg"
           imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg 400w,
                        https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg 600w,
@@ -39,7 +37,27 @@
         .text-center { text-align: center; }
     </style>
 
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D55',
+                        text: '#5E002C',
+                        body: '#880E4F',
+                        background: '#FFF5F8',
+                        complement: '#F1FBF3',
+                        accent: '#F06292',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
