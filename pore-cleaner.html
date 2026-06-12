@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -54,7 +54,14 @@
         @media(min-width:769px){#wa-float{bottom:32px}}
     </style>
     <!-- Deferred Tailwind -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script>
+(function(){
+  function loadTW(){var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';document.head.appendChild(s);}
+  window.addEventListener('load',function(){
+    'requestIdleCallback' in window ? requestIdleCallback(loadTW,{timeout:2500}) : setTimeout(loadTW,200);
+  });
+})();
+</script>
     <!-- Fonts: non-blocking swap -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" media="print" onload="this.media='all'">
@@ -232,7 +239,7 @@
         <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280">💳 Pay on Delivery</span>
     </div>
 
-    <main class="pt-[158px]">
+    <main style="padding-top:158px">
         <!-- Hero Section -->
         <section class="min-h-[85vh] grid lg:grid-cols-2">
             <div class="relative h-[50vh] lg:h-full overflow-hidden bg-pink-50">
