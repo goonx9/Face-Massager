@@ -10,13 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="/src/index.css">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
-          imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w"
-          imagesizes="(max-width: 600px) 400px, (max-width: 1200px) 600px, 800px"
-          fetchpriority="high">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg" fetchpriority="high" imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w, https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w, https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w" imagesizes="(max-width: 600px) 400px, (max-width: 1200px) 600px, 800px">
     
     <!-- Critical Inline Styles for Instant Paint -->
     <style>
@@ -60,7 +57,6 @@
     });
     </script>
     <!-- End Meta Pixel Code -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
@@ -224,10 +220,10 @@
                     </div>
                     <div class="relative">
                         <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3] relative">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
-                                 srcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w,
-                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w,
-                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w"
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
+                                 srcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w,
+                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w,
+                                         https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w"
                                  sizes="(max-width: 600px) 400px, (max-width: 1200px) 600px, 800px"
                                  fetchpriority="high" loading="eager" width="600" height="450" class="w-full h-full object-cover" alt="Invisible Push Up Bra">
                         </div>
@@ -1021,7 +1017,12 @@ level. Done in under 60 seconds.
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="lucide.createIcons();"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lucide.createIcons();
+        });
+    </script>
     <script>
         // Initialize EmailJS safely
         window.addEventListener('load', function() {
@@ -1180,6 +1181,16 @@ level. Done in under 60 seconds.
         document.getElementById('orderForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             if (isSubmitting) return;
+            
+            // Track Purchase Event
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {
+                  value: 18000, 
+                  currency: 'NGN',
+                  content_name: 'Invisible Push Up Bra',
+                  content_type: 'product'
+                });
+            }
             
             const btn = document.getElementById('submitBtn');
             const modal = document.getElementById('processing-modal');
