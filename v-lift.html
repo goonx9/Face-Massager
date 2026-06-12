@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,7 +71,14 @@
         };
     </script>
     <!-- Deferred Tailwind — no longer blocks paint -->
-    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script>
+(function(){
+  function loadTW(){var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';document.head.appendChild(s);}
+  window.addEventListener('load',function(){
+    'requestIdleCallback' in window ? requestIdleCallback(loadTW,{timeout:2500}) : setTimeout(loadTW,200);
+  });
+})();
+</script>
     
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
@@ -326,7 +333,7 @@
         <span class="text-[9px] font-black uppercase tracking-widest text-green-600 hidden md:block">✅ Lagos Only</span>
     </div>
 
-    <main class="pt-[184px]">
+    <main style="padding-top:184px">
         <!-- Section 1: Problem -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-50 rounded-full blur-[100px] -z-10"></div>
