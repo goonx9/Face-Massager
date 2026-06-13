@@ -22,7 +22,9 @@
     <style>
         *,*::before,*::after{box-sizing:border-box}
         html{scroll-behavior:smooth}
-        body{background-color:#FFF5F8;color:#5E002C;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        /* Hide body until Tailwind paints — prevents FOUC without blocking FCP */
+        body{background-color:#FFF5F8;color:#5E002C;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;opacity:0;transition:opacity .15s ease}
+        body.tw-ready{opacity:1}
         .fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}
         .flex{display:flex}.hidden{display:none}.block{display:block}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.grid{display:grid}
         .flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}
@@ -53,8 +55,10 @@
         @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
         @media(min-width:769px){#wa-float{bottom:32px}}
     </style>
-    <!-- Tailwind CSS — loaded synchronously to prevent FOUC -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind config (must be set before Tailwind script runs) -->
+    <script>window.tailwind={config:{theme:{extend:{colors:{primary:'#ec4899',text:'#5E002C',body:'#880E4F',background:'#FFF5F8',complement:'#F1FBF3'},fontFamily:{sans:['Plus Jakarta Sans','sans-serif'],serif:['Playfair Display','serif']}}}}};  </script>
+    <!-- Tailwind: async injection (non-render-blocking) + FOUC guard -->
+    <script>(function(){var t=setTimeout(function(){document.body.classList.add('tw-ready')},1500);var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';s.onload=function(){clearTimeout(t);document.body.classList.add('tw-ready')};document.head.appendChild(s)})();</script>
     <!-- Fonts: non-blocking swap -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" media="print" onload="this.media='all'">
