@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -84,15 +84,8 @@
             }
         };
     </script>
-    <!-- Deferred Tailwind — no longer blocks paint -->
-    <script>
-(function(){
-  function loadTW(){var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';document.head.appendChild(s);}
-  window.addEventListener('load',function(){
-    'requestIdleCallback' in window ? requestIdleCallback(loadTW,{timeout:2500}) : setTimeout(loadTW,200);
-  });
-})();
-</script>
+    <!-- Tailwind CSS — loaded synchronously to prevent FOUC -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Deferred Meta Pixel Code -->
     <script>
@@ -612,9 +605,85 @@
                                     </div>
                                 </div>
                                 <p class="font-medium opacity-70 leading-relaxed italic">"Excellent customer service. They answered all my questions on WhatsApp before I ordered. Product arrived in 2 days."</p>
+                        <!-- Review 7 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Kemi B.</p>
+                                        <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Ordered the Lady Shaver and it arrived same day! Incredibly smooth results on my legs, zero bumps or irritation. Worth every kobo!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 8 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Amaka O.</p>
+                                        <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Bought the invisible bra for my daughter's wedding. It stayed on from 10am to midnight through all the dancing. Life-changing product — wish I found it sooner!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 9 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Blessing I.</p>
+                                        <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"The pore vacuum cleared my nose in one 10-minute session. I've been squeezing blackheads manually for years — this is 100x better and zero scarring. Amazing!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 10 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Ronke A.</p>
+                                        <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"I used the face massager before an important event and got so many compliments. My face looked lifted and glowy, as if I'd just had a facial. Highly recommend!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 11 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Yetunde F.</p>
+                                        <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Bought all three! The shaver for intimates, the V-Lift for my face routine, and the pore vacuum for deep cleaning. All three products are top quality. Lagos delivery was fast!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Review 12 -->
+                        <div class="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex-shrink-0 p-10 bg-pink-50 rounded-[3rem] border border-pink-100 flex flex-col justify-between min-h-[250px] transition-all duration-300 hover:border-primary/30 shadow-md">
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-4">
+                                    <div>
+                                        <p class="font-black text-xs uppercase tracking-widest text-pink-950">Dupe M.</p>
+                                        <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                                    </div>
+                                </div>
+                                <p class="font-medium opacity-70 leading-relaxed italic">"Pay on delivery made me feel so much more confident ordering. Product arrived in perfect condition. The invisible bra tape + nipple covers combo is absolutely perfect for my sheer outfits."</p>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <!-- Carousel Controls -->
