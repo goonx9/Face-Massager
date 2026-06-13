@@ -24,9 +24,7 @@
         /* === CRITICAL CSS — paints above-fold without Tailwind === */
         *,*::before,*::after{box-sizing:border-box}
         html{scroll-behavior:smooth}
-        /* Hide body until Tailwind paints — prevents FOUC without blocking FCP */
-        body{background-color:#FFF0F5;color:#4A0E2E;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;opacity:0;transition:opacity .15s ease}
-        body.tw-ready{opacity:1}
+        body{background-color:#FFF0F5;color:#4A0E2E;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased}
         /* Layout */
         .fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}
         .flex{display:flex}.hidden{display:none}.block{display:block}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.grid{display:grid}
@@ -86,8 +84,8 @@
             }
         };
     </script>
-    <!-- Tailwind: async injection (non-render-blocking) + FOUC guard -->
-    <script>(function(){var t=setTimeout(function(){document.body.classList.add('tw-ready')},1500);var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';s.onload=function(){clearTimeout(t);document.body.classList.add('tw-ready')};document.head.appendChild(s)})();</script>
+    <!-- Tailwind: defer = downloads in parallel, executes after parse, never blocks FCP -->
+    <script defer src="https://cdn.tailwindcss.com"></script>
     
     <!-- Deferred Meta Pixel Code -->
     <script>
