@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -50,28 +50,8 @@
         @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
         @media(min-width:769px){#wa-float{bottom:32px}}
     </style>
-    <!-- Pre-configure Tailwind BEFORE deferred load -->
-    <script>
-        window.tailwind = {
-            config: {
-                theme: {
-                    extend: {
-                        colors: { primary:'#FF2D55', text:'#5E002C', body:'#880E4F', background:'#FFF5F8', complement:'#F1FBF3', accent:'#F06292' },
-                        fontFamily: { sans:['Plus Jakarta Sans','sans-serif'], serif:['Playfair Display','serif'] }
-                    }
-                }
-            }
-        };
-    </script>
-    <!-- Deferred Tailwind — no longer blocks paint -->
-    <script>
-(function(){
-  function loadTW(){var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';document.head.appendChild(s);}
-  window.addEventListener('load',function(){
-    'requestIdleCallback' in window ? requestIdleCallback(loadTW,{timeout:2500}) : setTimeout(loadTW,200);
-  });
-})();
-</script>
+    <!-- Tailwind CSS — loaded synchronously to prevent FOUC -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Deferred Meta Pixel Code -->
     <script>
@@ -212,10 +192,7 @@
         </a>
     </div>
 
-    <!-- Conversion Boosters -->
-    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg h-8 flex items-center justify-center">
-        🔥 Flash Sale: <span id="timer-display" class="ml-1 font-black">23:47</span> left
-    </div>
+
 
     <!-- Exit Intent Popup -->
     <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 md:p-6 backdrop-blur-md">
@@ -232,7 +209,7 @@
             
             <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Special Gift for You! 🎀</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Complete your order now and get ₦1,500 OFF instantly!
+                Complete your order now and get ₦1,000 OFF instantly!
             </p>
             
             <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
@@ -255,12 +232,12 @@
     </div>
 
     <!-- Notice Bar -->
-    <div class="fixed top-8 left-0 w-full bg-red-600 text-white py-2 px-4 z-[200] text-center h-10 flex items-center justify-center border-t border-red-500/20">
+    <div class="fixed top-0 left-0 w-full bg-red-600 text-white py-2 px-4 z-[200] text-center h-10 flex items-center justify-center border-t border-red-500/20">
         <p class="text-[9px] md:text-xs font-black uppercase tracking-[0.1em]">
             🚫 NOTICE: Do not order if you are not sure, or you are travelling, or you are outside Lagos.
         </p>
     </div>
-    <nav class="fixed top-[72px] inset-x-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12 h-20 flex items-center">
+    <nav class="fixed top-10 inset-x-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12 h-20 flex items-center">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
@@ -275,7 +252,7 @@
         </div>
     </nav>
     <!-- Trust Strip -->
-    <div style="position:fixed;top:152px;left:0;right:0;z-index:99;background:linear-gradient(135deg,#fff0f5,#f0fdf4);border-bottom:1px solid #fce7f3;padding:6px 16px;display:flex;align-items:center;justify-content:center;gap:16px;overflow:hidden;">
+    <div style="position:fixed;top:120px;left:0;right:0;z-index:99;background:linear-gradient(135deg,#fff0f5,#f0fdf4);border-bottom:1px solid #fce7f3;padding:6px 16px;display:flex;align-items:center;justify-content:center;gap:16px;overflow:hidden;">
         <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;display:flex;align-items:center;gap:4px;"><span style="color:#eab308">★★★★★</span> 900+ Happy Customers</span>
         <span style="color:#d1d5db">|</span>
         <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280">🚚 Free Delivery</span>
@@ -283,7 +260,7 @@
         <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280">💳 Pay on Delivery</span>
     </div>
 
-    <main style="padding-top:184px">
+    <main style="padding-top:152px">
         <!-- Section 1: Hero / Problem -->
         <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-50 rounded-full blur-[100px] -z-10"></div>
@@ -811,6 +788,45 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Review 4 -->
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 space-y-4 relative">
+                        <div class="text-yellow-400 text-sm tracking-wider">★★★★★</div>
+                        <p class="text-gray-600 italic font-medium">"I was spending so much on waxing every month. This shaver has paid for itself in 2 uses. Zero razor bumps, no ingrown hairs. Smooth everywhere!"</p>
+                        <div class="flex items-center gap-4 pt-4 border-t border-pink-50">
+                            <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center font-bold text-primary">F</div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest text-pink-900">Funke O.</p>
+                                <p class="text-[10px] font-bold text-gray-400">Surulere, Lagos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 space-y-4 relative">
+                        <div class="text-yellow-400 text-sm tracking-wider">★★★★★</div>
+                        <p class="text-gray-600 italic font-medium">"Perfect gift! I bought this for my sister and she absolutely loves it. Very quiet, very clean shave, and charges quickly. Will be ordering another one for myself."</p>
+                        <div class="flex items-center gap-4 pt-4 border-t border-pink-50">
+                            <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center font-bold text-primary">N</div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest text-pink-900">Ngozi E.</p>
+                                <p class="text-[10px] font-bold text-gray-400">Lekki, Lagos</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-pink-100 space-y-4 relative">
+                        <div class="text-yellow-400 text-sm tracking-wider">★★★★★</div>
+                        <p class="text-gray-600 italic font-medium">"Pay-on-delivery made me confident to order. Fast same-day delivery and exactly as advertised. I love how gentle it is on sensitive skin — absolutely no irritation!"</p>
+                        <div class="flex items-center gap-4 pt-4 border-t border-pink-50">
+                            <div class="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center font-bold text-primary">B</div>
+                            <div>
+                                <p class="font-black text-xs uppercase tracking-widest text-pink-900">Blessing K.</p>
+                                <p class="text-[10px] font-bold text-gray-400">Yaba, Lagos</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -925,8 +941,8 @@
                                         <span id="summaryProductPrice">₦31,000</span>
                                     </div>
                                     <div id="discount-row" class="hidden flex justify-between text-sm font-bold text-green-600">
-                                        <span>Special Discount</span>
-                                        <span>-₦1,500</span>
+                                        <span>Special Discount 🎉</span>
+                                        <span>-₦1,000</span>
                                     </div>
                                     <div class="flex justify-between text-sm font-bold">
                                         <span>Delivery</span>
@@ -948,23 +964,7 @@
                             </button>
                         </form>
 
-                        <!-- Alternative Order Space -->
-                        <div class="mt-12 pt-10 border-t border-dashed border-pink-200">
-                            <div class="bg-gradient-to-br from-pink-50/40 to-pink-50 rounded-[2.5rem] p-8 border border-pink-100 text-center space-y-6">
-                                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 text-primary">
-                                    <i data-lucide="zap" size="20"></i>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="text-lg font-serif font-black text-pink-900">Alternative Direct Order</h4>
-                                    <p class="text-xs text-gray-500 font-medium max-w-sm mx-auto">Don't want to fill out the form? Place your order directly via WhatsApp with your details.</p>
-                                </div>
-                                <div class="flex justify-center items-center">
-                                    <a href="https://wa.me/2348039940408?text=Hello%2C%20I%20want%20to%20order%20the%20Smooth%20Precision%20Lady%20Shaver.%20Here%20are%20my%20details%3A%0A-%20Name%3A%20%0A-%20Phone%3A%20%0A-%20Address%3A%20" class="w-full sm:w-auto px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-full font-black text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-105">
-                                        <i data-lucide="message-circle" size="14"></i> Order via WhatsApp
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -1139,7 +1139,7 @@
         }
 
         function applyDiscount() {
-            discount = 1500;
+            discount = 1000;
             const discountRow = document.getElementById('discount-row');
             if (discountRow) discountRow.classList.remove('hidden');
             
@@ -1310,33 +1310,7 @@
         });
     </script>
 
-    <script>
-        // Session-based countdown
-        (function() {
-            const key = 'gg_shaver_timer';
-            let endTime = sessionStorage.getItem(key);
-            if (!endTime) {
-                const mins = Math.floor(Math.random() * 10) + 18;
-                endTime = Date.now() + mins * 60 * 1000;
-                sessionStorage.setItem(key, endTime);
-            }
-            function tick() {
-                const rem = Math.max(0, endTime - Date.now());
-                const m = Math.floor(rem / 60000);
-                const s = Math.floor((rem % 60000) / 1000);
-                const el = document.getElementById('timer-display');
-                if (el) el.textContent = m + ':' + (s < 10 ? '0' : '') + s;
-                if (rem <= 0) {
-                    const bar = document.getElementById('promo-timer');
-                    if (bar) bar.textContent = '⚡ Offer Expired — Grab Last Units Now';
-                } else {
-                    setTimeout(tick, 1000);
-                }
-            }
-            tick();
-        })();
 
-        // Animate live counter
         (function() {
             const base = 24 + Math.floor(Math.random() * 10);
             const el = document.getElementById('live-orders');
