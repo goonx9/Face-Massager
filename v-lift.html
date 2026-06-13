@@ -10,13 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="https://res.cloudinary.com">
-    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg"
-          imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg 400w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_600/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg 600w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:good,f_auto,w_800/v1775915537/ezgif-74770f439746b60c_rdk6qq.jpg 800w"
-          imagesizes="(max-width: 600px) 400px, (max-width: 1200px) 600px, 800px"
-          fetchpriority="high">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/v1775914902/IMG_20251022_174116_cntwnw_zf24ak.jpg" fetchpriority="high">
     
     <style>
         /* === CRITICAL CSS — above-fold, no Tailwind needed === */
@@ -46,15 +40,19 @@
         .backdrop-blur-xl{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
         .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
         .overflow-hidden{overflow:hidden}
-        /* Sticky CTA + WhatsApp */
+        /* Sticky CTA */
         #sticky-cta-bar{position:fixed;bottom:0;left:0;right:0;z-index:8888;background:#fff;border-top:1px solid #fce7f3;padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
         #sticky-cta-bar.visible{transform:translateY(0)}
         @media(max-width:768px){#sticky-cta-bar{display:flex}}
-        #wa-float{position:fixed;bottom:80px;left:20px;z-index:9000;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);cursor:pointer;animation:wa-pulse 2.5s infinite;text-decoration:none}
-        @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
-        @media(min-width:769px){#wa-float{bottom:32px}}
         /* Trust strip */
         .trust-strip{background:linear-gradient(135deg,#fff0f5,#f0fdf4);border-bottom:1px solid #fce7f3}
+        /* Fixed bar positioning — inline to prevent CLS before Tailwind loads */
+        .notice-bar{position:fixed;top:0;left:0;right:0;z-index:200;height:2.5rem}
+        .main-nav{position:fixed;top:2.5rem;left:0;right:0;z-index:100;height:5rem}
+        .trust-strip-bar{position:fixed;top:7.5rem;left:0;right:0;z-index:99}
+        /* Aspect ratio reserves to prevent CLS */
+        .aspect-hero{aspect-ratio:4/3;contain:layout}
+        .aspect-sq{aspect-ratio:1/1;contain:layout}
     </style>
 
     <!-- Pre-configure Tailwind BEFORE deferred load -->
@@ -70,49 +68,31 @@
             }
         };
     </script>
-    <!-- Deferred Tailwind — no longer blocks paint -->
-    <script>
-(function(){
-  function loadTW(){var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';document.head.appendChild(s);}
-  window.addEventListener('load',function(){
-    'requestIdleCallback' in window ? requestIdleCallback(loadTW,{timeout:2500}) : setTimeout(loadTW,200);
-  });
-})();
-</script>
+    <!-- Tailwind CSS — loaded synchronously to prevent FOUC -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Deferred Meta Pixel Code with Session Deduplication -->
+    <!-- Deferred Meta Pixel Code — runs at idle to reduce TBT -->
     <script>
-    window.addEventListener('load', function() {
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '4029546293858823');
-        
-        if (!sessionStorage.getItem('fb_pageview_vlift')) {
-            sessionStorage.setItem('fb_pageview_vlift', 'true');
-            fbq('track', 'PageView');
+    (function(){
+        function loadPixel(){
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '4029546293858823');
+            if (!sessionStorage.getItem('fb_pv_vl')) { sessionStorage.setItem('fb_pv_vl','1'); fbq('track','PageView'); }
+            if (!sessionStorage.getItem('fb_vc_vl')) { sessionStorage.setItem('fb_vc_vl','1'); fbq('track','ViewContent',{content_name:'Glamour & Grace Face Massage Lifter',content_category:'Skincare Tech',content_ids:['vlift_001'],content_type:'product',value:29500,currency:'NGN'}); }
         }
-        if (!sessionStorage.getItem('fb_viewcontent_vlift')) {
-            sessionStorage.setItem('fb_viewcontent_vlift', 'true');
-            fbq('track', 'ViewContent', {
-                content_name: 'Glamour & Grace Face Massage Lifter',
-                content_category: 'Skincare Tech',
-                content_ids: ['vlift_001'],
-                content_type: 'product',
-                value: 29500,
-                currency: 'NGN'
-            });
-        }
-    });
+        if('requestIdleCallback' in window) requestIdleCallback(loadPixel,{timeout:4000});
+        else setTimeout(loadPixel, 3000);
+    })();
     </script>
     <!-- End Meta Pixel Code -->
     
@@ -206,31 +186,7 @@
             #sticky-cta-bar { display: flex; }
         }
 
-        /* WhatsApp Float Button */
-        #wa-float {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            z-index: 9000;
-            width: 56px;
-            height: 56px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-            cursor: pointer;
-            animation: wa-pulse 2.5s infinite;
-            text-decoration: none;
-        }
-        @keyframes wa-pulse {
-            0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.4); }
-            50% { box-shadow: 0 4px 20px rgba(37,211,102,0.5), 0 0 0 12px rgba(37,211,102,0); }
-        }
-        @media (min-width: 769px) {
-            #wa-float { bottom: 32px; }
-        }
+
 
         /* Trust strip */
         .trust-strip {
@@ -244,10 +200,7 @@
     src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
     /></noscript>
 
-    <!-- WhatsApp Float Button -->
-    <a id="wa-float" href="https://wa.me/2348039940408?text=Hello%2C%20I%20want%20to%20order%20the%20Glamour%20%26%20Grace%20Face%20Massager.%20Here%20are%20my%20details%3A%0A-%20Name%3A%20%0A-%20Phone%3A%20%0A-%20Address%3A%20" target="_blank" aria-label="Order via WhatsApp">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    </a>
+
 
     <!-- Sticky Mobile CTA Bar -->
     <div id="sticky-cta-bar">
@@ -260,10 +213,7 @@
         </a>
     </div>
 
-    <!-- Conversion Boosters -->
-    <div id="promo-timer" class="fixed top-0 left-0 w-full bg-primary text-white py-2 px-4 z-[200] text-center font-bold text-[10px] tracking-[0.2em] uppercase shadow-lg h-8 flex items-center justify-center">
-        🔥 Flash Sale: <span id="timer-display" class="ml-1 font-black">23:47</span> left
-    </div>
+
 
     <!-- Exit Intent Popup -->
     <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 md:p-6 backdrop-blur-md">
@@ -301,41 +251,36 @@
             <p class="text-[10px] text-pink-500 font-black uppercase tracking-widest mt-1">Just now</p>
         </div>
     </div>
-
     <!-- Notice Bar -->
-    <div class="fixed top-8 left-0 w-full bg-red-600 text-white py-2 px-4 z-[200] text-center h-10 flex items-center justify-center border-t border-red-500/20">
-        <p class="text-[9px] md:text-xs font-black uppercase tracking-[0.1em]">
-            🚫 NOTICE: Do not order if you are not sure, or you are travelling, or you are outside Lagos.
-        </p>
+    <div style="position:fixed;top:0;left:0;right:0;z-index:200;background:#dc2626;color:#fff;height:2.5rem;display:flex;align-items:center;justify-content:center;padding:0 1rem;border-top:1px solid rgba(239,68,68,.2)">
+        <p style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;margin:0">🚫 NOTICE: Do not order if you are not sure, or you are travelling, or you are outside Lagos.</p>
     </div>
-    <nav class="fixed top-[72px] inset-x-0 z-[100] bg-white/95 backdrop-blur-xl border-b border-pink-50 px-6 py-4 md:px-12 h-20 flex items-center">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-xl">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
+    <nav style="position:fixed;top:2.5rem;left:0;right:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid #fdf2f8;padding:1rem 1.5rem;height:5rem;display:flex;align-items:center">
+        <div class="max-w-7xl mx-auto flex items-center justify-between" style="width:100%">
+            <a href="index.html" style="display:flex;align-items:center;gap:.75rem;text-decoration:none">
+                <div style="width:2.5rem;height:2.5rem;border-radius:9999px;background:#FF2D55;display:flex;align-items:center;justify-content:center;color:#fff">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
                 </div>
-                <span class="text-2xl font-serif font-black tracking-tight uppercase">GLAMOUR & GRACE</span>
+                <span style="font-size:1.5rem;font-family:'Playfair Display',Georgia,serif;font-weight:900;letter-spacing:-.025em;text-transform:uppercase;color:#5E002C">GLAMOUR &amp; GRACE</span>
             </a>
-            <div class="flex items-center gap-8">
-                <a href="index.html" class="text-[10px] font-black tracking-[0.3em] uppercase hidden md:block">Home</a>
-                <a href="#order" class="px-8 py-4 bg-primary text-white rounded-full font-bold text-[10px] uppercase tracking-[0.2em] shadow-xl">Get My Massager</a>
+            <div style="display:flex;align-items:center;gap:2rem">
+                <a href="index.html" style="font-size:10px;font-weight:900;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:#5E002C;display:none" class="md:block">Home</a>
+                <a href="#order" style="padding:.75rem 1.5rem;background:#FF2D55;color:#fff;border-radius:9999px;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,.1)">Get My Massager</a>
             </div>
         </div>
     </nav>
     <!-- Trust Strip -->
-    <div class="trust-strip fixed top-[152px] inset-x-0 z-[99] py-2 px-4 flex items-center justify-center gap-6 overflow-hidden">
-        <span class="text-[9px] font-black uppercase tracking-widest text-gray-500 flex items-center gap-1"><span class="text-yellow-500">★★★★★</span> 1,200+ Reviews</span>
-        <span class="text-gray-300">|</span>
-        <span class="text-[9px] font-black uppercase tracking-widest text-gray-500">🚚 Free Delivery</span>
-        <span class="text-gray-300">|</span>
-        <span class="text-[9px] font-black uppercase tracking-widest text-gray-500">💳 Pay on Delivery</span>
-        <span class="text-gray-300 hidden md:block">|</span>
-        <span class="text-[9px] font-black uppercase tracking-widest text-green-600 hidden md:block">✅ Lagos Only</span>
+    <div style="position:fixed;top:7.5rem;left:0;right:0;z-index:99;background:linear-gradient(135deg,#fff0f5,#f0fdf4);border-bottom:1px solid #fce7f3;padding:6px 1rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;overflow:hidden">
+        <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280;display:flex;align-items:center;gap:4px"><span style="color:#eab308">★★★★★</span> 1,200+ Reviews</span>
+        <span style="color:#d1d5db">|</span>
+        <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280">🚚 Free Delivery</span>
+        <span style="color:#d1d5db">|</span>
+        <span style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#6b7280">💳 Pay on Delivery</span>
     </div>
 
-    <main style="padding-top:184px">
+    <main style="padding-top:152px">
         <!-- Section 1: Problem -->
-        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative">
+        <section class="py-24 px-6 md:px-12 lg:px-24 bg-white overflow-hidden relative" style="content-visibility:auto">
             <div class="absolute -top-24 -left-24 w-96 h-96 bg-pink-50 rounded-full blur-[100px] -z-10"></div>
             <div class="max-w-5xl mx-auto">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -1124,6 +1069,62 @@
                             <i data-lucide="check-circle" size="10"></i> Verified Purchase
                         </div>
                     </div>
+
+                    <!-- Review 6 -->
+                    <div class="p-8 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">Amaka U.</p>
+                                <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="font-medium opacity-80 leading-relaxed italic text-sm">"My jawline has never looked sharper. I use it every morning for 10 minutes while doing my skincare routine. People at church asked if I had any work done!"</p>
+                        <div class="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-green-600 bg-green-50 w-fit px-3 py-1 rounded-full">
+                            <i data-lucide="check-circle" size="10"></i> Verified Purchase
+                        </div>
+                    </div>
+
+                    <!-- Review 7 -->
+                    <div class="p-8 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">Kemi L.</p>
+                                <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="font-medium opacity-80 leading-relaxed italic text-sm">"I bought this to reduce my double chin. After 3 weeks I can see a real difference and my husband even commented that I look younger. 100% worth it!"</p>
+                        <div class="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-green-600 bg-green-50 w-fit px-3 py-1 rounded-full">
+                            <i data-lucide="check-circle" size="10"></i> Verified Purchase
+                        </div>
+                    </div>
+
+                    <!-- Review 8 -->
+                    <div class="p-8 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">Tolu P.</p>
+                                <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="font-medium opacity-80 leading-relaxed italic text-sm">"The vibration function is incredibly relaxing and I can feel the circulation in my face improving every session. Delivered same day to Victoria Island. Packaging was beautiful!"</p>
+                        <div class="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-green-600 bg-green-50 w-fit px-3 py-1 rounded-full">
+                            <i data-lucide="check-circle" size="10"></i> Verified Purchase
+                        </div>
+                    </div>
+
+                    <!-- Review 9 -->
+                    <div class="p-8 bg-pink-50/50 rounded-[3rem] border border-pink-100 space-y-6 relative group hover:bg-white hover:shadow-2xl transition-all duration-500">
+                        <div class="flex items-center gap-4">
+                            <div>
+                                <p class="font-black text-sm uppercase tracking-widest">Yinka O.</p>
+                                <div class="text-yellow-500 text-sm mt-1 tracking-wider">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="font-medium opacity-80 leading-relaxed italic text-sm">"I was spending ₦25,000/month on facial sculpting treatments. This device has replaced all of that. The results are genuinely impressive and consistent."</p>
+                        <div class="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-green-600 bg-green-50 w-fit px-3 py-1 rounded-full">
+                            <i data-lucide="check-circle" size="10"></i> Verified Purchase
+                        </div>
+                    </div>
                 </div>
 
                 <div class="mt-16 text-center">
@@ -1358,8 +1359,8 @@
                                 <span id="summaryProductPrice">₦42,500</span>
                             </div>
                             <div id="discount-row" class="hidden flex justify-between text-sm font-bold text-green-600">
-                                <span>Special Discount</span>
-                                <span>-₦2,500</span>
+                                <span>Special Discount 🎉</span>
+                                <span>-₦1,000</span>
                             </div>
                             <div class="flex justify-between text-sm font-bold" id="deliveryRow">
                                 <span>Delivery</span>
@@ -1380,23 +1381,7 @@
                     </button>
                 </form>
 
-                <!-- Alternative Order Space -->
-                <div class="mt-12 pt-10 border-t border-dashed border-pink-200">
-                    <div class="bg-gradient-to-br from-pink-50/40 to-pink-50 rounded-[2.5rem] p-8 border border-pink-100 text-center space-y-6">
-                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 text-primary">
-                            <i data-lucide="zap" size="20"></i>
-                        </div>
-                        <div class="space-y-2">
-                            <h4 class="text-lg font-serif font-black text-pink-900">Alternative Direct Order</h4>
-                            <p class="text-xs text-gray-500 font-medium max-w-sm mx-auto">Don't want to fill out the form? Place your order directly via WhatsApp with your details.</p>
-                        </div>
-                        <div class="flex justify-center items-center">
-                            <a href="https://wa.me/2348039940408?text=Hello%2C%20I%20want%20to%20order%20the%20Glamour%20%26%20Grace%20Face%20Massage%20Lifter.%20Here%20are%20my%20details%3A%0A-%20Name%3A%20%0A-%20Phone%3A%20%0A-%20Address%3A%20" class="w-full sm:w-auto px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-full font-black text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-105">
-                                <i data-lucide="message-circle" size="14"></i> Order via WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </section>
         <!-- Section: You Might Also Love -->
@@ -1800,30 +1785,6 @@
     </script>
 
     <script>
-        // ── Session-based countdown timer ──
-        (function() {
-            const key = 'gg_vlift_timer';
-            let endTime = sessionStorage.getItem(key);
-            if (!endTime) {
-                const mins = Math.floor(Math.random() * 10) + 18; // 18-27 mins
-                endTime = Date.now() + mins * 60 * 1000;
-                sessionStorage.setItem(key, endTime);
-            }
-            function tick() {
-                const remaining = Math.max(0, endTime - Date.now());
-                const m = Math.floor(remaining / 60000);
-                const s = Math.floor((remaining % 60000) / 1000);
-                const el = document.getElementById('timer-display');
-                if (el) el.textContent = m + ':' + (s < 10 ? '0' : '') + s;
-                if (remaining <= 0) {
-                    const bar = document.getElementById('promo-timer');
-                    if (bar) bar.textContent = '⚡ Last Units Available — Order Before Stock Runs Out';
-                } else {
-                    setTimeout(tick, 1000);
-                }
-            }
-            tick();
-        })();
 
         // ── Animate live orders counter ──
         (function() {
