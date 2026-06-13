@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,15 +53,8 @@
         @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
         @media(min-width:769px){#wa-float{bottom:32px}}
     </style>
-    <!-- Deferred Tailwind -->
-    <script>
-(function(){
-  function loadTW(){var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';document.head.appendChild(s);}
-  window.addEventListener('load',function(){
-    'requestIdleCallback' in window ? requestIdleCallback(loadTW,{timeout:2500}) : setTimeout(loadTW,200);
-  });
-})();
-</script>
+    <!-- Tailwind CSS — loaded synchronously to prevent FOUC -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Fonts: non-blocking swap -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" media="print" onload="this.media='all'">
@@ -733,23 +726,7 @@
                         </button>
                     </form>
 
-                    <!-- Alternative Order Space -->
-                    <div class="mt-12 pt-10 border-t border-dashed border-pink-200">
-                        <div class="bg-gradient-to-br from-pink-50/40 to-pink-50 rounded-[2.5rem] p-8 border border-pink-100 text-center space-y-6">
-                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-pink-100 text-primary">
-                                <i data-lucide="zap" size="20"></i>
-                            </div>
-                            <div class="space-y-2">
-                                <h4 class="text-lg font-serif font-black text-pink-900">Alternative Direct Order</h4>
-                                <p class="text-xs text-gray-500 font-medium max-w-sm mx-auto">Don't want to fill out the form? Place your order directly via WhatsApp with your details.</p>
-                            </div>
-                            <div class="flex justify-center items-center">
-                                <a href="https://wa.me/2348039940408?text=Hello%2C%20I%20want%20to%20order%20the%20Ultrasonic%20Pore%20Vacuum.%20Here%20are%20my%20details%3A%0A-%20Name%3A%20%0A-%20Phone%3A%20%0A-%20Address%3A%20" class="w-full sm:w-auto px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-full font-black text-[10px] tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg transition-transform hover:scale-105">
-                                    <i data-lucide="message-circle" size="14"></i> Order via WhatsApp
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
