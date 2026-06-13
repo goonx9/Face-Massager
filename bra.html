@@ -23,9 +23,7 @@
     <style>
         *,*::before,*::after{box-sizing:border-box}
         html{scroll-behavior:smooth}
-        /* Hide body until Tailwind paints — prevents FOUC without blocking FCP */
-        body{background-color:#FFF5F8;color:#5E002C;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;opacity:0;transition:opacity .15s ease}
-        body.tw-ready{opacity:1}
+        body{background-color:#FFF5F8;color:#5E002C;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased}
         .fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}
         .flex{display:flex}.hidden{display:none}.block{display:block}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.grid{display:grid}
         .flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}
@@ -58,8 +56,8 @@
     <script>
     window.tailwind={config:{theme:{extend:{colors:{primary:'#FF2D55',secondary:'#F06292',text:'#5E002C',body:'#880E4F',background:'#FFF5F8',complement:'#F1FBF3',border:'#F8BBD0'},fontFamily:{sans:['Plus Jakarta Sans','sans-serif'],serif:['Playfair Display','serif']}}}}};
     </script>
-    <!-- Tailwind: async injection (non-render-blocking) + FOUC guard -->
-    <script>(function(){var t=setTimeout(function(){document.body.classList.add('tw-ready')},1500);var s=document.createElement('script');s.src='https://cdn.tailwindcss.com';s.onload=function(){clearTimeout(t);document.body.classList.add('tw-ready')};document.head.appendChild(s)})();</script>
+    <!-- Tailwind: defer = downloads in parallel, executes after parse, never blocks FCP -->
+    <script defer src="https://cdn.tailwindcss.com"></script>
     
     <!-- Deferred Meta Pixel Code -->
     <script>
