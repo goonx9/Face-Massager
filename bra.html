@@ -974,7 +974,13 @@ level. Done in under 60 seconds.
                             <span class="text-primary text-2xl font-normal flex-shrink-0 ml-4">+</span>
                         </button>
                         <div class="hidden px-6 pb-5 text-sm text-gray-600 leading-relaxed">
-                            We carry Small (A–B cup), Medium (B–C cup), and Large (C–D cup). As a general guide: if you wear a 32–34A/B bra, choose Small. 34–36B/C → Medium. 36–38C/D → Large. When in doubt, size up — the toggle-pull clasp adjusts the lift, and the bio-silicone naturally conforms to your shape.
+                            <p class="mb-3">Our sizes are based on your <strong>cup size + band (underbust) measurement</strong> — not just the number on your current bra tag:</p>
+                            <ul class="space-y-2 mb-3">
+                                <li>👙 <strong>Small – A/B Cup</strong> → Band 28–34 &nbsp;(32A, 34A, 32B, 34B)</li>
+                                <li>👙 <strong>Medium – B/C Cup</strong> → Band 34–38 &nbsp;(34B, 36B, 36C, 38C)</li>
+                                <li>👙 <strong>Large – C/D Cup</strong> → Band 36–42 &nbsp;(38C, 38D, 40D, 42D)</li>
+                            </ul>
+                            <p class="text-pink-700 font-semibold">⚠️ Quick tip: if your band is 36 but your cup is D, go <strong>Large</strong> — not Medium. The cup determines the fit. When in doubt between two sizes, always size up — the toggle-pull clasp adjusts the lift to your preference.</p>
                         </div>
                     </div>
 
@@ -1003,9 +1009,9 @@ level. Done in under 60 seconds.
                     <!-- Size Filter -->
                     <div class="flex flex-wrap justify-center gap-4 mt-8">
                         <span class="w-full text-[10px] font-black uppercase tracking-widest opacity-40 mb-2">Filter by Size</span>
-                        <button onclick="filterBySize('Small')" class="size-filter-btn px-8 py-3 rounded-full border-2 border-pink-100 font-bold text-xs hover:border-primary transition-all">Small</button>
-                        <button onclick="filterBySize('Medium')" class="size-filter-btn px-8 py-3 rounded-full border-2 border-pink-100 font-bold text-xs hover:border-primary transition-all">Medium</button>
-                        <button onclick="filterBySize('Large')" class="size-filter-btn px-8 py-3 rounded-full border-2 border-pink-100 font-bold text-xs hover:border-primary transition-all">Large</button>
+                        <button onclick="filterBySize('Small')" class="size-filter-btn px-8 py-3 rounded-full border-2 border-pink-100 font-bold text-xs hover:border-primary transition-all">Small (A/B Cup)</button>
+                        <button onclick="filterBySize('Medium')" class="size-filter-btn px-8 py-3 rounded-full border-2 border-pink-100 font-bold text-xs hover:border-primary transition-all">Medium (B/C Cup)</button>
+                        <button onclick="filterBySize('Large')" class="size-filter-btn px-8 py-3 rounded-full border-2 border-pink-100 font-bold text-xs hover:border-primary transition-all">Large (C/D Cup)</button>
                     </div>
                 </div>
 
@@ -1170,12 +1176,16 @@ level. Done in under 60 seconds.
 
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Select Size</label>
-                            <select name="size" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
-                                <option value="Small">Small (32-34)</option>
-                                <option value="Medium" selected>Medium (36-38)</option>
-                                <option value="Large">Large (40-42)</option>
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Select Your Size (Cup + Band)</label>
+                            <select name="size" id="sizeSelect" required onchange="showSizeHint(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="" disabled selected>— PICK YOUR SIZE —</option>
+                                <option value="Small – A/B Cup">Small – A/B Cup &nbsp;|&nbsp; Band 28–34 &nbsp;(e.g. 32A, 34A, 32B, 34B)</option>
+                                <option value="Medium – B/C Cup">Medium – B/C Cup &nbsp;|&nbsp; Band 34–38 &nbsp;(e.g. 34B, 36B, 36C, 38C)</option>
+                                <option value="Large – C/D Cup">Large – C/D Cup &nbsp;|&nbsp; Band 36–42 &nbsp;(e.g. 38C, 38D, 40D, 42D)</option>
                             </select>
+                            <!-- Size Hint -->
+                            <div id="sizeHint" class="hidden mt-3 mx-4 p-4 rounded-2xl text-[11px] font-bold leading-relaxed"></div>
+                            <p class="text-[10px] text-gray-400 font-bold mt-2 ml-4">Not sure? <span class="text-primary cursor-pointer underline" onclick="document.getElementById('sizeGuideModal').classList.remove('hidden')">See our quick size guide →</span></p>
                         </div>
                         <div class="space-y-2">
                             <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Choose Package</label>
@@ -1669,5 +1679,74 @@ level. Done in under 60 seconds.
             });
         })();
     </script>
+
+    <!-- ===== Size Guide Modal ===== -->
+    <div id="sizeGuideModal" class="hidden fixed inset-0 bg-black/80 z-[500] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 max-w-lg w-full relative shadow-2xl">
+            <button onclick="document.getElementById('sizeGuideModal').classList.add('hidden')" class="absolute top-5 right-5 text-gray-400 hover:text-black transition-colors text-2xl leading-none">&times;</button>
+            <h3 class="text-2xl font-serif font-black text-pink-950 mb-2">How to Pick Your Size 📏</h3>
+            <p class="text-xs text-gray-500 mb-6 font-bold uppercase tracking-widest">Cup size matters more than band number</p>
+
+            <div class="overflow-hidden rounded-2xl border border-pink-100">
+                <table class="w-full text-sm text-left border-collapse">
+                    <thead class="bg-pink-950 text-white">
+                        <tr>
+                            <th class="p-4 font-black">Size</th>
+                            <th class="p-4 font-black">Cup</th>
+                            <th class="p-4 font-black">Band (inches)</th>
+                            <th class="p-4 font-black">Examples</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-pink-50 font-bold">
+                        <tr class="bg-pink-50/40">
+                            <td class="p-4 font-black text-pink-700">Small</td>
+                            <td class="p-4">A / B</td>
+                            <td class="p-4">28 – 34</td>
+                            <td class="p-4 text-xs text-gray-500">32A, 34A, 32B, 34B</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-black text-pink-700">Medium</td>
+                            <td class="p-4">B / C</td>
+                            <td class="p-4">34 – 38</td>
+                            <td class="p-4 text-xs text-gray-500">34B, 36B, 36C, 38C</td>
+                        </tr>
+                        <tr class="bg-pink-50/40">
+                            <td class="p-4 font-black text-pink-700">Large</td>
+                            <td class="p-4">C / D</td>
+                            <td class="p-4">36 – 42</td>
+                            <td class="p-4 text-xs text-gray-500">38C, 38D, 40D, 42D</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 p-4 bg-yellow-50 rounded-2xl border border-yellow-100">
+                <p class="text-[11px] font-black text-yellow-800 uppercase tracking-wide">⚠️ Key Rule: Always go by your <em>cup size first</em>. A 36D is Large — not Medium — even though the band is 36.</p>
+            </div>
+            <button onclick="document.getElementById('sizeGuideModal').classList.add('hidden')" class="mt-6 w-full py-4 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-widest">Got It — Close Guide</button>
+        </div>
+    </div>
+
+    <script>
+        // Size hint shown below dropdown after selection
+        function showSizeHint(val) {
+            const hint = document.getElementById('sizeHint');
+            if (!hint) return;
+            const hints = {
+                'Small \u2013 A/B Cup': { bg: 'bg-blue-50 text-blue-800 border border-blue-100', msg: '✅ Great pick! Small fits A and B cups with a band of 28\u201334\u2033. Perfect for petite frames — the toggle pull will give you a beautiful lift.' },
+                'Medium \u2013 B/C Cup': { bg: 'bg-purple-50 text-purple-800 border border-purple-100', msg: '✅ Medium fits B and C cups with a band of 34\u201338\u2033. Most popular size — works for the majority of Nigerian women.' },
+                'Large \u2013 C/D Cup': { bg: 'bg-pink-50 text-primary border border-pink-100', msg: '✅ Large fits C and D cups with a band of 36\u201342\u2033. Designed for fuller busts — extra adhesive surface for maximum secure hold.' },
+            };
+            const h = hints[val];
+            if (h) {
+                hint.className = `mt-3 mx-4 p-4 rounded-2xl text-[11px] font-bold leading-relaxed ${h.bg}`;
+                hint.textContent = h.msg;
+                hint.classList.remove('hidden');
+            } else {
+                hint.classList.add('hidden');
+            }
+        }
+    </script>
+
 </body>
 </html>
