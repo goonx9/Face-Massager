@@ -632,170 +632,130 @@
         <a href="/" class="back-link">â† Back to Home</a>
     </div>
 
-    <!-- Deferred Scripts -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="lucide.createIcons();"></script>
     <script>
-        // â”€â”€â”€ Parse URL params â”€â”€â”€
-        // NOTE: URLSearchParams.get() already decodes percent-encoding ONCE.
-        // Never call decodeURIComponent() on the result again â€” it can throw URIError.
-        const params = new URLSearchParams(window.location.search);
-        const waParam    = params.get('wa');      // pre-built WA URL from product page (already decoded once)
-        const nameParam  = params.get('n')  || '';
-        const priceParam = params.get('p')  || '';
-        const pnParam    = params.get('pn') || '';
+    (function() {
+        var p        = new URLSearchParams(window.location.search);
+        var waParam  = p.get('wa')  || '';
+        var nameParm = p.get('n')   || '';
+        var priceParm= p.get('p')   || '';
+        var pnParm   = p.get('pn')  || '';
 
-        // â”€â”€â”€ Parse customer details from the WA URL text param â”€â”€â”€
-        function extractFromWaText(waUrl) {
-            // waUrl is already decoded once by URLSearchParams â€” use it as-is
-            try {
-                const url = new URL(waUrl);
-                // url.searchParams.get() decodes the text value once more â†’ plain text
-                return url.searchParams.get('text') || '';
-            } catch (e) {
-                return '';
-            }
+        function getWaText(waUrl) {
+            try { return new URL(waUrl).searchParams.get('text') || ''; }
+            catch(e) { return ''; }
         }
-
         function parseDetail(text, key) {
-            const regex = new RegExp('\\*' + key + ':\\*\\s*([^\\n]+)', 'i');
-            const m = text.match(regex);
+            var m = text.match(new RegExp('\\*' + key + ':\\*\\s*([^\n]+)', 'i'));
             return m ? m[1].trim() : null;
         }
 
-        let waText = waParam ? extractFromWaText(waParam) : '';
+        var waText = waParam ? getWaText(waParam) : '';
 
-        // â”€â”€â”€ Fill in the customer order summary â”€â”€â”€
-        function setField(id, val) {
-            const el = document.getElementById(id);
+        function setText(id, val) {
+            var el = document.getElementById(id);
             if (el && val) el.textContent = val;
         }
-
-        // Customer Name (use n param, or parse from wa text)
-        const displayName = nameParam || parseDetail(waText, 'CUSTOMER') || 'â€”';
-        setField('display-name', displayName);
-
-        // Heading personalisation
-        if (nameParam) {
-            const h = document.getElementById('thanksHeading');
-            if (h) h.textContent = `Order Received, ${nameParam}! ðŸŽ‰`;
+        function hideRow(id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'none';
         }
+
+        // Name
+        var displayName = nameParm || parseDetail(waText, 'CUSTOMER') || '';
+        if (displayName) {
+            setText('display-name', displayName);
+            var h = document.getElementById('thanksHeading');
+            if (h) h.textContent = 'Order Received, ' + displayName + '! \uD83C\uDF89';
+        } else { hideRow('row-name'); }
 
         // Product
-        setField('display-product', pnParam || parseDetail(waText, 'PRODUCT') || 'â€”');
+        var dispProduct = pnParm || parseDetail(waText, 'PRODUCT') || '';
+        if (dispProduct) setText('display-product', dispProduct);
+        else hideRow('row-product');
 
         // Phone
-        const phone = parseDetail(waText, 'PHONE');
-        if (phone) setField('display-phone', phone);
-        else document.getElementById('row-phone').style.display = 'none';
+        var dispPhone = parseDetail(waText, 'PHONE');
+        if (dispPhone) setText('display-phone', dispPhone);
+        else hideRow('row-phone');
 
-        // Location
-        const location = parseDetail(waText, 'LOCATION');
-        if (location) setField('display-location', location);
+        // Location (var name avoids conflict with window.location)
+        var dispLoc = parseDetail(waText, 'LOCATION');
+        if (dispLoc) setText('display-location', dispLoc);
 
         // Address
-        const address = parseDetail(waText, 'ADDRESS');
-        if (address) setField('display-address', address);
-        else document.getElementById('row-address').style.display = 'none';
+        var dispAddr = parseDetail(waText, 'ADDRESS');
+        if (dispAddr) setText('display-address', dispAddr);
+        else hideRow('row-address');
 
         // Price
-        if (priceParam && parseFloat(priceParam) > 0) {
-            setField('display-price', 'â‚¦' + parseInt(priceParam).toLocaleString('en-NG'));
+        if (priceParm && parseFloat(priceParm) > 0) {
+            setText('display-price', '\u20A6' + parseInt(priceParm).toLocaleString('en-NG'));
         } else {
-            const total = parseDetail(waText, 'TOTAL');
-            if (total) setField('display-price', total);
+            var tot = parseDetail(waText, 'TOTAL');
+            if (tot) setText('display-price', tot);
         }
 
-        // â”€â”€â”€ Build WA redirect URL â”€â”€â”€
-        // Use the pre-built wa param if available, otherwise build a fallback
-        function buildFallbackWaUrl() {
-            const msg = [
-                `*NEW ORDER â€” Glamour & Grace* ðŸ›ï¸`,
-                `â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€`,
-                `ðŸ‘¤ *Customer:* ${displayName}`,
-                pnParam ? `ðŸ“¦ *Product:* ${pnParam}` : null,
-                priceParam ? `ðŸ’° *Total:* â‚¦${parseInt(priceParam).toLocaleString('en-NG')}` : null,
-                `ðŸ’³ *Payment:* Pay on Delivery`,
-                `â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€`,
-                `Please confirm my order and arrange delivery. Thank you!`
-            ].filter(Boolean).join('\n');
-            return `https://wa.me/2348039940408?text=${encodeURIComponent(msg)}`;
+        // Build WA URL
+        var finalUrl = waParam || (function() {
+            var msg = '*NEW ORDER - Glamour & Grace*\n------------------------\n';
+            if (displayName) msg += 'Customer: ' + displayName + '\n';
+            if (pnParm)      msg += 'Product: ' + pnParm + '\n';
+            if (priceParm)   msg += 'Total: \u20A6' + parseInt(priceParm).toLocaleString() + '\n';
+            msg += 'Payment: Cash or Transfer on Delivery\nPlease confirm my order. Thank you!';
+            return 'https://wa.me/2348039940408?text=' + encodeURIComponent(msg);
+        }());
+
+        // Redirect
+        var gone = false;
+        function goToWA() {
+            if (gone) return;
+            gone = true;
+            window.location.href = finalUrl;
         }
+        var btn = document.getElementById('waRedirectBtn');
+        if (btn) btn.onclick = goToWA;
 
-        // Use waParam directly â€” it's already decoded to a valid WA URL
-        const finalWaUrl = waParam || buildFallbackWaUrl();
+        // 5-second countdown
+        var total = 5;
+        var left  = total;
+        var circ  = 2 * Math.PI * 45;
+        var arcEl = document.getElementById('ring-arc');
+        var timeEl = document.getElementById('ring-time');
+        var captEl = document.getElementById('timerCountdown');
 
-        // â”€â”€â”€ Redirect handler â”€â”€â”€
-        let redirected = false;
-        function doRedirect() {
-            if (redirected) return;
-            redirected = true;
-            window.location.href = finalWaUrl;
-        }
-
-        document.getElementById('waRedirectBtn').addEventListener('click', doRedirect);
-
-        // â”€â”€â”€ Animated countdown (4 minutes = 240 seconds) â”€â”€â”€
-        const TOTAL_SECONDS = 5;
-        const CIRCUMFERENCE = 2 * Math.PI * 45; // â‰ˆ 282.74
-
-        const arc       = document.getElementById('ring-arc');
-        const ringTime  = document.getElementById('ring-time');
-        const timerText = document.getElementById('timerCountdown');
-
-        arc.style.strokeDasharray  = CIRCUMFERENCE;
-        arc.style.strokeDashoffset = 0;
-
-        let secondsLeft = TOTAL_SECONDS;
-
-        function formatTime(s) {
-            const m = Math.floor(s / 60);
-            const sec = s % 60;
-            return `${m}:${sec.toString().padStart(2, '0')}`;
+        if (arcEl) {
+            arcEl.setAttribute('stroke-dasharray', String(circ));
+            arcEl.setAttribute('stroke-dashoffset', '0');
         }
 
         function tick() {
-            const progress = secondsLeft / TOTAL_SECONDS;
-            const offset = CIRCUMFERENCE * (1 - progress);
-            arc.style.strokeDashoffset = offset;
-
-            const fmt = formatTime(secondsLeft);
-            ringTime.textContent = fmt;
-            timerText.textContent = `Auto-redirecting to WhatsApp in ${fmt}â€¦`;
-
-            arc.style.stroke = '#FF2D55';
-
-            if (secondsLeft <= 0) {
-                clearInterval(countdownInterval);
-                doRedirect();
-                return;
-            }
-
-            secondsLeft--;
+            var pct = left / total;
+            if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(circ * (1 - pct)));
+            if (timeEl) timeEl.textContent = '0:0' + left;
+            if (captEl) captEl.textContent = 'Redirecting to WhatsApp in ' + left + (left === 1 ? ' second' : ' seconds') + '...';
+            if (left <= 0) { goToWA(); return; }
+            left--;
         }
+        tick();
+        setInterval(tick, 1000);
 
-        tick(); // paint immediately
-        const countdownInterval = setInterval(tick, 1000);
-
-        // â”€â”€â”€ Confetti on load â”€â”€â”€
-        function spawnConfetti() {
-            const colors = ['#FF2D55','#FF6B85','#FFD700','#00C853','#4FC3F7','#FF8800'];
-            for (let i = 0; i < 22; i++) {
-                const dot = document.createElement('div');
-                dot.className = 'confetti-dot';
-                const size = 6 + Math.random() * 10;
-                dot.style.cssText = `
-                    width:${size}px; height:${size}px;
-                    background:${colors[Math.floor(Math.random()*colors.length)]};
-                    left:${Math.random()*100}vw;
-                    top:-20px;
-                    animation-duration:${2.5 + Math.random()*3}s;
-                    animation-delay:${Math.random()*1.5}s;
-                `;
-                document.body.appendChild(dot);
-                setTimeout(() => dot.remove(), 6000);
+        // Confetti
+        window.addEventListener('load', function() {
+            var cols = ['#FF2D55','#FFD700','#00C853','#4FC3F7','#FF8800'];
+            for (var i = 0; i < 18; i++) {
+                (function() {
+                    var d = document.createElement('div');
+                    d.className = 'confetti-dot';
+                    var s = 6 + Math.random() * 10;
+                    d.style.cssText = 'width:'+s+'px;height:'+s+'px;background:'+cols[i%cols.length]+';left:'+(Math.random()*100)+'vw;top:-20px;animation-duration:'+(2.5+Math.random()*3)+'s;animation-delay:'+(Math.random()*1.5)+'s;';
+                    document.body.appendChild(d);
+                    setTimeout(function(){ d.remove(); }, 6000);
+                }());
             }
-        }
-        window.addEventListener('load', spawnConfetti);
+        });
+    }());
     </script>
 </body>
 </html>
