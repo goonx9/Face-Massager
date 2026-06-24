@@ -549,7 +549,7 @@
                         <div class="order-row-content">
                             <div class="order-row-label">Total Amount</div>
                             <div class="order-row-value price" id="display-price">â€”</div>
-                            <div class="badge-pod">Pay on Delivery â€” Cash Ready</div>
+                            <div class="badge-pod">Cash or Transfer on Delivery</div>
                         </div>
                     </div>
                     <div class="order-row">
@@ -571,7 +571,7 @@
                     </svg>
                     <div class="ring-inner">
                         <span class="ring-time" id="ring-time">0:05</span>
-                        <span class="ring-label">mins left</span>
+                        <span class="ring-label">secs left</span>
                     </div>
                 </div>
                 <p class="countdown-caption" id="timerCountdown">Auto-redirecting to WhatsApp in 0:05â€¦</p>
@@ -636,27 +636,28 @@
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="lucide.createIcons();"></script>
     <script>
         // â”€â”€â”€ Parse URL params â”€â”€â”€
+        // NOTE: URLSearchParams.get() already decodes percent-encoding ONCE.
+        // Never call decodeURIComponent() on the result again â€” it can throw URIError.
         const params = new URLSearchParams(window.location.search);
-        const waParam   = params.get('wa');          // pre-built WA URL from product page
-        const nameParam = params.get('n')  || '';    // customer name
-        const priceParam= params.get('p')  || '';    // price
-        const pnParam   = params.get('pn') || '';    // product name
+        const waParam    = params.get('wa');      // pre-built WA URL from product page (already decoded once)
+        const nameParam  = params.get('n')  || '';
+        const priceParam = params.get('p')  || '';
+        const pnParam    = params.get('pn') || '';
 
-        // â”€â”€â”€ Parse customer details from the encoded WA text â”€â”€â”€
-        function extractFromWaText(encoded) {
+        // â”€â”€â”€ Parse customer details from the WA URL text param â”€â”€â”€
+        function extractFromWaText(waUrl) {
+            // waUrl is already decoded once by URLSearchParams â€” use it as-is
             try {
-                const decoded = decodeURIComponent(encoded);
-                // The wa param is a full URL like https://wa.me/...?text=...
-                const url = new URL(decoded);
-                return decodeURIComponent(url.searchParams.get('text') || '');
+                const url = new URL(waUrl);
+                // url.searchParams.get() decodes the text value once more â†’ plain text
+                return url.searchParams.get('text') || '';
             } catch (e) {
                 return '';
             }
         }
 
         function parseDetail(text, key) {
-            // Pattern: ðŸ“ž *PHONE:* 08012345678 (or similar emoji + label)
-            const regex = new RegExp(`\\*${key}:\\*\\s*([^\\n]+)`, 'i');
+            const regex = new RegExp('\\*' + key + ':\\*\\s*([^\\n]+)', 'i');
             const m = text.match(regex);
             return m ? m[1].trim() : null;
         }
@@ -720,7 +721,8 @@
             return `https://wa.me/2348039940408?text=${encodeURIComponent(msg)}`;
         }
 
-        const finalWaUrl = waParam ? decodeURIComponent(waParam) : buildFallbackWaUrl();
+        // Use waParam directly â€” it's already decoded to a valid WA URL
+        const finalWaUrl = waParam || buildFallbackWaUrl();
 
         // â”€â”€â”€ Redirect handler â”€â”€â”€
         let redirected = false;
@@ -752,11 +754,6 @@
         }
 
         function tick() {
-            if (secondsLeft < 0) {
-                doRedirect();
-                return;
-            }
-
             const progress = secondsLeft / TOTAL_SECONDS;
             const offset = CIRCUMFERENCE * (1 - progress);
             arc.style.strokeDashoffset = offset;
@@ -765,13 +762,12 @@
             ringTime.textContent = fmt;
             timerText.textContent = `Auto-redirecting to WhatsApp in ${fmt}â€¦`;
 
-            // Ring colour shift: green â†’ amber â†’ red as time depletes
-            if (progress > 0.5) {
-                arc.style.stroke = '#FF2D55';
-            } else if (progress > 0.25) {
-                arc.style.stroke = '#FF8800';
-            } else {
-                arc.style.stroke = '#FF2D55';
+            arc.style.stroke = '#FF2D55';
+
+            if (secondsLeft <= 0) {
+                clearInterval(countdownInterval);
+                doRedirect();
+                return;
             }
 
             secondsLeft--;
