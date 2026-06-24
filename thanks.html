@@ -75,14 +75,14 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* â”€â”€â”€ Page wrapper â”€â”€â”€ */
+        /* ─── Page wrapper ─── */
         .page-wrap {
             max-width: 700px;
             margin: 0 auto;
             padding: 40px 20px 60px;
         }
 
-        /* â”€â”€â”€ Logo bar â”€â”€â”€ */
+        /* ─── Logo bar ─── */
         .brand-bar {
             text-align: center;
             margin-bottom: 32px;
@@ -96,7 +96,7 @@
             color: #9B2C5C;
         }
 
-        /* â”€â”€â”€ Success hero card â”€â”€â”€ */
+        /* ─── Success hero card ─── */
         .hero-card {
             background: #fff;
             border-radius: 2.5rem;
@@ -116,7 +116,7 @@
             pointer-events: none;
         }
 
-        /* â”€â”€â”€ Check icon â”€â”€â”€ */
+        /* ─── Check icon ─── */
         .check-ring {
             width: 88px;
             height: 88px;
@@ -166,7 +166,7 @@
             margin-bottom: 28px;
         }
 
-        /* â”€â”€â”€ Order Summary Card â”€â”€â”€ */
+        /* ─── Order Summary Card ─── */
         .order-card {
             background: linear-gradient(135deg, #FFF0F5 0%, #FFF8F0 100%);
             border: 1.5px solid #FFD6E0;
@@ -240,7 +240,7 @@
             margin-top: 4px;
         }
 
-        /* â”€â”€â”€ Countdown Ring â”€â”€â”€ */
+        /* ─── Countdown Ring ─── */
         .countdown-section {
             text-align: center;
             margin-bottom: 24px;
@@ -262,7 +262,7 @@
             stroke: var(--primary);
             stroke-width: 5;
             stroke-linecap: round;
-            stroke-dasharray: 283;   /* 2Ï€ Ã— 45 â‰ˆ 283 */
+            stroke-dasharray: 283;   /* 2π × 45 ≈ 283 */
             stroke-dashoffset: 0;
             transition: stroke-dashoffset 1s linear;
         }
@@ -296,7 +296,7 @@
             color: #C0A0B0;
         }
 
-        /* â”€â”€â”€ WhatsApp CTA button â”€â”€â”€ */
+        /* ─── WhatsApp CTA button ─── */
         .wa-btn {
             display: flex;
             align-items: center;
@@ -333,7 +333,7 @@
         }
         .wa-btn { animation: btn-pulse 2.5s infinite; }
 
-        /* â”€â”€â”€ Urgency note â”€â”€â”€ */
+        /* ─── Urgency note ─── */
         .urgency-note {
             font-size: 11px;
             font-weight: 700;
@@ -344,14 +344,14 @@
         }
         .urgency-note strong { color: var(--primary); }
 
-        /* â”€â”€â”€ Divider â”€â”€â”€ */
+        /* ─── Divider ─── */
         .divider {
             border: none;
             border-top: 1.5px dashed #FFD6E0;
             margin: 32px 0;
         }
 
-        /* â”€â”€â”€ Upsell section â”€â”€â”€ */
+        /* ─── Upsell section ─── */
         .upsell-header {
             text-align: center;
             margin-bottom: 24px;
@@ -437,7 +437,7 @@
         }
         .upsell-link:hover { background: var(--primary); color: #fff; }
 
-        /* â”€â”€â”€ Back link â”€â”€â”€ */
+        /* ─── Back link ─── */
         .back-link {
             display: block;
             text-align: center;
@@ -453,7 +453,7 @@
         }
         .back-link:hover { opacity: 1; }
 
-        /* â”€â”€â”€ Confetti dots (decorative) â”€â”€â”€ */
+        /* ─── Confetti dots (decorative) ─── */
         .confetti-dot {
             position: fixed;
             border-radius: 50%;
@@ -475,7 +475,7 @@
     <div class="page-wrap">
         <!-- Brand -->
         <div class="brand-bar">
-            <span>âœ¦ Glamour &amp; Grace âœ¦</span>
+            <span>✦ Glamour &amp; Grace ✦</span>
         </div>
 
         <!-- Hero Success Card -->
@@ -487,17 +487,17 @@
                 </svg>
             </div>
 
-            <h1 id="thanksHeading">Order Received! ðŸŽ‰</h1>
+            <h1 id="thanksHeading">Order Received! 🎉</h1>
             <p class="sub">
                 Thank you for choosing Glamour &amp; Grace.<br>
                 Your order is confirmed and being processed.
             </p>
 
             <div class="critical-note">
-                âš¡ Critical Step â€” Confirm on WhatsApp to Prioritize Delivery
+                ⚡ Critical Step — Confirm on WhatsApp to Prioritize Delivery
             </div>
 
-            <!-- â”€â”€â”€ Customer Order Summary â”€â”€â”€ -->
+            <!-- ─── Customer Order Summary ─── -->
             <div class="order-card">
                 <div class="order-card-title">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -510,53 +510,53 @@
 
                 <div class="order-rows">
                     <div class="order-row" id="row-name">
-                        <div class="order-row-icon">ðŸ‘¤</div>
+                        <div class="order-row-icon">👤</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Customer Name</div>
-                            <div class="order-row-value" id="display-name">â€”</div>
+                            <div class="order-row-value" id="display-name">—</div>
                         </div>
                     </div>
                     <div class="order-row" id="row-product">
-                        <div class="order-row-icon">ðŸ“¦</div>
+                        <div class="order-row-icon">📦</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Product Ordered</div>
-                            <div class="order-row-value" id="display-product">â€”</div>
+                            <div class="order-row-value" id="display-product">—</div>
                         </div>
                     </div>
                     <div class="order-row" id="row-phone">
-                        <div class="order-row-icon">ðŸ“ž</div>
+                        <div class="order-row-icon">📞</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Contact Number</div>
-                            <div class="order-row-value" id="display-phone">â€”</div>
+                            <div class="order-row-value" id="display-phone">—</div>
                         </div>
                     </div>
                     <div class="order-row" id="row-location">
-                        <div class="order-row-icon">ðŸ“</div>
+                        <div class="order-row-icon">📍</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Delivery Location</div>
                             <div class="order-row-value" id="display-location">Lagos</div>
                         </div>
                     </div>
                     <div class="order-row" id="row-address">
-                        <div class="order-row-icon">ðŸ </div>
+                        <div class="order-row-icon">🏠</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Delivery Address</div>
-                            <div class="order-row-value" id="display-address">â€”</div>
+                            <div class="order-row-value" id="display-address">—</div>
                         </div>
                     </div>
                     <div class="order-row">
-                        <div class="order-row-icon">ðŸ’°</div>
+                        <div class="order-row-icon">💰</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Total Amount</div>
-                            <div class="order-row-value price" id="display-price">â€”</div>
+                            <div class="order-row-value price" id="display-price">—</div>
                             <div class="badge-pod">Cash or Transfer on Delivery</div>
                         </div>
                     </div>
                     <div class="order-row">
-                        <div class="order-row-icon">ðŸšš</div>
+                        <div class="order-row-icon">🚚</div>
                         <div class="order-row-content">
                             <div class="order-row-label">Delivery</div>
-                            <div class="order-row-value">Free Â· 24â€“48 hrs within Lagos</div>
+                            <div class="order-row-value">Free · 24–48 hrs within Lagos</div>
                         </div>
                     </div>
                 </div>
@@ -574,7 +574,7 @@
                         <span class="ring-label">secs left</span>
                     </div>
                 </div>
-                <p class="countdown-caption" id="timerCountdown">Auto-redirecting to WhatsApp in 0:05â€¦</p>
+                <p class="countdown-caption" id="timerCountdown">Auto-redirecting to WhatsApp in 0:05…</p>
             </div>
 
             <!-- WhatsApp CTA -->
@@ -586,7 +586,7 @@
             </button>
 
             <p class="urgency-note">
-                ðŸ”” <strong>Don't miss this step!</strong> Clicking above sends your full order details to our team<br>
+                🔔 <strong>Don't miss this step!</strong> Clicking above sends your full order details to our team<br>
                 so we can dispatch your delivery today.
             </p>
         </div>
@@ -595,7 +595,7 @@
         <hr class="divider">
 
         <div class="upsell-header">
-            <span class="upsell-label">Wait â€” Don't Miss Out!</span>
+            <span class="upsell-label">Wait — Don't Miss Out!</span>
             <h2>Add to Your Beauty Ritual</h2>
         </div>
 
@@ -604,12 +604,12 @@
             <div class="upsell-card">
                 <img class="upsell-img"
                     src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg"
-                    alt="V-Lift Proâ„¢ Massage"
+                    alt="V-Lift Pro™ Massage"
                     loading="lazy">
-                <h3>V-Lift Proâ„¢</h3>
+                <h3>V-Lift Pro™</h3>
                 <p>The viral sculpting tool for a snatched, lifted face in minutes.</p>
                 <div class="upsell-footer">
-                    <span class="upsell-price">â‚¦29,500</span>
+                    <span class="upsell-price">₦29,500</span>
                     <a href="v-lift.html" class="upsell-link">View</a>
                 </div>
             </div>
@@ -618,18 +618,18 @@
             <div class="upsell-card">
                 <img class="upsell-img"
                     src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png"
-                    alt="Ultrasonic Pore Vacuumâ„¢"
+                    alt="Ultrasonic Pore Vacuum™"
                     loading="lazy">
-                <h3>Pore Vacuumâ„¢</h3>
+                <h3>Pore Vacuum™</h3>
                 <p>Professional-grade blackhead &amp; pimple remover for clear, smooth skin.</p>
                 <div class="upsell-footer">
-                    <span class="upsell-price">â‚¦18,000</span>
+                    <span class="upsell-price">₦18,000</span>
                     <a href="pore-cleaner.html" class="upsell-link">View</a>
                 </div>
             </div>
         </div>
 
-        <a href="/" class="back-link">â† Back to Home</a>
+        <a href="/" class="back-link">← Back to Home</a>
     </div>
 
     <!-- Scripts -->
