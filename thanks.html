@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Thank You | Glamour & Grace</title>
+    <title>Thank You | Glamour &amp; Grace</title>
     
     <!-- Resource Hints -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,165 +50,756 @@
     }
     </script>
     <!-- End Meta Pixel Code -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#FF2D55',
-                        background: '#FFF5F8',
-                        text: '#1A1A1A',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap">
+
     <style>
         :root {
-            --color-primary: #FF2D55;
-            --color-background: #FFF5F8;
-            --color-text: #1A1A1A;
+            --primary: #FF2D55;
+            --primary-light: #FF6B85;
+            --bg: #FFF5F8;
+            --text: #1A1A1A;
+            --green: #00C853;
+            --wa-green: #25D366;
         }
-        
-        /* Fallback classes */
-        .bg-primary { background-color: #FF2D55 !important; color: white !important; }
-        .text-primary { color: #FF2D55 !important; }
-        
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--color-background); 
-            color: var(--color-text); 
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFF8F0 50%, #F0F8FF 100%);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* â”€â”€â”€ Page wrapper â”€â”€â”€ */
+        .page-wrap {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        /* â”€â”€â”€ Logo bar â”€â”€â”€ */
+        .brand-bar {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .brand-bar span {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #9B2C5C;
+        }
+
+        /* â”€â”€â”€ Success hero card â”€â”€â”€ */
+        .hero-card {
+            background: #fff;
+            border-radius: 2.5rem;
+            box-shadow: 0 24px 64px rgba(255, 45, 85, 0.10), 0 4px 16px rgba(0,0,0,0.05);
+            border: 1px solid #FFD6E0;
+            padding: 40px 36px 32px;
+            text-align: center;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,45,85,0.04) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* â”€â”€â”€ Check icon â”€â”€â”€ */
+        .check-ring {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #EDFFF3, #C8FFD7);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            -webkit-font-smoothing: antialiased;
+            margin: 0 auto 24px;
+            box-shadow: 0 8px 24px rgba(0,200,83,0.2);
+            animation: pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
         }
-        .font-serif { font-family: 'Playfair Display', serif; }
+        .check-ring svg { width: 44px; height: 44px; }
+        @keyframes pop-in {
+            from { transform: scale(0); opacity: 0; }
+            to   { transform: scale(1); opacity: 1; }
+        }
+
+        .hero-card h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(26px, 6vw, 40px);
+            font-weight: 900;
+            line-height: 1.1;
+            color: #1A1A1A;
+            margin-bottom: 12px;
+        }
+        .hero-card .sub {
+            font-size: 14px;
+            font-weight: 600;
+            color: #7A7A7A;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+        .hero-card .critical-note {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #FFF3CD;
+            border: 1.5px solid #FFCA28;
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #7B5800;
+            margin-bottom: 28px;
+        }
+
+        /* â”€â”€â”€ Order Summary Card â”€â”€â”€ */
+        .order-card {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFF8F0 100%);
+            border: 1.5px solid #FFD6E0;
+            border-radius: 2rem;
+            padding: 28px;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+        .order-card-title {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .order-card-title svg { width: 14px; height: 14px; }
+
+        .order-rows { display: flex; flex-direction: column; gap: 0; }
+        .order-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 100, 130, 0.12);
+        }
+        .order-row:last-child { border-bottom: none; }
+        .order-row-icon {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            border-radius: 12px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            box-shadow: 0 2px 8px rgba(255,45,85,0.1);
+        }
+        .order-row-content { flex: 1; }
+        .order-row-label {
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #B0A0A8;
+            margin-bottom: 2px;
+        }
+        .order-row-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2A1020;
+            line-height: 1.4;
+        }
+        .order-row-value.price {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .badge-pod {
+            display: inline-block;
+            background: #E3F9EE;
+            color: #1B7A48;
+            border-radius: 100px;
+            padding: 2px 10px;
+            font-size: 10px;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        /* â”€â”€â”€ Countdown Ring â”€â”€â”€ */
+        .countdown-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .ring-wrap {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 12px;
+        }
+        .ring-wrap svg {
+            transform: rotate(-90deg);
+            width: 100px;
+            height: 100px;
+        }
+        .ring-bg { fill: none; stroke: #FFD6E0; stroke-width: 5; }
+        .ring-progress {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-dasharray: 283;   /* 2Ï€ Ã— 45 â‰ˆ 283 */
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s linear;
+        }
+        .ring-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .ring-time {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .ring-label {
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #B0A0A8;
+            margin-top: 2px;
+        }
+        .countdown-caption {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #C0A0B0;
+        }
+
+        /* â”€â”€â”€ WhatsApp CTA button â”€â”€â”€ */
+        .wa-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 20px 28px;
+            background: linear-gradient(135deg, #20C65A, #1AAD52);
+            color: #fff;
+            border: none;
+            border-radius: 100px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            cursor: pointer;
+            box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 16px;
+            text-decoration: none;
+        }
+        .wa-btn:hover {
+            transform: scale(1.03) translateY(-2px);
+            box-shadow: 0 18px 40px rgba(37, 211, 102, 0.5);
+        }
+        .wa-btn:active { transform: scale(0.98); }
+        .wa-btn svg { width: 24px; height: 24px; }
+
+        /* Pulse animation on the button */
+        @keyframes btn-pulse {
+            0%, 100% { box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37,211,102,0.35); }
+            50%       { box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4), 0 0 0 14px rgba(37,211,102,0); }
+        }
+        .wa-btn { animation: btn-pulse 2.5s infinite; }
+
+        /* â”€â”€â”€ Urgency note â”€â”€â”€ */
+        .urgency-note {
+            font-size: 11px;
+            font-weight: 700;
+            color: #9B7080;
+            text-align: center;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .urgency-note strong { color: var(--primary); }
+
+        /* â”€â”€â”€ Divider â”€â”€â”€ */
+        .divider {
+            border: none;
+            border-top: 1.5px dashed #FFD6E0;
+            margin: 32px 0;
+        }
+
+        /* â”€â”€â”€ Upsell section â”€â”€â”€ */
+        .upsell-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .upsell-label {
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+        }
+        .upsell-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(22px, 5vw, 32px);
+            font-weight: 900;
+            color: #7B1A3A;
+        }
+
+        .upsell-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 480px) {
+            .upsell-grid { grid-template-columns: 1fr; }
+        }
+        .upsell-card {
+            background: #fff;
+            border-radius: 2rem;
+            padding: 20px;
+            border: 1px solid #FFD6E0;
+            box-shadow: 0 8px 24px rgba(255,45,85,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .upsell-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(255,45,85,0.12);
+        }
+        .upsell-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 1.5rem;
+            object-fit: cover;
+            margin-bottom: 14px;
+            background: #FFF0F5;
+        }
+        .upsell-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+        .upsell-card p {
+            font-size: 11px;
+            color: #9B7080;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .upsell-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .upsell-price {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--primary);
+        }
+        .upsell-link {
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--primary);
+            background: #FFF0F5;
+            border-radius: 100px;
+            padding: 7px 14px;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+        .upsell-link:hover { background: var(--primary); color: #fff; }
+
+        /* â”€â”€â”€ Back link â”€â”€â”€ */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 32px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--primary);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+
+        /* â”€â”€â”€ Confetti dots (decorative) â”€â”€â”€ */
+        .confetti-dot {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: confetti-fall linear infinite;
+            opacity: 0;
+        }
+        @keyframes confetti-fall {
+            0%   { transform: translateY(-20px) rotate(0deg); opacity: 0.7; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
     </style>
 </head>
-<body class="text-center">
+<body>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"
     /></noscript>
-    <div class="max-w-4xl w-full space-y-12 my-12 px-4">
-        <!-- Success Card -->
-        <div class="bg-white p-12 rounded-[4rem] shadow-2xl border border-pink-100 space-y-8 text-center">
-            <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
-                <i data-lucide="check-circle-2" size="48"></i>
-            </div>
-            
-            <div class="space-y-4">
-                <h1 class="text-4xl md:text-5xl font-serif font-black" id="thanksHeading">Order Received!</h1>
-                <p class="font-medium opacity-70 leading-relaxed text-lg">
-                    Thank you for choosing Glamour & Grace. Your order is being processed. 
-                    <br><br>
-                    <span class="text-primary font-bold underline">CRITICAL STEP:</span> Please click the button below to confirm your order via WhatsApp. This ensures your delivery is prioritized.
-                </p>
+
+    <div class="page-wrap">
+        <!-- Brand -->
+        <div class="brand-bar">
+            <span>âœ¦ Glamour &amp; Grace âœ¦</span>
+        </div>
+
+        <!-- Hero Success Card -->
+        <div class="hero-card">
+            <div class="check-ring">
+                <svg viewBox="0 0 44 44" fill="none">
+                    <circle cx="22" cy="22" r="22" fill="#E3F9EE"/>
+                    <path d="M12 22.5L19.5 30L32 16" stroke="#00C853" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
             </div>
 
-            <button id="waRedirectBtn" class="w-full py-6 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-transform flex items-center justify-center gap-3 text-lg">
-                <i data-lucide="message-circle" size="24"></i> Finish on WhatsApp
+            <h1 id="thanksHeading">Order Received! ðŸŽ‰</h1>
+            <p class="sub">
+                Thank you for choosing Glamour &amp; Grace.<br>
+                Your order is confirmed and being processed.
+            </p>
+
+            <div class="critical-note">
+                âš¡ Critical Step â€” Confirm on WhatsApp to Prioritize Delivery
+            </div>
+
+            <!-- â”€â”€â”€ Customer Order Summary â”€â”€â”€ -->
+            <div class="order-card">
+                <div class="order-card-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+                        <rect x="9" y="3" width="6" height="4" rx="1"/>
+                        <path d="M9 12h6M9 16h4"/>
+                    </svg>
+                    Your Order Summary
+                </div>
+
+                <div class="order-rows">
+                    <div class="order-row" id="row-name">
+                        <div class="order-row-icon">ðŸ‘¤</div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Customer Name</div>
+                            <div class="order-row-value" id="display-name">â€”</div>
+                        </div>
+                    </div>
+                    <div class="order-row" id="row-product">
+                        <div class="order-row-icon">ðŸ“¦</div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Product Ordered</div>
+                            <div class="order-row-value" id="display-product">â€”</div>
+                        </div>
+                    </div>
+                    <div class="order-row" id="row-phone">
+                        <div class="order-row-icon">ðŸ“ž</div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Contact Number</div>
+                            <div class="order-row-value" id="display-phone">â€”</div>
+                        </div>
+                    </div>
+                    <div class="order-row" id="row-location">
+                        <div class="order-row-icon">ðŸ“</div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Delivery Location</div>
+                            <div class="order-row-value" id="display-location">Lagos</div>
+                        </div>
+                    </div>
+                    <div class="order-row" id="row-address">
+                        <div class="order-row-icon">ðŸ </div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Delivery Address</div>
+                            <div class="order-row-value" id="display-address">â€”</div>
+                        </div>
+                    </div>
+                    <div class="order-row">
+                        <div class="order-row-icon">ðŸ’°</div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Total Amount</div>
+                            <div class="order-row-value price" id="display-price">â€”</div>
+                            <div class="badge-pod">Pay on Delivery â€” Cash Ready</div>
+                        </div>
+                    </div>
+                    <div class="order-row">
+                        <div class="order-row-icon">ðŸšš</div>
+                        <div class="order-row-content">
+                            <div class="order-row-label">Delivery</div>
+                            <div class="order-row-value">Free Â· 24â€“48 hrs within Lagos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Countdown Ring -->
+            <div class="countdown-section">
+                <div class="ring-wrap">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="ring-bg" cx="50" cy="50" r="45"/>
+                        <circle class="ring-progress" id="ring-arc" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="ring-inner">
+                        <span class="ring-time" id="ring-time">4:00</span>
+                        <span class="ring-label">mins left</span>
+                    </div>
+                </div>
+                <p class="countdown-caption" id="timerCountdown">Auto-redirecting to WhatsApp in 4:00â€¦</p>
+            </div>
+
+            <!-- WhatsApp CTA -->
+            <button class="wa-btn" id="waRedirectBtn" type="button">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+                </svg>
+                Confirm Order on WhatsApp Now
             </button>
-            
-            <p id="timerCountdown" class="text-[10px] font-black opacity-30 uppercase tracking-widest italic">Redirecting to WhatsApp in 15 seconds...</p>
+
+            <p class="urgency-note">
+                ðŸ”” <strong>Don't miss this step!</strong> Clicking above sends your full order details to our team<br>
+                so we can dispatch your delivery today.
+            </p>
         </div>
 
-        <!-- Upsell Section -->
-        <section class="space-y-12">
-            <div class="text-center space-y-4">
-                <span class="text-primary font-black uppercase tracking-widest text-[11px] block">Wait! Don't Miss Out</span>
-                <h2 class="text-4xl font-serif font-black text-pink-900">Add to your ritual</h2>
-            </div>
+        <!-- Upsells -->
+        <hr class="divider">
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- V-Lift Upsell -->
-                <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
-                    <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_500/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg" alt="V-Lift Pro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-black">V-Lift Pro™ Massage</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">The viral tool for a sculpted, snatched face in minutes.</p>
-                        <div class="flex items-center justify-between pt-4">
-                            <span class="text-xl font-black text-primary">₦29,500</span>
-                            <a href="v-lift.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pore Vacuum Upsell -->
-                <div class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl group hover:-translate-y-2 transition-all duration-500">
-                    <div class="aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-8">
-                        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_500/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png" alt="Ultrasonic Pore Vacuum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-2xl font-serif font-black">Ultrasonic Pore Vacuum™</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">The professional-grade blackhead & pimple remover vac for clear, smooth skin.</p>
-                        <div class="flex items-center justify-between pt-4">
-                            <span class="text-xl font-black text-primary">₦18,000</span>
-                            <a href="pore-cleaner.html" class="px-6 py-3 bg-pink-50 text-primary rounded-full font-black text-[9px] uppercase tracking-widest hover:bg-primary hover:text-white transition-colors">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="text-center pt-8">
-            <a href="/" class="text-[11px] font-black uppercase tracking-[0.3em] text-primary hover:underline group inline-flex items-center gap-2">
-                <i data-lucide="arrow-left" size="12"></i> Back to Home
-            </a>
+        <div class="upsell-header">
+            <span class="upsell-label">Wait â€” Don't Miss Out!</span>
+            <h2>Add to Your Beauty Ritual</h2>
         </div>
+
+        <div class="upsell-grid">
+            <!-- V-Lift -->
+            <div class="upsell-card">
+                <img class="upsell-img"
+                    src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1775914901/Ethnic-Facelift-Orange-County-300x225_qtxwzx_ibwdzx.jpg"
+                    alt="V-Lift Proâ„¢ Massage"
+                    loading="lazy">
+                <h3>V-Lift Proâ„¢</h3>
+                <p>The viral sculpting tool for a snatched, lifted face in minutes.</p>
+                <div class="upsell-footer">
+                    <span class="upsell-price">â‚¦29,500</span>
+                    <a href="v-lift.html" class="upsell-link">View</a>
+                </div>
+            </div>
+
+            <!-- Pore Vacuum -->
+            <div class="upsell-card">
+                <img class="upsell-img"
+                    src="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto,f_auto,w_400/v1777739819/Screenshot_2026-05-02_173112_a2dr4t.png"
+                    alt="Ultrasonic Pore Vacuumâ„¢"
+                    loading="lazy">
+                <h3>Pore Vacuumâ„¢</h3>
+                <p>Professional-grade blackhead &amp; pimple remover for clear, smooth skin.</p>
+                <div class="upsell-footer">
+                    <span class="upsell-price">â‚¦18,000</span>
+                    <a href="pore-cleaner.html" class="upsell-link">View</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="/" class="back-link">â† Back to Home</a>
     </div>
 
     <!-- Deferred Scripts -->
-    <script src="https://unpkg.com/lucide@latest" defer onload="lucide.createIcons();"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="lucide.createIcons();"></script>
     <script>
+        // â”€â”€â”€ Parse URL params â”€â”€â”€
         const params = new URLSearchParams(window.location.search);
-        const waLink = params.get('wa');
-        const customerName = params.get('n');
-        const orderPrice = params.get('p') || '0';
+        const waParam   = params.get('wa');          // pre-built WA URL from product page
+        const nameParam = params.get('n')  || '';    // customer name
+        const priceParam= params.get('p')  || '';    // price
+        const pnParam   = params.get('pn') || '';    // product name
 
-        if (customerName) {
-            const h = document.getElementById('thanksHeading');
-            if (h) h.innerText = `Order Received, ${customerName}!`;
+        // â”€â”€â”€ Parse customer details from the encoded WA text â”€â”€â”€
+        function extractFromWaText(encoded) {
+            try {
+                const decoded = decodeURIComponent(encoded);
+                // The wa param is a full URL like https://wa.me/...?text=...
+                const url = new URL(decoded);
+                return decodeURIComponent(url.searchParams.get('text') || '');
+            } catch (e) {
+                return '';
+            }
         }
-        
-        let purchaseFired = false;
-        const handleRedirect = () => {
-            if (purchaseFired) return;
-            purchaseFired = true;
-            
-            if (waLink) {
-                // Ensure the link opens properly
-                const decWaLink = decodeURIComponent(waLink);
-                window.location.href = decWaLink;
-            }
-        };
 
-        const btn = document.getElementById('waRedirectBtn');
-        if (btn) btn.addEventListener('click', handleRedirect);
-        
-        // Auto-redirect after longer duration to allow viewing upsells
-        let timeLeft = 15;
+        function parseDetail(text, key) {
+            // Pattern: ðŸ“ž *PHONE:* 08012345678 (or similar emoji + label)
+            const regex = new RegExp(`\\*${key}:\\*\\s*([^\\n]+)`, 'i');
+            const m = text.match(regex);
+            return m ? m[1].trim() : null;
+        }
+
+        let waText = waParam ? extractFromWaText(waParam) : '';
+
+        // â”€â”€â”€ Fill in the customer order summary â”€â”€â”€
+        function setField(id, val) {
+            const el = document.getElementById(id);
+            if (el && val) el.textContent = val;
+        }
+
+        // Customer Name (use n param, or parse from wa text)
+        const displayName = nameParam || parseDetail(waText, 'CUSTOMER') || 'â€”';
+        setField('display-name', displayName);
+
+        // Heading personalisation
+        if (nameParam) {
+            const h = document.getElementById('thanksHeading');
+            if (h) h.textContent = `Order Received, ${nameParam}! ðŸŽ‰`;
+        }
+
+        // Product
+        setField('display-product', pnParam || parseDetail(waText, 'PRODUCT') || 'â€”');
+
+        // Phone
+        const phone = parseDetail(waText, 'PHONE');
+        if (phone) setField('display-phone', phone);
+        else document.getElementById('row-phone').style.display = 'none';
+
+        // Location
+        const location = parseDetail(waText, 'LOCATION');
+        if (location) setField('display-location', location);
+
+        // Address
+        const address = parseDetail(waText, 'ADDRESS');
+        if (address) setField('display-address', address);
+        else document.getElementById('row-address').style.display = 'none';
+
+        // Price
+        if (priceParam && parseFloat(priceParam) > 0) {
+            setField('display-price', 'â‚¦' + parseInt(priceParam).toLocaleString('en-NG'));
+        } else {
+            const total = parseDetail(waText, 'TOTAL');
+            if (total) setField('display-price', total);
+        }
+
+        // â”€â”€â”€ Build WA redirect URL â”€â”€â”€
+        // Use the pre-built wa param if available, otherwise build a fallback
+        function buildFallbackWaUrl() {
+            const msg = [
+                `*NEW ORDER â€” Glamour & Grace* ðŸ›ï¸`,
+                `â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€`,
+                `ðŸ‘¤ *Customer:* ${displayName}`,
+                pnParam ? `ðŸ“¦ *Product:* ${pnParam}` : null,
+                priceParam ? `ðŸ’° *Total:* â‚¦${parseInt(priceParam).toLocaleString('en-NG')}` : null,
+                `ðŸ’³ *Payment:* Pay on Delivery`,
+                `â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€`,
+                `Please confirm my order and arrange delivery. Thank you!`
+            ].filter(Boolean).join('\n');
+            return `https://wa.me/2348039940408?text=${encodeURIComponent(msg)}`;
+        }
+
+        const finalWaUrl = waParam ? decodeURIComponent(waParam) : buildFallbackWaUrl();
+
+        // â”€â”€â”€ Redirect handler â”€â”€â”€
+        let redirected = false;
+        function doRedirect() {
+            if (redirected) return;
+            redirected = true;
+            window.location.href = finalWaUrl;
+        }
+
+        document.getElementById('waRedirectBtn').addEventListener('click', doRedirect);
+
+        // â”€â”€â”€ Animated countdown (4 minutes = 240 seconds) â”€â”€â”€
+        const TOTAL_SECONDS = 240;
+        const CIRCUMFERENCE = 2 * Math.PI * 45; // â‰ˆ 282.74
+
+        const arc       = document.getElementById('ring-arc');
+        const ringTime  = document.getElementById('ring-time');
         const timerText = document.getElementById('timerCountdown');
-        const countdown = setInterval(() => {
-            timeLeft--;
-            if (timerText) timerText.innerText = `Redirecting to WhatsApp in ${timeLeft} seconds...`;
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                handleRedirect();
+
+        arc.style.strokeDasharray  = CIRCUMFERENCE;
+        arc.style.strokeDashoffset = 0;
+
+        let secondsLeft = TOTAL_SECONDS;
+
+        function formatTime(s) {
+            const m = Math.floor(s / 60);
+            const sec = s % 60;
+            return `${m}:${sec.toString().padStart(2, '0')}`;
+        }
+
+        function tick() {
+            if (secondsLeft < 0) {
+                doRedirect();
+                return;
             }
-        }, 1000);
+
+            const progress = secondsLeft / TOTAL_SECONDS;
+            const offset = CIRCUMFERENCE * (1 - progress);
+            arc.style.strokeDashoffset = offset;
+
+            const fmt = formatTime(secondsLeft);
+            ringTime.textContent = fmt;
+            timerText.textContent = `Auto-redirecting to WhatsApp in ${fmt}â€¦`;
+
+            // Ring colour shift: green â†’ amber â†’ red as time depletes
+            if (progress > 0.5) {
+                arc.style.stroke = '#FF2D55';
+            } else if (progress > 0.25) {
+                arc.style.stroke = '#FF8800';
+            } else {
+                arc.style.stroke = '#FF2D55';
+            }
+
+            secondsLeft--;
+        }
+
+        tick(); // paint immediately
+        const countdownInterval = setInterval(tick, 1000);
+
+        // â”€â”€â”€ Confetti on load â”€â”€â”€
+        function spawnConfetti() {
+            const colors = ['#FF2D55','#FF6B85','#FFD700','#00C853','#4FC3F7','#FF8800'];
+            for (let i = 0; i < 22; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'confetti-dot';
+                const size = 6 + Math.random() * 10;
+                dot.style.cssText = `
+                    width:${size}px; height:${size}px;
+                    background:${colors[Math.floor(Math.random()*colors.length)]};
+                    left:${Math.random()*100}vw;
+                    top:-20px;
+                    animation-duration:${2.5 + Math.random()*3}s;
+                    animation-delay:${Math.random()*1.5}s;
+                `;
+                document.body.appendChild(dot);
+                setTimeout(() => dot.remove(), 6000);
+            }
+        }
+        window.addEventListener('load', spawnConfetti);
     </script>
 </body>
 </html>
