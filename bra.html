@@ -1589,351 +1589,221 @@ level. Done in under 60 seconds.
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="lucide.createIcons();"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="(function(){if('requestIdleCallback' in window){requestIdleCallback(function(){lucide.createIcons();},{timeout:3000});}else{setTimeout(function(){lucide.createIcons();},200);}})()"></script>
     <script>
-        // Initialize EmailJS safely
-        window.addEventListener('load', function() {
-            if (typeof emailjs !== 'undefined') {
-                emailjs.init("_h1UzYlyePtWt0IqM");
-            }
+    /* ── onclick-safe globals (defined synchronously for HTML attribute access) ── */
+    var basePrice = 18000, discount = 0;
+
+    function handlePackageChange(val) {
+        var prices = { 'Single': 18000, 'Premium': 28000 };
+        selectBundle(val, prices[val] || 18000, false);
+    }
+
+    function selectBundle(name, price, scroll) {
+        basePrice = price;
+        var pkg = document.getElementById('packageSelect'),
+            hn  = document.getElementById('hidden_product_name'),
+            hp  = document.getElementById('hidden_product_price'),
+            sn  = document.getElementById('summaryProductName'),
+            sp  = document.getElementById('summaryProductPrice'),
+            fn  = name === 'Premium' ? 'Premium Double Lift Combo (Bra + Tape & Nipple Covers)' : 'Invisible Push Up Bra (Single Pack)';
+        if (pkg) pkg.value = name;
+        if (hn)  hn.value  = fn;
+        if (sn)  sn.innerText = fn;
+        if (sp)  sp.innerText = '\u20A6' + price.toLocaleString();
+        updateSummary();
+        if (scroll !== false) { var el = document.getElementById('order'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
+    }
+
+    function applyDiscount() {
+        discount = 1000;
+        var row = document.getElementById('discount-row');
+        if (row) row.classList.remove('hidden');
+        updateSummary();
+    }
+
+    function filterBySize(size) {
+        document.querySelectorAll('.size-filter-btn').forEach(function(btn) {
+            if (btn.innerText === size) btn.classList.add('bg-primary','text-white','border-primary');
+            else btn.classList.remove('bg-primary','text-white','border-primary');
         });
-
-        // Notification Logic
-        function triggerNotif() {
-            const el = document.getElementById('order-notification');
-            const txt = document.getElementById('notif-text');
-            const names = ['Ada', 'Fatima', 'Chioma', 'Nneka', 'Blessing', 'Aisha', 'Funke', 'Zainab', 'Esther', 'Mary', 'Titi', 'Ronke', 'Yinka', 'Bolu', 'Tobi'];
-            const states = ["Lagos Island", "Ikeja", "Lekki", "Victoria Island", "Surulere", "Ajah", "Ikorodu", "Epe", "Maryland", "Ikoyi", "Yaba"];
-            const prods = ["Glamour & Grace Face Massage Lifter", "Invisible Push Up Bra", "Ultrasonic Pore Vacuum™", "Smooth Precision Lady Shaver"];
-            
-            const name = names[Math.floor(Math.random() * names.length)];
-            const state = states[Math.floor(Math.random() * states.length)];
-            const prod = prods[Math.floor(Math.random() * prods.length)];
-
-            txt.innerHTML = `<strong>${name}</strong> from <strong>${state}</strong> ordered <strong>${prod}</strong>`;
-            
-            el.classList.add('show');
-            setTimeout(() => {
-                el.classList.remove('show');
-            }, 3500);
+        var sel = document.querySelector('select[name="size"]');
+        if (sel) {
+            sel.value = size;
+            sel.classList.add('ring-4','ring-primary/20');
+            setTimeout(function(){ sel.classList.remove('ring-4','ring-primary/20'); }, 1500);
         }
+        var el = document.getElementById('order');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
 
-        window.addEventListener('load', () => {
-            // Delay non-critical notification prompts till 6s to minimize TBT
-            setTimeout(() => {
-                triggerNotif();
-                setInterval(triggerNotif, 12000);
-            }, 6000);
-        });
+    function updateSummary() {
+        var dft = document.getElementById('deliveryFeeText'),
+            pmt = document.getElementById('paymentMethodText'),
+            tt  = document.getElementById('totalPriceText'),
+            hp  = document.getElementById('hidden_product_price'),
+            total = basePrice - discount;
+        if (dft) { dft.innerText = 'FREE'; dft.className = 'text-green-600'; }
+        if (pmt) { pmt.innerText = 'Pay on Delivery'; pmt.className = 'text-blue-600'; }
+        if (tt)  tt.innerText = '\u20A6' + total.toLocaleString();
+        if (hp)  hp.value = total;
+    }
 
-        // Dynamic Order Summary Logic
-        const locSelect = document.getElementById('locationSelect');
-        const delFeeText = document.getElementById('deliveryFeeText');
-        const payMethText = document.getElementById('paymentMethodText');
-        const totalText = document.getElementById('totalPriceText');
-        
-        let basePrice = 18000;
-        let discount = 0;
-
-        function handlePackageChange(val) {
-            const prices = {
-                'Single': 18000,
-                'Premium': 28000
-            };
-            selectBundle(val, prices[val], false);
-        }
-
-        function selectBundle(name, price, shouldScroll = true) {
-            basePrice = price;
-            const packageSelect = document.getElementById('packageSelect');
-            const hiddenName = document.getElementById('hidden_product_name');
-            const hiddenPrice = document.getElementById('hidden_product_price');
-            const summaryName = document.getElementById('summaryProductName');
-            const summaryPrice = document.getElementById('summaryProductPrice');
-
-            if (packageSelect) packageSelect.value = name;
-            
-            let fullName = `Invisible Push Up Bra (${name} Pack)`;
-            if (name === 'Single') fullName = "Invisible Push Up Bra (Single Pack)";
-            if (name === 'Premium') fullName = "Premium Double Lift Combo (Bra + Tape & Nipple Covers)";
-
-            hiddenName.value = fullName;
-            if (summaryName) summaryName.innerText = fullName;
-            if (summaryPrice) summaryPrice.innerText = `₦${price.toLocaleString()}`;
-
-            updateSummary();
-            
-            if (shouldScroll) {
-                document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function filterBySize(size) {
-            // Highlight selected filter
-            const btns = document.querySelectorAll('.size-filter-btn');
-            btns.forEach(btn => {
-                if (btn.innerText === size) {
-                    btn.classList.add('bg-primary', 'text-white', 'border-primary');
-                } else {
-                    btn.classList.remove('bg-primary', 'text-white', 'border-primary');
-                }
+    /* ── Defer ALL init to idle time so it does not block TTI ── */
+    (function () {
+        function init() {
+            // EmailJS
+            window.addEventListener('load', function () {
+                if (typeof emailjs !== 'undefined') emailjs.init('_h1UzYlyePtWt0IqM');
             });
 
-            // Pre-select in form
-            const sizeSelect = document.querySelector('select[name="size"]');
-            if (sizeSelect) {
-                sizeSelect.value = size;
-                // Highlight the form field momentarily
-                sizeSelect.classList.add('ring-4', 'ring-primary/20');
-                setTimeout(() => sizeSelect.classList.remove('ring-4', 'ring-primary/20'), 1500);
+            // Fake order notifications
+            var names  = ['Ada','Fatima','Chioma','Nneka','Blessing','Aisha','Funke','Zainab','Esther','Mary','Titi','Ronke','Yinka','Bolu','Tobi'];
+            var states = ['Lagos Island','Ikeja','Lekki','Victoria Island','Surulere','Ajah','Ikorodu','Epe','Maryland','Ikoyi','Yaba'];
+            var prods  = ['Glamour &amp; Grace Face Massage Lifter','Invisible Push Up Bra','Ultrasonic Pore Vacuum\u2122','Smooth Precision Lady Shaver'];
+            function triggerNotif() {
+                var el = document.getElementById('order-notification'), tx = document.getElementById('notif-text');
+                if (!el || !tx) return;
+                tx.innerHTML = '<strong>' + names[Math.floor(Math.random()*names.length)] + '</strong> from <strong>' + states[Math.floor(Math.random()*states.length)] + '</strong> ordered <strong>' + prods[Math.floor(Math.random()*prods.length)] + '</strong>';
+                el.classList.add('show');
+                setTimeout(function(){ el.classList.remove('show'); }, 3500);
             }
+            window.addEventListener('load', function () { setTimeout(function(){ triggerNotif(); setInterval(triggerNotif, 12000); }, 6000); });
 
-            // Optional: Scroll to bundles or order form
-            document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-        }
+            // Location change
+            var locSel = document.getElementById('locationSelect');
+            if (locSel) locSel.addEventListener('change', updateSummary);
 
-        function applyDiscount() {
-            discount = 1000;
-            document.getElementById('discount-row').classList.remove('hidden');
-            updateSummary();
-        }
-
-        function updateSummary() {
-            const loc = locSelect.value;
-            const total = basePrice - discount;
-
-            if (delFeeText) {
-                delFeeText.innerText = 'FREE';
-                delFeeText.className = 'text-green-600';
+            // Exit intent
+            var exitShown = sessionStorage.getItem('exitPopupShownBra') === 'true';
+            function showExitPopup() {
+                if (exitShown) return;
+                var p = document.getElementById('exit-popup');
+                if (p) { p.style.display = 'flex'; exitShown = true; sessionStorage.setItem('exitPopupShownBra', 'true'); }
             }
-            
-            if (payMethText) {
-                payMethText.innerText = 'Pay on Delivery';
-                payMethText.className = 'text-blue-600';
-            }
-            
-            if (totalText) totalText.innerText = `₦${total.toLocaleString()}`;
-            const hiddenPrice = document.getElementById('hidden_product_price');
-            if (hiddenPrice) hiddenPrice.value = total;
-        }
+            document.addEventListener('mouseleave', function(e) { if (0.1 > e.clientY) showExitPopup(); });
+            history.pushState(null, null, window.location.href);
+            window.addEventListener('popstate', function() { if (!exitShown) { showExitPopup(); history.pushState(null, null, window.location.href); } });
+            var ceb = document.getElementById('close-exit');
+            if (ceb) ceb.addEventListener('click', function() { document.getElementById('exit-popup').style.display = 'none'; });
 
-        locSelect.addEventListener('change', updateSummary);
-
-
-
-        // Exit Intent Logic
-        let exitShown = sessionStorage.getItem('exitPopupShownBra') === 'true';
-        function showExitPopup() {
-            if (exitShown) return;
-            const popup = document.getElementById('exit-popup');
-            if (popup) {
-                popup.style.display = 'flex';
-                exitShown = true;
-                sessionStorage.setItem('exitPopupShownBra', 'true');
-            }
-        }
-        document.addEventListener('mouseleave', (e) => { if (0.1 > e.clientY) showExitPopup(); });
-        history.pushState(null, null, window.location.href);
-        window.addEventListener('popstate', () => {
-            if (!exitShown) {
-                showExitPopup();
-                history.pushState(null, null, window.location.href);
-            }
-        });
-        const closeExitBtn = document.getElementById('close-exit');
-        if (closeExitBtn) { closeExitBtn.addEventListener('click', () => { document.getElementById('exit-popup').style.display = 'none'; }); }
-
-        // Form Submission
-        let isSubmitting = false;
-        document.getElementById('orderForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            if (isSubmitting) return;
-            
-            const btn = document.getElementById('submitBtn');
-            const modal = document.getElementById('processing-modal');
-            const progressBar = document.getElementById('progress-bar');
-            const progressPercent = document.getElementById('progress-percent');
-            const statusText = document.getElementById('status-text');
-            
-            isSubmitting = true;
-            btn.disabled = true;
-            btn.innerText = 'Processing...';
-            modal.style.display = 'flex';
-            
-            const formData = new FormData(e.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            const customerNameValue = data.name;
-            const customerPhoneValue = data.phone;
-            const customerAltPhoneValue = data.alt_phone || 'None';
-            const customerAddressValue = data.address;
-            const customerStateValue = data.location;
-            const productNameValue = data.product_name;
-            const productPriceValue = data.product_price;
-            const productSizeValue = data.size;
-
-            const timestamp = new Date().toLocaleString();
-            const totalPrice = parseInt(productPriceValue);
-            const paymentType = 'Pay on Delivery';
-            let locationString = `${customerStateValue} (Lagos)`;
-
-            const message = `*NEW ORDER RECEIVED (BRA)* 👙\n` +
-                            `--------------------------\n` +
-                            `👤 *CUSTOMER:* ${customerNameValue}\n` +
-                            `📞 *PHONE:* ${customerPhoneValue}\n` +
-                            `📞 *ALT PHONE:* ${customerAltPhoneValue}\n` +
-                            `📍 *LOCATION:* ${locationString}\n` +
-                            `🏠 *ADDRESS:* ${customerAddressValue}\n\n` +
-                            `📦 *PRODUCT:* ${productNameValue}\n` +
-                            `📏 *SIZE:* ${productSizeValue}\n` +
-                            `🚚 *DELIVERY:* FREE\n` +
-                            `💰 *TOTAL:* ₦${totalPrice.toLocaleString()}\n` +
-                            `💳 *PAYMENT:* ${paymentType}\n` +
-                            `📅 *DATE:* ${timestamp}\n` +
-                            `--------------------------\n\n` +
-                            `*I am ready to confirm my order now!*`;
-
-            // Progress Animation
-            let progress = 0;
-            const progressInterval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress > 98) progress = 98;
-                progressBar.style.width = `${progress}%`;
-                progressPercent.innerText = `${Math.round(progress)}%`;
-                
-                if (progress > 20) statusText.innerText = "Validating Order Details...";
-                if (progress > 50) statusText.innerText = "Securing Your Order...";
-                if (progress > 80) statusText.innerText = "Connecting to Logistics...";
-            }, 200);
-
-            try {
-                // Track InitiateCheckout with session storage deduplication
-                if (typeof fbq !== 'undefined') {
-                    const icKey = `fb_ic_bra_${totalPrice}`;
-                    if (!sessionStorage.getItem(icKey)) {
-                        sessionStorage.setItem(icKey, 'true');
-                        fbq('track', 'InitiateCheckout', {
-                            content_name: productNameValue,
-                            value: totalPrice,
-                            currency: 'NGN'
-                        });
+            // Form submission
+            var isSubmitting = false;
+            var form = document.getElementById('orderForm');
+            if (!form) return;
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                if (isSubmitting) return;
+                var btn = document.getElementById('submitBtn'),
+                    modal = document.getElementById('processing-modal'),
+                    progressBar = document.getElementById('progress-bar'),
+                    progressPercent = document.getElementById('progress-percent'),
+                    statusText = document.getElementById('status-text');
+                isSubmitting = true; btn.disabled = true; btn.innerText = 'Processing...';
+                modal.style.display = 'flex';
+                var fd = new FormData(e.target), data = Object.fromEntries(fd.entries());
+                var nm   = data.name, ph = data.phone, aph = data.alt_phone || 'None',
+                    addr = data.address, loc = data.location, pname = data.product_name,
+                    pprice = data.product_price, sz = data.size,
+                    ts   = new Date().toLocaleString(), tot = parseInt(pprice), pay = 'Pay on Delivery';
+                var msg = '*NEW ORDER RECEIVED (BRA)* \uD83D\uDC59\n--------------------------\n' +
+                    '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
+                    '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (Lagos)\n' +
+                    '\uD83C\uDFE0 *ADDRESS:* ' + addr + '\n\n\uD83D\uDCE6 *PRODUCT:* ' + pname + '\n' +
+                    '\uD83D\uDCCF *SIZE:* ' + sz + '\n\uD83D\uDE9A *DELIVERY:* FREE\n' +
+                    '\uD83D\uDCB0 *TOTAL:* \u20A6' + tot.toLocaleString() + '\n\uD83D\uDCB3 *PAYMENT:* ' + pay + '\n' +
+                    '\uD83D\uDCC5 *DATE:* ' + ts + '\n--------------------------\n\n*I am ready to confirm my order now!*';
+                var progress = 0;
+                var iv = setInterval(function() {
+                    progress += Math.random() * 10;
+                    if (progress > 98) progress = 98;
+                    progressBar.style.width = progress + '%';
+                    progressPercent.innerText = Math.round(progress) + '%';
+                    if (progress > 20) statusText.innerText = 'Validating Order Details...';
+                    if (progress > 50) statusText.innerText = 'Securing Your Order...';
+                    if (progress > 80) statusText.innerText = 'Connecting to Logistics...';
+                }, 200);
+                try {
+                    if (typeof fbq !== 'undefined') { var ick = 'fb_ic_bra_' + tot; if (!sessionStorage.getItem(ick)) { sessionStorage.setItem(ick,'true'); fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'}); } }
+                    if (typeof emailjs !== 'undefined') {
+                        try {
+                            await emailjs.send('service_gxhivxk','template_239s5yz',{
+                                to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
+                                full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
+                                customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_alt_phone:aph,
+                                customer_address:addr,address:addr,location:loc,state:loc,city:loc,
+                                customer_state:loc,customer_city:loc,product_name:pname,product:pname,
+                                size:sz,selected_size:sz,bra_size:sz,product_size:sz,
+                                total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
+                                payment_method:pay,date:ts,
+                                whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
+                            });
+                        } catch(ee){ console.error('Email failed:',ee); }
                     }
+                    setTimeout(function(){
+                        clearInterval(iv);
+                        progressBar.style.width='100%'; progressPercent.innerText='100%';
+                        statusText.innerText='Order Confirmed! Redirecting...';
+                        var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
+                        isSubmitting = false;
+                        setTimeout(function(){ window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname); },1000);
+                    },1500);
+                } catch(err){
+                    clearInterval(iv);
+                    console.error('Order error:',err);
+                    window.location.href='https://wa.me/2348039940408?text='+encodeURIComponent(msg||'Bra Order Error');
                 }
-                
-                // Send Email via EmailJS
-                if (typeof emailjs !== 'undefined') {
-                    try {
-                        await emailjs.send("service_gxhivxk", "template_239s5yz", {
-                            to_name: "Glamour & Grace",
-                            from_name: customerNameValue,
-                            customer_name: customerNameValue,
-                            customerName: customerNameValue,
-                            customer: customerNameValue,
-                            name: customerNameValue,
-                            full_name: customerNameValue,
-                            user_name: customerNameValue,
-                            userName: customerNameValue,
-                            contact_name: customerNameValue,
-                            client_name: customerNameValue,
-                            message: message,
-                            customer_phone: customerPhoneValue,
-                            phone: customerPhoneValue,
-                            alternative_phone: customerAltPhoneValue,
-                            alt_phone: customerAltPhoneValue,
-                            customer_alt_phone: customerAltPhoneValue,
-                            customer_address: customerAddressValue,
-                            address: customerAddressValue,
-                            location: customerStateValue,
-                            state: customerStateValue,
-                            city: customerStateValue,
-                            customer_state: customerStateValue,
-                            customer_city: customerStateValue,
-                            product_name: productNameValue,
-                            product: productNameValue,
-                            size: productSizeValue,
-                            selected_size: productSizeValue,
-                            bra_size: productSizeValue,
-                            product_size: productSizeValue,
-                            total_amount: `₦${totalPrice.toLocaleString()}`,
-                            total: `₦${totalPrice.toLocaleString()}`,
-                            payment_method: paymentType,
-                            date: timestamp,
-                            whatsapp_link: `https://wa.me/${customerPhoneValue.replace(/\D/g, '').startsWith('0') ? '234' + customerPhoneValue.replace(/\D/g, '').substring(1) : customerPhoneValue.replace(/\D/g, '')}`,
-                        });
-                        console.log("Email sent successfully");
-                    } catch (emailError) {
-                        console.error("Email delivery failed:", emailError);
-                    }
-                }
-
-                // Finish progress
-                setTimeout(() => {
-                    clearInterval(progressInterval);
-                    progressBar.style.width = '100%';
-                    progressPercent.innerText = '100%';
-                    statusText.innerText = "Order Confirmed! Redirecting...";
-                    
-                    const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                    isSubmitting = false;
-                    setTimeout(() => {
-                        window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
-                    }, 1000);
-                }, 1500);
-            } catch (err) {
-                clearInterval(progressInterval);
-                console.error("Order process error:", err);
-                const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message || "Bra Order Error")}`;
-                window.location.href = waUrl;
-            }
-        });
+            });
+        }
+        if ('requestIdleCallback' in window) requestIdleCallback(init, { timeout: 2000 });
+        else setTimeout(init, 1);
+    })();
     </script>
 
+
     <script>
-
-
+    /* ── Non-critical UI enhancements — deferred with setTimeout(0) to yield browser tasks ── */
+    setTimeout(function () {
         // Animate live counter
-        (function() {
-            const base = 18 + Math.floor(Math.random() * 10);
-            const el = document.getElementById('live-orders');
+        (function () {
+            var base = 18 + Math.floor(Math.random() * 10);
+            var el = document.getElementById('live-orders');
             if (el) el.textContent = base;
-            setInterval(() => {
-                if (Math.random() > 0.7 && el) el.textContent = parseInt(el.textContent) + 1;
-            }, 25000);
+            setInterval(function () { if (Math.random() > 0.7 && el) el.textContent = parseInt(el.textContent) + 1; }, 25000);
         })();
 
         // Sticky CTA bar
-        (function() {
-            const bar = document.getElementById('sticky-cta-bar');
-            const orderSection = document.getElementById('order');
-            if (!bar || !orderSection) return;
-            window.addEventListener('scroll', function() {
-                const scrollY = window.scrollY;
-                const orderTop = orderSection.getBoundingClientRect().top + window.scrollY;
-                if (scrollY > 120 && scrollY < orderTop - 200) {
-                    bar.classList.add('visible');
-                } else { bar.classList.remove('visible'); }
+        (function () {
+            var bar = document.getElementById('sticky-cta-bar'), sec = document.getElementById('order');
+            if (!bar || !sec) return;
+            window.addEventListener('scroll', function () {
+                var sy = window.scrollY, ot = sec.getBoundingClientRect().top + window.scrollY;
+                if (sy > 120 && sy < ot - 200) bar.classList.add('visible');
+                else bar.classList.remove('visible');
             }, { passive: true });
         })();
 
         // Mobile exit intent + desktop mouseleave
-        (function() {
-            let lastY = 0, shown = sessionStorage.getItem('exit_bra') === 'true';
-            window.addEventListener('scroll', function() {
-                const y = window.scrollY;
+        (function () {
+            var lastY = 0, shown = sessionStorage.getItem('exit_bra') === 'true';
+            window.addEventListener('scroll', function () {
+                var y = window.scrollY;
                 if (!shown && lastY - y > 60 && y > 400) {
-                    const popup = document.getElementById('exit-popup');
-                    if (popup) { popup.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
+                    var p = document.getElementById('exit-popup');
+                    if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
                 }
                 lastY = y;
             }, { passive: true });
-            document.addEventListener('mouseleave', function(e) {
+            document.addEventListener('mouseleave', function (e) {
                 if (e.clientY < 5 && !shown) {
-                    const popup = document.getElementById('exit-popup');
-                    if (popup) { popup.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
+                    var p = document.getElementById('exit-popup');
+                    if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
                 }
             });
         })();
+    }, 0);
     </script>
+
 
     <!-- ===== Size Guide Modal ===== -->
     <div id="sizeGuideModal" class="hidden fixed inset-0 bg-black/80 z-[500] flex items-center justify-center p-4 backdrop-blur-md">
