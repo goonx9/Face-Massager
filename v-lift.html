@@ -1591,23 +1591,23 @@
                         '\uD83D\uDCB0 *TOTAL:* \u20A6' + tot.toLocaleString() + '\n\uD83D\uDCB3 *PAYMENT:* ' + pay + '\n' +
                         '\uD83D\uDCC5 *DATE:* ' + ts + '\n--------------------------\n\n*I am ready to confirm my order now!*';
                     if (typeof fbq !== 'undefined') { var ick = 'fb_ic_vlift_' + tot; if (!sessionStorage.getItem(ick)) { sessionStorage.setItem(ick,'true'); fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'}); } }
-                    await updateProgress(35, 'Validating Order Details...', 800);
-                    statusText.innerText = 'Securing Your Discount...';
-                    if (typeof emailjs !== 'undefined') {
-                        try {
-                            await emailjs.send('service_gxhivxk','template_239s5yz',{
-                                to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
-                                full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
-                                customer_phone:ph,phone:ph,customer_address:addr,address:addr,location:loc,state:loc,
-                                city:loc,customer_state:loc,customer_city:loc,product_name:pname,product:pname,
-                                total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
-                                payment_method:pay,date:ts,
-                                whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
-                            });
-                        } catch(ee){ console.error('Email failed:',ee); }
-                    }
-                    await updateProgress(75,'Connecting to Warehouse...',1200);
-                    await updateProgress(100,'Order Confirmed! Redirecting...',600);
+                    // Fire email in background immediately — don't await here so bar keeps moving
+                    var emailDone = (typeof emailjs !== 'undefined')
+                        ? emailjs.send('service_gxhivxk','template_239s5yz',{
+                            to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
+                            full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
+                            customer_phone:ph,phone:ph,customer_address:addr,address:addr,location:loc,state:loc,
+                            city:loc,customer_state:loc,customer_city:loc,product_name:pname,product:pname,
+                            total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
+                            payment_method:pay,date:ts,
+                            whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
+                          }).catch(function(ee){ console.error('Email failed:',ee); })
+                        : Promise.resolve();
+                    // Animate progress while email sends — runs concurrently
+                    await updateProgress(35, 'Validating Order Details...', 600);
+                    await updateProgress(75, 'Securing Your Order...', 2000);
+                    await emailDone; // Wait for email only at the end (usually already done)
+                    await updateProgress(100,'Order Confirmed! Redirecting...',500);
                     var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
                     isSubmitting = false;
                     setTimeout(function(){
