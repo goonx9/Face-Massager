@@ -1508,10 +1508,10 @@
     /* ── Defer ALL init to idle time so it does not block TTI ── */
     (function () {
         function init() {
-            // EmailJS
-            window.addEventListener('load', function () {
-                if (typeof emailjs !== 'undefined') emailjs.init('_h1UzYlyePtWt0IqM');
-            });
+            // EmailJS — init now or on load if not yet fired
+            function initEmailJS() { if (typeof emailjs !== 'undefined') emailjs.init('_h1UzYlyePtWt0IqM'); }
+            if (document.readyState === 'complete') initEmailJS();
+            else window.addEventListener('load', initEmailJS);
 
             // Fake order notifications
             var names  = ['Ada','Tobi','Chinelo','Folake','Aisha','Blessing','Zainab','Funke','Ngozi','Amaka','Bolu','Nneka','Sade','Chioma','Joy','Grace','Faith','Hope','Love','Peace','Mary','Martha','Bukky','Ronke','Yinka','Toyin','Bose','Moji','Nike','Seyi','Lola','Titi','Dupe','Remi'];
@@ -1573,11 +1573,17 @@
                     });
                 }
                 try {
-                    var nm  = form.name.value, ph = form.phone.value,
-                        aph = form.alt_phone.value || 'None', addr = form.address.value,
-                        loc = form.location.value, pname = form.product_name.value,
-                        ts  = new Date().toLocaleString(), tot = basePrice - discount,
-                        pay = 'Pay on Delivery';
+                    // Use FormData to safely read all inputs (avoids form.name shadowing bug)
+                    var fd = new FormData(e.target), fdata = Object.fromEntries(fd.entries());
+                    var nm   = fdata.name,
+                        ph   = fdata.phone,
+                        aph  = fdata.alt_phone || 'None',
+                        addr = fdata.address,
+                        loc  = fdata.location,
+                        pname = fdata.product_name,
+                        ts   = new Date().toLocaleString(),
+                        tot  = basePrice - discount,
+                        pay  = 'Pay on Delivery';
                     var msg = '*NEW ORDER RECEIVED* \uD83D\uDED2\n--------------------------\n' +
                         '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
                         '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (Lagos)\n' +
