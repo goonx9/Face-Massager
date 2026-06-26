@@ -1725,29 +1725,28 @@ level. Done in under 60 seconds.
                 }, 200);
                 try {
                     if (typeof fbq !== 'undefined') { var ick = 'fb_ic_bra_' + tot; if (!sessionStorage.getItem(ick)) { sessionStorage.setItem(ick,'true'); fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'}); } }
-                    if (typeof emailjs !== 'undefined') {
-                        try {
-                            await emailjs.send('service_gxhivxk','template_239s5yz',{
-                                to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
-                                full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
-                                customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_alt_phone:aph,
-                                customer_address:addr,address:addr,location:loc,state:loc,city:loc,
-                                customer_state:loc,customer_city:loc,product_name:pname,product:pname,
-                                size:sz,selected_size:sz,bra_size:sz,product_size:sz,
-                                total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
-                                payment_method:pay,date:ts,
-                                whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
-                            });
-                        } catch(ee){ console.error('Email failed:',ee); }
-                    }
-                    setTimeout(function(){
-                        clearInterval(iv);
-                        progressBar.style.width='100%'; progressPercent.innerText='100%';
-                        statusText.innerText='Order Confirmed! Redirecting...';
-                        var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
-                        isSubmitting = false;
-                        setTimeout(function(){ window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname); },1000);
-                    },1500);
+                    // Fire email immediately — don't await so interval keeps the bar moving
+                    var emailDone = (typeof emailjs !== 'undefined')
+                        ? emailjs.send('service_gxhivxk','template_239s5yz',{
+                            to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
+                            full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
+                            customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_alt_phone:aph,
+                            customer_address:addr,address:addr,location:loc,state:loc,city:loc,
+                            customer_state:loc,customer_city:loc,product_name:pname,product:pname,
+                            size:sz,selected_size:sz,bra_size:sz,product_size:sz,
+                            total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
+                            payment_method:pay,date:ts,
+                            whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
+                          }).catch(function(ee){ console.error('Email failed:',ee); })
+                        : Promise.resolve();
+                    // Wait for email + minimum 1.5s display time, whichever is longer
+                    await Promise.all([emailDone, new Promise(function(res){ setTimeout(res, 1500); })]);
+                    clearInterval(iv);
+                    progressBar.style.width='100%'; progressPercent.innerText='100%';
+                    statusText.innerText='Order Confirmed! Redirecting...';
+                    var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
+                    isSubmitting = false;
+                    setTimeout(function(){ window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname); },1000);
                 } catch(err){
                     clearInterval(iv);
                     console.error('Order error:',err);
