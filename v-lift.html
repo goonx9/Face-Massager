@@ -1284,6 +1284,71 @@
             </div>
         </section>
 
+        <!-- Choose Your Package -->
+        <section class="py-16 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-50">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 space-y-3">
+                    <span class="text-primary font-black uppercase tracking-[0.4em] text-xs">Limited Time</span>
+                    <h2 class="text-4xl md:text-5xl font-serif font-black text-pink-950">Choose Your Package</h2>
+                    <p class="text-sm font-bold opacity-60 uppercase tracking-wide">Select the offer that suits you best</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto items-stretch">
+
+                    <!-- Standard Card -->
+                    <div id="pkg-standard" class="bg-white rounded-[3rem] p-8 border-2 border-primary shadow-2xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 cursor-pointer" onclick="selectBundle('Face Massager (Standard)', 29500)">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap">Most Popular</div>
+                        <div class="w-full aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-6 mt-4">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:good,w_400/v1775914902/IMG_20251022_174116_cntwnw_zf24ak.jpg"
+                                 alt="Face Massage Lifter" width="400" height="400"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                 loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="text-xl font-serif font-black mb-1">Face Massager</h3>
+                        <p class="text-[10px] font-black uppercase tracking-widest opacity-50 mb-4">Standard Package</p>
+                        <div class="flex items-baseline gap-3 mb-5">
+                            <span class="text-3xl font-black text-primary">₦29,500</span>
+                            <span class="text-lg line-through opacity-40 font-bold">₦55,000</span>
+                        </div>
+                        <ul class="text-xs font-bold space-y-2 opacity-70 w-full text-left mb-6 flex-grow">
+                            <li>✅ 1x V-Lift Pro™ Massager Device</li>
+                            <li>✅ USB Fast Charging Cable</li>
+                            <li>✅ Instruction Guidebook</li>
+                            <li>✅ Luxury Storage Box</li>
+                            <li>✅ Free Delivery</li>
+                        </ul>
+                        <button onclick="selectBundle('Face Massager (Standard)', 29500)" class="w-full py-4 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] mt-auto shadow-xl hover:opacity-90 transition-opacity">Select Standard &mdash; ₦29,500</button>
+                    </div>
+
+                    <!-- Bundle Card -->
+                    <div id="pkg-bundle" class="bg-white rounded-[3rem] p-8 border border-pink-100 shadow-xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 cursor-pointer" onclick="selectBundle('Massager + Lift Tape Bundle', 33000)">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap">🔥 Best Value</div>
+                        <div class="w-full aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-6 mt-4">
+                            <video autoplay loop muted playsinline preload="metadata"
+                                   poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_400/v1782931830/202607011617_8_1_iohxxv.jpg"
+                                   class="w-full h-full object-cover" width="400" height="400">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1782931830/202607011617_8_1_iohxxv.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <h3 class="text-xl font-serif font-black mb-1">Massager + Lift Tape</h3>
+                        <p class="text-[10px] font-black uppercase tracking-widest opacity-50 mb-4">Power Bundle</p>
+                        <div class="flex items-baseline gap-3 mb-5">
+                            <span class="text-3xl font-black text-primary">₦33,000</span>
+                            <span class="text-lg line-through opacity-40 font-bold">₦65,000</span>
+                        </div>
+                        <ul class="text-xs font-bold space-y-2 opacity-70 w-full text-left mb-6 flex-grow">
+                            <li>✅ 1x V-Lift Pro™ Massager Device</li>
+                            <li>✅ Premium Face Lift Tape (Included)</li>
+                            <li>✅ USB Fast Charging Cable</li>
+                            <li>✅ Instruction Guidebook</li>
+                            <li>✅ Free Delivery</li>
+                        </ul>
+                        <button onclick="selectBundle('Massager + Lift Tape Bundle', 33000)" class="w-full py-4 bg-gray-900 text-white rounded-full font-black uppercase tracking-widest text-[10px] mt-auto shadow-xl hover:bg-primary transition-colors">Select Bundle &mdash; ₦33,000</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <section id="order" class="py-20 px-6 md:px-12 lg:px-24 border-t border-pink-50">
             <div class="max-w-3xl mx-auto">
                 <form id="orderForm" class="space-y-6 bg-white p-12 rounded-[4rem] border border-pink-100 shadow-xl relative">
@@ -1485,12 +1550,22 @@
         var hn = document.getElementById('hidden_product_name'),
             hp = document.getElementById('hidden_product_price'),
             sn = document.getElementById('summaryProductName'),
-            sp = document.getElementById('summaryProductPrice'),
-            fn = 'Face Massager (Standard)';
-        if (hn) hn.value = fn;
+            sp = document.getElementById('summaryProductPrice');
+        if (hn) hn.value = name;
         if (hp) hp.value = price - discount;
-        if (sn) sn.innerText = fn;
+        if (sn) sn.innerText = name;
         if (sp) sp.innerText = '\u20A6' + price.toLocaleString();
+        // Toggle active border on package cards
+        var std = document.getElementById('pkg-standard'), bnd = document.getElementById('pkg-bundle');
+        if (std && bnd) {
+            if (price === 29500) {
+                std.style.borderColor = '#FF2D55'; std.style.borderWidth = '2px';
+                bnd.style.borderColor = '#fce7f3'; bnd.style.borderWidth = '1px';
+            } else {
+                bnd.style.borderColor = '#FF2D55'; bnd.style.borderWidth = '2px';
+                std.style.borderColor = '#fce7f3'; std.style.borderWidth = '1px';
+            }
+        }
         updateSummary();
         if (scroll !== false) { var el = document.getElementById('order'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
     }
