@@ -1680,8 +1680,12 @@
                         ? emailjs.send('service_gxhivxk','template_239s5yz',{
                             to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
                             full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
-                            customer_phone:ph,phone:ph,customer_address:addr,address:addr,location:loc,state:loc,
-                            city:loc,customer_state:loc,customer_city:loc,product_name:pname,product:pname,
+                            customer_phone:ph,phone:ph,
+                            alternative_phone:aph,alt_phone:aph,customer_alt_phone:aph,
+                            customer_address:addr,address:addr,location:loc,state:loc,
+                            city:loc,customer_state:loc,customer_city:loc,
+                            product_name:pname,product:pname,
+                            product_price:'\u20A6'+tot.toLocaleString(),price:'\u20A6'+tot.toLocaleString(),
                             total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
                             payment_method:pay,date:ts,
                             whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
