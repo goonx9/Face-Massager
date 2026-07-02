@@ -12,12 +12,7 @@
     <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg"
-          imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_400/v1776378285/download_3_1_o1ctn8.jpg 400w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_600/v1776378285/download_3_1_o1ctn8.jpg 600w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/q_auto:eco,f_auto,w_800/v1776378285/download_3_1_o1ctn8.jpg 800w"
-          imagesizes="(max-width: 600px) 400px, (max-width: 1200px) 600px, 800px"
-          fetchpriority="high">
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_600/v1782920444/202607011617_6_1_ami8lm.jpg" fetchpriority="high">
     
     <!-- Critical CSS for instant paint -->
     <style>
@@ -1761,46 +1756,50 @@ level. Done in under 60 seconds.
 
 
     <script>
-    /* ── Non-critical UI enhancements — deferred with setTimeout(0) to yield browser tasks ── */
-    setTimeout(function () {
-        // Animate live counter
-        (function () {
-            var base = 18 + Math.floor(Math.random() * 10);
-            var el = document.getElementById('live-orders');
-            if (el) el.textContent = base;
-            setInterval(function () { if (Math.random() > 0.7 && el) el.textContent = parseInt(el.textContent) + 1; }, 25000);
-        })();
+    /* ── Non-critical UI: deferred to genuine idle time ── */
+    (function(){
+        function runUI() {
+            // Animate live counter
+            (function () {
+                var base = 18 + Math.floor(Math.random() * 10);
+                var el = document.getElementById('live-orders');
+                if (el) el.textContent = base;
+                setInterval(function () { if (Math.random() > 0.7 && el) el.textContent = parseInt(el.textContent) + 1; }, 25000);
+            })();
 
-        // Sticky CTA bar
-        (function () {
-            var bar = document.getElementById('sticky-cta-bar'), sec = document.getElementById('order');
-            if (!bar || !sec) return;
-            window.addEventListener('scroll', function () {
-                var sy = window.scrollY, ot = sec.getBoundingClientRect().top + window.scrollY;
-                if (sy > 120 && sy < ot - 200) bar.classList.add('visible');
-                else bar.classList.remove('visible');
-            }, { passive: true });
-        })();
+            // Sticky CTA bar
+            (function () {
+                var bar = document.getElementById('sticky-cta-bar'), sec = document.getElementById('order');
+                if (!bar || !sec) return;
+                window.addEventListener('scroll', function () {
+                    var sy = window.scrollY, ot = sec.getBoundingClientRect().top + window.scrollY;
+                    if (sy > 120 && sy < ot - 200) bar.classList.add('visible');
+                    else bar.classList.remove('visible');
+                }, { passive: true });
+            })();
 
-        // Mobile exit intent + desktop mouseleave
-        (function () {
-            var lastY = 0, shown = sessionStorage.getItem('exit_bra') === 'true';
-            window.addEventListener('scroll', function () {
-                var y = window.scrollY;
-                if (!shown && lastY - y > 60 && y > 400) {
-                    var p = document.getElementById('exit-popup');
-                    if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
-                }
-                lastY = y;
-            }, { passive: true });
-            document.addEventListener('mouseleave', function (e) {
-                if (e.clientY < 5 && !shown) {
-                    var p = document.getElementById('exit-popup');
-                    if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
-                }
-            });
-        })();
-    }, 0);
+            // Mobile exit intent + desktop mouseleave
+            (function () {
+                var lastY = 0, shown = sessionStorage.getItem('exit_bra') === 'true';
+                window.addEventListener('scroll', function () {
+                    var y = window.scrollY;
+                    if (!shown && lastY - y > 60 && y > 400) {
+                        var p = document.getElementById('exit-popup');
+                        if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
+                    }
+                    lastY = y;
+                }, { passive: true });
+                document.addEventListener('mouseleave', function (e) {
+                    if (e.clientY < 5 && !shown) {
+                        var p = document.getElementById('exit-popup');
+                        if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_bra','true'); }
+                    }
+                });
+            })();
+        }
+        if ('requestIdleCallback' in window) requestIdleCallback(runUI, { timeout: 3000 });
+        else setTimeout(runUI, 200);
+    })();
     </script>
 
 
@@ -1875,24 +1874,24 @@ level. Done in under 60 seconds.
     <!-- Autoplay all muted videos on scroll-into-view (required for iOS/Android) -->
     <script>
     (function(){
-        var vids = document.querySelectorAll('video[muted]');
-        if (!vids.length) return;
-        if ('IntersectionObserver' in window) {
-            var obs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    var v = entry.target;
-                    if (entry.isIntersecting) {
-                        v.play().catch(function(){});
-                    } else {
-                        v.pause();
-                    }
-                });
-            }, { threshold: 0.25 });
-            vids.forEach(function(v) { obs.observe(v); });
-        } else {
-            // Fallback: just attempt play on all
-            vids.forEach(function(v) { v.play().catch(function(){}); });
+        function setupVideoAutoplay() {
+            var vids = document.querySelectorAll('video[muted]');
+            if (!vids.length) return;
+            if ('IntersectionObserver' in window) {
+                var obs = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        var v = entry.target;
+                        if (entry.isIntersecting) { v.play().catch(function(){}); }
+                        else { v.pause(); }
+                    });
+                }, { threshold: 0.25 });
+                vids.forEach(function(v) { obs.observe(v); });
+            } else {
+                vids.forEach(function(v) { v.play().catch(function(){}); });
+            }
         }
+        if ('requestIdleCallback' in window) requestIdleCallback(setupVideoAutoplay, { timeout: 2000 });
+        else setTimeout(setupVideoAutoplay, 100);
     })();
     </script>
 </body>
