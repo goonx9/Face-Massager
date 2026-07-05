@@ -313,12 +313,16 @@
             <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto items-stretch">
                 <div id="pkg-single" class="bg-white rounded-[3rem] p-8 border-2 border-primary shadow-2xl flex flex-col items-center text-center relative group hover:-translate-y-2 transition-all duration-500 cursor-pointer" onclick="selectBundle('Hairline Filler Spray - Single Bottle',27000)">
                     <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white px-6 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest shadow-lg whitespace-nowrap">Most Popular</div>
-                    <div class="w-full aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-6 mt-4 flex items-center justify-center" style="font-size:80px">&#129348;</div>
+                    <div class="w-full aspect-square rounded-[2rem] overflow-hidden bg-pink-50 mb-6 mt-4">
+                        <video autoplay loop muted playsinline preload="none" loading="lazy" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_400/v1783206641/202607042358_4_1_gnkw8c.jpg" class="w-full h-full object-cover" width="400" height="400">
+                            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:eco/v1783206641/202607042358_4_1_gnkw8c.mp4" type="video/mp4">
+                        </video>
+                    </div>
                     <h3 class="text-xl font-serif font-black mb-1">Single Bottle</h3>
                     <p class="text-[10px] font-black uppercase tracking-widest opacity-50 mb-4">30&#8211;45 Days Supply</p>
                     <div class="flex items-baseline gap-3 mb-5"><span class="text-3xl font-black text-primary">&#8358;27,000</span><span class="text-lg line-through opacity-40 font-bold">&#8358;45,000</span></div>
                     <ul class="text-xs font-bold space-y-2 opacity-70 w-full text-left mb-6 flex-grow">
-                        <li>&#9989; 1x Hairline Filler Spray</li><li>&#9989; Choice of shade (Black / Dark Brown)</li><li>&#9989; Free Delivery in Lagos</li><li>&#9989; Pay on Delivery</li>
+                        <li>&#9989; 1x Hairline Filler Spray</li><li>&#9989; Available in Black</li><li>&#9989; Free Delivery in Lagos</li><li>&#9989; Pay on Delivery</li>
                     </ul>
                     <button onclick="selectBundle('Hairline Filler Spray - Single Bottle',27000)" class="w-full py-4 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] mt-auto shadow-xl hover:opacity-90 transition-opacity">Select Single &#8212; &#8358;27,000</button>
                 </div>
@@ -352,23 +356,9 @@
                     <input type="text" name="name" placeholder="FULL NAME" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
                     <input type="tel" name="phone" placeholder="PHONE NUMBER (WHATSAPP)" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
                     <input type="tel" name="alt_phone" placeholder="ALTERNATIVE PHONE NUMBER (OPTIONAL)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all">
-                    <div>
-                        <p class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3 px-2">Select Your Shade</p>
-                        <div class="grid grid-cols-2 gap-3">
-                            <label id="shade-black" class="flex items-center gap-3 p-4 rounded-2xl border-2 border-primary bg-pink-50/50 cursor-pointer">
-                                <input type="radio" name="shade" value="Black" required class="w-4 h-4 text-primary" checked>
-                                <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-gray-900 border-2 border-gray-700 flex-shrink-0 shadow-sm"></span><span class="font-black text-sm">Black</span></div>
-                            </label>
-                            <label id="shade-brown" class="flex items-center gap-3 p-4 rounded-2xl border-2 border-pink-100 bg-white cursor-pointer">
-                                <input type="radio" name="shade" value="Dark Brown" class="w-4 h-4 text-primary">
-                                <div class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-amber-900 border-2 border-amber-700 flex-shrink-0 shadow-sm"></span><span class="font-black text-sm">Dark Brown</span></div>
-                            </label>
-                        </div>
-                    </div>
-                    <select name="package" id="packageSelect" onchange="handlePackageChange(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest appearance-none focus:ring-2 ring-primary transition-all">
-                        <option value="Single" data-price="27000">Single Bottle &#8212; &#8358;27,000</option>
-                        <option value="Double" data-price="34000">Double Pack &#8212; &#8358;34,000 (Save &#8358;20,000)</option>
-                    </select>
+                    <input type="hidden" name="shade" value="Black">
+
+
                     <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest appearance-none focus:ring-2 ring-primary transition-all">
                         <option value="" disabled selected>SELECT AREA IN LAGOS</option>
                         <option value="Lagos Island">Lagos Island</option>
@@ -470,13 +460,11 @@ function selectBundle(name, price, scroll) {
     var hn = document.getElementById('hidden_product_name'),
         hp = document.getElementById('hidden_product_price'),
         sn = document.getElementById('summaryProductName'),
-        sp = document.getElementById('summaryProductPrice'),
-        pkg = document.getElementById('packageSelect');
+        sp = document.getElementById('summaryProductPrice');
     if (hn) hn.value = name;
     if (hp) hp.value = price - discount;
     if (sn) sn.innerText = name;
     if (sp) sp.innerText = '\u20A6' + price.toLocaleString();
-    if (pkg) pkg.value = price === 27000 ? 'Single' : 'Double';
     var s = document.getElementById('pkg-single'), d = document.getElementById('pkg-double');
     if (s && d) {
         if (price === 27000) { s.style.borderColor='#FF2D55'; s.style.borderWidth='2px'; d.style.borderColor='#fce7f3'; d.style.borderWidth='1px'; }
@@ -501,15 +489,7 @@ function updateSummary() {
     if (tt) tt.innerText = '\u20A6' + total.toLocaleString();
     if (hp) hp.value = total;
 }
-document.addEventListener('change', function(e) {
-    if (e.target.name === 'shade') {
-        var sb = document.getElementById('shade-black'), sbr = document.getElementById('shade-brown');
-        if (sb) sb.style.borderColor = '#fce7f3';
-        if (sbr) sbr.style.borderColor = '#fce7f3';
-        if (e.target.value === 'Black' && sb) sb.style.borderColor = '#FF2D55';
-        else if (sbr) sbr.style.borderColor = '#FF2D55';
-    }
-});
+
 (function(){
     function init() {
         window.addEventListener('load', function() {
@@ -642,6 +622,8 @@ document.addEventListener('change', function(e) {
 </script>
 </body>
 </html>
+
+
 
 
 
