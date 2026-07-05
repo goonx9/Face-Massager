@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -232,7 +232,7 @@
                 <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Undetectable matte finish</p></div>
                 <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Sweat and water resistant</p></div>
                 <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Lasts all day &#8212; even in Lagos heat</p></div>
-                <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Available in Black and Dark Brown</p></div>
+                <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Available in Black</p></div>
                 <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Works on all hair types</p></div>
                 <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Safe for skin &#8212; dermatologist tested</p></div>
                 <div class="flex items-center gap-4 p-5 bg-pink-50/50 rounded-2xl border border-pink-100"><span class="text-2xl">&#9989;</span><p class="font-bold">Washes out cleanly with shampoo</p></div>
@@ -296,7 +296,7 @@
             <div class="space-y-4">
                 <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Does it wash out?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; completely removed with regular shampoo. No residue, no staining.</div></details>
                 <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Will it rub off on my clothes?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">No &#8212; once dry it sets completely. Safe on shirt collars and pillows.</div></details>
-                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Does it work on dark skin?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; our Black and Dark Brown shades are specifically formulated for Nigerian hair and skin tones.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Does it work on dark skin?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; our Black shade is specifically formulated for Nigerian hair and skin tones.</div></details>
                 <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">How long does one bottle last?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">With daily use &#8212; approximately 30&#8211;45 days per bottle.</div></details>
                 <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Is it safe for sensitive scalp?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; dermatologist tested, no harsh chemicals or irritants.</div></details>
             </div>
@@ -490,46 +490,65 @@ function updateSummary() {
     if (hp) hp.value = total;
 }
 
-(function(){
+/* ── Defer ALL init to idle time so it does not block TTI ── */
+(function () {
     function init() {
-        window.addEventListener('load', function() {
-            if (typeof emailjs !== 'undefined') emailjs.init('_h1UzYlyePtWt0IqM');
-        });
+        // EmailJS — init now or on load if not yet fired (v-lift pattern)
+        function initEmailJS() { if (typeof emailjs !== 'undefined') emailjs.init('_h1UzYlyePtWt0IqM'); }
+        if (document.readyState === 'complete') initEmailJS();
+        else window.addEventListener('load', initEmailJS);
+
+        // Form submission
+        var isSubmittingForm = false;
+        window.addEventListener('beforeunload', function (e) { if (isSubmittingForm) { e.preventDefault(); e.returnValue = ''; } });
         var form = document.getElementById('orderForm');
         if (!form) return;
-        form.addEventListener('submit', async function(e) {
+        form.addEventListener('submit', async function (e) {
             e.preventDefault();
-            if (isSubmitting) return;
-            var btn = document.getElementById('submitBtn'), modal = document.getElementById('order-modal'),
-                progressBar = document.getElementById('progress-bar'), progressPercent = document.getElementById('progress-percent'),
+            var btn = document.getElementById('submitBtn'),
+                modal = document.getElementById('order-modal'),
+                progressBar = document.getElementById('progress-bar'),
+                progressPercent = document.getElementById('progress-percent'),
                 statusText = document.getElementById('status-text');
-            isSubmitting = true; btn.disabled = true; btn.innerText = 'Processing...';
+            isSubmittingForm = true; btn.disabled = true; btn.innerText = 'Processing...';
             modal.style.display = 'flex';
-            var fd = new FormData(e.target), data = Object.fromEntries(fd.entries());
-            var nm = data.name, ph = data.phone, aph = data.alt_phone || 'None',
-                shade = data.shade || 'Black', addr = data.address, loc = data.location,
-                pname = data.product_name, pprice = data.product_price,
-                ts = new Date().toLocaleString(), tot = parseInt(pprice), pay = 'Pay on Delivery';
-            var msg = '*NEW ORDER (HAIRLINE FILLER)* \uD83E\uDDF4\n--------------------------\n' +
-                '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
-                '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83C\uDFA8 *SHADE:* ' + shade + '\n' +
-                '\uD83D\uDCE6 *PACKAGE:* ' + pname + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (Lagos)\n' +
-                '\uD83C\uDFE0 *ADDRESS:* ' + addr + '\n\uD83D\uDCB0 *TOTAL:* \u20A6' + tot.toLocaleString() +
-                '\n\uD83D\uDCB3 *PAYMENT:* ' + pay + '\n\uD83D\uDCC5 *DATE:* ' + ts +
-                '\n--------------------------\n\n*I am ready to confirm my order now!*';
             var progress = 0;
-            var iv = setInterval(function() {
-                progress += Math.random() * 10; if (progress > 98) progress = 98;
-                progressBar.style.width = progress + '%'; progressPercent.innerText = Math.round(progress) + '%';
-                if (progress > 20) statusText.innerText = 'Validating Order Details...';
-                if (progress > 50) statusText.innerText = 'Securing Your Order...';
-                if (progress > 80) statusText.innerText = 'Connecting to Logistics...';
-            }, 200);
+            function updateProgress(target, text, dur) {
+                return new Promise(function (res) {
+                    var start = progress, t0 = performance.now();
+                    statusText.innerText = text;
+                    function step(now) {
+                        var p = Math.min((now - t0) / dur, 1);
+                        progress = start + (target - start) * p;
+                        progressBar.style.width = progress + '%';
+                        progressPercent.innerText = Math.round(progress) + '%';
+                        if (p < 1) requestAnimationFrame(step); else res();
+                    }
+                    requestAnimationFrame(step);
+                });
+            }
             try {
-                if (typeof fbq !== 'undefined') {
-                    var ick = 'fb_ic_hf_' + tot;
-                    if (!sessionStorage.getItem(ick)) { sessionStorage.setItem(ick,'true'); fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'}); }
-                }
+                // Use FormData to safely read all inputs
+                var fd = new FormData(e.target), fdata = Object.fromEntries(fd.entries());
+                var nm   = fdata.name,
+                    ph   = fdata.phone,
+                    aph  = fdata.alt_phone || 'None',
+                    shade = 'Black',
+                    addr = fdata.address,
+                    loc  = fdata.location,
+                    pname = fdata.product_name,
+                    ts   = new Date().toLocaleString(),
+                    tot  = basePrice - discount,
+                    pay  = 'Pay on Delivery';
+                var msg = '*NEW ORDER RECEIVED* \uD83E\uDDF4\n--------------------------\n' +
+                    '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
+                    '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83C\uDFA8 *SHADE:* ' + shade + '\n' +
+                    '\uD83D\uDCCD *LOCATION:* ' + loc + ' (Lagos)\n' +
+                    '\uD83C\uDFE0 *ADDRESS:* ' + addr + '\n\n\uD83D\uDCE6 *PRODUCT:* ' + pname + '\n' +
+                    '\uD83D\uDCB0 *TOTAL:* \u20A6' + tot.toLocaleString() + '\n\uD83D\uDCB3 *PAYMENT:* ' + pay + '\n' +
+                    '\uD83D\uDCC5 *DATE:* ' + ts + '\n--------------------------\n\n*I am ready to confirm my order now!*';
+                if (typeof fbq !== 'undefined') { var ick = 'fb_ic_hf_' + tot; if (!sessionStorage.getItem(ick)) { sessionStorage.setItem(ick,'true'); fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'}); } }
+                // Fire email immediately — don't await so progress keeps moving
                 var emailDone = (typeof emailjs !== 'undefined')
                     ? emailjs.send('service_gxhivxk','template_239s5yz',{
                         to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
@@ -546,20 +565,24 @@ function updateSummary() {
                         whatsapp_link:'https://wa.me/'+(ph.replace(/\D/g,'').startsWith('0')?'234'+ph.replace(/\D/g,'').substring(1):ph.replace(/\D/g,''))
                       }).catch(function(ee){ console.error('Email failed:',ee); })
                     : Promise.resolve();
-                await Promise.all([emailDone, new Promise(function(res){ setTimeout(res,1500); })]);
-                clearInterval(iv);
-                progressBar.style.width='100%'; progressPercent.innerText='100%'; statusText.innerText='Order Confirmed! Redirecting...';
-                var waUrl = 'https://wa.me/2348039940408?text=' + encodeURIComponent(msg);
-                isSubmitting = false;
-                setTimeout(function(){ window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname); }, 800);
-            } catch(err) {
-                clearInterval(iv);
-                window.location.href='https://wa.me/2348039940408?text='+encodeURIComponent(msg||'Hair Filler Order');
+                // Animate progress while email sends — runs concurrently
+                await updateProgress(35, 'Validating Order Details...', 600);
+                await updateProgress(75, 'Securing Your Order...', 2000);
+                await emailDone; // Wait for email only at the end (usually already done)
+                await updateProgress(100,'Order Confirmed! Redirecting...',500);
+                var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
+                isSubmittingForm = false;
+                setTimeout(function(){
+                    window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
+                },500);
+            } catch(err){
+                console.error('Order error:',err);
+                window.location.href='https://wa.me/2348039940408?text='+encodeURIComponent('Hairline Filler Order Error');
             }
         });
     }
-    if ('requestIdleCallback' in window) requestIdleCallback(init,{timeout:2000});
-    else setTimeout(init,1);
+    if ('requestIdleCallback' in window) requestIdleCallback(init, { timeout: 2000 });
+    else setTimeout(init, 1);
 })();
 </script>
 <script>
@@ -622,6 +645,7 @@ function updateSummary() {
 </script>
 </body>
 </html>
+
 
 
 
