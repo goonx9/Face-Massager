@@ -45,14 +45,14 @@
     </style>
     <script>window.tailwind={config:{theme:{extend:{colors:{primary:'#FF2D55',secondary:'#F06292',text:'#5E002C',body:'#880E4F',background:'#FFF5F8',complement:'#F1FBF3',border:'#F8BBD0'},fontFamily:{sans:['Plus Jakarta Sans','sans-serif'],serif:['Playfair Display','serif']}}}}}};</script>
     <script defer src="https://cdn.tailwindcss.com"></script>
+    <!-- Meta Pixel — fires immediately via stub queue for LPV -->
     <script>
-    window.addEventListener('load',function(){
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init','4029546293858823');
-        if(!sessionStorage.getItem('fb_pv_hf')){sessionStorage.setItem('fb_pv_hf','true');fbq('track','PageView');}
-        if(!sessionStorage.getItem('fb_vc_hf')){sessionStorage.setItem('fb_vc_hf','true');fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category:'Hair Care',content_ids:['hf_001'],content_type:'product',value:27000,currency:'NGN'});}
-    });
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','4029546293858823');
+    fbq('track','PageView');
+    if(!sessionStorage.getItem('fb_vc_hf')){sessionStorage.setItem('fb_vc_hf','true');fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category:'Hair Care',content_ids:['hf_001'],content_type:'product',value:27000,currency:'NGN'});}
     </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"></noscript>
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=optional" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
@@ -445,9 +445,9 @@
                         <p class="text-[10px] text-orange-600 font-medium pl-8 leading-relaxed">&#9888; Do NOT order if travelling, unavailable, or unsure.</p>
                     </div>
                 </div>
-                <button type="submit" id="submitBtn" onclick="if(typeof fbq!=='undefined')fbq('track','Purchase',{value:basePrice,currency:'NGN',content_name:'Hairline Filler Spray',content_type:'product'})" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
-                    Order &amp; Finish on WhatsApp
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <button type="submit" id="submitBtn" class="w-full py-5 bg-primary text-white rounded-full font-bold uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                    Place My Order &mdash; Pay on Delivery
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
                 </button>
             </form>
         </div>
@@ -602,6 +602,8 @@ function updateSummary() {
                     '\uD83D\uDCB0 *TOTAL:* \u20A6' + tot.toLocaleString() + '\n\uD83D\uDCB3 *PAYMENT:* ' + pay + '\n' +
                     '\uD83D\uDCC5 *DATE:* ' + ts + '\n--------------------------\n\n*I am ready to confirm my order now!*';
                 if (typeof fbq !== 'undefined') { var ick = 'fb_ic_hf_' + tot; if (!sessionStorage.getItem(ick)) { sessionStorage.setItem(ick,'true'); fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'}); } }
+                // Fire Purchase event — this is the conversion Facebook optimizes for
+                if (typeof fbq !== 'undefined') { fbq('track','Purchase',{value:tot,currency:'NGN',content_name:pname,content_ids:['hf_001'],content_type:'product',num_items:pname.indexOf('Double')!==-1?2:1}); }
                 // Fire email immediately — don't await so progress keeps moving
                 var emailDone = (typeof emailjs !== 'undefined')
                     ? emailjs.send('service_gxhivxk','template_239s5yz',{
