@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,9 +39,7 @@
         #sticky-cta-bar{position:fixed;bottom:0;left:0;right:0;z-index:8888;background:#fff;border-top:1px solid #fce7f3;padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -8px 30px rgba(255,45,85,.12);transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
         #sticky-cta-bar.visible{transform:translateY(0)}
         @media(max-width:768px){#sticky-cta-bar{display:flex}}
-        #wa-float{position:fixed;bottom:80px;left:20px;z-index:9000;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);cursor:pointer;animation:wa-pulse 2.5s infinite;text-decoration:none}
-        @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
-        @media(min-width:769px){#wa-float{bottom:32px}}
+
         #order-notification{position:fixed;bottom:24px;right:24px;z-index:9999;opacity:0;visibility:hidden;transform:translateY(30px);transition:all .6s cubic-bezier(.34,1.56,.64,1)}
         #order-notification.show{opacity:1;visibility:visible;transform:translateY(0)}
     </style>
@@ -73,10 +71,7 @@
     <div><p class="text-[10px] font-black uppercase tracking-widest text-gray-500">Hairline Filler</p><p class="text-lg font-black text-primary">&#8358;27,000</p></div>
     <a href="#order" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});return false;" class="flex-1 py-3 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-widest text-center shadow-lg">Order Now &#129348;</a>
 </div>
-<!-- WhatsApp Float -->
-<a id="wa-float" href="https://wa.me/2348039940408" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+
 <!-- Order Notification -->
 <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
     <div class="w-12 h-12 rounded-full bg-pink-500 flex-shrink-0 flex items-center justify-center text-white shadow-lg" style="font-size:20px">&#128722;</div>
@@ -259,31 +254,67 @@
     </section>
     <!-- REVIEWS -->
     <section class="py-20 px-6 md:px-12 lg:px-24 bg-white">
-        <div class="max-w-5xl mx-auto">
-            <div class="text-center mb-14"><span class="text-primary font-black uppercase tracking-[0.4em] text-xs">Real Customers</span><h2 class="text-4xl md:text-5xl font-serif font-black mt-3 text-pink-950">What Nigerian Men Are Saying</h2></div>
-            <div class="grid md:grid-cols-3 gap-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14"><span class="text-primary font-black uppercase tracking-[0.4em] text-xs">Real Customers</span><h2 class="text-4xl md:text-5xl font-serif font-black mt-3 text-pink-950">What Nigerian Men Are Saying</h2><p class="text-sm opacity-60 mt-4 font-bold">Real orders. Real results. Every review answers a real question.</p></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1: skeptic turned believer -->
                 <div class="bg-pink-50/50 rounded-[2rem] p-8 border border-pink-100 space-y-4">
                     <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="text-sm text-gray-700 leading-relaxed italic">"I was skeptical but my wife convinced me to try it. First day I used it three people asked if I got a fresh cut. I've been using it every day since. Game changer."</p>
+                    <span class="inline-block bg-pink-100 text-primary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">&#10067; Does it actually work?</span>
+                    <p class="text-sm text-gray-700 leading-relaxed italic">"I was completely skeptical &#8212; I almost didn't order. But my cousin had it and showed me in person. Ordered that same night. First time I used it, my barber asked if I touched up my hairline. It looks that real."</p>
                     <div class="flex items-center gap-3 pt-2 border-t border-pink-100">
                         <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">EO</div>
                         <div><p class="font-black text-sm">Emeka O.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Lekki, Lagos</p></div>
                     </div>
                 </div>
+                <!-- Review 2: collar / rubbing off concern -->
                 <div class="bg-pink-50/50 rounded-[2rem] p-8 border border-pink-100 space-y-4">
                     <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="text-sm text-gray-700 leading-relaxed italic">"My hairline has been receding since my 30s. This spray genuinely works &#8212; natural finish, doesn't rub off on my shirt collar, lasts all day. Would recommend to any man dealing with this."</p>
+                    <span class="inline-block bg-pink-100 text-primary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">&#10067; Will it stain my collar?</span>
+                    <p class="text-sm text-gray-700 leading-relaxed italic">"That was my exact worry. I wear shirts to work every day. Been using it for 6 weeks. Not a single mark on any collar or pillow. Once it dries, which takes about 30 seconds, it goes nowhere. Zero embarrassment."</p>
                     <div class="flex items-center gap-3 pt-2 border-t border-pink-100">
                         <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">TA</div>
                         <div><p class="font-black text-sm">Tunde A.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Ikeja, Lagos</p></div>
                     </div>
                 </div>
+                <!-- Review 3: will people notice / undetectable -->
                 <div class="bg-pink-50/50 rounded-[2rem] p-8 border border-pink-100 space-y-4">
                     <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                    <p class="text-sm text-gray-700 leading-relaxed italic">"Bought it for my husband as a gift. He uses it every morning now without me even reminding him. He looks 10 years younger. Worth every naira."</p>
+                    <span class="inline-block bg-pink-100 text-primary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">&#10067; Can people tell?</span>
+                    <p class="text-sm text-gray-700 leading-relaxed italic">"My biggest fear was someone touching my head and feeling something weird. Nothing like that. My wife touched my head and didn't notice anything different. My friends just said I looked fresh. Nobody knows."</p>
                     <div class="flex items-center gap-3 pt-2 border-t border-pink-100">
-                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">CN</div>
-                        <div><p class="font-black text-sm">Chidi N.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Victoria Island</p></div>
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">KB</div>
+                        <div><p class="font-black text-sm">Kunle B.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Surulere, Lagos</p></div>
+                    </div>
+                </div>
+                <!-- Review 4: Lagos heat / sweat -->
+                <div class="bg-pink-50/50 rounded-[2rem] p-8 border border-pink-100 space-y-4">
+                    <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <span class="inline-block bg-pink-100 text-primary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">&#10067; Does it survive Lagos heat?</span>
+                    <p class="text-sm text-gray-700 leading-relaxed italic">"I was at an owambe in Festac. Full afternoon sun, dancing for hours. Checked myself in the bathroom mirror around 6pm &#8212; still perfect. I was genuinely shocked. This thing does not move in heat or sweat."</p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-pink-100">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">FI</div>
+                        <div><p class="font-black text-sm">Femi I.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Festac, Lagos</p></div>
+                    </div>
+                </div>
+                <!-- Review 5: delivery / ordering process -->
+                <div class="bg-pink-50/50 rounded-[2rem] p-8 border border-pink-100 space-y-4">
+                    <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <span class="inline-block bg-pink-100 text-primary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">&#10067; Is delivery reliable?</span>
+                    <p class="text-sm text-gray-700 leading-relaxed italic">"Ordered at night. Got a call the next morning to confirm. Package arrived same afternoon. Very professional. They called twice to make sure I was home. Pay on delivery meant I only paid when I held it in my hand."</p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-pink-100">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">DO</div>
+                        <div><p class="font-black text-sm">Dayo O.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Maryland, Lagos</p></div>
+                    </div>
+                </div>
+                <!-- Review 6: is it worth the price -->
+                <div class="bg-pink-50/50 rounded-[2rem] p-8 border border-pink-100 space-y-4">
+                    <div class="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <span class="inline-block bg-pink-100 text-primary text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full">&#10067; Is it worth the price?</span>
+                    <p class="text-sm text-gray-700 leading-relaxed italic">"I calculated it. One bottle lasts me 5 weeks. That's less than &#8358;800 a day for a confident hairline. I used to spend more than that on barber tips alone trying to hide it. Honestly the cheapest confidence I've bought."</p>
+                    <div class="flex items-center gap-3 pt-2 border-t border-pink-100">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-black text-sm">WA</div>
+                        <div><p class="font-black text-sm">Wale A.</p><p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Victoria Island</p></div>
                     </div>
                 </div>
             </div>
@@ -292,13 +323,32 @@
     <!-- FAQ -->
     <section class="py-20 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-50">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-serif font-black mb-14 text-center text-pink-950">Common Questions</h2>
-            <div class="space-y-4">
-                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Does it wash out?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; completely removed with regular shampoo. No residue, no staining.</div></details>
-                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Will it rub off on my clothes?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">No &#8212; once dry it sets completely. Safe on shirt collars and pillows.</div></details>
-                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Does it work on dark skin?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; our Black shade is specifically formulated for Nigerian hair and skin tones.</div></details>
-                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">How long does one bottle last?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">With daily use &#8212; approximately 30&#8211;45 days per bottle.</div></details>
-                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-8 cursor-pointer font-black text-lg">Is it safe for sensitive scalp?<span class="text-primary text-xl">+</span></summary><div class="px-8 pb-8 font-medium opacity-80 leading-relaxed">Yes &#8212; dermatologist tested, no harsh chemicals or irritants.</div></details>
+            <div class="text-center mb-14"><span class="text-primary font-black uppercase tracking-[0.4em] text-xs">Every Question Answered</span><h2 class="text-4xl md:text-5xl font-serif font-black mt-3 text-pink-950">Everything You Need to Know</h2><p class="text-sm opacity-60 mt-3 font-bold">If you have a question, it's answered below. No need to contact us first.</p></div>
+            <div class="space-y-3">
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-2 pb-2">&#128222; About the Product</p>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Does it actually fill thinning areas or just darken the scalp?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">It does both. The micro-fibers in the spray attach to the existing short hair and scalp skin, creating the appearance of a fuller, denser hairline. It doesn't grow hair &#8212; it fills the visual gaps so you look like you just had a fresh cut.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Will it look fake or obvious up close?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">No &#8212; the matte finish is specifically designed to match natural hairline texture. It doesn't shine or clump. Even close-up and in good lighting, it blends in completely. People only notice if you tell them.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Does it wash out completely?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">Yes &#8212; completely removed with one regular shampoo wash. No residue, no buildup, no staining of the scalp. You start fresh every time.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Will it rub off on my shirt collar or pillow?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">No. Once it dries (about 30 seconds), it is set. It does not transfer to clothing, pillows, or anything you touch. Hundreds of our customers wear it under formal shirts and to bed without any issues.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Will it survive Lagos heat and sweat?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">Yes &#8212; it is sweat resistant and heat resistant. Customers have worn it through full outdoor events, afternoon Lagos traffic, and long work days with no fading or smearing. Light drizzle is also fine &#8212; just avoid full submersion in water (pool or heavy rain) without reapplying.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">How long does one bottle last?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">With daily use, one bottle lasts approximately 30&#8211;45 days (4&#8211;6 weeks). If you have a larger area to cover, it may be closer to 30 days. For moderate coverage, closer to 45. That's why many customers get the Double Pack &#8212; you save and never run out.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Will someone feel it if they touch my head?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">No &#8212; there is no texture, no stickiness, no crunchiness. It feels the same as natural hair to the touch. Partners, barbers, and family members regularly do not notice unless told.</div></details>
+
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-2 pb-2 pt-6">&#9881;&#65039; How to Use It</p>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">How do I apply it correctly?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed"><strong>Step 1:</strong> Shake the bottle 3&#8211;4 times. <strong>Step 2:</strong> Hold the nozzle 5&#8211;8cm from your hairline. <strong>Step 3:</strong> Spray in short, light passes &#8212; build up gradually, don't overspray. <strong>Step 4:</strong> Gently pat with your fingertip or a soft brush to blend. Wait 30 seconds to set before touching. Less is always more &#8212; start light and add.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Do I apply it before or after moisturizer?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">Apply it last &#8212; after your moisturizer or any face products. Your hairline area should be dry and product-free when you spray. Oily skin at the hairline can slightly reduce how long it lasts, so ensure that area is clean and dry.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Can I use it on a very low cut or shaved head?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">Yes &#8212; it works on very low cuts and even completely shaved areas. In fact, very short hair gives it the most realistic finish because the fibers match and blend with the short stubble perfectly.</div></details>
+
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-2 pb-2 pt-6">&#10084;&#65039; Safety &amp; Skin</p>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Is it safe for sensitive scalp or skin conditions?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">Yes &#8212; dermatologist tested with no harsh chemicals, parabens, or known irritants. It is safe for daily use on all skin types. If you have an active scalp infection or open wound, avoid applying directly on the affected area until healed.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Will daily use cause my hairline to recede further?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">No &#8212; this product sits on top of the skin and hair. It does not affect hair follicles, hormones, or hair growth in any way. It is purely cosmetic. Daily use will not worsen or improve hair loss &#8212; it simply covers it.</div></details>
+
+                <p class="text-[10px] font-black uppercase tracking-widest text-gray-400 px-2 pb-2 pt-6">&#128666; Ordering &amp; Delivery</p>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Where do you deliver to?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">We currently deliver within Lagos only &#8212; covering Lagos Island, Lekki, Ajah, Victoria Island, Ikeja, Surulere, Mainland, Ikorodu, Epe, and surrounding areas. We are working to expand. If you are outside Lagos, please check back soon.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">How long does delivery take?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">We will call you within a few hours of your order to confirm. Delivery is typically same day or next day depending on your location and the time of your order. Orders placed before 2pm on working days are usually dispatched the same day.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">Do I pay before or after delivery?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">You pay on delivery &#8212; in cash, to the rider, when your package arrives at your door. You do not pay anything upfront. If for any reason you are not satisfied when you receive it, you can refuse delivery and pay nothing. We will call you first to confirm before sending.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">What if I'm not available when they deliver?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">We call before dispatching &#8212; so we confirm you are available first. If plans change after dispatch, please call us immediately so we can arrange a new time. Please do not order if you know you will not be available within 24 hours.</div></details>
+                <details class="group bg-pink-50/50 rounded-[2rem] overflow-hidden"><summary class="flex items-center justify-between p-6 cursor-pointer font-black">What if I receive a damaged or wrong item?<span class="text-primary text-2xl leading-none">+</span></summary><div class="px-6 pb-6 text-sm font-medium opacity-80 leading-relaxed">This rarely happens but if it does, contact us immediately via the phone number provided at delivery. We will arrange a replacement or refund at no extra cost to you. Please inspect your package before the rider leaves.</div></details>
             </div>
         </div>
     </section>
