@@ -52,7 +52,7 @@
     window.tailwind={config:{theme:{extend:{colors:{primary:'#FF2D55',secondary:'#F06292',text:'#5E002C',body:'#880E4F',background:'#FFF5F8',complement:'#F1FBF3',border:'#F8BBD0'},fontFamily:{sans:['Plus Jakarta Sans','sans-serif'],serif:['Playfair Display','serif']}}}}};
     </script>
     <!-- Tailwind: defer = downloads in parallel, executes after parse, never blocks FCP -->
-    <script defer src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.tailwindcss.com" fetchpriority="low"></script>
     
     <!-- Meta Pixel — fires immediately via stub queue for LPV registration -->
     <script>
