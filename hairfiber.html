@@ -322,7 +322,7 @@
         </div>
     </section>
     <!-- FAQ -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-50">
+    <section id="faq" class="py-20 px-6 md:px-12 lg:px-24 bg-white border-t border-pink-50">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-14"><span class="text-primary font-black uppercase tracking-[0.4em] text-xs">Every Question Answered</span><h2 class="text-4xl md:text-5xl font-serif font-black mt-3 text-pink-950">Everything You Need to Know</h2><p class="text-sm opacity-60 mt-3 font-bold">If you have a question, it's answered below. No need to contact us first.</p></div>
             <div class="space-y-3">
@@ -721,16 +721,20 @@ function updateSummary() {
         <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#5E002C;margin:0 0 5px">How can we help?</h3>
         <p style="font-size:11px;color:#aaa;font-weight:600;margin:0 0 20px">Choose an option to open WhatsApp</p>
 
-        <a id="wa-question-link" href="https://wa.me/2348039940408?text=Hi%21%20I%20have%20a%20question%20about%20the%20Glamour%20%26%20Grace%20Hairline%20Filler%20Spray%20%F0%9F%A7%B4.%20Can%20you%20please%20help%20me%3F" target="_blank" rel="noopener" style="display:block;margin-bottom:12px;padding:16px 18px;background:#f0fdf4;border:2px solid #22c55e;border-radius:1.5rem;text-decoration:none">
-            <div style="font-size:26px;margin-bottom:5px">&#128172;</div>
+        <!-- Ask a question: redirects to FAQ, not WhatsApp -->
+        <button onclick="document.getElementById('wa-picker-overlay').style.display='none';setTimeout(function(){document.getElementById('faq').scrollIntoView({behavior:'smooth'});},150)" style="display:block;width:100%;margin-bottom:12px;padding:16px 18px;background:#f0fdf4;border:2px solid #22c55e;border-radius:1.5rem;text-align:center;cursor:pointer">
+            <div style="font-size:26px;margin-bottom:5px">&#128366;</div>
             <div style="font-weight:900;font-size:14px;color:#166534;margin-bottom:3px">I want to ask a question first</div>
-            <div style="font-size:11px;color:#4ade80;font-weight:600">We'll answer everything before you decide</div>
-        </a>
+            <div style="font-size:11px;color:#16a34a;font-weight:600">Tap to read our FAQ &#8212; 95% of questions are answered there</div>
+        </button>
+        <p style="font-size:10px;color:#bbb;font-weight:600;margin:-4px 0 14px;text-align:center">Still need help after reading? WhatsApp us from the FAQ page.</p>
 
-        <a id="wa-order-link" href="https://wa.me/2348039940408?text=Hi%21%20I%27m%20currently%20in%20Lagos%20and%20I%27m%20ready%20to%20order%20the%20Glamour%20%26%20Grace%20Hairline%20Filler%20Spray%20%F0%9F%A7%B4.%20Please%20confirm%20availability%20%E2%80%94%20I%20will%20pay%20on%20delivery." target="_blank" rel="noopener" style="display:block;padding:16px 18px;background:#25D366;border-radius:1.5rem;text-decoration:none">
+        <!-- Ready to order: opens WA with pre-filled order form -->
+        <a id="wa-order-link" href="https://wa.me/2348039940408?text=Hi%21%20I%27m%20in%20Lagos%20and%20I%20want%20to%20order%20the%20Glamour%20%26%20Grace%20Hairline%20Filler%20Spray%20%F0%9F%A7%B4%0A%0A%F0%9F%93%A6%20Package%3A%20%5BSingle%20Bottle%20%E2%82%A627%2C000%20OR%20Double%20Pack%20%E2%82%A634%2C000%5D%0A%F0%9F%91%A4%20My%20Name%3A%20%0A%F0%9F%93%9E%20Phone%3A%20%0A%F0%9F%93%8D%20Lagos%20Area%20%28e.g.%20Lekki%2C%20Ikeja%29%3A%20%0A%F0%9F%8F%A0%20Delivery%20Address%3A%20%0A%0A%F0%9F%92%B0%20Payment%3A%20Pay%20on%20Delivery%20%E2%9C%85" target="_blank" rel="noopener" style="display:block;padding:16px 18px;background:#25D366;border-radius:1.5rem;text-decoration:none">
+            <div style="font-size:10px;font-weight:900;background:rgba(0,0,0,.15);color:#fff;border-radius:9999px;display:inline-block;padding:3px 10px;margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase">&#128666; Lagos Only</div>
             <div style="font-size:26px;margin-bottom:5px">&#128722;</div>
             <div style="font-weight:900;font-size:14px;color:#fff;margin-bottom:3px">I&#39;m in Lagos &#8212; I&#39;m ready to order</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.8);font-weight:600">Pay on delivery &#183; We&#39;ll call to confirm</div>
+            <div style="font-size:11px;color:rgba(255,255,255,.85);font-weight:600">Sends a pre-filled order form &#183; Pay on delivery</div>
         </a>
 
         <button onclick="document.getElementById('wa-picker-overlay').style.display='none'" style="margin-top:14px;background:none;border:none;cursor:pointer;font-size:11px;color:#ccc;font-weight:700;padding:8px 16px;letter-spacing:.05em">&#10005; Close</button>
