@@ -39,7 +39,7 @@
         #sticky-cta-bar{position:fixed;bottom:0;left:0;right:0;z-index:8888;background:#fff;border-top:1px solid #fce7f3;padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 -8px 30px rgba(255,45,85,.12);transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
         #sticky-cta-bar.visible{transform:translateY(0)}
         @media(max-width:768px){#sticky-cta-bar{display:flex}}
-        @keyframes wa-pulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 0 rgba(37,211,102,.4)}50%{box-shadow:0 4px 20px rgba(37,211,102,.5),0 0 0 12px rgba(37,211,102,0)}}
+
 
         #order-notification{position:fixed;bottom:24px;right:24px;z-index:9999;opacity:0;visibility:hidden;transform:translateY(30px);transition:all .6s cubic-bezier(.34,1.56,.64,1)}
         #order-notification.show{opacity:1;visibility:visible;transform:translateY(0)}
@@ -703,44 +703,6 @@ function updateSummary() {
     if('requestIdleCallback' in window) requestIdleCallback(setupAutoplay,{timeout:2000}); else setTimeout(setupAutoplay,100);
 })();
 </script>
-
-<!-- WhatsApp Intent Float (hairfiber) -->
-<div style="position:fixed;bottom:80px;right:20px;z-index:9000" id="wa-fab-wrap">
-    <div style="position:relative" onclick="document.getElementById('wa-picker-overlay').style.display='flex'" role="button" aria-label="Chat on WhatsApp">
-        <div style="width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;animation:wa-pulse 2.5s infinite;box-shadow:0 4px 20px rgba(37,211,102,.5)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </div>
-        <div style="position:absolute;top:-6px;right:-6px;background:#FF2D55;color:#fff;font-size:7px;font-weight:900;padding:3px 6px;border-radius:9999px;letter-spacing:.05em;white-space:nowrap;line-height:1.2">CHAT</div>
-    </div>
-</div>
-
-<!-- WA Intent Picker Overlay -->
-<div id="wa-picker-overlay" onclick="if(event.target===this)this.style.display='none'" style="display:none;position:fixed;inset:0;z-index:9001;background:rgba(0,0,0,.55);align-items:flex-end;justify-content:center;padding:16px">
-    <div style="background:#fff;border-radius:2rem;padding:28px 22px 22px;width:100%;max-width:440px;text-align:center;animation:wa-card-up .3s cubic-bezier(.34,1.56,.64,1)">
-        <div style="background:#FFF5F8;border:1px solid #fce7f3;border-radius:9999px;display:inline-block;padding:5px 14px;margin-bottom:14px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:#FF2D55">&#128666; Lagos Delivery Only</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#5E002C;margin:0 0 5px">How can we help?</h3>
-        <p style="font-size:11px;color:#aaa;font-weight:600;margin:0 0 20px">Choose an option to open WhatsApp</p>
-
-        <!-- Ask a question: redirects to FAQ, not WhatsApp -->
-        <button onclick="document.getElementById('wa-picker-overlay').style.display='none';setTimeout(function(){document.getElementById('faq').scrollIntoView({behavior:'smooth'});},150)" style="display:block;width:100%;margin-bottom:12px;padding:16px 18px;background:#f0fdf4;border:2px solid #22c55e;border-radius:1.5rem;text-align:center;cursor:pointer">
-            <div style="font-size:26px;margin-bottom:5px">&#128366;</div>
-            <div style="font-weight:900;font-size:14px;color:#166534;margin-bottom:3px">I want to ask a question first</div>
-            <div style="font-size:11px;color:#16a34a;font-weight:600">Tap to read our FAQ &#8212; 95% of questions are answered there</div>
-        </button>
-        <p style="font-size:10px;color:#bbb;font-weight:600;margin:-4px 0 14px;text-align:center">Still need help after reading? WhatsApp us from the FAQ page.</p>
-
-        <!-- Ready to order: opens WA with pre-filled order form -->
-        <a id="wa-order-link" href="https://wa.me/2348039940408?text=Hi%21%20I%27m%20in%20Lagos%20and%20I%20want%20to%20order%20the%20Glamour%20%26%20Grace%20Hairline%20Filler%20Spray%20%F0%9F%A7%B4%0A%0A%F0%9F%93%A6%20Package%3A%20%5BSingle%20Bottle%20%E2%82%A627%2C000%20OR%20Double%20Pack%20%E2%82%A634%2C000%5D%0A%F0%9F%91%A4%20My%20Name%3A%20%0A%F0%9F%93%9E%20Phone%3A%20%0A%F0%9F%93%8D%20Lagos%20Area%20%28e.g.%20Lekki%2C%20Ikeja%29%3A%20%0A%F0%9F%8F%A0%20Delivery%20Address%3A%20%0A%0A%F0%9F%92%B0%20Payment%3A%20Pay%20on%20Delivery%20%E2%9C%85" target="_blank" rel="noopener" style="display:block;padding:16px 18px;background:#25D366;border-radius:1.5rem;text-decoration:none">
-            <div style="font-size:10px;font-weight:900;background:rgba(0,0,0,.15);color:#fff;border-radius:9999px;display:inline-block;padding:3px 10px;margin-bottom:8px;letter-spacing:.05em;text-transform:uppercase">&#128666; Lagos Only</div>
-            <div style="font-size:26px;margin-bottom:5px">&#128722;</div>
-            <div style="font-weight:900;font-size:14px;color:#fff;margin-bottom:3px">I&#39;m in Lagos &#8212; I&#39;m ready to order</div>
-            <div style="font-size:11px;color:rgba(255,255,255,.85);font-weight:600">Sends a pre-filled order form &#183; Pay on delivery</div>
-        </a>
-
-        <button onclick="document.getElementById('wa-picker-overlay').style.display='none'" style="margin-top:14px;background:none;border:none;cursor:pointer;font-size:11px;color:#ccc;font-weight:700;padding:8px 16px;letter-spacing:.05em">&#10005; Close</button>
-    </div>
-</div>
-<style>@keyframes wa-card-up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}</style>
 </body>
 </html>
 
