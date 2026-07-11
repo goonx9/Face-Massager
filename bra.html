@@ -23,7 +23,7 @@
         .flex{display:flex}.hidden{display:none}.block{display:block}.inline-block{display:inline-block}.inline-flex{display:inline-flex}.grid{display:grid}
         .flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}
         .gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}
-        .w-full{width:100%}.w-10{width:2.5rem}.h-8{height:2rem}.h-10{height:2.5rem}.h-20{height:5rem}
+        .w-full{width:100%}.h-full{height:100%}.object-cover{object-fit:cover}.w-10{width:2.5rem}.h-8{height:2rem}.h-10{height:2.5rem}.h-20{height:5rem}
         .max-w-7xl{max-width:80rem;margin-left:auto;margin-right:auto}.max-w-5xl{max-width:64rem;margin-left:auto;margin-right:auto}
         .inset-x-0{left:0;right:0}.inset-0{inset:0}.top-0{top:0}.top-8{top:2rem}.left-0{left:0}.right-0{right:0}
         .z-\[200\]{z-index:200}.z-\[100\]{z-index:100}.z-\[99\]{z-index:99}.z-\[9000\]{z-index:9000}.z-\[8888\]{z-index:8888}
@@ -52,7 +52,7 @@
     window.tailwind={config:{theme:{extend:{colors:{primary:'#FF2D55',secondary:'#F06292',text:'#5E002C',body:'#880E4F',background:'#FFF5F8',complement:'#F1FBF3',border:'#F8BBD0'},fontFamily:{sans:['Plus Jakarta Sans','sans-serif'],serif:['Playfair Display','serif']}}}}};
     </script>
     <!-- Tailwind: defer = downloads in parallel, executes after parse, never blocks FCP -->
-    <script defer src="https://cdn.tailwindcss.com" fetchpriority="low"></script>
+    <script defer src="https://cdn.tailwindcss.com"></script>
     
     <!-- Meta Pixel — fires immediately via stub queue for LPV registration -->
     <script>
@@ -294,8 +294,8 @@
                     </div>
                     <div class="relative">
                         <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3] relative">
-                            <video autoplay loop muted playsinline preload="auto" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_600/v1782920444/202607011617_6_1_ami8lm.jpg" width="600" height="450">
-                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1782920444/202607011617_6_1_ami8lm.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_600/v1782920444/202607011617_6_1_ami8lm.jpg" width="600" height="450">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:eco/v1782920444/202607011617_6_1_ami8lm.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px]">
@@ -313,8 +313,8 @@
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div class="order-2 lg:order-1">
                         <div class="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-pink-50 bg-pink-50 aspect-[4/3]">
-                            <video autoplay loop muted playsinline preload="metadata" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_600/v1782920182/202607011617_2_1_wk0pog.jpg" width="800" height="600">
-                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/v1782920182/202607011617_2_1_wk0pog.mp4" type="video/mp4">
+                            <video autoplay loop muted playsinline preload="none" class="w-full h-full object-cover" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_600/v1782920182/202607011617_2_1_wk0pog.jpg" width="800" height="600">
+                                <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:eco/v1782920182/202607011617_2_1_wk0pog.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
