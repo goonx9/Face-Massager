@@ -196,16 +196,16 @@
                 <i data-lucide="gift" size="40" class="hidden md:block"></i>
             </div>
             
-            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Special Gift for You! 🎀</h3>
+            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait — Don't Leave! 🛑</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Complete your order now and get ₦1,000 OFF instantly!
+                Your bra order isn't confirmed yet. Complete it now before your size sells out — we have limited stock.
             </p>
             
-            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
-                Claim My Discount
+            <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
+                Complete My Order →
             </button>
             
-            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">I'll pass on this deal</p>
+            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pass</p>
         </div>
     </div>
 
@@ -1368,68 +1368,17 @@ level. Done in under 60 seconds.
 
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery State & Area</label>
-                            <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
-                                <option value="" disabled selected>SELECT STATE & AREA</option>
-                                <optgroup label="── Lagos ──">
-                                    <option value="Lagos Island">Lagos Island</option>
-                                    <option value="Lagos Mainland">Lagos Mainland</option>
-                                    <option value="Victoria Island">Victoria Island</option>
-                                    <option value="Ikoyi">Ikoyi</option>
-                                    <option value="Oniru">Oniru</option>
-                                    <option value="Lekki Phase 1">Lekki Phase 1</option>
-                                    <option value="Lekki Phase 2">Lekki Phase 2</option>
-                                    <option value="Ajah">Ajah</option>
-                                    <option value="Chevron / Sangotedo">Chevron / Sangotedo</option>
-                                    <option value="Ikeja / GRA">Ikeja / GRA</option>
-                                    <option value="Maryland">Maryland</option>
-                                    <option value="Gbagada">Gbagada</option>
-                                    <option value="Yaba">Yaba</option>
-                                    <option value="Surulere">Surulere</option>
-                                    <option value="Mushin">Mushin</option>
-                                    <option value="Oshodi">Oshodi</option>
-                                    <option value="Isolo">Isolo</option>
-                                    <option value="Agege">Agege</option>
-                                    <option value="Ketu / Ojota">Ketu / Ojota</option>
-                                    <option value="Ojodu / Berger">Ojodu / Berger</option>
-                                    <option value="Magodo">Magodo</option>
-                                    <option value="Anthony Village">Anthony Village</option>
-                                    <option value="Apapa">Apapa</option>
-                                    <option value="Festac Town">Festac Town</option>
-                                    <option value="Mile 2 / Amuwo Odofin">Mile 2 / Amuwo Odofin</option>
-                                    <option value="Ikorodu">Ikorodu</option>
-                                    <option value="Epe">Epe</option>
-                                    <option value="Badagry">Badagry</option>
-                                </optgroup>
-                                <optgroup label="── Abuja (FCT) ──">
-                                    <option value="Central Area">Central Area</option>
-                                    <option value="Garki">Garki</option>
-                                    <option value="Garki 2">Garki 2</option>
-                                    <option value="Wuse 1">Wuse 1</option>
-                                    <option value="Wuse 2">Wuse 2</option>
-                                    <option value="Maitama">Maitama</option>
-                                    <option value="Asokoro">Asokoro</option>
-                                    <option value="Jabi">Jabi</option>
-                                    <option value="Utako">Utako</option>
-                                    <option value="Gwarinpa">Gwarinpa</option>
-                                    <option value="Kubwa">Kubwa</option>
-                                    <option value="Lokogoma">Lokogoma</option>
-                                    <option value="Durumi">Durumi</option>
-                                    <option value="Gudu">Gudu</option>
-                                    <option value="Apo">Apo</option>
-                                    <option value="Lugbe">Lugbe</option>
-                                    <option value="Karu / Nyanya">Karu / Nyanya</option>
-                                    <option value="Life Camp">Life Camp</option>
-                                    <option value="Galadimawa">Galadimawa</option>
-                                    <option value="Katampe">Katampe</option>
-                                    <option value="Wuye">Wuye</option>
-                                    <option value="Dei-Dei">Dei-Dei</option>
-                                    <option value="Mpape">Mpape</option>
-                                    <option value="Dawaki">Dawaki</option>
-                                    <option value="Nbora">Nbora</option>
-                                    <option value="Kaura">Kaura</option>
-                                    <option value="Masaka / Karshi">Masaka / Karshi</option>
-                                </optgroup>
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Select State</label>
+                            <select name="delivery_state" id="stateSelect" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
+                                <option value="" disabled selected>SELECT STATE</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Abuja">Abuja (FCT)</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Select City / Area</label>
+                            <select name="location" id="locationSelect" required disabled class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer opacity-40">
+                                <option value="" disabled selected>SELECT STATE FIRST</option>
                             </select>
                         </div>
                     </div>
@@ -1492,10 +1441,7 @@ level. Done in under 60 seconds.
                                 <span id="summaryProductName">Invisible Push Up Bra</span>
                                 <span id="summaryProductPrice">₦18,000</span>
                             </div>
-                            <div id="discount-row" class="hidden flex justify-between text-sm font-bold text-green-600">
-                                <span>Special Discount 🎉</span>
-                                <span>-₦1,000</span>
-                            </div>
+
                             <div class="flex justify-between text-sm font-bold">
                                 <span>Delivery</span>
                                 <span id="deliveryFeeText" class="text-green-600">FREE</span>
@@ -1630,7 +1576,7 @@ level. Done in under 60 seconds.
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="(function(){if('requestIdleCallback' in window){requestIdleCallback(function(){lucide.createIcons();},{timeout:3000});}else{setTimeout(function(){lucide.createIcons();},200);}})()"></script>
     <script>
     /* ── onclick-safe globals (defined synchronously for HTML attribute access) ── */
-    var basePrice = 18000, discount = 0;
+    var basePrice = 18000;
 
     function handlePackageChange(val) {
         var prices = { 'Single': 18000, 'Premium': 28000 };
@@ -1653,12 +1599,7 @@ level. Done in under 60 seconds.
         if (scroll !== false) { var el = document.getElementById('order'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
     }
 
-    function applyDiscount() {
-        discount = 1000;
-        var row = document.getElementById('discount-row');
-        if (row) row.classList.remove('hidden');
-        updateSummary();
-    }
+    function applyDiscount() { /* discount removed */ }
 
     function filterBySize(size) {
         document.querySelectorAll('.size-filter-btn').forEach(function(btn) {
@@ -1680,7 +1621,7 @@ level. Done in under 60 seconds.
             pmt = document.getElementById('paymentMethodText'),
             tt  = document.getElementById('totalPriceText'),
             hp  = document.getElementById('hidden_product_price'),
-            total = basePrice - discount;
+            total = basePrice;
         if (dft) { dft.innerText = 'FREE'; dft.className = 'text-green-600'; }
         if (pmt) { pmt.innerText = 'Pay on Delivery'; pmt.className = 'text-blue-600'; }
         if (tt)  tt.innerText = '\u20A6' + total.toLocaleString();
@@ -1708,8 +1649,27 @@ level. Done in under 60 seconds.
             }
             window.addEventListener('load', function () { setTimeout(function(){ triggerNotif(); setInterval(triggerNotif, 12000); }, 6000); });
 
-            // Location change
-            var locSel = document.getElementById('locationSelect');
+            // State → City cascading dropdowns
+            var cityData = {
+                'Lagos': ['Lagos Island','Lagos Mainland','Victoria Island','Ikoyi','Oniru','Lekki Phase 1','Lekki Phase 2','Ajah','Chevron / Sangotedo','Ikeja / GRA','Maryland','Gbagada','Yaba','Surulere','Mushin','Oshodi','Isolo','Agege','Ketu / Ojota','Ojodu / Berger','Magodo','Anthony Village','Apapa','Festac Town','Mile 2 / Amuwo Odofin','Ikorodu','Epe','Badagry'],
+                'Abuja': ['Central Area','Garki','Garki 2','Wuse 1','Wuse 2','Maitama','Asokoro','Jabi','Utako','Gwarinpa','Kubwa','Lokogoma','Durumi','Gudu','Apo','Lugbe','Karu / Nyanya','Life Camp','Galadimawa','Katampe','Wuye','Dei-Dei','Mpape','Dawaki','Nbora','Kaura','Masaka / Karshi']
+            };
+            var stateSel = document.getElementById('stateSelect');
+            var locSel   = document.getElementById('locationSelect');
+            if (stateSel) {
+                stateSel.addEventListener('change', function() {
+                    var cities = cityData[this.value] || [];
+                    locSel.innerHTML = '<option value="" disabled selected>SELECT CITY / AREA</option>';
+                    cities.forEach(function(city) {
+                        var opt = document.createElement('option');
+                        opt.value = city; opt.textContent = city;
+                        locSel.appendChild(opt);
+                    });
+                    locSel.disabled = false;
+                    locSel.classList.remove('opacity-40');
+                    updateSummary();
+                });
+            }
             if (locSel) locSel.addEventListener('change', updateSummary);
 
             // Exit intent
@@ -1744,8 +1704,7 @@ level. Done in under 60 seconds.
                     addr = data.address, loc = data.location, pname = data.product_name,
                     pprice = data.product_price, sz = data.size,
                     ts   = new Date().toLocaleString(), tot = parseInt(pprice), pay = 'Pay on Delivery';
-                var abujaAreas = ['Central Area','Garki','Garki 2','Wuse 1','Wuse 2','Maitama','Asokoro','Jabi','Utako','Gwarinpa','Kubwa','Lokogoma','Durumi','Gudu','Apo','Lugbe','Karu / Nyanya','Life Camp','Galadimawa','Katampe','Wuye','Dei-Dei','Mpape','Dawaki','Nbora','Kaura','Masaka / Karshi'];
-                var selState = abujaAreas.indexOf(loc) !== -1 ? 'Abuja (FCT)' : 'Lagos';
+                var selState = data.delivery_state === 'Abuja' ? 'Abuja (FCT)' : 'Lagos';
                 var msg = '*NEW ORDER RECEIVED (BRA)* \uD83D\uDC59\n--------------------------\n' +
                     '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
                     '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (' + selState + ')\n' +
