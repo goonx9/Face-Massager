@@ -1393,7 +1393,7 @@ level. Done in under 60 seconds.
                             <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Select Your Size (Cup + Band)</label>
                             <select name="size" id="sizeSelect" required onchange="showSizeHint(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
                                 <option value="" disabled selected>— PICK YOUR SIZE —</option>
-                                <option value="Small – A/B Cup">Small – A/B Cup &nbsp;|&nbsp; Band 28–34 &nbsp;(e.g. 32A, 34A, 32B, 34B)</option>
+                                <option id="sizeSmall" value="Small – A/B Cup">Small – A/B Cup &nbsp;|&nbsp; Band 28–34 &nbsp;(e.g. 32A, 34A, 32B, 34B)</option>
                                 <option value="Medium – B/C Cup">Medium – B/C Cup &nbsp;|&nbsp; Band 34–38 &nbsp;(e.g. 34B, 36B, 36C, 38C)</option>
                                 <option value="Large – C/D Cup">Large – C/D Cup &nbsp;|&nbsp; Band 36–42 &nbsp;(e.g. 38C, 38D, 40D, 42D)</option>
                             </select>
@@ -1657,7 +1657,7 @@ level. Done in under 60 seconds.
             var stateSel = document.getElementById('stateSelect');
             var locSel   = document.getElementById('locationSelect');
             if (stateSel) {
-                stateSel.addEventListener('change', function() {
+                 stateSel.addEventListener('change', function() {
                     var cities = cityData[this.value] || [];
                     locSel.innerHTML = '<option value="" disabled selected>SELECT CITY / AREA</option>';
                     cities.forEach(function(city) {
@@ -1667,6 +1667,23 @@ level. Done in under 60 seconds.
                     });
                     locSel.disabled = false;
                     locSel.classList.remove('opacity-40');
+                    // Abuja: Small size out of stock
+                    var smallOpt = document.getElementById('sizeSmall');
+                    var sizeSel  = document.getElementById('sizeSelect');
+                    if (smallOpt) {
+                        if (this.value === 'Abuja') {
+                            smallOpt.disabled = true;
+                            smallOpt.textContent = 'Small – A/B Cup \u00a0|\u00a0 OUT OF STOCK (Abuja)';
+                            // Reset if Small was already chosen
+                            if (sizeSel && sizeSel.value === 'Small \u2013 A/B Cup') {
+                                sizeSel.value = '';
+                                if (sizeSel.options[0]) sizeSel.options[0].selected = true;
+                            }
+                        } else {
+                            smallOpt.disabled = false;
+                            smallOpt.textContent = 'Small \u2013 A/B Cup \u00a0|\u00a0 Band 28\u201334 \u00a0(e.g. 32A, 34A, 32B, 34B)';
+                        }
+                    }
                     updateSummary();
                 });
             }
