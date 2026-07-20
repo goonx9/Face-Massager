@@ -1368,17 +1368,68 @@ level. Done in under 60 seconds.
 
                     <div class="grid md:grid-cols-2 gap-8">
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery Area (Lagos Only)</label>
+                            <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Delivery State & Area</label>
                             <select name="location" id="locationSelect" required class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-pointer">
-                                <option value="" disabled selected>SELECT AREA</option>
-                                <option value="Lagos Island">Lagos Island</option>
-                                <option value="Mainland">Mainland</option>
-                                <option value="Ikeja">Ikeja</option>
-                                <option value="Lekki">Lekki/Ajah</option>
-                                <option value="Victoria Island">Victoria Island</option>
-                                <option value="Surulere">Surulere</option>
-                                <option value="Ikorodu">Ikorodu</option>
-                                <option value="Epe">Epe</option>
+                                <option value="" disabled selected>SELECT STATE & AREA</option>
+                                <optgroup label="── Lagos ──">
+                                    <option value="Lagos Island">Lagos Island</option>
+                                    <option value="Lagos Mainland">Lagos Mainland</option>
+                                    <option value="Victoria Island">Victoria Island</option>
+                                    <option value="Ikoyi">Ikoyi</option>
+                                    <option value="Oniru">Oniru</option>
+                                    <option value="Lekki Phase 1">Lekki Phase 1</option>
+                                    <option value="Lekki Phase 2">Lekki Phase 2</option>
+                                    <option value="Ajah">Ajah</option>
+                                    <option value="Chevron / Sangotedo">Chevron / Sangotedo</option>
+                                    <option value="Ikeja / GRA">Ikeja / GRA</option>
+                                    <option value="Maryland">Maryland</option>
+                                    <option value="Gbagada">Gbagada</option>
+                                    <option value="Yaba">Yaba</option>
+                                    <option value="Surulere">Surulere</option>
+                                    <option value="Mushin">Mushin</option>
+                                    <option value="Oshodi">Oshodi</option>
+                                    <option value="Isolo">Isolo</option>
+                                    <option value="Agege">Agege</option>
+                                    <option value="Ketu / Ojota">Ketu / Ojota</option>
+                                    <option value="Ojodu / Berger">Ojodu / Berger</option>
+                                    <option value="Magodo">Magodo</option>
+                                    <option value="Anthony Village">Anthony Village</option>
+                                    <option value="Apapa">Apapa</option>
+                                    <option value="Festac Town">Festac Town</option>
+                                    <option value="Mile 2 / Amuwo Odofin">Mile 2 / Amuwo Odofin</option>
+                                    <option value="Ikorodu">Ikorodu</option>
+                                    <option value="Epe">Epe</option>
+                                    <option value="Badagry">Badagry</option>
+                                </optgroup>
+                                <optgroup label="── Abuja (FCT) ──">
+                                    <option value="Central Area">Central Area</option>
+                                    <option value="Garki">Garki</option>
+                                    <option value="Garki 2">Garki 2</option>
+                                    <option value="Wuse 1">Wuse 1</option>
+                                    <option value="Wuse 2">Wuse 2</option>
+                                    <option value="Maitama">Maitama</option>
+                                    <option value="Asokoro">Asokoro</option>
+                                    <option value="Jabi">Jabi</option>
+                                    <option value="Utako">Utako</option>
+                                    <option value="Gwarinpa">Gwarinpa</option>
+                                    <option value="Kubwa">Kubwa</option>
+                                    <option value="Lokogoma">Lokogoma</option>
+                                    <option value="Durumi">Durumi</option>
+                                    <option value="Gudu">Gudu</option>
+                                    <option value="Apo">Apo</option>
+                                    <option value="Lugbe">Lugbe</option>
+                                    <option value="Karu / Nyanya">Karu / Nyanya</option>
+                                    <option value="Life Camp">Life Camp</option>
+                                    <option value="Galadimawa">Galadimawa</option>
+                                    <option value="Katampe">Katampe</option>
+                                    <option value="Wuye">Wuye</option>
+                                    <option value="Dei-Dei">Dei-Dei</option>
+                                    <option value="Mpape">Mpape</option>
+                                    <option value="Dawaki">Dawaki</option>
+                                    <option value="Nbora">Nbora</option>
+                                    <option value="Kaura">Kaura</option>
+                                    <option value="Masaka / Karshi">Masaka / Karshi</option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
@@ -1423,7 +1474,7 @@ level. Done in under 60 seconds.
                             <label class="flex items-start gap-3 cursor-pointer group">
                                 <input type="checkbox" required class="mt-1 w-4 h-4 rounded border-red-300 text-red-600 focus:ring-red-500">
                                 <span class="text-[10px] font-black uppercase tracking-wider text-red-900 group-hover:text-red-600 transition-colors">
-                                    I am in Lagos and ready for delivery
+                                    I am in Lagos or Abuja and ready for delivery
                                 </span>
                             </label>
 
@@ -1646,7 +1697,7 @@ level. Done in under 60 seconds.
 
             // Fake order notifications
             var names  = ['Ada','Fatima','Chioma','Nneka','Blessing','Aisha','Funke','Zainab','Esther','Mary','Titi','Ronke','Yinka','Bolu','Tobi'];
-            var states = ['Lagos Island','Ikeja','Lekki','Victoria Island','Surulere','Ajah','Ikorodu','Epe','Maryland','Ikoyi','Yaba'];
+            var states = ['Lagos Island','Ikeja / GRA','Lekki Phase 1','Lekki Phase 2','Victoria Island','Surulere','Ajah','Chevron / Sangotedo','Ikorodu','Epe','Maryland','Ikoyi','Yaba','Gbagada','Mushin','Oshodi','Festac Town','Apapa','Magodo','Oniru','Wuse 2','Maitama','Garki','Asokoro','Gwarinpa','Jabi','Utako','Kubwa','Life Camp','Karu / Nyanya','Apo','Gudu'];
             var prods  = ['Glamour &amp; Grace Face Massage Lifter','Invisible Push Up Bra','Ultrasonic Pore Vacuum\u2122','Smooth Precision Lady Shaver'];
             function triggerNotif() {
                 var el = document.getElementById('order-notification'), tx = document.getElementById('notif-text');
@@ -1693,9 +1744,11 @@ level. Done in under 60 seconds.
                     addr = data.address, loc = data.location, pname = data.product_name,
                     pprice = data.product_price, sz = data.size,
                     ts   = new Date().toLocaleString(), tot = parseInt(pprice), pay = 'Pay on Delivery';
+                var abujaAreas = ['Central Area','Garki','Garki 2','Wuse 1','Wuse 2','Maitama','Asokoro','Jabi','Utako','Gwarinpa','Kubwa','Lokogoma','Durumi','Gudu','Apo','Lugbe','Karu / Nyanya','Life Camp','Galadimawa','Katampe','Wuye','Dei-Dei','Mpape','Dawaki','Nbora','Kaura','Masaka / Karshi'];
+                var selState = abujaAreas.indexOf(loc) !== -1 ? 'Abuja (FCT)' : 'Lagos';
                 var msg = '*NEW ORDER RECEIVED (BRA)* \uD83D\uDC59\n--------------------------\n' +
                     '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
-                    '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (Lagos)\n' +
+                    '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (' + selState + ')\n' +
                     '\uD83C\uDFE0 *ADDRESS:* ' + addr + '\n\n\uD83D\uDCE6 *PRODUCT:* ' + pname + '\n' +
                     '\uD83D\uDCCF *SIZE:* ' + sz + '\n\uD83D\uDE9A *DELIVERY:* FREE\n' +
                     '\uD83D\uDCB0 *TOTAL:* \u20A6' + tot.toLocaleString() + '\n\uD83D\uDCB3 *PAYMENT:* ' + pay + '\n' +
@@ -1718,8 +1771,8 @@ level. Done in under 60 seconds.
                             to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,
                             full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
                             customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_alt_phone:aph,
-                            customer_address:addr,address:addr,location:loc,state:loc,city:loc,
-                            customer_state:loc,customer_city:loc,product_name:pname,product:pname,
+                            customer_address:addr,address:addr,location:loc,city:loc,state:selState,
+                            customer_state:selState,customer_city:loc,product_name:pname,product:pname,
                             size:sz,selected_size:sz,bra_size:sz,product_size:sz,
                             total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
                             payment_method:pay,date:ts,
