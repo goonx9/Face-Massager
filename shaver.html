@@ -78,7 +78,7 @@
                 content_category: 'Personal Care',
                 content_ids: ['shaver_001'],
                 content_type: 'product',
-                value: 31000,
+                value: 29000,
                 currency: 'NGN'
             });
         }
@@ -187,7 +187,7 @@
     <div id="sticky-cta-bar">
         <div>
             <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">Lady Shaver</p>
-            <p class="text-lg font-black text-primary">₦31,000</p>
+            <p class="text-lg font-black text-primary">₦29,000</p>
         </div>
         <a href="#order" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'}); return false;" class="flex-1 py-3 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-widest text-center shadow-lg">
             Order Now 🛍️
@@ -446,7 +446,7 @@
                     <span class="bg-primary text-white px-6 py-2 rounded-full text-[9px] font-black tracking-[0.3em] uppercase mb-6 inline-block w-fit">New Arrival</span>
                     <h1 class="text-6xl font-serif font-black mb-4">Lady Shaver</h1>
                     <div class="mb-6 flex items-baseline gap-4">
-                        <span class="text-5xl font-black text-primary">₦31,000</span>
+                        <span class="text-5xl font-black text-primary">₦29,000</span>
                         <span class="text-2xl line-through opacity-40 font-bold">₦45,000</span>
                         <span class="bg-red-100 text-red-600 px-3 py-1 rounded-lg text-[10px] font-black uppercase">Save ₦14,000</span>
                     </div>
@@ -729,7 +729,7 @@
                         </div>
                         <p class="text-xs opacity-60 font-medium px-4 mb-6 min-h-[64px] flex items-center justify-center">Perfect single-device package for full-body painless micro grooming.</p>
                         <div class="flex items-center gap-3 mb-6">
-                            <span class="text-3xl font-black text-primary">₦31,000</span>
+                            <span class="text-3xl font-black text-primary">₦29,000</span>
                             <span class="text-sm line-through opacity-30 font-bold">₦45,000</span>
                         </div>
                         <ul class="text-sm font-bold space-y-3 opacity-70 w-full text-left mb-8 flex-grow">
@@ -737,7 +737,7 @@
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> 1x USB Cable & Brush</li>
                             <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save ₦14,000 Instantly</li>
                         </ul>
-                        <button onclick="selectBundle('Single', 31000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-[0.2em] text-[10px] shadow-xl hover:scale-105 transition-all mt-auto">Select Package</button>
+                        <button onclick="selectBundle('Single', 29000)" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-[0.2em] text-[10px] shadow-xl hover:scale-105 transition-all mt-auto">Select Package</button>
                     </div>
                 </div>
             </div>
@@ -902,14 +902,14 @@
                                 <div class="space-y-2">
                                     <label class="text-[10px] font-black uppercase tracking-widest ml-4 opacity-40">Selected Package</label>
                                     <select name="package" id="packageSelect" onchange="handlePackageChange(this.value)" class="w-full px-8 py-5 rounded-full bg-pink-50/50 border-none outline-none font-black text-[11px] tracking-widest focus:ring-2 ring-primary transition-all appearance-none cursor-not-allowed pointer-events-none">
-                                        <option value="Single">1 Pack (₦31,000)</option>
+                                        <option value="Single">1 Pack (₦29,000)</option>
                                     </select>
                                 </div>
                             </div>
 
                             <!-- Hidden Fields -->
                             <input type="hidden" name="product_name" id="hidden_product_name" value="Smooth Precision Lady Shaver (Single Pack)">
-                            <input type="hidden" name="product_price" id="hidden_product_price" value="31000">
+                            <input type="hidden" name="product_price" id="hidden_product_price" value="29000">
                             <input type="hidden" name="size" value="One Size">
 
                             <!-- Commitment Notice -->
@@ -940,7 +940,7 @@
                                 <div class="space-y-2">
                                     <div class="flex justify-between text-sm font-bold">
                                         <span id="summaryProductName">Lady Shaver</span>
-                                        <span id="summaryProductPrice">₦31,000</span>
+                                        <span id="summaryProductPrice">₦29,000</span>
                                     </div>
                                     <div id="discount-row" class="hidden flex justify-between text-sm font-bold text-green-600">
                                         <span>Special Discount 🎉</span>
@@ -956,7 +956,7 @@
                                     </div>
                                     <div class="pt-4 border-t border-pink-200 flex justify-between text-xl font-black">
                                         <span>Total</span>
-                                        <span id="totalPriceText">₦31,000</span>
+                                        <span id="totalPriceText">₦29,000</span>
                                     </div>
                                 </div>
                             </div>
@@ -1128,11 +1128,11 @@
         const packages = {
             'Single': {
                 name: 'Lady Shaver (Single Pack)',
-                price: 31000
+                price: 29000
             }
         };
 
-        let activePrice = 31000;
+        let activePrice = 29000;
         let discount = 0;
 
         function handlePackageChange(val) {
