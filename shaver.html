@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -181,31 +181,8 @@
 
 
 
-    <!-- Exit Intent Popup -->
-    <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 md:p-6 backdrop-blur-md">
-        <div class="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 max-w-md w-full text-center relative overflow-hidden shadow-3xl mx-4">
-            <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
-            <button id="close-exit" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-black transition-colors">
-                <i data-lucide="x" size="24"></i>
-            </button>
-            
-            <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-primary">
-                <i data-lucide="gift" size="32" class="md:hidden"></i>
-                <i data-lucide="gift" size="40" class="hidden md:block"></i>
-            </div>
-            
-            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait — Don't Leave! 🛑</h3>
-            <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Your shaver order isn't confirmed yet. Complete it now before your size sells out — we have limited stock.
-            </p>
-            
-            <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'}); document.getElementById('exit-popup').style.display='none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
-                Complete My Order →
-            </button>
-            
-            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pass</p>
-        </div>
-    </div>
+
+
 
     <!-- Order Notification -->
     <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
@@ -1170,24 +1147,9 @@
             if (totalText) totalText.innerText = `₦${total.toLocaleString()}`;
         }
 
-        // Exit Intent Detection
-        let exitShown = false;
-        function showExitPopup() {
-            if (exitShown) return;
-            exitShown = true;
-            document.getElementById('exit-popup').style.display = 'flex';
-        }
-        document.addEventListener('mouseleave', (e) => {
-            if (e.clientY < 50) showExitPopup();
-        });
-        window.addEventListener('popstate', (e) => {
-            if (!exitShown) {
-                showExitPopup();
-                history.pushState(null, null, window.location.href);
-            }
-        });
-        const closeExitBtn = document.getElementById('close-exit');
-        if (closeExitBtn) { closeExitBtn.addEventListener('click', () => { document.getElementById('exit-popup').style.display = 'none'; }); }
+        // IC fires when customer first touches the form
+        const _fm = document.getElementById('orderForm');
+        if (_fm) _fm.addEventListener('focusin', function () { fireIC(); }, { once: true });
 
         // Form Submission Handler
         let isSubmitting = false;
@@ -1301,6 +1263,7 @@
                     statusText.innerText = "Order Confirmed! Redirecting...";
                     
                     const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
+                    sessionStorage.setItem('pending_purchase', JSON.stringify({price: totalPrice, name: customerNameValue, product: productNameValue, currency: 'NGN', ids: ['shaver_001']}));
                     isSubmitting = false;
                     setTimeout(() => {
                         window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
@@ -1341,24 +1304,7 @@
             }, { passive: true });
         })();
 
-        // Mobile exit intent (scroll UP) + desktop mouseleave
-        (function() {
-            let lastY = 0, shown = sessionStorage.getItem('exit_shaver') === 'true';
-            window.addEventListener('scroll', function() {
-                const y = window.scrollY;
-                if (!shown && lastY - y > 60 && y > 400) {
-                    const popup = document.getElementById('exit-popup');
-                    if (popup) { popup.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_shaver','true'); }
-                }
-                lastY = y;
-            }, { passive: true });
-            document.addEventListener('mouseleave', function(e) {
-                if (e.clientY < 5 && !shown) {
-                    const popup = document.getElementById('exit-popup');
-                    if (popup) { popup.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_shaver','true'); }
-                }
-            });
-        })();
+
     </script>
 </body>
 </html>
