@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -239,11 +239,11 @@
             
             <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait! Special Offer 😱</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Order today and get ₦1,000 OFF automatically applied
+                Your order is not confirmed yet — complete it now before stock runs out.
             </p>
             
-            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
-                Claim My Discount Now
+            <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'}); document.getElementById('exit-popup').style.display='none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
+                Complete My Order Now →
             </button>
             
             <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
@@ -274,7 +274,7 @@
             </a>
             <div style="display:flex;align-items:center;gap:2rem">
                 <a href="index.html" style="font-size:10px;font-weight:900;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;color:#5E002C;display:none" class="md:block">Home</a>
-                <a href="#order" style="padding:.75rem 1.5rem;background:#FF2D55;color:#fff;border-radius:9999px;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,.1)">Get My Massager</a>
+                <a href="#order" onclick="fireIC()" style="padding:.75rem 1.5rem;background:#FF2D55;color:#fff;border-radius:9999px;font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;box-shadow:0 20px 25px -5px rgba(0,0,0,.1)">Get My Massager</a>
             </div>
         </div>
     </nav>
@@ -326,7 +326,7 @@
                                 <p class="font-bold text-sm">Dull, "tired-looking" complexion</p>
                             </div>
                         </div>
-                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                        <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
                             Get My Sculpted Look Now
                         </button>
                     </div>
@@ -412,7 +412,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#order" class="w-full py-5 bg-primary text-white rounded-full font-bold text-center uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Get Mine Today</a>
+                    <a href="#order" onclick="fireIC()" class="w-full py-5 bg-primary text-white rounded-full font-bold text-center uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Get Mine Today</a>
                 </div>
             </div>
         </section>
@@ -607,7 +607,7 @@
                 </div>
 
                 <div class="pt-8">
-                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                    <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
                         Start My Transformation Today
                     </button>
                 </div>
@@ -647,7 +647,7 @@
                         </div>
                     </div>
                     <div class="pt-8">
-                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
+                        <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="w-full py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center justify-center gap-3">
                             Start My Routine Now <i data-lucide="zap" size="16"></i>
                         </button>
                     </div>
@@ -685,7 +685,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center mt-16">
-                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center gap-3">
+                    <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="px-12 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform flex items-center gap-3">
                         I'm Ready to Order <i data-lucide="check-circle" size="16"></i>
                     </button>
                 </div>
@@ -787,7 +787,7 @@
                 </div>
             </div>
             <div class="flex justify-center mt-16">
-                <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-5 bg-white text-primary rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="px-12 py-5 bg-white text-primary rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
                     Order Now & Save ₦25,500
                 </button>
             </div>
@@ -1137,7 +1137,7 @@
                 </div>
 
                 <div class="mt-16 text-center">
-                    <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                    <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="px-12 py-6 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
                         Join the Glow Community
                     </button>
                 </div>
@@ -1180,7 +1180,7 @@
                             <li class="flex items-center gap-3"><i data-lucide="check" class="text-green-500" size="16"></i> Free Delivery</li>
                             <li class="flex items-center gap-3 font-black text-primary"><i data-lucide="sparkles" size="16"></i> Save &#8358;25,500 Today</li>
                         </ul>
-                        <a href="#order" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all text-center block">Order Now &mdash; &#8358;29,500</a>
+                        <a href="#order" onclick="fireIC()" class="w-full py-5 bg-primary text-white rounded-full font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-105 transition-all text-center block">Order Now &mdash; &#8358;29,500</a>
                     </div>
                 </div>
             </div>
@@ -1541,7 +1541,14 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="(function(){if('requestIdleCallback' in window){requestIdleCallback(function(){lucide.createIcons();},{timeout:3000});}else{setTimeout(function(){lucide.createIcons();},200);}})()"></script>
+    <script>
+function fireIC(){
+  if(sessionStorage.getItem("ic_vlift"))return;
+  sessionStorage.setItem("ic_vlift","true");
+  if(typeof fbq!=="undefined")fbq("track","InitiateCheckout",{content_name:"V-Lift Face Massager",content_category:"Beauty Devices",content_ids:["vlift_001"],content_type:"product",value:35000,currency:"NGN"});
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.344.0/dist/umd/lucide.min.js" defer onload="(function(){if('requestIdleCallback' in window){requestIdleCallback(function(){lucide.createIcons();},{timeout:3000});}else{setTimeout(function(){lucide.createIcons();},200);}})()"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
     <script>
     /* ── onclick-safe globals: defined synchronously (fast) for HTML attribute access ── */
@@ -1574,14 +1581,7 @@
         if (scroll !== false) { var el = document.getElementById('order'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
     }
 
-    function applyDiscount() {
-        discount = 1000;
-        var row = document.getElementById('discount-row');
-        if (row) row.classList.remove('hidden');
-        updateSummary();
-        var hp = document.getElementById('hidden_product_price');
-        if (hp) hp.value = basePrice - discount;
-    }
+    function applyDiscount(){}
 
     function updateSummary() {
         var dft = document.getElementById('deliveryFeeText'),
