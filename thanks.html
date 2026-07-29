@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,23 +31,36 @@
         fbq('track', 'PageView');
     }
     
-    const urlParams = new URLSearchParams(window.location.search);
-    const price = urlParams.get('p') || '0';
-    const customerName = urlParams.get('n') || '';
-    const productName = urlParams.get('pn') || '';
-
-    // Fire Purchase IMMEDIATELY on first landing on thanks.html (once per order)
-    if (price && parseFloat(price) > 0) {
-        const orderKey = `fb_purchase_fired_${price}_${customerName}_${productName}`;
-        if (!sessionStorage.getItem(orderKey)) {
-            sessionStorage.setItem(orderKey, 'true');
+    // ── Purchase event: sessionStorage-first (most reliable) ─────────────
+    (function(){
+      try {
+        var pd = sessionStorage.getItem('pending_purchase');
+        if (pd) {
+          var od = JSON.parse(pd);
+          sessionStorage.removeItem('pending_purchase'); // consume — one-shot
+          fbq('track', 'Purchase', {
+            value: parseFloat(od.price) || 0,
+            currency: od.currency || 'NGN',
+            content_name: od.product || '',
+            content_ids: od.ids || ['product_001'],
+            content_type: 'product'
+          });
+        } else {
+          // Fallback: URL params (older redirects without sessionStorage)
+          var up = new URLSearchParams(window.location.search);
+          var pv = parseFloat(up.get('p') || '0');
+          if (pv > 0 && !sessionStorage.getItem('fb_pur_'+pv)) {
+            sessionStorage.setItem('fb_pur_'+pv, '1');
             fbq('track', 'Purchase', {
-                value: parseFloat(price),
-                currency: 'NGN',
-                content_name: productName
+              value: pv,
+              currency: 'NGN',
+              content_name: up.get('pn') || '',
+              content_type: 'product'
             });
+          }
         }
-    }
+      } catch(e) { console.warn('Purchase pixel error:', e); }
+    })();
     </script>
     <!-- End Meta Pixel Code -->
 
