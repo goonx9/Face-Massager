@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -224,31 +224,7 @@
 
 
 
-    <!-- Exit Intent Popup -->
-    <div id="exit-popup" class="fixed inset-0 bg-black/90 z-[300] hidden items-center justify-center p-4 md:p-6 backdrop-blur-md">
-        <div class="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 max-w-md w-full text-center relative overflow-hidden shadow-3xl mx-4">
-            <div class="absolute top-0 left-0 w-full h-2 bg-primary"></div>
-            <button id="close-exit" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-black transition-colors">
-                <i data-lucide="x" size="24"></i>
-            </button>
-            
-            <div class="w-16 h-16 md:w-20 md:h-20 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 text-primary">
-                <i data-lucide="gift" size="32" class="md:hidden"></i>
-                <i data-lucide="gift" size="40" class="hidden md:block"></i>
-            </div>
-            
-            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait! Special Offer 😱</h3>
-            <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Your order is not confirmed yet — complete it now before stock runs out.
-            </p>
-            
-            <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'}); document.getElementById('exit-popup').style.display='none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
-                Complete My Order Now →
-            </button>
-            
-            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pay full price later</p>
-        </div>
-    </div>
+
 
     <!-- Order Notification -->
     <div id="order-notification" class="bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(255,20,147,0.15)] rounded-2xl p-4 border border-pink-200 flex items-center gap-4 max-w-[320px]">
@@ -1618,18 +1594,9 @@ function fireIC(){
             var locSel = document.getElementById('locationSelect');
             if (locSel) locSel.addEventListener('change', updateSummary);
 
-            // Exit intent (desktop)
-            var exitShown = sessionStorage.getItem('exitPopupShown') === 'true';
-            function showExitPopup() {
-                if (exitShown) return;
-                var p = document.getElementById('exit-popup');
-                if (p) { p.style.display = 'flex'; exitShown = true; sessionStorage.setItem('exitPopupShown', 'true'); }
-            }
-            document.addEventListener('mouseleave', function (e) { if (0.1 > e.clientY) showExitPopup(); });
-            history.pushState(null, null, window.location.href);
-            window.addEventListener('popstate', function () { if (!exitShown) { showExitPopup(); history.pushState(null, null, window.location.href); } });
-            var ceb = document.getElementById('close-exit');
-            if (ceb) ceb.addEventListener('click', function () { document.getElementById('exit-popup').style.display = 'none'; });
+            // IC fires when customer starts filling the form
+            var _fm = document.getElementById('orderForm');
+            if (_fm) _fm.addEventListener('focusin', function () { fireIC(); }, { once: true });
 
             // Form submission
             var isSubmitting = false;
@@ -1701,6 +1668,7 @@ function fireIC(){
                     await emailDone; // Wait for email only at the end (usually already done)
                     await updateProgress(100,'Order Confirmed! Redirecting...',500);
                     var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
+                    sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['vlift_001']}));
                     isSubmitting = false;
                     setTimeout(function(){
                         window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
@@ -1738,24 +1706,7 @@ function fireIC(){
             }, { passive: true });
         })();
 
-        // Mobile exit intent (scroll-up trigger) + desktop mouseleave
-        (function () {
-            var lastY = 0, shown = sessionStorage.getItem('exit_vlift') === 'true';
-            window.addEventListener('scroll', function () {
-                var y = window.scrollY;
-                if (!shown && lastY - y > 60 && y > 400) {
-                    var p = document.getElementById('exit-popup');
-                    if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_vlift','true'); }
-                }
-                lastY = y;
-            }, { passive: true });
-            document.addEventListener('mouseleave', function (e) {
-                if (e.clientY < 5 && !shown) {
-                    var p = document.getElementById('exit-popup');
-                    if (p) { p.style.display = 'flex'; shown = true; sessionStorage.setItem('exit_vlift','true'); }
-                }
-            });
-        })();
+
     }, 0);
     </script>
 
