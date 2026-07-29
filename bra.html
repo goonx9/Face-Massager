@@ -370,6 +370,7 @@ var emailDone=(typeof emailjs!=='undefined')?emailjs.send('service_gxhivxk','tem
 await Promise.all([emailDone,new Promise(function(res){setTimeout(res,1800);})]);
 clearInterval(iv);pb.style.width='100%';pp.textContent='100%';st.textContent='Order Confirmed! Redirecting...';
 var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
+sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['bra_001']}));
 isSub=false;
 setTimeout(function(){window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);},1000);
 }catch(err){clearInterval(iv);console.error('Order error:',err);isSub=false;window.location.href='https://wa.me/2348039940408?text='+encodeURIComponent(msg||'Bra Order Error');}
