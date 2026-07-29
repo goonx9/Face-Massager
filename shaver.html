@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
     <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
-    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg"
-          imagesrcset="https://res.cloudinary.com/dmy2yiax9/image/upload/w_400/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg 400w,
-                       https://res.cloudinary.com/dmy2yiax9/image/upload/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg 800w"
-          imagesizes="(max-width: 600px) 400px, 800px"
+    <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:good,w_800/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg"
           fetchpriority="high">
     
     <!-- Critical CSS for instant paint -->
@@ -42,6 +40,8 @@
         .rounded-full{border-radius:9999px}.overflow-hidden{overflow:hidden}
         .backdrop-blur-xl{backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
         .shadow-xl{box-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1)}
+        .h-full{height:100%}.object-cover{object-fit:cover}
+        .text-4xl{font-size:2.25rem;line-height:2.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.leading-tight{line-height:1.25}.font-medium{font-weight:500}
         /* Sticky CTA + WhatsApp */
         #sticky-cta-bar{position:fixed;bottom:0;left:0;right:0;z-index:8888;background:#fff;border-top:1px solid #fce7f3;padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;transform:translateY(100%);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
         #sticky-cta-bar.visible{transform:translateY(0)}
@@ -55,37 +55,22 @@
     <!-- Tailwind: defer = downloads in parallel, executes after parse, never blocks FCP -->
     <script defer src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Deferred Meta Pixel Code -->
+    <!-- Meta Pixel — fires immediately via stub queue for LPV registration -->
     <script>
-    window.addEventListener('load', function() {
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '4029546293858823');
-        if (!sessionStorage.getItem('fb_pageview_shaver')) {
-            sessionStorage.setItem('fb_pageview_shaver', 'true');
-            fbq('track', 'PageView');
-        }
-        if (!sessionStorage.getItem('fb_viewcontent_shaver')) {
-            sessionStorage.setItem('fb_viewcontent_shaver', 'true');
-            fbq('track', 'ViewContent', {
-                content_name: 'Lady Shaver',
-                content_category: 'Personal Care',
-                content_ids: ['shaver_001'],
-                content_type: 'product',
-                value: 29000,
-                currency: 'NGN'
-            });
-        }
-    });
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','4029546293858823');
+    fbq('track','PageView');
+    if(!sessionStorage.getItem('fb_vc_shaver')){sessionStorage.setItem('fb_vc_shaver','true');fbq('track','ViewContent',{content_name:'Lady Shaver',content_category:'Personal Care',content_ids:['shaver_001'],content_type:'product',value:29000,currency:'NGN'});}
     </script>
-    <!-- End Meta Pixel Code -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" as="style">
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"></noscript>
+    <!-- End Meta Pixel -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"></noscript>
     
@@ -189,7 +174,7 @@
             <p class="text-[10px] font-black uppercase tracking-widest text-gray-500">Lady Shaver</p>
             <p class="text-lg font-black text-primary">₦29,000</p>
         </div>
-        <a href="#order" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'}); return false;" class="flex-1 py-3 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-widest text-center shadow-lg">
+        <a href="#order" onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'}); return false;" class="flex-1 py-3 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-widest text-center shadow-lg">
             Order Now 🛍️
         </a>
     </div>
@@ -209,16 +194,16 @@
                 <i data-lucide="gift" size="40" class="hidden md:block"></i>
             </div>
             
-            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Special Gift for You! 🎀</h3>
+            <h3 class="text-2xl md:text-3xl font-serif font-black mb-3 md:mb-4">Wait — Don't Leave! 🛑</h3>
             <p class="text-sm md:text-base text-gray-600 mb-6 md:mb-8 leading-relaxed">
-                Complete your order now and get ₦1,000 OFF instantly!
+                Your shaver order isn't confirmed yet. Complete it now before your size sells out — we have limited stock.
             </p>
             
-            <button onclick="applyDiscount(); document.getElementById('order').scrollIntoView({behavior: 'smooth'}); document.getElementById('exit-popup').style.display = 'none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
-                Claim My Discount
+            <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'}); document.getElementById('exit-popup').style.display='none';" class="w-full py-4 md:py-5 bg-primary text-white rounded-full font-bold uppercase tracking-widest shadow-xl hover:scale-105 transition-transform text-sm md:text-base">
+                Complete My Order →
             </button>
             
-            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">I'll pass on this deal</p>
+            <p class="mt-4 md:mt-6 text-[9px] md:text-[10px] text-gray-400 uppercase tracking-widest cursor-pointer hover:text-gray-600" onclick="document.getElementById('exit-popup').style.display = 'none';">No thanks, I'll pass</p>
         </div>
     </div>
 
@@ -249,7 +234,7 @@
             </a>
             <div class="flex items-center gap-8">
                 <a href="index.html" class="text-[10px] font-black tracking-[0.3em] uppercase hidden md:block">Home</a>
-                <a href="#order" class="px-8 py-4 bg-primary text-white rounded-full font-bold text-[10px] uppercase tracking-[0.2em] shadow-xl">Shop Now</a>
+                <a href="#order" onclick="fireIC()" class="px-8 py-4 bg-primary text-white rounded-full font-bold text-[10px] uppercase tracking-[0.2em] shadow-xl">Shop Now</a>
             </div>
         </div>
     </nav>
@@ -275,7 +260,7 @@
                             <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
                             <span class="text-[11px] font-black uppercase tracking-widest text-pink-900"><span id="live-orders">29</span> women ordered today</span>
                         </div>
-                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950">
+                        <h2 class="text-4xl md:text-6xl font-serif font-black leading-tight text-pink-950" style="font-size:clamp(2.25rem,6vw,3.75rem);line-height:1.25;font-weight:900;font-family:'Playfair Display',Georgia,serif;color:#1a0010">
                             Professional <span class="text-primary italic">Painless Shaving</span> at Home.
                         </h2>
                         <p class="text-lg md:text-xl leading-relaxed text-gray-600 font-medium">
@@ -301,14 +286,15 @@
                                 <p class="font-bold text-sm">Hypoallergenic Protective Steel Guard</p>
                             </div>
                         </div>
-                        <button onclick="document.getElementById('order').scrollIntoView({behavior: 'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
+                        <button onclick="fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" class="w-full md:w-auto px-10 py-5 bg-primary text-white rounded-full font-black text-[11px] uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">
                             Claim My Shaver Now
                         </button>
                     </div>
                     <div class="relative">
-                        <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 aspect-[4/3] relative">
-                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg"
-                                 class="w-full h-full object-cover" alt="Lady Shaver Cover">
+                        <div class="rounded-[4rem] overflow-hidden shadow-3xl border-8 border-white bg-pink-50 relative" style="aspect-ratio:4/3">
+                            <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:good,w_800/v1780837492/Need_fresh_inspiration__Try_these_fresh_summer_vibes_ideas_that_feel_luxe_without_spending_a_fortune_using_simple_ideas_you_can_actually_pull_off_-_Pin-1094796990687319508_sofkqb.jpg"
+                                 class="w-full h-full object-cover" alt="Lady Shaver Cover"
+                                 width="800" height="600" fetchpriority="high" loading="eager">
                         </div>
                         <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-pink-50 max-w-[200px] animate-bounce">
                             <p class="text-[10px] font-black uppercase tracking-widest text-primary mb-2">Real Result</p>
@@ -477,7 +463,7 @@
                         Glamour & Grace Lady Shaver offers precise grooming for your body's most delicate curves. Constructed with dual-foil micro blades and a protective glide guard, it gently removes even the finest hairs for flawless, stubble-free confidence.
                     </p>
                     
-                    <a href="#order" class="w-full py-5 bg-primary text-white rounded-full font-bold text-center uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Claim My Shaver Now</a>
+                    <a href="#order" onclick="fireIC()" class="w-full py-5 bg-primary text-white rounded-full font-bold text-center uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform">Claim My Shaver Now</a>
                 </div>
             </div>
         </section>
