@@ -5,14 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>Invisible Push-Up Bra Pads | Instant Lift & Cleavage | Glamour & Grace</title>
 <meta name="description" content="Get instant lift and cleavage with our Silicone Invisible Push-Up Bra Pads. Waterproof, sweatproof, reusable 100x. Pay on Delivery. Free delivery in Lagos & Abuja.">
-<link rel="preconnect" href="https://cdn.tailwindcss.com">
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:good,w_800/v1785355998/images_2_hjz37r.jpg" fetchpriority="high">
-<link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+<link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:best,w_800/v1785355998/images_2_hjz37r.jpg" fetchpriority="high">
 <style>
 *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:#fff;color:#1a1a2e;margin:0;padding:0;font-family:system-ui,-apple-system,'Plus Jakarta Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -59,8 +57,6 @@ details>summary{list-style:none}details>summary::-webkit-details-marker{display:
 .s-label{display:inline-block;padding:5px 14px;background:#fff0f5;color:#FF2D55;border-radius:9999px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.15em}
 .card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid #fce7f3}
 </style>
-<script>window.tailwind={config:{theme:{extend:{colors:{primary:'#FF2D55',secondary:'#F06292'},fontFamily:{sans:['Plus Jakarta Sans','sans-serif'],serif:['Playfair Display','serif']}}}}};</script>
-<script defer src="https://cdn.tailwindcss.com"></script>
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');fbq('track','PageView');
@@ -87,7 +83,7 @@ if(!sessionStorage.getItem('fb_vc_bra')){sessionStorage.setItem('fb_vc_bra','tru
 <main>
 <section>
   <div class="hero-media">
-    <video autoplay loop muted playsinline preload="none" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:good,w_800/v1785355998/images_2_hjz37r.jpg">
+    <video autoplay loop muted playsinline preload="none" poster="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:best,w_800/v1785355998/images_2_hjz37r.jpg">
       <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:eco/v1785357420/202607292121_1_wsqmuy.mp4" type="video/mp4">
     </video>
     <div class="hero-grad"></div>
@@ -363,6 +359,11 @@ isSub=true;btn.disabled=true;btn.textContent='Processing...';modal.style.display
 var fd=new FormData(e.target),data=Object.fromEntries(fd.entries());
 var nm=data.name,ph=data.phone,aph=data.alt_phone||'None',addr=data.address,loc=data.location,pname=data.product_name,pprice=data.product_price,sz=data.size,ts=new Date().toLocaleString(),tot=parseInt(pprice),pay='Pay on Delivery';
 var selState=data.delivery_state==='Abuja'?'Abuja (FCT)':'Lagos';
+// Advanced Matching — normalize & pass user data to pixel
+var _rawph=(ph||'').replace(/\D/g,'');if(_rawph.startsWith('0'))_rawph='234'+_rawph.substring(1);else if(!_rawph.startsWith('234'))_rawph='234'+_rawph;
+var _np=(nm||'').trim().split(/\s+/),_fn=(_np[0]||'').toLowerCase(),_ln=_np.length>1?_np.slice(1).join(' ').toLowerCase():'';
+var _ud={ph:_rawph,fn:_fn,ct:(loc||'').toLowerCase().replace(/[^a-z ]/g,''),st:(data.delivery_state||'Lagos').toLowerCase().replace(/\s.*/,''),country:'ng'};if(_ln)_ud.ln=_ln;
+if(typeof fbq!=='undefined')fbq('init','4029546293858823',_ud);
 var msg='*NEW ORDER (BRA PADS)* 👙\n--------------------------\n👤 *NAME:* '+nm+'\n📞 *PHONE:* '+ph+'\n📞 *ALT:* '+aph+'\n📍 *AREA:* '+loc+' ('+selState+')\n🏠 *ADDRESS:* '+addr+'\n\n📦 *PRODUCT:* '+pname+'\n📐 *SIZE:* '+sz+'\n🚚 *DELIVERY:* FREE\n💰 *TOTAL:* ₦'+tot.toLocaleString()+'\n💳 *PAYMENT:* '+pay+'\n📅 *DATE:* '+ts+'\n--------------------------\n\n*I am ready to confirm my order now!*';
 var prog=0,iv=setInterval(function(){prog+=Math.random()*12;if(prog>95)prog=95;pb.style.width=prog+'%';pp.textContent=Math.round(prog)+'%';if(prog>25)st.textContent='Validating your details...';if(prog>55)st.textContent='Securing your order...';if(prog>80)st.textContent='Connecting to logistics...';},200);
 try{
@@ -371,7 +372,7 @@ var emailDone=(typeof emailjs!=='undefined')?emailjs.send('service_gxhivxk','tem
 await Promise.all([emailDone,new Promise(function(res){setTimeout(res,1800);})]);
 clearInterval(iv);pb.style.width='100%';pp.textContent='100%';st.textContent='Order Confirmed! Redirecting...';
 var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
-sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['bra_001']}));
+sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['bra_001'],ud:_ud}));
 isSub=false;
 setTimeout(function(){window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);},1000);
 }catch(err){clearInterval(iv);console.error('Order error:',err);isSub=false;window.location.href='https://wa.me/2348039940408?text='+encodeURIComponent(msg||'Bra Order Error');}
