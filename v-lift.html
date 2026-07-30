@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1639,6 +1639,11 @@ function fireIC(){
                         ts   = new Date().toLocaleString(),
                         tot  = basePrice - discount,
                         pay  = 'Pay on Delivery';
+                    // Advanced Matching — normalize user data for Meta Pixel
+                    var _rawph3=(ph||'').replace(/\D/g,'');if(_rawph3.startsWith('0'))_rawph3='234'+_rawph3.substring(1);else if(!_rawph3.startsWith('234'))_rawph3='234'+_rawph3;
+                    var _np3=(nm||'').trim().split(/\s+/),_fn3=(_np3[0]||'').toLowerCase(),_ln3=_np3.length>1?_np3.slice(1).join(' ').toLowerCase():'';
+                    var _ud3={ph:_rawph3,fn:_fn3,ct:(loc||'').toLowerCase().replace(/[^a-z ]/g,''),st:'lagos',country:'ng'};if(_ln3)_ud3.ln=_ln3;
+                    if(typeof fbq!=='undefined')fbq('init','4029546293858823',_ud3);
                     var msg = '*NEW ORDER RECEIVED* \uD83D\uDED2\n--------------------------\n' +
                         '\uD83D\uDC64 *CUSTOMER:* ' + nm + '\n\uD83D\uDCDE *PHONE:* ' + ph + '\n' +
                         '\uD83D\uDCDE *ALT PHONE:* ' + aph + '\n\uD83D\uDCCD *LOCATION:* ' + loc + ' (Lagos)\n' +
@@ -1668,7 +1673,7 @@ function fireIC(){
                     await emailDone; // Wait for email only at the end (usually already done)
                     await updateProgress(100,'Order Confirmed! Redirecting...',500);
                     var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
-                    sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['vlift_001']}));
+                    sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['vlift_001'],ud:_ud3}));
                     isSubmitting = false;
                     setTimeout(function(){
                         window.location.href='thanks.html?wa='+encodeURIComponent(waUrl)+'&p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
