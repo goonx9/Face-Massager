@@ -7,9 +7,7 @@
 <meta name="description" content="Instant hairline coverage in 60 seconds. Sweat proof, water resistant, lasts all day. Natural matte finish. Pay on delivery in Lagos. 500+ satisfied customers.">
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="dns-prefetch" href="https://res.cloudinary.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];window.addEventListener('load',function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');
@@ -17,11 +15,9 @@ if(!sessionStorage.getItem('fb_pv_hf')){sessionStorage.setItem('fb_pv_hf','1');f
 if(!sessionStorage.getItem('fb_vc_hf')){sessionStorage.setItem('fb_vc_hf','1');fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category:'Hair Care',content_ids:['hf_001'],content_type:'product',value:35500,currency:'NGN'});}
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"/></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=optional" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=optional"></noscript>
-<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init('_h1UzYlyePtWt0IqM')"></script>
+
 <style>
-:root{--p:#FF2D55;--d:#1a0a0f;--sf:'Plus Jakarta Sans',system-ui,sans-serif;--ss:'Playfair Display',Georgia,serif}
+:root{--p:#FF2D55;--d:#1a0a0f;--sf:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;--ss:Georgia,'Times New Roman',serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sf);color:var(--d);background:#fff;-webkit-font-smoothing:antialiased}
@@ -557,10 +553,26 @@ function updateSummary(){
   if(tt)tt.textContent='\u20A6'+basePrice.toLocaleString();if(hp)hp.value=basePrice;
 }
 
-// ── EmailJS lazy init ────────────────────────────────────────
-var ejsReady=false;
-function ensureEjs(){if(ejsReady||typeof emailjs==='undefined')return;emailjs.init('_h1UzYlyePtWt0IqM');ejsReady=true;}
-window.addEventListener('load',ensureEjs,{once:true});
+// ── EmailJS — load only when user touches the form ───────────
+var _ejsLoading=false;
+function ensureEjs(){
+  if(typeof emailjs!=='undefined'||_ejsLoading)return;
+  _ejsLoading=true;
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  s.onload=function(){emailjs.init('_h1UzYlyePtWt0IqM');};
+  document.head.appendChild(s);
+}
+// Trigger load on first form interaction
+(function(){
+  var form=document.getElementById('orderForm');
+  if(!form)return;
+  ['focus','touchstart'].forEach(function(ev){
+    form.addEventListener(ev,ensureEjs,{once:true,capture:true,passive:true});
+  });
+  // Fallback: load 3s after window.load (catches fast scroll-to-form users)
+  window.addEventListener('load',function(){setTimeout(ensureEjs,3000);},{once:true});
+})();
 
 // ── Sticky CTA scroll ────────────────────────────────────────
 var sct=document.getElementById('scta');
