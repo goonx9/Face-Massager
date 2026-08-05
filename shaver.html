@@ -1263,7 +1263,7 @@
                     statusText.innerText = "Order Confirmed! Redirecting...";
                     
                     const waUrl = `https://wa.me/2348039940408?text=${encodeURIComponent(message)}`;
-                    sessionStorage.setItem('pending_purchase', JSON.stringify({price: totalPrice, name: customerNameValue, product: productNameValue, currency: 'NGN', ids: ['shaver_001']}));
+                    sessionStorage.setItem('pending_purchase', JSON.stringify({price: totalPrice, name: customerNameValue, product: productNameValue, currency: 'NGN', ids: ['shaver_001'], ud: _ud2}));
                     isSubmitting = false;
                     setTimeout(() => {
                         window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${totalPrice}&n=${encodeURIComponent(customerNameValue)}&pn=${encodeURIComponent(productNameValue)}`;
