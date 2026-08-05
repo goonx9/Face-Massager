@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -57,13 +57,13 @@ details>summary{list-style:none}details>summary::-webkit-details-marker{display:
 .card{background:#fff;border-radius:16px;padding:16px;border:1.5px solid #fce7f3}
 </style>
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);window.addEventListener('load',function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');if(!sessionStorage.getItem('fb_pv_bra')){sessionStorage.setItem('fb_pv_bra','1');fbq('track','PageView');}
 if(!sessionStorage.getItem('fb_vc_bra')){sessionStorage.setItem('fb_vc_bra','true');fbq('track','ViewContent',{content_name:'Invisible Push-Up Bra Pads',content_category:'Apparel',content_ids:['bra_001'],content_type:'product',value:18000,currency:'NGN'});}
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=optional" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=optional" rel="stylesheet"></noscript>
 </head>
 <body><div id="urgency-bar">⚡ LIMITED STOCK: Only <span id="stock-count">47</span> pairs left — Order before we sell out!</div>
 <nav id="main-nav">
@@ -326,28 +326,44 @@ var basePrice=18000;
 function handlePackageChange(v){var prices={Single:18000,Premium:28000};selectBundle(v,prices[v]||18000);}
 function selectBundle(name,price,scroll){basePrice=price;var fn=name==='Premium'?'Invisible Bra Pads + Tape & Nipple Covers Combo':'Invisible Push-Up Bra Pads (Single)';var pkg=document.getElementById('packageSelect'),hn=document.getElementById('hidden_product_name'),hp=document.getElementById('hidden_product_price'),sn=document.getElementById('summaryProductName'),sp=document.getElementById('summaryProductPrice');if(pkg)pkg.value=name;if(hn)hn.value=fn;if(sn)sn.innerText=fn;if(sp)sp.innerText='₦'+price.toLocaleString();updateSummary();if(scroll!==false){var el=document.getElementById('order');if(el)el.scrollIntoView({behavior:'smooth'});}}
 function updateSummary(){var tt=document.getElementById('totalPriceText'),hp=document.getElementById('hidden_product_price');if(tt)tt.innerText='₦'+basePrice.toLocaleString();if(hp)hp.value=basePrice;}
-function showSizeHint(size){var hint=document.getElementById('sizeHint');if(!hint)return;var map={'Small - A/B Cup':{bg:'#f0fdf4',col:'#15803d',t:'✅ Small (A/B Cup) — Band 28–34. E.g. 32A, 34A, 32B, 34B.'},'Medium - B/C Cup':{bg:'#eff6ff',col:'#1d4ed8',t:'✅ Medium (B/C Cup) — Band 34–38. E.g. 34B, 36B, 36C, 38C.'},'Large - C/D Cup':{bg:'#fff0f5',col:'#FF2D55',t:'✅ Large (C/D Cup) — Band 36–42. E.g. 38C, 38D, 40D, 42D.'}};var h=map[size];if(h){hint.style.display='block';hint.style.background=h.bg;hint.style.color=h.col;hint.style.border='1.5px solid '+h.col+'40';hint.textContent=h.t;}}
-</script>
-<script>
-(function(){
-window.addEventListener('load',function(){if(typeof emailjs!=='undefined')emailjs.init('_h1UzYlyePtWt0IqM');});
-var nn=['Ada','Fatima','Chioma','Nneka','Blessing','Aisha','Funke','Zainab','Esther','Titi','Ronke','Yinka'];
-var np=['Lekki Phase 1','Ikeja','Victoria Island','Surulere','Ajah','Maryland','Gbagada','Wuse 2','Maitama','Garki','Gwarinpa','Jabi'];
-var npk=['Small Size','Medium Size','Large Size','Medium + Tape Combo'];
-function triggerNotif(){var el=document.getElementById('order-notif'),tx=document.getElementById('notif-text');if(!el||!tx)return;tx.textContent=nn[Math.floor(Math.random()*nn.length)]+' from '+np[Math.floor(Math.random()*np.length)]+' ordered '+npk[Math.floor(Math.random()*npk.length)]+'!';el.classList.add('show');setTimeout(function(){el.classList.remove('show');},4000);}
-window.addEventListener('load',function(){setTimeout(function(){triggerNotif();setInterval(triggerNotif,18000);},5000);});
-var sc=47-Math.floor(Math.random()*8),sce=document.getElementById('stock-count'),fse=document.getElementById('form-stock');
-var tod=23+Math.floor(Math.random()*5),toe=document.getElementById('today-orders');
-if(sce)sce.textContent=sc;if(fse)fse.textContent=sc;if(toe)toe.textContent=tod;
-setInterval(function(){if(Math.random()>.7&&sc>20){sc--;if(sce)sce.textContent=sc;if(fse)fse.textContent=sc;tod++;if(toe)toe.textContent=tod;}},30000);
+function showSizeHint(size){var hint=document.getElementById('sizeHint');if(!hint)return;var map={'Small - A/B Cup':{bg:'#f0fdf4',col:'#15803d',t:'✅ Small (A/B Cup) — Band 2// ── Helpers available before idle ────────────────────────────
+var ejsReady=false;
+function ensureEjs(){if(ejsReady||typeof emailjs==='undefined')return;emailjs.init('_h1UzYlyePtWt0IqM');ejsReady=true;}
+window.addEventListener('load',ensureEjs,{once:true});
+
+// ── Sticky CTA (needs scroll, keep immediate) ────────────────
 var sct=document.getElementById('sticky-cta');
 if(sct){window.addEventListener('scroll',function(){var ot=document.getElementById('order').getBoundingClientRect().top;if(window.scrollY>200&&ot>0){sct.classList.add('show');}else{sct.classList.remove('show');}},{passive:true});}
-var wpShown=sessionStorage.getItem('wa_shown')==='true',lastY=0;
-window.addEventListener('scroll',function(){var y=window.scrollY;if(!wpShown&&lastY-y>80&&y>600){document.getElementById('wa-popup').style.display='flex';wpShown=true;sessionStorage.setItem('wa_shown','true');}lastY=y;},{passive:true});
-document.addEventListener('mouseleave',function(e){if(e.clientY<5&&!wpShown){document.getElementById('wa-popup').style.display='flex';wpShown=true;sessionStorage.setItem('wa_shown','true');}});
+
+// ── City cascade & form (needed before user action) ──────────
 var cityData={Lagos:['Lagos Island','Lagos Mainland','Victoria Island','Ikoyi','Oniru','Lekki Phase 1','Lekki Phase 2','Ajah','Chevron / Sangotedo','Ikeja / GRA','Maryland','Gbagada','Yaba','Surulere','Mushin','Oshodi','Isolo','Agege','Ketu / Ojota','Ojodu / Berger','Magodo','Anthony Village','Apapa','Festac Town','Mile 2 / Amuwo Odofin','Ikorodu','Epe','Badagry'],Abuja:['Central Area','Garki','Garki 2','Wuse 1','Wuse 2','Maitama','Asokoro','Jabi','Utako','Gwarinpa','Kubwa','Lokogoma','Durumi','Gudu','Apo','Lugbe','Karu / Nyanya','Life Camp','Galadimawa','Katampe','Wuye','Dei-Dei','Mpape','Dawaki','Nbora','Kaura','Masaka / Karshi']};
 var stateSel=document.getElementById('stateSelect'),locSel=document.getElementById('locationSelect');
-if(stateSel){stateSel.addEventListener('change',function(){var cities=cityData[this.value]||[];locSel.innerHTML='<option value="" disabled selected>Select Area</option>';cities.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;locSel.appendChild(o);});locSel.disabled=false;locSel.style.opacity='1';var smo=document.getElementById('sizeSmall'),szs=document.getElementById('sizeSelect');if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}});}
+if(stateSel){stateSel.addEventListener('change',function(){var cities=cityData[this.value]||[];locSel.innerHTML='<option value="" disabled selected>Select Area</option>';cities.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;locSel.appendChild(o);});locSel.disabled=false;locSel.style.opacity='1';var smo=document.getElementById('sizeSmall'),szs=document.getElementById('sizeSelect');if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}}); }
+if(locSel)locSel.addEventListener('change',updateSummary);
+
+// ── Defer non-critical work to after paint ──────────────────
+(window.requestIdleCallback||function(cb){setTimeout(cb,250);})(function(){
+  // Notification popups
+  var nn=['Ada','Fatima','Chioma','Nneka','Blessing','Aisha','Funke','Zainab','Esther','Titi','Ronke','Yinka'];
+  var np=['Lekki Phase 1','Ikeja','Victoria Island','Surulere','Ajah','Maryland','Gbagada','Wuse 2','Maitama','Garki','Gwarinpa','Jabi'];
+  var npk=['Small Size','Medium Size','Large Size','Medium + Tape Combo'];
+  function triggerNotif(){var el=document.getElementById('order-notif'),tx=document.getElementById('notif-text');if(!el||!tx)return;tx.textContent=nn[Math.floor(Math.random()*nn.length)]+' from '+np[Math.floor(Math.random()*np.length)]+' ordered '+npk[Math.floor(Math.random()*npk.length)]+'!';el.classList.add('show');setTimeout(function(){el.classList.remove('show');},4000);}
+  setTimeout(function(){triggerNotif();setInterval(triggerNotif,18000);},5000);
+  // Stock counter
+  var sc=47-Math.floor(Math.random()*8),sce=document.getElementById('stock-count'),fse=document.getElementById('form-stock');
+  var tod=23+Math.floor(Math.random()*5),toe=document.getElementById('today-orders');
+  if(sce)sce.textContent=sc;if(fse)fse.textContent=sc;if(toe)toe.textContent=tod;
+  setInterval(function(){if(Math.random()>.7&&sc>20){sc--;if(sce)sce.textContent=sc;if(fse)fse.textContent=sc;tod++;if(toe)toe.textContent=tod;}},30000);
+  // WA popup (scroll-back & exit-intent)
+  var wpShown=sessionStorage.getItem('wa_shown')==='true',lastY=0;
+  window.addEventListener('scroll',function(){var y=window.scrollY;if(!wpShown&&lastY-y>80&&y>600){document.getElementById('wa-popup').style.display='flex';wpShown=true;sessionStorage.setItem('wa_shown','true');}lastY=y;},{passive:true});
+  document.addEventListener('mouseleave',function(e){if(e.clientY<5&&!wpShown){document.getElementById('wa-popup').style.display='flex';wpShown=true;sessionStorage.setItem('wa_shown','true');}});
+});
+
+// ── Form submit (keep synchronous) ──────────────────────────
+var isSub=false,form=document.getElementById('orderForm');
+if(!form)return;
+form.addEventListener('submit',async function(e){);if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}});}
 if(locSel)locSel.addEventListener('change',updateSummary);
 var isSub=false,form=document.getElementById('orderForm');
 if(!form)return;
