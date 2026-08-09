@@ -73,17 +73,8 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '4029546293858823');
-        
-        // Single PageView per page load
-        if (!sessionStorage.getItem('fb_pageview_porecleaner')) {
-            sessionStorage.setItem('fb_pageview_porecleaner', 'true');
-            fbq('track', 'PageView');
-        }
-        
-        // Single ViewContent per session
-        if (!sessionStorage.getItem('fb_viewcontent_porecleaner')) {
-            sessionStorage.setItem('fb_viewcontent_porecleaner', 'true');
-            fbq('track', 'ViewContent', {
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent', {
                 content_name: 'Ultrasonic Pore Vacuum™',
                 content_category: 'Skincare Tech',
                 content_ids: ['porecleaner_001'],
@@ -91,7 +82,6 @@
                 value: 18000,
                 currency: 'NGN'
             });
-        }
     });
     </script>
     <!-- End Meta Pixel Code -->
