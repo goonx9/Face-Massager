@@ -7,22 +7,22 @@
 <meta name="description" content="The #1 EMS microcurrent face massager used by thousands of Nigerian women to firm skin, reduce wrinkles and define the jawline in 10 minutes a day. Pay on Delivery.">
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link rel="dns-prefetch" href="https://res.cloudinary.com">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 <link rel="preload" as="image" href="https://res.cloudinary.com/dmy2yiax9/image/upload/f_auto,q_auto:good,w_600/v1775914902/IMG_20251022_174116_cntwnw_zf24ak.jpg">
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);window.addEventListener('load',function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];window.addEventListener('load',function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');
 if(!sessionStorage.getItem('fb_pv_vlift')){sessionStorage.setItem('fb_pv_vlift','1');fbq('track','PageView');}
 if(!sessionStorage.getItem('fb_vc_vlift')){sessionStorage.setItem('fb_vc_vlift','1');fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:['vlift_001'],content_type:'product',value:29500,currency:'NGN'});}
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"/></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=optional" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=optional"></noscript>
-<script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" onload="emailjs.init('_h1UzYlyePtWt0IqM')"></script>
+
+
+
 <style>
-:root{--p:#FF2D55;--d:#1a0a0f;--sf:'Plus Jakarta Sans',system-ui,sans-serif;--ss:'Playfair Display',Georgia,serif}
+:root{--p:#FF2D55;--d:#1a0a0f;--sf:system-ui,'Segoe UI',Roboto,Arial,sans-serif;--ss:Georgia,'Times New Roman',serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sf);color:var(--d);background:#fff;-webkit-font-smoothing:antialiased}
@@ -575,10 +575,19 @@ function tFaq(el){
   setTimeout(function(){show();setInterval(show,14000);},7000);
 })();
 
+// Lazy EmailJS
+var _ejsLoading=false;
+function ensureEjs(cb){
+  if(typeof emailjs!=='undefined'){cb();return;}
+  if(_ejsLoading){var t=setInterval(function(){if(typeof emailjs!=='undefined'){clearInterval(t);cb();}},80);return;}
+  _ejsLoading=true;
+  var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  s.onload=function(){emailjs.init('_h1UzYlyePtWt0IqM');cb();};document.head.appendChild(s);
+}
 // ── IC on form focus ──────────────────────────────────────────
 (function(){
   var fm=document.getElementById('orderForm');
-  if(fm)fm.addEventListener('focusin',function(){fireIC();},{once:true});
+  if(fm)fm.addEventListener('focusin',function(){fireIC();ensureEjs(function(){});},{once:true});
 })();
 
 // ── Form submission ───────────────────────────────────────────
@@ -607,7 +616,7 @@ function tFaq(el){
     var prog=0,iv=setInterval(function(){prog+=Math.random()*10;if(prog>95)prog=95;pb.style.width=prog+'%';pct.textContent=Math.round(prog)+'%';if(prog>25)st.textContent='Validating your details...';if(prog>55)st.textContent='Securing your order...';if(prog>80)st.textContent='Connecting to logistics...';},200);
 
     try{
-      var emailDone=(typeof emailjs!=='undefined')?emailjs.send('service_gxhivxk','template_239s5yz',{to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,name:nm,message:msg,customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_address:addr,address:addr,location:loc,city:loc,state:state,customer_state:state,product_name:pname,product:pname,total_amount:'₦'+tot.toLocaleString(),total:'₦'+tot.toLocaleString(),payment_method:pay,date:ts,+_rawph}).catch(function(err){console.error('Email:',err);}):Promise.resolve();
+      var emailDone=new Promise(function(resolve){ensureEjs(function(){emailjs.send('service_gxhivxk','template_239s5yz',{to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,name:nm,message:msg,customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_address:addr,address:addr,location:loc,city:loc,state:state,customer_state:state,product_name:pname,product:pname,total_amount:'₦'+tot.toLocaleString(),total:'₦'+tot.toLocaleString(),payment_method:pay,date:ts}).then(resolve).catch(function(err){console.error('Email:',err);resolve();});});});
       await Promise.all([emailDone,new Promise(function(r){setTimeout(r,1800);})]);
       clearInterval(iv);pb.style.width='100%';pct.textContent='100%';st.textContent='Order Confirmed! Redirecting...';
       sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['vlift_001'],ud:_ud}));
