@@ -67,7 +67,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init','4029546293858823');
     fbq('track','PageView');
-    if(!sessionStorage.getItem('fb_vc_shaver')){sessionStorage.setItem('fb_vc_shaver','true');fbq('track','ViewContent',{content_name:'Lady Shaver',content_category:'Personal Care',content_ids:['shaver_001'],content_type:'product',value:29000,currency:'NGN'});}
+    fbq('track','ViewContent',{content_name:'Lady Shaver',content_category:'Personal Care',content_ids:['shaver_001'],content_type:'product',value:29000,currency:'NGN'});
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"></noscript>
     <!-- End Meta Pixel -->
