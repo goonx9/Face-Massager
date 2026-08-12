@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,10 +99,7 @@
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '4029546293858823');
-        if (!sessionStorage.getItem('fb_pageview_index')) {
-            sessionStorage.setItem('fb_pageview_index', 'true');
-            fbq('track', 'PageView');
-        }
+        fbq('track', 'PageView');
     });
     </script>
     <!-- End Meta Pixel Code -->
