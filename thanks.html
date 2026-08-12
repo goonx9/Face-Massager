@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,10 +26,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '4029546293858823');
     
-    if (!sessionStorage.getItem('fb_pageview_thanks')) {
-        sessionStorage.setItem('fb_pageview_thanks', 'true');
-        fbq('track', 'PageView');
-    }
+    fbq('track', 'PageView');
     
     // ── Purchase event: sessionStorage-first (most reliable) ─────────────
     (function(){
