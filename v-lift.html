@@ -14,6 +14,9 @@
 
 
 
+
+<!-- Critical CSS: painted before main style block is fully parsed -->
+<style>body{margin:0;padding:0;background:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.hero-section{min-height:100vh;display:flex;flex-direction:column}img{max-width:100%;height:auto}</style>
 <style>
 :root{--p:#FF2D55;--d:#1a0a0f;--sf:system-ui,'Segoe UI',Roboto,Arial,sans-serif;--ss:Georgia,'Times New Roman',serif}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -121,7 +124,7 @@ main{padding-top:128px}
 }
 </style>
 </head>
-<body>
+<body style="background:#fff;margin:0;padding:0">
 <!-- Urgency Bar -->
 <div id="ub">⚡ Only 11 Units Left — Free Delivery · Lagos & Abuja ⚡</div>
 
