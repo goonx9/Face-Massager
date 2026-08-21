@@ -80,11 +80,11 @@ main{padding-top:128px}
 #order{padding:56px 16px 80px;background:#fff9fb;scroll-margin-top:130px}
 .ow{max-width:540px;margin:0 auto}
 .fc{background:#fff;border-radius:36px;padding:36px 28px;border:1.5px solid #fce7f3;box-shadow:0 20px 60px rgba(255,45,85,.08)}
-.fi{width:100%;padding:16px 22px;border-radius:9999px;background:#fff9fb;border:1.5px solid #fce7f3;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--d);outline:none;transition:border-color .2s}
+.fi{width:100%;padding:14px 20px;border-radius:9999px;background:#fff9fb;border:1.5px solid #fce7f3;font-size:16px;font-weight:600;color:var(--d);outline:none;transition:border-color .2s;-webkit-text-size-adjust:none}
 .fi:focus{border-color:var(--p)}
-.fs{width:100%;padding:16px 22px;border-radius:9999px;background:#fff9fb;border:1.5px solid #fce7f3;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--d);outline:none;appearance:none;transition:border-color .2s}
+.fs{width:100%;padding:14px 20px;border-radius:9999px;background:#fff9fb;border:1.5px solid #fce7f3;font-size:16px;font-weight:600;color:var(--d);outline:none;appearance:none;transition:border-color .2s;-webkit-text-size-adjust:none}
 .fs:focus{border-color:var(--p)}
-.fta{width:100%;padding:16px 22px;border-radius:24px;background:#fff9fb;border:1.5px solid #fce7f3;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--d);outline:none;resize:vertical;min-height:100px;transition:border-color .2s}
+.fta{width:100%;padding:14px 20px;border-radius:24px;background:#fff9fb;border:1.5px solid #fce7f3;font-size:16px;font-weight:600;color:var(--d);outline:none;resize:vertical;min-height:90px;transition:border-color .2s;-webkit-text-size-adjust:none}
 .fta:focus{border-color:var(--p)}
 .fl{font-size:9.5px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--p);display:block;margin-bottom:6px}
 .fg{display:flex;flex-direction:column;gap:6px}
@@ -426,7 +426,7 @@ main{padding-top:128px}
         <div style="display:flex;flex-direction:column;gap:16px">
           <div class="fg"><label class="fl">Full Name *</label><input class="fi" type="text" name="name" placeholder="Your full name" required autocomplete="name"></div>
           <div class="fg"><label class="fl">Phone Number *</label><input class="fi" type="tel" name="phone" placeholder="08012345678" required autocomplete="tel"></div>
-          <div class="fg"><label class="fl">Alternative Phone (Optional)</label><input class="fi" type="tel" name="alt_phone" placeholder="Alternative number"></div>
+          
           <div class="fg"><label class="fl">Select State *</label><select class="fs" name="state" id="stateSelect" required onchange="updateCities()"><option value="" disabled selected>— Select your state —</option><option value="Lagos">Lagos</option><option value="Abuja">Abuja (FCT)</option></select></div>
           <div class="fg"><label class="fl">Select Area *</label><select class="fs" name="location" id="citySelect" required disabled><option value="" disabled selected>— Select state first —</option></select></div>
           <div class="fg"><label class="fl">Delivery Address *</label><textarea class="fta" name="address" placeholder="House number, street, landmark..." required></textarea></div>
@@ -440,17 +440,25 @@ main{padding-top:128px}
             <div style="display:flex;justify-content:space-between;padding-top:12px;font-size:15px;font-weight:900;border-top:2px solid #fce7f3;margin-top:4px"><span>Total</span><span id="st" style="color:var(--p)">₦29,500</span></div>
           </div>
 
-          <label style="display:flex;align-items:flex-start;gap:12px;background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:20px;padding:16px;cursor:pointer">
-            <input type="checkbox" required style="width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:var(--p)">
-            <span style="font-size:12px;font-weight:700;color:#1e40af;line-height:1.6">✓ I confirm I am in <strong id="cl">Lagos or Abuja</strong> and will have my cash ready on delivery</span>
-          </label>
-          <label style="display:flex;align-items:flex-start;gap:12px;background:#fff7ed;border:1.5px solid #fed7aa;border-radius:20px;padding:16px;cursor:pointer">
-            <input type="checkbox" required style="width:18px;height:18px;margin-top:2px;flex-shrink:0;accent-color:#f97316">
-            <span style="font-size:12px;font-weight:700;color:#9a3412;line-height:1.6">✓ I will be <strong>available to receive my order</strong> within 24 hours and am not travelling.</span>
-          </label>
+          <!-- Confirmation -->
+          <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:20px;padding:18px">
+            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+              <input type="checkbox" required style="margin-top:3px;width:18px;height:18px;accent-color:#16a34a;flex-shrink:0">
+              <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.6">I'm in <span id="cl">Lagos or Abuja</span> and ready to receive my order within 1–2 days. I'll pay the rider cash on delivery.</span>
+            </label>
+          </div>
+          <!-- Outside Lagos link -->
+          <p style="text-align:center;font-size:11px;font-weight:700;color:#9ca3af;margin:-4px 0 0">Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos+and+I+would+like+to+order+the+V-Lift+Pro" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">Chat us on WhatsApp to order 💬</a></p>
+          <!-- Inline trust bar -->
+          <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:14px 0;border-top:1px solid #fce7f3;border-bottom:1px solid #fce7f3">
+            <span style="font-size:10px;font-weight:800;color:#166534">✅ Pay Cash on Delivery</span>
+            <span style="font-size:10px;font-weight:800;color:#166534">📦 Free Delivery</span>
+            <span style="font-size:10px;font-weight:800;color:#166534">🔄 7-Day Returns</span>
+          </div>
 
-          <button type="submit" id="submitBtn" class="btn" style="font-size:14px;padding:20px">🛍️ Place Order &amp; Pay on Delivery</button>
+          <button type="submit" id="submitBtn" class="btn" style="font-size:15px;padding:20px 24px">Place My Order — Pay on Delivery →</button>
           <p class="tc" style="font-size:10px;font-weight:700;opacity:.6">🔒 Your info is secure · We call to confirm before delivery</p>
+          <p style="text-align:center;font-size:11px;color:#9ca3af;margin:8px 0 0;font-weight:600">Not sure? <a href="https://wa.me/2348039940408?text=Hi%2C+I+have+a+question+about+the+V-Lift+Pro" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">Chat us on WhatsApp</a> before ordering</p>
         </div>
       </form>
     </div>
@@ -666,7 +674,7 @@ function ensureEjs(cb){
 </script>
 
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];window.addEventListener('load',function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];window.addEventListener('load',function(){setTimeout(function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},1000);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');
 fbq('track','PageView');
 fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:['vlift_001'],content_type:'product',value:29500,currency:'NGN'});
