@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -398,7 +398,7 @@ main{padding-top:128px}
     <div class="tc" style="margin-bottom:28px">
       <span class="stag">Place Your Order</span>
       <h2 class="stitle">Order Now —<br><em>Pay on Delivery</em></h2>
-      <div style="display:inline-block;background:var(--p);color:#fff;border-radius:9999px;padding:6px 20px;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-top:12px">⚡ Only 8 Left in Stock!</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:9999px;padding:6px 20px;font-size:10px;font-weight:900;letter-spacing:.08em;color:#166534;margin-top:12px">🚚 Free Delivery · Pay Cash on Arrival</div>
     </div>
     <form id="orderForm" class="fc">
       <input type="hidden" name="product_name" id="hidden_product_name" value="Hairline Filler Spray - Value Package">
@@ -407,7 +407,7 @@ main{padding-top:128px}
       <div style="display:flex;flex-direction:column;gap:16px">
         <div class="fg"><label class="fl">Full Name</label><input class="fi" type="text" name="name" placeholder="Your full name" required></div>
         <div class="fg"><label class="fl">Phone Number</label><input class="fi" type="tel" name="phone" placeholder="e.g. 08012345678" required></div>
-        <div class="fg"><label class="fl">Alternative Phone (Optional)</label><input class="fi" type="tel" name="alt_phone" placeholder="Backup number"></div>
+
         <div class="fg">
           <label class="fl">Area in Lagos</label>
           <div style="position:relative">
@@ -442,17 +442,21 @@ main{padding-top:128px}
         </div>
 
         <!-- Lagos confirmation -->
-        <div style="background:#fff0f0;border:1.5px solid #fca5a5;border-radius:20px;padding:18px">
-          <p style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.12em;color:#dc2626;margin-bottom:10px">🚨 Lagos Customers Only</p>
+        <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:20px;padding:18px">
           <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
-            <input type="checkbox" id="availabilityCheck" required style="margin-top:2px;width:18px;height:18px;accent-color:var(--p);flex-shrink:0">
-            <span style="font-size:12px;font-weight:700;color:#7f1d1d;line-height:1.5">✅ I am currently in Lagos and will be available to receive and pay cash on delivery today or tomorrow.</span>
+            <input type="checkbox" id="availabilityCheck" required style="margin-top:3px;width:18px;height:18px;accent-color:#16a34a;flex-shrink:0">
+            <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.6">I'm in Lagos and ready to receive my order within 1–2 days. I'll pay the rider cash on delivery.</span>
           </label>
-          <p style="font-size:10px;color:#dc2626;font-weight:600;margin-top:8px;padding-left:28px">❌ Do NOT order if you are outside Lagos or travelling.</p>
+        </div>
+        <!-- Inline trust bar -->
+        <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:14px 0;border-top:1px solid #fce7f3;border-bottom:1px solid #fce7f3">
+          <span style="font-size:10px;font-weight:800;color:#166534">✅ Pay Cash on Delivery</span>
+          <span style="font-size:10px;font-weight:800;color:#166534">📦 Free Delivery</span>
+          <span style="font-size:10px;font-weight:800;color:#166534">🔄 7-Day Returns</span>
         </div>
 
         <button type="submit" id="submitBtn" class="btn" style="font-size:15px;padding:20px 24px">Place My Order — Pay on Delivery →</button>
-        <p style="text-align:center;font-size:11px;color:#9ca3af;margin:12px 0 0;font-weight:600">Have a question? <a href="#faq" style="color:var(--p);font-weight:900">View our FAQ ↓</a></p>
+        <p style="text-align:center;font-size:11px;color:#9ca3af;margin:12px 0 0;font-weight:600">Not sure? <a href="https://wa.me/2348169094963" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">Chat us on WhatsApp</a> before ordering</p>
       </div>
     </form>
   </div>
