@@ -243,6 +243,7 @@ main{padding-top:128px}
         <div style="display:flex;flex-direction:column;gap:16px">
           <div class="fg"><label class="fl" for="inp_name">Full Name *</label><input class="fi" type="text" id="inp_name" name="name" placeholder="Your full name" required autocomplete="name"></div>
           <div class="fg"><label class="fl" for="inp_phone">Phone Number *</label><input class="fi" type="tel" id="inp_phone" name="phone" placeholder="08012345678" required autocomplete="tel"></div>
+          <div class="fg"><label class="fl" for="vs_alt_phone">Alternative Phone <span style="font-weight:500;opacity:.6;text-transform:none;letter-spacing:0">(Optional)</span></label><input class="fi" type="tel" id="vs_alt_phone" name="alt_phone" placeholder="09012345678" autocomplete="tel"></div>
           <div class="fg">
             <label class="fl" for="stateSelect">Select State *</label>
             <div style="position:relative">
@@ -372,17 +373,17 @@ setTimeout(function(){ensureEjs(function(){});},3000);
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var d=Object.fromEntries(new FormData(form));
-    var nm=d.name,ph=d.phone,addr=d.address,loc=d.location||'',st=d.state||'',pn=d.product_name,tot=parseFloat(d.product_price)||34500;
+    var nm=d.name,ph=d.phone,aph=d.alt_phone||'N/A',addr=d.address,loc=d.location||'',st=d.state||'',pn=d.product_name,tot=parseFloat(d.product_price)||34500;
     var ud={ph:(ph||'').replace(/\D/g,''),fn:(nm||'').split(' ')[0]||'',ln:(nm||'').split(' ').slice(1).join(' ')||'',ct:loc||st,st:st,country:'NG'};
     sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,product:pn,currency:'NGN',ids:['vsculpt_001'],ud:ud}));
     if(typeof fbq==='function')fbq('track','InitiateCheckout',{content_name:pn,content_ids:['vsculpt_001'],content_type:'product',value:tot,currency:'NGN',num_items:1});
     modal.style.display='flex';btn.disabled=true;
     var prog=0,iv=setInterval(function(){prog+=8;if(prog>90)prog=90;if(pbb)pbb.style.width=prog+'%';},200);
     new Promise(function(res){ensureEjs(function(){var _ts=new Date().toLocaleString();
-    var _msg='*NEW ORDER (V-SHAPE SCULPTOR)* \uD83D\uDCE6\n--------------------------\n\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCCD *AREA:* '+(loc||st)+'\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pn+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* Pay on Delivery\n\uD83D\uDCC5 *DATE:* '+_ts+'\n--------------------------\n\n*I am ready to confirm my order now!*';
+    var _msg='*NEW ORDER (V-SHAPE SCULPTOR)* \uD83D\uDCE6\n--------------------------\n\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCDE *ALT:* '+aph+'\n\uD83D\uDCCD *AREA:* '+(loc||st)+'\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pn+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* Pay on Delivery\n\uD83D\uDCC5 *DATE:* '+_ts+'\n--------------------------\n\n*I am ready to confirm my order now!*';
     emailjs.send('service_gxhivxk','template_239s5yz',{
       to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:_msg,
-      customer_phone:ph,phone:ph,alternative_phone:'N/A',alt_phone:'N/A',
+      customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_alt_phone:aph,
       customer_address:addr,address:addr,location:loc||st,city:loc||st,state:st,customer_state:st,customer_city:loc||st,
       product_name:pn,product:pn,
       total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),price:'\u20A6'+tot.toLocaleString(),
