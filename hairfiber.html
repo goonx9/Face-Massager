@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -110,6 +110,16 @@ main{padding-top:128px}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
 #progress-bar{height:6px;background:linear-gradient(90deg,#FF2D55,#FF8C00);border-radius:3px;width:0;transition:width .3s}
 @media(max-width:767px){#ub{animation:none!important;background:#1a0a0f}}
+/* ── Mobile-first form fixes ── */
+@media(max-width:600px){
+  .fc{padding:24px 16px!important;border-radius:24px!important}
+  #order{padding:40px 12px 80px!important}
+  .ow{padding:0!important}
+  .fi,.fs,.fta{font-size:16px!important;-webkit-text-size-adjust:none!important;touch-action:manipulation}
+  .btn{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  .bc{padding:14px 12px!important}
+  .bb{font-size:8px!important}
+}
 @media(min-width:768px){
   .hc{padding:60px 40px 80px}
   .htitle{font-size:clamp(2.4rem,5vw,3.6rem)}
@@ -445,7 +455,7 @@ main{padding-top:128px}
         <!-- Lagos confirmation -->
         <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:20px;padding:18px">
           <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
-            <input type="checkbox" id="availabilityCheck" required style="margin-top:3px;width:18px;height:18px;accent-color:#16a34a;flex-shrink:0">
+            <input type="checkbox" id="availabilityCheck" checked style="margin-top:3px;width:18px;height:18px;accent-color:#16a34a;flex-shrink:0">
             <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.6">I'm in Lagos and ready to receive my order within 1–2 days. I'll pay the rider cash on delivery.</span>
           </label>
           <p style="font-size:11px;font-weight:800;color:#166534;margin:10px 0 0;text-align:center;border-top:1px solid #bbf7d0;padding-top:10px">Not in Lagos? <a href="https://wa.me/2348169094963?text=Hi%2C+I+am+outside+Lagos+and+I+would+like+to+order+the+Hairline+Filler+Spray" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">WhatsApp us to order →</a></p>
@@ -567,7 +577,7 @@ function ensureEjs(){
     form.addEventListener(ev,ensureEjs,{once:true,capture:true,passive:true});
   });
   // Fallback: load 3s after window.load (catches fast scroll-to-form users)
-  window.addEventListener('load',function(){setTimeout(ensureEjs,3000);},{once:true});
+  window.addEventListener('load',function(){setTimeout(function(){ensureEjs(function(){});},2000);},{once:true});
 })();
 
 // ── Sticky CTA scroll ────────────────────────────────────────
@@ -604,7 +614,8 @@ if(form){form.addEventListener('submit',async function(e){
   var msg='*NEW ORDER (HAIRLINE FILLER)* \uD83E\uDDF4\n--------------------------\n\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCDE *ALT:* '+aph+'\n\uD83C\uDFA8 *SHADE:* Black\n\uD83D\uDCCD *AREA:* '+loc+' (Lagos)\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pname+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* '+pay+'\n\uD83D\uDCC5 *DATE:* '+ts+'\n--------------------------\n\n*I am ready to confirm my order now!*';
   var prog=0,iv=setInterval(function(){prog+=Math.random()*12;if(prog>95)prog=95;pb.style.width=prog+'%';pp.textContent=Math.round(prog)+'%';if(prog>25)st.textContent='Validating your details...';if(prog>55)st.textContent='Securing your order...';if(prog>80)st.textContent='Connecting to logistics...';},200);
   try{
-    if(typeof fbq!=='undefined'){var ick='fb_ic_hf_'+tot;if(!sessionStorage.getItem(ick)){sessionStorage.setItem(ick,'true');fbq('track','InitiateCheckout',{content_name:pname,value:tot,currency:'NGN'});}}
+    // Fire InitiateCheckout immediately (deduplicated per session)
+    if(typeof fbq!=='undefined'){var ick='fb_ic_hf_'+tot;if(!sessionStorage.getItem(ick)){sessionStorage.setItem(ick,'true');fbq('track','InitiateCheckout',{content_name:pname,content_ids:['hf_001'],content_type:'product',num_items:1,value:tot,currency:'NGN'});}}
     ensureEjs();
     var emailDone=(typeof emailjs!=='undefined')?emailjs.send('service_gxhivxk','template_239s5yz',{
       to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:msg,
@@ -615,18 +626,42 @@ if(form){form.addEventListener('submit',async function(e){
       total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
       payment_method:pay,date:ts
     }).catch(function(ee){console.error('Email failed:',ee);}):Promise.resolve();
-    await Promise.all([emailDone,new Promise(function(res){setTimeout(res,1800);})]);
+    await Promise.all([emailDone,new Promise(function(res){setTimeout(res,300);})]);
     clearInterval(iv);pb.style.width='100%';pp.textContent='100%';st.textContent='Order Confirmed! Redirecting...';
+    // Fire Purchase INLINE before navigating — Beacon API survives the navigation
+    if(typeof fbq!=='undefined'){
+      fbq('init','4029546293858823',_ud);
+      fbq('track','Purchase',{content_name:pname,content_ids:['hf_001'],content_type:'product',num_items:1,value:tot,currency:'NGN'});
+    }
+    // Also store in sessionStorage as a backup for thanks.html
     sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['hf_001'],ud:_ud}));
-    isSub=false;
-    setTimeout(function(){window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);},1000);
-  }catch(err){clearInterval(iv);console.error('Order error:',err);isSub=false;window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm||'')+'&pn='+encodeURIComponent(pname||'');}
+    // 500ms window lets the Beacon API dispatch Purchase before unload
+    await new Promise(function(res){setTimeout(res,500);});
+    window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
+  }catch(err){clearInterval(iv);console.error('Order error:',err);if(typeof fbq!=='undefined')fbq('track','Purchase',{content_name:(typeof pname!=='undefined'?pname:'Hairline Filler Spray'),content_ids:['hf_001'],content_type:'product',num_items:1,value:(typeof tot!=='undefined'?tot:basePrice),currency:'NGN'});window.location.href='thanks.html?p='+(typeof tot!=='undefined'?tot:basePrice)+'&n='+encodeURIComponent(typeof nm!=='undefined'?nm||'':'')+'&pn='+encodeURIComponent(typeof pname!=='undefined'?pname||'':'');}
 });}
 </script>
 <script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];window.addEventListener('load',function(){setTimeout(function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},1000);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+// Meta Pixel — fbevents.js loads immediately on window.load (no artificial delay).
+// The stub below queues all fbq() calls; fbevents.js processes them as soon as it loads.
+// Removing the 1000ms setTimeout prevents queued events (ViewContent, Purchase) from
+// being silently lost when the user navigates away before fbevents.js finishes loading.
+!function(f,b,e,v,n,t,s){
+  if(f.fbq)return;
+  n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+  // Load fbevents.js immediately (async, non-blocking) — no setTimeout delay
+  if(document.readyState==='complete'){
+    t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+  } else {
+    window.addEventListener('load',function(){
+      t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);
+    },{once:true});
+  }
+}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');
 fbq('track','PageView');
+// ViewContent queued immediately — fires the moment fbevents.js loads
 fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category:'Hair Care',content_ids:['hf_001'],content_type:'product',value:35500,currency:'NGN'});
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"/></noscript>
