@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -378,7 +378,17 @@ setTimeout(function(){ensureEjs(function(){});},3000);
     if(typeof fbq==='function')fbq('track','InitiateCheckout',{content_name:pn,content_ids:['vsculpt_001'],content_type:'product',value:tot,currency:'NGN',num_items:1});
     modal.style.display='flex';btn.disabled=true;
     var prog=0,iv=setInterval(function(){prog+=8;if(prog>90)prog=90;if(pbb)pbb.style.width=prog+'%';},200);
-    new Promise(function(res){ensureEjs(function(){emailjs.send('service_gxhivxk','template_239s5yz',{to_name:'V&G Team',from_name:nm||'',phone:ph||'',address:(addr||'')+', '+(loc||'')+', '+(st||''),product:pn||'',price:'&#8358;'+tot.toLocaleString(),delivery:'FREE',payment:'Pay on Delivery'}).then(res,res);});}).then(function(){clearInterval(iv);if(pbb)pbb.style.width='100%';if(pbs)pbs.textContent='Order confirmed! Redirecting...';setTimeout(function(){window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm||'')+'&pn='+encodeURIComponent(pn||'');},800);});
+    new Promise(function(res){ensureEjs(function(){var _ts=new Date().toLocaleString();
+    var _msg='*NEW ORDER (V-SHAPE SCULPTOR)* \uD83D\uDCE6\n--------------------------\n\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCCD *AREA:* '+(loc||st)+'\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pn+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* Pay on Delivery\n\uD83D\uDCC5 *DATE:* '+_ts+'\n--------------------------\n\n*I am ready to confirm my order now!*';
+    emailjs.send('service_gxhivxk','template_239s5yz',{
+      to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,customer:nm,name:nm,full_name:nm,user_name:nm,userName:nm,contact_name:nm,client_name:nm,message:_msg,
+      customer_phone:ph,phone:ph,alternative_phone:'N/A',alt_phone:'N/A',
+      customer_address:addr,address:addr,location:loc||st,city:loc||st,state:st,customer_state:st,customer_city:loc||st,
+      product_name:pn,product:pn,
+      total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),price:'\u20A6'+tot.toLocaleString(),
+      payment_method:'Pay on Delivery',payment:'Pay on Delivery',
+      delivery:'FREE',date:_ts
+    }).then(res,function(err){console.error('Email:',err);res();});});}).then(function(){clearInterval(iv);if(pbb)pbb.style.width='100%';if(pbs)pbs.textContent='Order confirmed! Redirecting...';setTimeout(function(){window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm||'')+'&pn='+encodeURIComponent(pn||'');},800);});
   });
 })();
 (window.requestIdleCallback||function(cb){setTimeout(cb,250);})(function(){
