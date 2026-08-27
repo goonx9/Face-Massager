@@ -185,7 +185,8 @@ main{padding-top:128px}
       <li><span style="color:var(--p)">✅</span> Washes out cleanly with shampoo</li>
       <li><span style="color:var(--p)">✅</span> Pay on Delivery — zero risk to you</li>
     </ul>
-    <button class="btn" onclick="scrollToOrder()">🪄 Order Now — Pay When Delivered</button>
+    <button class="btn" onclick="scrollToOrder()">🪤 Order Now — Pay When Delivered</button>
+    <p style="text-align:center;font-size:11px;font-weight:700;opacity:.55;margin-top:10px">↓ Order form below — scroll down to place your order</p>
     <div style="margin-top:16px;display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;color:rgba(255,255,255,.5);flex-wrap:wrap">
       <span>✅ In Stock</span><span>•</span><span>🚀 Same/Next Day Delivery</span><span>•</span><span>🔒 Lagos Only</span>
     </div>
@@ -421,6 +422,7 @@ main{padding-top:128px}
         <div class="fg"><label class="fl" for="hf_alt_phone">Alternative Phone <span style="font-weight:500;opacity:.6;text-transform:none;letter-spacing:0">(Optional)</span></label><input class="fi" type="tel" id="hf_alt_phone" name="alt_phone" placeholder="e.g. 09012345678" autocomplete="tel"></div>
 
         <div class="fg">
+          <div style="background:#fff8dc;border:1.5px solid #fde68a;border-radius:16px;padding:12px 16px;font-size:11px;font-weight:700;color:#78350f;line-height:1.6;text-align:center;margin-bottom:4px">&#x1F69A; Delivery in <strong>Lagos only</strong>. Outside Lagos? <a href="https://wa.me/2348169094963?text=Hi%2C+I+want+to+order+the+Hairline+Filler+Spray+%E2%80%94+I+am+outside+Lagos" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">WhatsApp us to order</a> &mdash; <strong>Pay before delivery</strong></div>
           <label class="fl">Area in Lagos</label>
           <div style="position:relative">
             <select class="fs" name="location" id="locationSelect" required>
@@ -546,6 +548,8 @@ function scrollToOrder(){
   if(typeof fbq!=='undefined'){if(!sessionStorage.getItem('fb_ic_init_hf')){sessionStorage.setItem('fb_ic_init_hf','1');fbq('track','InitiateCheckout',{content_name:'Hairline Filler Spray',value:basePrice,currency:'NGN'});}}
   var el=document.getElementById('order');if(el)el.scrollIntoView({behavior:'smooth'});
 }
+// IC on organic scroll into form
+(function(){var oe=document.getElementById('order');if(oe&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(typeof fbq!=='undefined'&&!sessionStorage.getItem('fb_ic_init_hf')){sessionStorage.setItem('fb_ic_init_hf','1');fbq('track','InitiateCheckout',{content_name:'Hairline Filler Spray',value:basePrice,currency:'NGN'});}io.disconnect();}});},{threshold:0.15});io.observe(oe);}})();
 function selectBundle(name,price){
   basePrice=price;
   var hn=document.getElementById('hidden_product_name'),hp=document.getElementById('hidden_product_price'),sn=document.getElementById('summaryProductName'),sp=document.getElementById('summaryProductPrice');
