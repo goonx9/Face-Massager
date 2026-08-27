@@ -82,7 +82,7 @@ main{padding-top:128px}
 #pm{position:fixed;inset:0;z-index:600;background:rgba(26,10,15,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px}
 </style>
 </head><body style="background:#fff;margin:0;padding:0">
-<div id="ub">Lagos and Abuja only · Outside your state? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos%2FAbuja+and+I+would+like+to+order+the+V-Shape+Face+Sculptor" target="_blank" rel="noopener">WhatsApp us to order</a> · Pay cash on delivery</div>
+<div id="ub">Free Delivery · <strong>Lagos Only</strong> · Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+want+to+order+the+V-Shape+Face+Sculptor+%E2%80%94+I+am+outside+Lagos" target="_blank" rel="noopener" style="color:#86efac;font-weight:900">WhatsApp us — Pay Before Delivery</a></div>
 <nav id="nav">
   <a href="index.html" style="font-size:13px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--d)">Glamour &amp; Grace</a>
   <a href="#order" class="btn" style="width:auto;padding:10px 20px;font-size:9px">Order Now</a>
@@ -112,8 +112,9 @@ main{padding-top:128px}
       <li>&#10003; Visible lift in 2-4 weeks of consistent daily use</li>
       <li>&#10003; Pay Cash on Delivery — Zero upfront payment</li>
     </ul>
-    <a href="#order" class="btn" style="font-size:13px;margin-bottom:12px">Order Now — Pay on Delivery</a>
-    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,.5);font-weight:600">Free Delivery in Lagos and Abuja · Only &#8358;34,500</p>
+    <a href="#order" onclick="fireIC()" class="btn" style="font-size:13px;margin-bottom:12px">Order Now — Pay on Delivery</a>
+    <p style="text-align:center;font-size:11px;font-weight:700;opacity:.55;margin-bottom:6px">↓ Order form below — scroll down to place your order</p>
+    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,.5);font-weight:600">Free Delivery in Lagos only · Only &#8358;34,500</p>
   </div>
 </section>
 <div id="pb">
@@ -202,7 +203,7 @@ main{padding-top:128px}
     <div style="text-align:center;margin-bottom:28px"><span class="stag">Customer Reviews</span><h2 class="stitle">What Nigerian Women <em>Are Saying</em></h2></div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div class="rc"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:13px;font-weight:700;line-height:1.7;margin:10px 0 14px">"I have been using this for 3 weeks and the difference is unreal! My double chin is almost gone and my jawline is so defined. I keep getting compliments asking if I lost weight on my face!"</p><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:15px;flex-shrink:0">F</div><div><p style="font-size:12px;font-weight:900">Fatima A.</p><span class="ver">&#10003; Verified Buyer · Lagos</span></div></div></div>
-      <div class="rc"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:13px;font-weight:700;line-height:1.7;margin:10px 0 14px">"I was skeptical since it is pay on delivery — decided to try it. After 2 weeks my face looks slimmer and my jawline is actually defined now. I love taking photos again. Worth every kobo!"</p><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:15px;flex-shrink:0">C</div><div><p style="font-size:12px;font-weight:900">Chioma O.</p><span class="ver">&#10003; Verified Buyer · Abuja</span></div></div></div>
+      <div class="rc"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:13px;font-weight:700;line-height:1.7;margin:10px 0 14px">"I was skeptical since it is pay on delivery — decided to try it. After 2 weeks my face looks slimmer and my jawline is actually defined now. I love taking photos again. Worth every kobo!"</p><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:15px;flex-shrink:0">C</div><div><p style="font-size:12px;font-weight:900">Chioma O.</p><span class="ver">&#10003; Verified Buyer · Lagos</span></div></div></div>
       <div class="rc"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:13px;font-weight:700;line-height:1.7;margin:10px 0 14px">"My colleagues noticed and asked what I was doing differently! I just use it every morning while getting ready. Simple, effective — and now I actually love taking photos again."</p><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:15px;flex-shrink:0">A</div><div><p style="font-size:12px;font-weight:900">Adaeze N.</p><span class="ver">&#10003; Verified Buyer · Lagos</span></div></div></div>
     </div>
   </div>
@@ -222,10 +223,10 @@ main{padding-top:128px}
         <li style="font-size:12px;font-weight:700">&#10003; 1x V-Shape Face Sculptor (Full Kit)</li>
         <li style="font-size:12px;font-weight:700">&#10003; Defines jawline — visible results in 1-2 weeks</li>
         <li style="font-size:12px;font-weight:700">&#10003; Reduces double chin and face puffiness</li>
-        <li style="font-size:12px;font-weight:700">&#10003; Free Delivery in Lagos and Abuja</li>
+        <li style="font-size:12px;font-weight:700">&#10003; Free Delivery in Lagos</li>
         <li style="font-size:12px;font-weight:700">&#10003; Pay on Delivery — zero upfront payment</li>
       </ul>
-      <button onclick="event.stopPropagation();document.getElementById('order').scrollIntoView({behavior:'smooth'})" style="margin-top:16px;width:100%;padding:14px;background:var(--p);color:#fff;border-radius:9999px;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none">Order Now — &#8358;34,500</button>
+      <button onclick="event.stopPropagation();fireIC();document.getElementById('order').scrollIntoView({behavior:'smooth'})" style="margin-top:16px;width:100%;padding:14px;background:var(--p);color:#fff;border-radius:9999px;font-weight:900;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:none">Order Now — &#8358;34,500</button>
     </div>
   </div>
 </section><section id="order">
@@ -244,13 +245,12 @@ main{padding-top:128px}
           <div class="fg"><label class="fl" for="inp_name">Full Name *</label><input class="fi" type="text" id="inp_name" name="name" placeholder="Your full name" required autocomplete="name"></div>
           <div class="fg"><label class="fl" for="inp_phone">Phone Number *</label><input class="fi" type="tel" id="inp_phone" name="phone" placeholder="08012345678" required autocomplete="tel"></div>
           <div class="fg"><label class="fl" for="vs_alt_phone">Alternative Phone <span style="font-weight:500;opacity:.6;text-transform:none;letter-spacing:0">(Optional)</span></label><input class="fi" type="tel" id="vs_alt_phone" name="alt_phone" placeholder="09012345678" autocomplete="tel"></div>
+          <div style="background:#fff8dc;border:1.5px solid #fde68a;border-radius:16px;padding:12px 16px;font-size:11px;font-weight:700;color:#78350f;line-height:1.6;text-align:center">&#x1F69A; Delivery in <strong>Lagos only</strong>. Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+want+to+order+the+V-Shape+Sculptor+%E2%80%94+I+am+outside+Lagos" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">WhatsApp us</a> &mdash; <strong>Pay before delivery</strong></div>
           <div class="fg">
             <label class="fl" for="stateSelect">Select State *</label>
             <div style="position:relative">
               <select class="fs" name="state" id="stateSelect" required onchange="updateCities()">
-                <option value="" disabled selected>Select your state</option>
-                <option value="Lagos">Lagos</option>
-                <option value="Abuja">Abuja (FCT)</option>
+                <option value="Lagos" selected>Lagos</option>
               </select>
               <svg style="position:absolute;right:20px;top:50%;transform:translateY(-50%);pointer-events:none" width="12" height="8" viewBox="0 0 12 8"><path fill="#FF2D55" d="M1 1l5 5 5-5"/></svg>
             </div>
@@ -275,7 +275,7 @@ main{padding-top:128px}
           <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:20px;padding:18px">
             <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
               <input type="checkbox" required style="margin-top:3px;width:18px;height:18px;accent-color:#16a34a;flex-shrink:0">
-              <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.6">I am in <span id="cl">Lagos or Abuja</span> and ready to receive my order within 1-2 days. I will pay the rider cash on delivery.</span>
+              <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.6">I am in <span id="cl">Lagos</span> and ready to receive my order within 1-2 days. I will pay the rider cash on delivery.</span>
             </label>
             <p style="font-size:11px;font-weight:800;color:#166534;margin:10px 0 0;text-align:center;border-top:1px solid #bbf7d0;padding-top:10px">Not in Lagos/Abuja? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos%2FAbuja+and+I+would+like+to+order+the+V-Shape+Face+Sculptor" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">WhatsApp us to order</a></p>
           </div>
@@ -292,7 +292,7 @@ main{padding-top:128px}
     </div>
   </div>
 </section>
-<div style="text-align:center;padding:20px 20px 0"><p style="font-size:12px;font-weight:700;color:#9ca3af">Outside Lagos/Abuja? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos%2FAbuja+and+I+would+like+to+order+the+V-Shape+Face+Sculptor" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">Chat us on WhatsApp to order</a></p></div>
+<div style="text-align:center;padding:20px 20px 0"><p style="font-size:12px;font-weight:700;color:#9ca3af">Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+want+to+order+the+V-Shape+Sculptor+%E2%80%94+I+am+outside+Lagos" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">Chat us on WhatsApp to order — Pay before delivery</a></p></div>
 <section style="padding:56px 20px;background:#fff9fb">
   <div style="max-width:540px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center">
     <div><div style="font-size:32px;margin-bottom:8px">&#128260;</div><h4 style="font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">7-Day Returns</h4><p style="font-size:10px;color:#9ca3af">Not happy? Easy hassle-free returns.</p></div>
@@ -310,7 +310,7 @@ main{padding-top:128px}
       <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>How long does delivery take?</span><span class="fqicon">+</span></div><div class="fqa">Lagos: Same day or next business day. Abuja: 1-2 business days. You will receive a confirmation call from our team before we dispatch your order.</div></div>
       <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>How do I pay?</span><span class="fqicon">+</span></div><div class="fqa">You pay cash directly to the delivery rider when your order arrives. No bank transfer, no upfront payment, no risk. 100% Pay on Delivery.</div></div>
       <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>What if I am not satisfied?</span><span class="fqicon">+</span></div><div class="fqa">We offer a 7-day return policy. If you are not happy for any reason, contact us within 7 days and we will arrange a hassle-free return and full refund.</div></div>
-      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>I am outside Lagos/Abuja, can I still order?</span><span class="fqicon">+</span></div><div class="fqa">Absolutely! WhatsApp us at <a href="https://wa.me/2348039940408" style="color:#25D366;font-weight:900">+234 803 994 0408</a> and we will arrange delivery to your location.</div></div>
+      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>I am outside Lagos, can I still order?</span><span class="fqicon">+</span></div><div class="fqa">Absolutely! WhatsApp us at <a href="https://wa.me/2348039940408" style="color:#25D366;font-weight:900">+234 803 994 0408</a> and we will arrange delivery to your location. Note that outside-Lagos orders require <strong>payment before delivery</strong>.</div></div>
     </div>
   </div>
 </section>
@@ -342,7 +342,7 @@ main{padding-top:128px}
 </footer>
 <div id="scta">
   <div style="flex:1"><p style="font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.1em;color:var(--p)">V-Shape Face Sculptor</p><p style="font-size:13px;font-weight:900">&#8358;34,500 · Free Delivery</p></div>
-  <a href="#order" class="btn" style="width:auto;padding:12px 20px;font-size:11px;flex-shrink:0">Order Now</a>
+  <a href="#order" onclick="fireIC()" class="btn" style="width:auto;padding:12px 20px;font-size:11px;flex-shrink:0">Order Now</a>
 </div>
 <div id="on">
   <div style="width:36px;height:36px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px">&#128522;</div>
@@ -361,9 +361,12 @@ function tFaq(el){var p=el.parentElement;var o=p.classList.contains('open');docu
 function selectBundle(n,pr){document.getElementById('hp_name').value=n;document.getElementById('hp_price').value=pr;var s=document.getElementById('sp'),r=document.getElementById('spr'),t=document.getElementById('st');if(s)s.textContent=n;if(r)r.textContent='&#8358;'+pr.toLocaleString();if(t)t.textContent='&#8358;'+pr.toLocaleString();}
 var sct=document.getElementById('scta');
 if(sct){window.addEventListener('scroll',function(){var ot=document.getElementById('order').getBoundingClientRect().top;sct.classList.toggle('v',window.scrollY>200&&ot>0);},{passive:true});}
-var cityData={Lagos:['Lagos Island','Lagos Mainland','Victoria Island','Ikoyi','Oniru','Lekki Phase 1','Lekki Phase 2','Ajah','Chevron / Sangotedo','Ikeja / GRA','Maryland','Gbagada','Yaba','Surulere','Mushin','Oshodi','Isolo','Agege','Ketu / Ojota','Ojodu / Berger','Magodo','Anthony Village','Apapa','Festac Town','Mile 2 / Amuwo Odofin','Ikorodu','Epe','Badagry'],Abuja:['Central Area','Garki','Garki 2','Wuse 1','Wuse 2','Maitama','Asokoro','Jabi','Utako','Gwarinpa','Kubwa','Lokogoma','Durumi','Gudu','Apo','Lugbe','Karu / Nyanya','Life Camp','Galadimawa','Katampe','Wuye','Dei-Dei','Mpape','Dawaki','Nbora','Kaura','Masaka / Karshi']};
+var cityData={Lagos:['Lagos Island','Lagos Mainland','Victoria Island','Ikoyi','Oniru','Lekki Phase 1','Lekki Phase 2','Ajah','Chevron / Sangotedo','Ikeja / GRA','Maryland','Gbagada','Yaba','Surulere','Mushin','Oshodi','Isolo','Agege','Ketu / Ojota','Ojodu / Berger','Magodo','Anthony Village','Apapa','Festac Town','Mile 2 / Amuwo Odofin','Ikorodu','Epe','Badagry']};
 var stateSel=document.getElementById('stateSelect'),citySel=document.getElementById('citySelect');
-function updateCities(){var s=stateSel.value,cs=cityData[s]||[];citySel.innerHTML='<option value="" disabled selected>Select your area</option>';cs.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;citySel.appendChild(o);});citySel.disabled=false;citySel.style.opacity='1';var cl=document.getElementById('cl');if(cl)cl.textContent=s==='Abuja'?'Abuja':'Lagos';}
+function updateCities(){var s=stateSel.value,cs=cityData[s]||[];citySel.innerHTML='<option value="" disabled selected>Select your area</option>';cs.forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;citySel.appendChild(o);});citySel.disabled=false;citySel.style.opacity='1';var cl=document.getElementById('cl');if(cl)cl.textContent='Lagos';}
+document.addEventListener('DOMContentLoaded',function(){updateCities();});
+function fireIC(){if(sessionStorage.getItem('ic_vsculpt'))return;sessionStorage.setItem('ic_vsculpt','1');if(typeof fbq==='function')fbq('track','InitiateCheckout',{content_name:'V-Shape Face Sculptor',content_ids:['vsculpt_001'],content_type:'product',value:34500,currency:'NGN'});}
+(function(){var oe=document.getElementById('order');if(oe&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){fireIC();io.disconnect();}});},{threshold:0.15});io.observe(oe);}})();
 var _ejsL=false,_ejsQ=[];
 function ensureEjs(cb){if(_ejsL){cb();return;}_ejsQ.push(cb);if(_ejsQ.length>1)return;var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';s.onload=function(){emailjs.init('_h1UzYlyePtWt0IqM');_ejsL=true;_ejsQ.forEach(function(f){f();});_ejsQ=[];};document.head.appendChild(s);}
 setTimeout(function(){ensureEjs(function(){});},3000);
