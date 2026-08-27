@@ -545,10 +545,13 @@ main{padding-top:128px}
 
 <script>
 // ── Pixel + helpers ──────────────────────────────────────────
+var _icFired=false;
 function fireIC(){
-  if(sessionStorage.getItem('ic_vlift'))return;
-  sessionStorage.setItem('ic_vlift','1');
-  if(typeof fbq!=='undefined')fbq('track','InitiateCheckout',{content_name:document.getElementById('hp_name').value,content_ids:['vlift_001'],content_type:'product',value:parseInt(document.getElementById('hp_price').value)||26500,currency:'NGN'});
+  if(_icFired)return;
+  _icFired=true;
+  var pn=(document.getElementById('hp_name')||{value:'V-Lift Pro Face Massager'}).value;
+  var pv=parseInt((document.getElementById('hp_price')||{value:'26500'}).value)||26500;
+  if(typeof fbq==='function')fbq('track','InitiateCheckout',{content_name:pn,content_ids:['vlift_001'],content_type:'product',value:pv,currency:'NGN'});
 }
 function scrollToOrder(){
   var el=document.getElementById('order');
