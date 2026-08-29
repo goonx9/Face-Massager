@@ -801,11 +801,10 @@
         }
 
         // Build WhatsApp redirect from order data
-        var waNumber = '2348039940408'; // default (V-Lift, VSculpt, Face Massager)
+        var waNumber = '2348039940408';
         var pd = null;
         try { pd = JSON.parse(sessionStorage.getItem('pending_purchase') || 'null'); } catch(e){}
         var productName = pnParm || (pd && pd.product) || '';
-        if (/hair|fiber|filler|spray/i.test(productName)) waNumber = '2348169094963';
 
         var waMsg = 'Hi Glamour & Grace! \u{1F44B}\n\nI just placed an order and want to confirm delivery.\n\n';
         if (displayName)  waMsg += '\uD83D\uDC64 Name: ' + displayName + '\n';
