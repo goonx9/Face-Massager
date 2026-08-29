@@ -718,7 +718,7 @@
                 <h3>V-Lift Pro™</h3>
                 <p>The viral sculpting tool for a snatched, lifted face in minutes.</p>
                 <div class="upsell-footer">
-                    <span class="upsell-price">₦29,500</span>
+                    <span class="upsell-price">₦26,500</span>
                     <a href="v-lift.html" class="upsell-link">View</a>
                 </div>
             </div>
@@ -800,15 +800,31 @@
             setText('display-price', '\u20A6' + parseInt(priceParm).toLocaleString('en-NG'));
         }
 
-        // Countdown — redirects to homepage after 5 seconds
+        // Build WhatsApp redirect from order data
+        var waNumber = '2348039940408'; // default (V-Lift, VSculpt, Face Massager)
+        var pd = null;
+        try { pd = JSON.parse(sessionStorage.getItem('pending_purchase') || 'null'); } catch(e){}
+        var productName = pnParm || (pd && pd.product) || '';
+        if (/hair|fiber|filler|spray/i.test(productName)) waNumber = '2348169094963';
+
+        var waMsg = 'Hi Glamour & Grace! \u{1F44B}\n\nI just placed an order and want to confirm delivery.\n\n';
+        if (displayName)  waMsg += '\uD83D\uDC64 Name: ' + displayName + '\n';
+        if (productName)  waMsg += '\uD83D\uDCE6 Product: ' + productName + '\n';
+        if (priceParm && parseFloat(priceParm) > 0) waMsg += '\uD83D\uDCB0 Total: \u20A6' + parseInt(priceParm).toLocaleString('en-NG') + '\n';
+        waMsg += '\uD83D\uDCB3 Payment: Pay on Delivery\n\nPlease confirm my order. Thank you!';
+
+        var waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(waMsg);
+
         var gone = false;
-        function goHome() {
+        function goWhatsApp() {
             if (gone) return;
             gone = true;
-            window.location.href = 'index.html';
+            window.open(waUrl, '_blank');
         }
         var btn = document.getElementById('waRedirectBtn');
-        if (btn) { btn.textContent = 'Continue Shopping'; btn.onclick = goHome; }
+        if (btn) {
+            btn.addEventListener('click', function(){ goWhatsApp(); });
+        }
 
         var total = 5, left = total;
         var circ  = 2 * Math.PI * 45;
@@ -825,8 +841,8 @@
             var pct = left / total;
             if (arcEl) arcEl.setAttribute('stroke-dashoffset', String(circ * (1 - pct)));
             if (timeEl) timeEl.textContent = '0:0' + left;
-            if (captEl) captEl.textContent = 'Our team will call you shortly to confirm delivery \u2014 ' + left + (left === 1 ? ' second' : ' seconds') + '...';
-            if (left <= 0) { goHome(); return; }
+            if (captEl) captEl.textContent = '\uD83D\uDCAC Auto-opening WhatsApp in ' + left + (left === 1 ? ' second' : ' seconds') + '...';
+            if (left <= 0) { goWhatsApp(); return; }
             left--;
         }
         tick();
