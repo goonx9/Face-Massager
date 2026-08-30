@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -635,17 +635,11 @@ if(form){form.addEventListener('submit',async function(e){
     }).catch(function(ee){console.error('Email failed:',ee);}):Promise.resolve();
     await Promise.all([emailDone,new Promise(function(res){setTimeout(res,300);})]);
     clearInterval(iv);pb.style.width='100%';pp.textContent='100%';st.textContent='Order Confirmed! Redirecting...';
-    // Fire Purchase INLINE before navigating — Beacon API survives the navigation
-    if(typeof fbq!=='undefined'){
-      fbq('init','4029546293858823',_ud);
-      fbq('track','Purchase',{content_name:pname,content_ids:['hf_001'],content_type:'product',num_items:1,value:tot,currency:'NGN'});
-    }
-    // Also store in sessionStorage as a backup for thanks.html
+    // Store for thanks.html — fired exactly once there, then consumed
     sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['hf_001'],ud:_ud}));
-    // 500ms window lets the Beacon API dispatch Purchase before unload
-    await new Promise(function(res){setTimeout(res,500);});
-    if(typeof window._orderConfirmed==='function')window._orderConfirmed();window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
-  }catch(err){clearInterval(iv);console.error('Order error:',err);if(typeof fbq!=='undefined')fbq('track','Purchase',{content_name:(typeof pname!=='undefined'?pname:'Hairline Filler Spray'),content_ids:['hf_001'],content_type:'product',num_items:1,value:(typeof tot!=='undefined'?tot:basePrice),currency:'NGN'});if(typeof window._orderConfirmed==='function')window._orderConfirmed();window.location.href='thanks.html?p='+(typeof tot!=='undefined'?tot:basePrice)+'&n='+encodeURIComponent(typeof nm!=='undefined'?nm||'':'')+'&pn='+encodeURIComponent(typeof pname!=='undefined'?pname||'':'');}
+    if(typeof window._orderConfirmed==='function')window._orderConfirmed();
+    window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
+  }catch(err){clearInterval(iv);console.error('Order error:',err);var _tot2=typeof tot!=='undefined'?tot:basePrice;var _nm2=typeof nm!=='undefined'?nm||'':'';var _pn2=typeof pname!=='undefined'?pname||'':'Hairline Filler Spray';sessionStorage.setItem('pending_purchase',JSON.stringify({price:_tot2,name:_nm2,product:_pn2,currency:'NGN',ids:['hf_001'],ud:typeof _ud!=='undefined'?_ud:{}}));if(typeof window._orderConfirmed==='function')window._orderConfirmed();window.location.href='thanks.html?p='+_tot2+'&n='+encodeURIComponent(_nm2)+'&pn='+encodeURIComponent(_pn2);}
 });}
 
 // ── Exit Intent Guard (iOS + mid-submit safe) ──────────────────
