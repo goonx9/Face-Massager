@@ -647,6 +647,35 @@ if(form){form.addEventListener('submit',async function(e){
     window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
   }catch(err){clearInterval(iv);console.error('Order error:',err);if(typeof fbq!=='undefined')fbq('track','Purchase',{content_name:(typeof pname!=='undefined'?pname:'Hairline Filler Spray'),content_ids:['hf_001'],content_type:'product',num_items:1,value:(typeof tot!=='undefined'?tot:basePrice),currency:'NGN'});window.location.href='thanks.html?p='+(typeof tot!=='undefined'?tot:basePrice)+'&n='+encodeURIComponent(typeof nm!=='undefined'?nm||'':'')+'&pn='+encodeURIComponent(typeof pname!=='undefined'?pname||'':'');}
 });}
+
+// ── Exit Intent Guard ────────────────────────────────────────
+(function(){
+  var dirty=false,submitted=false;
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(26,10,15,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px';
+  ov.innerHTML='<div style="background:#fff;border-radius:32px;padding:36px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:egPop .35s cubic-bezier(.34,1.56,.64,1) both"><style>@keyframes egPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}</style><div style="font-size:52px;margin-bottom:14px">🛍️</div><h2 style="font-family:Georgia,serif;font-size:22px;font-weight:900;color:#1a0a0f;line-height:1.2;margin-bottom:10px">Your order isn\'t placed yet!</h2><p style="font-size:13px;font-weight:600;color:#9b7080;line-height:1.7;margin-bottom:26px">You\'re almost done — complete your order in seconds.<br>Free delivery · Pay cash on arrival.</p><button id="egStay" style="display:block;width:100%;padding:17px;background:linear-gradient(135deg,#FF2D55,#c90035);color:#fff;border:none;border-radius:9999px;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-bottom:12px;box-shadow:0 8px 28px rgba(255,45,85,.4)">✅ Stay &amp; Complete My Order</button><button id="egLeave" style="display:block;width:100%;padding:14px;background:none;border:1.5px solid #fce7f3;border-radius:9999px;font-weight:700;font-size:11px;color:#b0a0a8;cursor:pointer;letter-spacing:.05em">Leave anyway</button></div>';
+  document.body.appendChild(ov);
+  var _dest=null;
+  function show(href){ov.style.display='flex';_dest=href||null;}
+  document.getElementById('egStay').onclick=function(){ov.style.display='none';};
+  document.getElementById('egLeave').onclick=function(){ov.style.display='none';if(_dest)window.location.href=_dest;};
+  ov.addEventListener('click',function(e){if(e.target===ov)ov.style.display='none';});
+  function onBefore(e){if(dirty&&!submitted){e.preventDefault();e.returnValue='';return '';}}
+  var fm=document.getElementById('orderForm');
+  if(fm){
+    fm.addEventListener('input',function(){if(!dirty){dirty=true;window.addEventListener('beforeunload',onBefore);}},{passive:true});
+    fm.addEventListener('submit',function(){submitted=true;window.removeEventListener('beforeunload',onBefore);});
+  }
+  document.addEventListener('click',function(e){
+    if(!dirty||submitted)return;
+    var a=e.target.closest('a[href]');
+    if(!a)return;
+    var h=a.getAttribute('href')||'';
+    if(!h||h.charAt(0)==='#'||/^(tel:|mailto:|https:\/\/wa\.me)/i.test(h))return;
+    e.preventDefault();
+    show(h);
+  });
+})();
 </script>
 <script>
 // Meta Pixel — fbevents.js loads immediately on window.load (no artificial delay).
