@@ -403,6 +403,18 @@ main{padding-top:128px}
       <input type="hidden" name="product_name" id="hidden_product_name" value="Hairline Filler Spray - Value Package">
       <input type="hidden" name="product_price" id="hidden_product_price" value="35500">
       <input type="hidden" name="shade" value="Black">
+      <!-- Attribution fields: invisible; preserved across the session for Meta/order matching -->
+      <input type="hidden" name="order_id" id="attr_order_id" value="">
+      <input type="hidden" name="fbclid" id="attr_fbclid" value="">
+      <input type="hidden" name="utm_source" id="attr_utm_source" value="">
+      <input type="hidden" name="utm_medium" id="attr_utm_medium" value="">
+      <input type="hidden" name="utm_campaign" id="attr_utm_campaign" value="">
+      <input type="hidden" name="utm_content" id="attr_utm_content" value="">
+      <input type="hidden" name="utm_term" id="attr_utm_term" value="">
+      <input type="hidden" name="landing_page" id="attr_landing_page" value="">
+      <input type="hidden" name="referrer" id="attr_referrer" value="">
+      <input type="hidden" name="fbp" id="attr_fbp" value="">
+      <input type="hidden" name="fbc" id="attr_fbc" value="">
       <div style="display:flex;flex-direction:column;gap:16px">
         <div class="fg"><label class="fl">Full Name</label><input class="fi" type="text" name="name" placeholder="Your full name" required></div>
         <div class="fg"><label class="fl">Phone Number</label><input class="fi" type="tel" name="phone" placeholder="e.g. 08012345678" required></div>
@@ -590,6 +602,30 @@ if(sct){window.addEventListener('scroll',function(){var ot=document.getElementBy
   if('IntersectionObserver' in window&&vids.length){var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry){var v=entry.target;if(entry.isIntersecting)v.play().catch(function(){});else v.pause();});},{threshold:0.25});vids.forEach(function(v){obs.observe(v);});}else{vids.forEach(function(v){v.play().catch(function(){});});}
 });
 
+// ── Attribution capture (invisible; no UI changes) ─────────────
+(function(){
+  function cookie(name){
+    var m=document.cookie.match(new RegExp('(?:^|; )'+name.replace(/([.$?*|{}()\\[\\]\\\\/+^])/g,'\\$1')+'=([^;]*)'));
+    return m?decodeURIComponent(m[1]):'';
+  }
+  function getStored(key){try{return sessionStorage.getItem('hf_attr_'+key)||'';}catch(e){return '';}}
+  function store(key,val){if(!val)return;try{sessionStorage.setItem('hf_attr_'+key,val);}catch(e){}}
+  var p=new URLSearchParams(window.location.search);
+  ['fbclid','utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+    var v=p.get(k)||getStored(k);if(v)store(k,v);
+    var el=document.getElementById('attr_'+k);if(el)el.value=v||'';
+  });
+  var lp=getStored('landing_page')||window.location.href;store('landing_page',lp);
+  var ref=getStored('referrer')||document.referrer||'';store('referrer',ref);
+  var fbp=cookie('_fbp')||getStored('fbp');if(fbp)store('fbp',fbp);
+  var fbclid=p.get('fbclid')||getStored('fbclid');
+  var fbc=cookie('_fbc')||getStored('fbc');
+  if(!fbc&&fbclid)fbc='fb.1.'+Date.now()+'.'+fbclid;
+  if(fbc)store('fbc',fbc);
+  var vals={landing_page:lp,referrer:ref,fbp:fbp,fbc:fbc};
+  Object.keys(vals).forEach(function(k){var el=document.getElementById('attr_'+k);if(el)el.value=vals[k]||'';});
+})();
+
 // ── Form submit ──────────────────────────────────────────────
 var isSub=false,form=document.getElementById('orderForm');
 if(form){form.addEventListener('submit',async function(e){
@@ -598,12 +634,15 @@ if(form){form.addEventListener('submit',async function(e){
   isSub=true;btn.disabled=true;btn.textContent='Processing...';modal.style.display='flex';
   var fd=new FormData(e.target),data=Object.fromEntries(fd.entries());
   var nm=data.name,ph=data.phone,aph=data.alt_phone||'None',addr=data.address,loc=data.location,pname=data.product_name,ts=new Date().toLocaleString(),tot=basePrice,pay='Pay on Delivery';
+  var orderId='HF-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,7).toUpperCase();
+  var oid=document.getElementById('attr_order_id');if(oid)oid.value=orderId;
+  var attr={order_id:orderId,fbclid:data.fbclid||'',utm_source:data.utm_source||'',utm_medium:data.utm_medium||'',utm_campaign:data.utm_campaign||'',utm_content:data.utm_content||'',utm_term:data.utm_term||'',landing_page:data.landing_page||window.location.href,referrer:data.referrer||document.referrer||'',fbp:data.fbp||'',fbc:data.fbc||''};
   // Advanced Matching
   var _rawph=(ph||'').replace(/\D/g,'');if(_rawph.startsWith('0'))_rawph='234'+_rawph.substring(1);else if(!_rawph.startsWith('234'))_rawph='234'+_rawph;
   var _np=(nm||'').trim().split(/\s+/),_fn=(_np[0]||'').toLowerCase(),_ln=_np.length>1?_np.slice(1).join(' ').toLowerCase():'';
   var _ud={ph:_rawph,fn:_fn,ct:(loc||'').toLowerCase().replace(/[^a-z ]/g,''),st:'lagos',country:'ng'};if(_ln)_ud.ln=_ln;
   if(typeof fbq!=='undefined')fbq('init','4029546293858823',_ud);
-  var msg='*NEW ORDER (HAIRLINE FILLER)* \uD83E\uDDF4\n--------------------------\n\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCDE *ALT:* '+aph+'\n\uD83C\uDFA8 *SHADE:* Black\n\uD83D\uDCCD *AREA:* '+loc+' (Lagos)\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pname+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* '+pay+'\n\uD83D\uDCC5 *DATE:* '+ts+'\n--------------------------\n\n*I am ready to confirm my order now!*';
+  var msg='*NEW ORDER (HAIRLINE FILLER)* \uD83E\uDDF4\n--------------------------\n*ORDER ID:* '+orderId+'\n\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCDE *ALT:* '+aph+'\n\uD83C\uDFA8 *SHADE:* Black\n\uD83D\uDCCD *AREA:* '+loc+' (Lagos)\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pname+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* '+pay+'\n\uD83D\uDCC5 *DATE:* '+ts+'\n\n*ATTRIBUTION*\nUTM Source: '+attr.utm_source+'\nUTM Campaign: '+attr.utm_campaign+'\nUTM Content: '+attr.utm_content+'\nFBCLID: '+attr.fbclid+'\n--------------------------\n\n*I am ready to confirm my order now!*';
   var prog=0,iv=setInterval(function(){prog+=Math.random()*12;if(prog>95)prog=95;pb.style.width=prog+'%';pp.textContent=Math.round(prog)+'%';if(prog>25)st.textContent='Validating your details...';if(prog>55)st.textContent='Securing your order...';if(prog>80)st.textContent='Connecting to logistics...';},200);
   try{
     // Fire InitiateCheckout immediately (deduplicated per session)
@@ -616,15 +655,29 @@ if(form){form.addEventListener('submit',async function(e){
       customer_address:addr,address:addr,location:loc,city:loc,state:'Lagos',customer_state:'Lagos',customer_city:loc,
       product_name:pname,product:pname,
       total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),
-      payment_method:pay,date:ts
+      payment_method:pay,date:ts,
+      order_id:orderId,
+      fbclid:attr.fbclid,utm_source:attr.utm_source,utm_medium:attr.utm_medium,utm_campaign:attr.utm_campaign,utm_content:attr.utm_content,utm_term:attr.utm_term,
+      landing_page:attr.landing_page,referrer:attr.referrer,fbp:attr.fbp,fbc:attr.fbc
     }).catch(function(ee){console.error('Email failed:',ee);}):Promise.resolve();
     await Promise.all([emailDone,new Promise(function(res){setTimeout(res,300);})]);
-    clearInterval(iv);pb.style.width='100%';pp.textContent='100%';st.textContent='Order Confirmed! Redirecting...';
-    // Store for thanks.html — fired exactly once there, then consumed
-    sessionStorage.setItem('pending_purchase',JSON.stringify({price:tot,name:nm,product:pname,currency:'NGN',ids:['hf_001'],ud:_ud}));
+    clearInterval(iv);pb.style.width='100%';pp.textContent='100%';st.textContent='Order Received! Redirecting...';
+    // COD funnel: submitted form = Lead/OrderSubmitted. Purchase is reserved for actual delivered/paid orders.
+    if(typeof fbq!=='undefined'){
+      fbq('track','Lead',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId},{eventID:orderId+'-lead'});
+      fbq('trackCustom','OrderSubmitted',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId,utm_source:attr.utm_source,utm_campaign:attr.utm_campaign,utm_content:attr.utm_content},{eventID:orderId+'-submitted'});
+    }
+    try{sessionStorage.removeItem('pending_purchase');sessionStorage.setItem('last_order_submitted',JSON.stringify({order_id:orderId,price:tot,name:nm,product:pname,currency:'NGN'}));}catch(e){}
     if(typeof window._orderConfirmed==='function')window._orderConfirmed();
-    window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname);
-  }catch(err){clearInterval(iv);console.error('Order error:',err);var _tot2=typeof tot!=='undefined'?tot:basePrice;var _nm2=typeof nm!=='undefined'?nm||'':'';var _pn2=typeof pname!=='undefined'?pname||'':'Hairline Filler Spray';sessionStorage.setItem('pending_purchase',JSON.stringify({price:_tot2,name:_nm2,product:_pn2,currency:'NGN',ids:['hf_001'],ud:typeof _ud!=='undefined'?_ud:{}}));if(typeof window._orderConfirmed==='function')window._orderConfirmed();window.location.href='thanks.html?p='+_tot2+'&n='+encodeURIComponent(_nm2)+'&pn='+encodeURIComponent(_pn2);}
+    window.location.href='thanks.html?p='+tot+'&n='+encodeURIComponent(nm)+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);
+  }catch(err){
+    clearInterval(iv);console.error('Order error:',err);
+    var _tot2=typeof tot!=='undefined'?tot:basePrice,_nm2=typeof nm!=='undefined'?nm||'':'',_pn2=typeof pname!=='undefined'?pname||'':'Hairline Filler Spray';
+    // Do NOT manufacture a Purchase event when submission processing fails.
+    try{sessionStorage.removeItem('pending_purchase');}catch(e){}
+    if(typeof window._orderConfirmed==='function')window._orderConfirmed();
+    window.location.href='thanks.html?p='+_tot2+'&n='+encodeURIComponent(_nm2)+'&pn='+encodeURIComponent(_pn2)+'&oid='+encodeURIComponent(orderId||'');
+  }
 });}
 
 // ── Exit Intent Guard (iOS + mid-submit safe) ──────────────────
@@ -675,7 +728,9 @@ if(form){form.addEventListener('submit',async function(e){
 })();
 </script>
 <script>
-// Meta Pixel — fbevents.js loads immediately on window.load (no artificial delay).
+// Meta Pixel — PageView/ViewContent/InitiateCheckout run on-page. Lead + OrderSubmitted fire only after form submission.
+// Purchase intentionally does NOT fire on this COD form; reserve Purchase for delivered/paid orders.
+// fbevents.js loads immediately on window.load (no artificial delay).
 // The stub below queues all fbq() calls; fbevents.js processes them as soon as it loads.
 // Removing the 1000ms setTimeout prevents queued events (ViewContent, Purchase) from
 // being silently lost when the user navigates away before fbevents.js finishes loading.
