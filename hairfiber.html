@@ -605,8 +605,9 @@ if(sct){window.addEventListener('scroll',function(){var ot=document.getElementBy
 // ── Attribution capture (invisible; no UI changes) ─────────────
 (function(){
   function cookie(name){
-    var m=document.cookie.match(new RegExp('(?:^|; )'+name.replace(/([.$?*|{}()\\[\\]\\\\/+^])/g,'\\$1')+'=([^;]*)'));
-    return m?decodeURIComponent(m[1]):'';
+    var parts=('; '+document.cookie).split('; '+name+'=');
+    if(parts.length===2)return decodeURIComponent(parts.pop().split(';').shift());
+    return '';
   }
   function getStored(key){try{return sessionStorage.getItem('hf_attr_'+key)||'';}catch(e){return '';}}
   function store(key,val){if(!val)return;try{sessionStorage.setItem('hf_attr_'+key,val);}catch(e){}}
