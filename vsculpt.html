@@ -81,6 +81,7 @@ main{padding-top:128px}
 #pb .s span{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
 #pm{position:fixed;inset:0;z-index:600;background:rgba(26,10,15,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 </head><body style="background:#fff;margin:0;padding:0">
 <div id="ub">Free Delivery · <strong>Lagos Only</strong> · Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+want+to+order+the+V-Shape+Face+Sculptor+%E2%80%94+I+am+outside+Lagos" target="_blank" rel="noopener" style="color:#86efac;font-weight:900">WhatsApp us — Pay Before Delivery</a></div>
 <nav id="nav">
@@ -579,9 +580,27 @@ fbq('track','ViewContent',{content_name:'V-Shape Face Sculptor',content_ids:['vs
       utm_campaign:attr.utm_campaign||'',utm_content:attr.utm_content||'',
       referrer:attr.referrer||'',landing_page:attr.landing_page||''};
     if(d.size)ep.size=d.size;
-    var _send=function(){if(typeof emailjs==='undefined')return;emailjs.send('service_gxhivxk','template_239s5yz',ep).catch(function(err){console.error('Email:',err);});};
-    if(typeof ensureEjs==='function')ensureEjs(_send);else _send();
-    window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);
+    var _nav=function(){window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);};
+    var _doSend=function(){
+      if(typeof emailjs!=='undefined'){
+        emailjs.send('service_gxhivxk','template_239s5yz',ep)
+          .then(function(){_nav();})
+          .catch(function(err){console.error('EmailJS error:',err);_nav();});
+        return;
+      }
+      // SDK not loaded yet - load it now then send
+      var _ejs=document.createElement('script');
+      _ejs.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      _ejs.onload=function(){
+        try{emailjs.init('_h1UzYlyePtWt0IqM');}catch(e){}
+        emailjs.send('service_gxhivxk','template_239s5yz',ep)
+          .then(function(){_nav();})
+          .catch(function(err){console.error('EmailJS error:',err);_nav();});
+      };
+      _ejs.onerror=function(){console.error('EmailJS SDK load failed');_nav();};
+      document.head.appendChild(_ejs);
+    };
+    _doSend();
   },true);
 })();
 </script>
