@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -389,7 +389,7 @@ function showOrderConfirmed(nm,tot,pname,ids){
 } (function(){var _o=document.getElementById('order_id');fbq('trackCustom','OrderSubmitted',{order_id:_o?_o.value:'',content_type:'product',payment_method:'Pay on Delivery',currency:'NGN'});})();// ── Form submit (keep synchronous) ──────────────────────────
 var isSub=false,form=document.getElementById('orderForm');
 if(!form)return;
-form.addEventListener('submit',async function(e){);if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}});}
+if(locSel){locSel.addEventListener('change',function(){if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}});}
 if(locSel)locSel.addEventListener('change',updateSummary);
 var isSub=false,form=document.getElementById('orderForm');
 if(!form)return;
@@ -558,23 +558,47 @@ fbq('track','ViewContent',{content_name:'Invisible Push-Up Bra Pads',content_cat
     if(d.size)ep.size=d.size;
     var _nav=function(){window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);};
 
-    // Safety: always redirect after 4s if emailjs hangs or fails silently
-    var _navTimer=setTimeout(function(){_nav();},4000);
-    var _navOnce=function(){clearTimeout(_navTimer);_nav();};
+    // EmailJS is the source of truth for website order intake.
+    // Never show a fake success/redirect if the email did not send.
+    var _showSendError=function(err){
+      console.error('EmailJS order send failed:',err);
+      _done=false;
+      if(btn){btn.disabled=false;btn.textContent='Try Again';}
+      var old=document.getElementById('orderSendError');
+      if(old)old.remove();
+      var box=document.createElement('div');
+      box.id='orderSendError';
+      box.style.cssText='margin:14px 0;padding:14px 16px;border:1.5px solid #ef4444;background:#fef2f2;color:#991b1b;border-radius:14px;font:700 12px/1.5 system-ui;text-align:center';
+      box.textContent='We could not submit your order yet. Please check your connection and tap Try Again. Your order has NOT been confirmed.';
+      if(btn&&btn.parentNode)btn.parentNode.insertBefore(box,btn);
+    };
+
+    var _sendOrder=function(){
+      try{ emailjs.init({publicKey:'_h1UzYlyePtWt0IqM'}); }
+      catch(initErr){
+        try{ emailjs.init('_h1UzYlyePtWt0IqM'); }catch(ignore){}
+      }
+      return emailjs.send('service_gxhivxk','template_239s5yz',ep);
+    };
+
     var _doSendSafe=function(){
       if(typeof emailjs!=='undefined'){
-        emailjs.send('service_gxhivxk','template_239s5yz',ep)
-          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
+        _sendOrder().then(function(){
+          if(typeof window._orderConfirmed==='function')window._orderConfirmed();
+          _nav();
+        }).catch(_showSendError);
         return;
       }
+
       var _ejs=document.createElement('script');
       _ejs.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
       _ejs.onload=function(){
-        try{emailjs.init('_h1UzYlyePtWt0IqM');}catch(e){}
-        emailjs.send('service_gxhivxk','template_239s5yz',ep)
-          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
+        _sendOrder().then(function(){
+          if(typeof window._orderConfirmed==='function')window._orderConfirmed();
+          _nav();
+        }).catch(_showSendError);
       };
-      _ejs.onerror=function(){_navOnce();};
+      _ejs.onerror=function(){_showSendError('EmailJS library failed to load');};
       document.head.appendChild(_ejs);
     };
     _doSendSafe();
