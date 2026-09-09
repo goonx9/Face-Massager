@@ -759,7 +759,7 @@ fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:[
     form.querySelectorAll('.err-field').forEach(function(el){el.classList.remove('err-field');});
     var first=null;
     form.querySelectorAll('[required]').forEach(function(f){
-      var bad=f.type==='checkbox'?!f.checked:(f.disabled||!f.value||!f.value.trim());
+      if(f.disabled)return; var bad=f.type==='checkbox'?!f.checked:(!f.value||!f.value.trim());
       if(bad){
         f.classList.add('err-field');
         var lbl=form.querySelector('label[for="'+f.id+'"]')||(f.closest&&f.closest('.fg')&&f.closest('.fg').querySelector('label'));
@@ -815,26 +815,27 @@ fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:[
       referrer:attr.referrer||'',landing_page:attr.landing_page||''};
     if(d.size)ep.size=d.size;
     var _nav=function(){window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);};
-    var _doSend=function(){
+
+    // Safety: always redirect after 4s if emailjs hangs or fails silently
+    var _navTimer=setTimeout(function(){_nav();},4000);
+    var _navOnce=function(){clearTimeout(_navTimer);_nav();};
+    var _doSendSafe=function(){
       if(typeof emailjs!=='undefined'){
         emailjs.send('service_gxhivxk','template_239s5yz',ep)
-          .then(function(){_nav();})
-          .catch(function(err){console.error('EmailJS error:',err);_nav();});
+          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
         return;
       }
-      // SDK not loaded yet - load it now then send
       var _ejs=document.createElement('script');
       _ejs.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
       _ejs.onload=function(){
         try{emailjs.init('_h1UzYlyePtWt0IqM');}catch(e){}
         emailjs.send('service_gxhivxk','template_239s5yz',ep)
-          .then(function(){_nav();})
-          .catch(function(err){console.error('EmailJS error:',err);_nav();});
+          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
       };
-      _ejs.onerror=function(){console.error('EmailJS SDK load failed');_nav();};
+      _ejs.onerror=function(){_navOnce();};
       document.head.appendChild(_ejs);
     };
-    _doSend();
+    _doSendSafe();
   },true);
 })();
 </script>
