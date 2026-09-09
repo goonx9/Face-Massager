@@ -651,6 +651,7 @@
 
                 <div class="p-10 lg:p-16">
                     <form id="orderForm" class="space-y-6">
+<input type="hidden" name="order_id" id="order_id" value="">
                         <div class="space-y-2">
                             <label class="text-[10px] font-black uppercase tracking-widest opacity-40 ml-4">Full Name</label>
                             <input type="text" name="name" required placeholder="CHINELO OKORO" class="w-full px-8 py-5 rounded-full bg-gray-50 border border-gray-100 outline-none focus:ring-2 ring-primary transition-all font-bold text-sm">
@@ -732,6 +733,20 @@
                             Complete Order
                         </button>
                     </form>
+                    <!-- ── Inline Order Confirmation ─────────── -->
+                    <div id="orderConfirm" style="display:none;text-align:center;padding:48px 24px 56px">
+                      <div style="font-size:72px;margin-bottom:20px">🎉</div>
+                      <h2 style="font-size:26px;font-weight:900;color:#1a0a0f;line-height:1.25;margin-bottom:14px">Thank You!<br>Your Order Has Been Received</h2>
+                      <p style="font-size:14px;font-weight:600;color:#555;line-height:1.8;margin-bottom:6px">We have received your order successfully.</p>
+                      <div style="background:linear-gradient(135deg,#FFF3CD,#FFFAE5);border:2px solid #FFCA28;border-radius:16px;padding:16px 18px;margin-bottom:18px;text-align:center">
+                        <div style="font-size:24px;margin-bottom:6px">📞</div>
+                        <p style="font-size:12px;font-weight:900;color:#7B5800;letter-spacing:.05em;margin:0 0 3px">EXPECT A CALL OR TEXT FROM US</p>
+                        <p style="font-size:20px;font-weight:900;color:#1A1A1A;letter-spacing:.04em;margin:0 0 5px">08039940408</p>
+                        <p style="font-size:11px;font-weight:700;color:#92400e;line-height:1.5;margin:0">We will call or text to confirm your order &amp; delivery time before dispatch.</p>
+                      </div>
+                      <p style="font-size:13px;font-weight:600;color:#888;line-height:1.7;margin-bottom:22px">For faster communication or any questions, please chat with us on WhatsApp.</p>
+                      <a href="https://wa.me/2348039940408?text=Hi%2C+I+just+placed+an+order+for+the+Ultrasonic+Pore+Vacuum+and+want+to+confirm+it" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-weight:900;font-size:14px;padding:18px 30px;border-radius:9999px;text-decoration:none;box-shadow:0 8px 28px rgba(37,211,102,.35)">💬 Chat With Us on WhatsApp</a>
+                    </div>
 
 
                 </div>
@@ -938,7 +953,15 @@
 
         // Form Submit with Processing Animation
         let isSubmitting = false;
-        document.getElementById('orderForm').addEventListener('submit', async (e) => {
+// ── Order confirmed: hide form, fire Purchase, show inline card ──
+function showOrderConfirmed(nm,tot,pname,ids){
+  var pm=document.getElementById('pm')||document.getElementById('processing-modal'),frm=document.getElementById('orderForm'),oc=document.getElementById('orderConfirm'),fc=frm&&frm.closest('.fc');
+  if(pm)pm.style.display='none';
+  if(fc)fc.style.display='none';else if(frm)frm.style.display='none';
+  if(oc){oc.style.display='block';setTimeout(function(){oc.scrollIntoView({behavior:'smooth',block:'center'});},200);}
+  if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:pname,content_ids:ids,content_type:'product',value:tot,currency:'NGN',num_items:1});
+  if(typeof window._orderConfirmed==='function')window._orderConfirmed();
+} (function(){var _o=document.getElementById('order_id');fbq('trackCustom','OrderSubmitted',{order_id:_o?_o.value:'',content_type:'product',payment_method:'Pay on Delivery',currency:'NGN'});})();        document.getElementById('orderForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             if (isSubmitting) return;
             
@@ -1040,22 +1063,14 @@
                 setTimeout(() => {
                     clearInterval(progressInt);
                     percentEl.innerText = "100%";
-                    statusEl.innerText = "Order Secured! Redirecting...";
+                    statusEl.innerText = "Order Confirmed!";
                     
-                    const waMsg = encodeURIComponent(`*NEW PORE VACUUM ORDER*\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.state}\n*Address:* ${data.address}\n*Price:* ${totalStr}`);
-                    const waUrl = `https://wa.me/2348039940408?text=${waMsg}`;
-                    
-                    setTimeout(() => {
-                        if(typeof window._orderConfirmed==='function')window._orderConfirmed();
-      window.location.href = `thanks.html?wa=${encodeURIComponent(waUrl)}&p=${finalTotal}&n=${encodeURIComponent(data.name)}&pn=${encodeURIComponent('Ultrasonic Pore Vacuum™')}`;
-                    }, 1000);
+                    showOrderConfirmed(data.name, finalTotal, "Ultrasonic Pore Vacuumu2122", ["pc_001"]);
                 }, 1500);
             } catch (err) {
                 console.error("Order processing error:", err);
-                // Fallback: Proceed to WhatsApp anyway
                 clearInterval(progressInt);
-                const waMsg = encodeURIComponent(`*NEW PORE VACUUM ORDER*\n*Name:* ${data.name}\n*Phone:* ${data.phone}\n*Location:* ${data.state}\n*Address:* ${data.address}\n*Price:* ${totalStr}`);
-                window.location.href = `https://wa.me/2348039940408?text=${waMsg}`;
+                showOrderConfirmed(data.name||"", finalTotal||18000, "Ultrasonic Pore Vacuum\u2122", ["pc_001"]);
             }
         });
     </script>
@@ -1138,6 +1153,110 @@
   });
 })();
 </script>
+<script>
+/* ── FrankAgent Order Automation Layer ────────────────────────────────
+   Validation · Unique Order ID · Attribution · Lead+OrderSubmitted
+   NOTE: Purchase NOT fired on COD. Fires server-side after confirmed delivery.
+   ─────────────────────────────────────────────────────────────────────── */
+(function(){
+  var s=document.createElement('style');
+  s.textContent='.field-error{color:#ef4444;font-size:11px;font-weight:700;margin:5px 0 0 4px;display:block}@keyframes errShake{0%,100%{transform:none}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}.err-field{border:2px solid #ef4444!important;animation:errShake .35s ease!important;border-radius:12px!important}';
+  document.head.appendChild(s);
+  var _oid=null;
+  function getOrderId(pid){
+    if(_oid)return _oid;
+    var pm={hf_001:'HF',vlift_001:'VL',vsculpt_001:'VS',bra_001:'BP',pc_001:'PC',shaver_001:'SH'};
+    var pfx=pm[pid]||'GG';
+    var rnd=function(n){return Math.random().toString(36).substr(2,n).toUpperCase().replace(/[^A-Z0-9]/g,'0').substr(0,n);};
+    _oid=pfx+'-'+rnd(8)+'-'+rnd(5);return _oid;
+  }
+  function getAttr(){
+    var p=new URLSearchParams(window.location.search);
+    var gc=function(n){var m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));return m?decodeURIComponent(m[2]):'';};
+    var fbclid=p.get('fbclid')||sessionStorage.getItem('_fbclid')||'';
+    if(p.get('fbclid'))sessionStorage.setItem('_fbclid',p.get('fbclid'));
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){if(p.get(k))sessionStorage.setItem('_'+k,p.get(k));});
+    return{fbclid:fbclid,_fbp:gc('_fbp')||'',_fbc:gc('_fbc')||(fbclid?'fb.1.'+Date.now()+'.'+fbclid:''),
+      utm_source:p.get('utm_source')||sessionStorage.getItem('_utm_source')||'',
+      utm_medium:p.get('utm_medium')||sessionStorage.getItem('_utm_medium')||'',
+      utm_campaign:p.get('utm_campaign')||sessionStorage.getItem('_utm_campaign')||'',
+      utm_content:p.get('utm_content')||sessionStorage.getItem('_utm_content')||'',
+      utm_term:p.get('utm_term')||sessionStorage.getItem('_utm_term')||'',
+      referrer:document.referrer||'',landing_page:window.location.href};
+  }
+  var form=document.getElementById('orderForm');
+  if(!form)return;
+  var _formPid=form.getAttribute('data-pid')||'product_001';
+  getOrderId(_formPid);
+  var _done=false;
+  form.addEventListener('submit',function(e){
+    if(_done)return;
+    form.querySelectorAll('.field-error').forEach(function(el){el.remove();});
+    form.querySelectorAll('.err-field').forEach(function(el){el.classList.remove('err-field');});
+    var first=null;
+    form.querySelectorAll('[required]').forEach(function(f){
+      var bad=f.type==='checkbox'?!f.checked:(f.disabled||!f.value||!f.value.trim());
+      if(bad){
+        f.classList.add('err-field');
+        var lbl=form.querySelector('label[for="'+f.id+'"]')||(f.closest&&f.closest('.fg')&&f.closest('.fg').querySelector('label'));
+        var em=document.createElement('p');em.className='field-error';
+        em.textContent='\u26a0\ufe0f '+(lbl?lbl.firstChild.textContent.replace(/\*/g,'').trim():'This field')+' is required';
+        f.parentNode.insertBefore(em,f.nextSibling);
+        if(!first)first=f;
+      }
+      ['input','change'].forEach(function(ev){f.addEventListener(ev,function(){this.classList.remove('err-field');var n=this.nextSibling;if(n&&n.classList&&n.classList.contains('field-error'))n.remove();},{once:true});});
+    });
+    if(first){e.preventDefault();e.stopImmediatePropagation();first.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){try{first.focus();}catch(x){}},400);return;}
+    e.preventDefault();e.stopImmediatePropagation();
+    if(_done)return;_done=true;
+    var _resetDone=function(){_done=false;};
+    var btn=document.getElementById('submitBtn');
+    if(btn){btn.disabled=true;btn.textContent='Placing your order...';}
+    var fd=new FormData(form),d=Object.fromEntries(fd.entries());
+    var nm=d.name||'',ph=d.phone||'',aph=d.alt_phone||'None',addr=d.address||'',
+        loc=d.location||'',pname=d.product_name||'Product',pprice=d.product_price||'0',
+        tot=parseInt(pprice)||0,ts=new Date().toLocaleString();
+    var orderId=getOrderId(_formPid);
+    var oidHidden=document.getElementById('order_id');if(oidHidden)oidHidden.value=orderId;
+    var attr=getAttr();
+    var _p=['*NEW ORDER* \uD83D\uDCE6\n--------------------------','Order ID: '+orderId];
+    if(nm)_p.push('\uD83D\uDC64 *NAME:* '+nm);
+    if(ph)_p.push('\uD83D\uDCDE *PHONE:* '+ph);
+    if(aph&&aph!=='None')_p.push('\uD83D\uDCDE *ALT:* '+aph);
+    if(d.size)_p.push('\uD83D\uDCCF *SIZE:* '+d.size);
+    if(d.shade)_p.push('\uD83C\uDFA8 *SHADE:* '+d.shade);
+    if(loc)_p.push('\uD83D\uDCCD *AREA:* '+loc);
+    if(d.state&&d.state!==loc)_p.push('\uD83D\uDDFA\uFE0F *STATE:* '+d.state);
+    if(addr)_p.push('\uD83C\uDFE0 *ADDRESS:* '+addr);
+    _p.push('');if(pname)_p.push('\uD83D\uDCE6 *PRODUCT:* '+pname);
+    _p.push('\uD83D\uDE9A *DELIVERY:* FREE');
+    if(tot>0)_p.push('\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString());
+    _p.push('\uD83D\uDCB3 *PAYMENT:* Pay on Delivery\n\uD83D\uDCC5 *DATE:* '+ts+'\n\n-- Attribution --\nSource: '+(attr.utm_source||'Direct')+'\nCampaign: '+attr.utm_campaign+'\nReferrer: '+(attr.referrer||'Direct')+'\n--------------------------');
+    var msg=_p.join('\n');
+    if(typeof fbq==='function'){
+      fbq('track','Lead',{content_name:pname,content_ids:[_formPid],content_type:'product',value:tot,currency:'NGN',order_id:orderId});
+      fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,content_ids:[_formPid],value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
+    }
+    var ep={order_id:orderId,to_name:'FrankAgent',from_name:nm,customer_name:nm,customerName:nm,name:nm,
+      message:msg,customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,
+      customer_address:addr,address:addr,location:loc,city:loc,
+      state:d.state||'Lagos',customer_state:d.state||'Lagos',
+      product_name:pname,product:pname,
+      price:'\u20A6'+tot.toLocaleString(),delivery_fee:'FREE',
+      total:'\u20A6'+tot.toLocaleString(),total_amount:'\u20A6'+tot.toLocaleString(),
+      currency:'NGN',payment_method:'Pay on Delivery',date:ts,
+      fbclid:attr.fbclid||'',fbp:attr._fbp||'',fbc:attr._fbc||'',
+      utm_source:attr.utm_source||'',utm_medium:attr.utm_medium||'',
+      utm_campaign:attr.utm_campaign||'',utm_content:attr.utm_content||'',
+      referrer:attr.referrer||'',landing_page:attr.landing_page||''};
+    if(d.size)ep.size=d.size;
+    var _send=function(){if(typeof emailjs==='undefined')return;emailjs.send('service_gxhivxk','template_239s5yz',ep).catch(function(err){console.error('Email:',err);});};
+    if(typeof ensureEjs==='function')ensureEjs(_send);else _send();
+    window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);
+  },true);
+})();
+</script>
+
 </body>
 </html>
 
