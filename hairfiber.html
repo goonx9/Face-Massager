@@ -866,28 +866,45 @@ fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category
       utm_campaign:attr.utm_campaign||'',utm_content:attr.utm_content||'',
       referrer:attr.referrer||'',landing_page:attr.landing_page||''};
     if(d.size)ep.size=d.size;
-    var _nav=function(){window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);};
-
-    // Safety: always redirect after 4s if emailjs hangs or fails silently
-    var _navTimer=setTimeout(function(){_nav();},4000);
-    var _navOnce=function(){clearTimeout(_navTimer);_nav();};
+    // Fire-and-forget email (no redirect)
     var _doSendSafe=function(){
       if(typeof emailjs!=='undefined'){
-        emailjs.send('service_gxhivxk','template_239s5yz',ep)
-          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
+        emailjs.send('service_gxhivxk','template_239s5yz',ep).catch(function(err){console.error('EmailJS:',err);});
         return;
       }
       var _ejs=document.createElement('script');
       _ejs.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
       _ejs.onload=function(){
         try{emailjs.init('_h1UzYlyePtWt0IqM');}catch(e){}
-        emailjs.send('service_gxhivxk','template_239s5yz',ep)
-          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
+        emailjs.send('service_gxhivxk','template_239s5yz',ep).catch(function(err){console.error('EmailJS:',err);});
       };
-      _ejs.onerror=function(){_navOnce();};
       document.head.appendChild(_ejs);
     };
     _doSendSafe();
+    // Instant inline success UI (jump-starter style — no thank-you page redirect)
+    var _waMsg=encodeURIComponent('*NEW ORDER*\n\u{1F516} Order ID: '+orderId+'\n\u{1F4E6} Product: '+pname+'\n\u{1F4B0} Total: \u20A6'+(typeof tot==='number'?tot.toLocaleString():tot)+'\n\u{1F464} Name: '+nm+'\n\u{1F4DE} Phone: '+ph+'\n\u{1F4CD} Address: '+(addr||'')+', '+(loc||'')+'\n\u{1F4B3} Payment: Pay on Delivery\n\nPlease confirm my delivery.');
+    var _frm=document.getElementById('orderForm');
+    var _showOid='<div style="background:#f1f5f9;padding:.3rem .8rem;border-radius:9999px;font-size:.82rem;font-weight:700;color:#475569;display:inline-block;margin-bottom:.75rem;">Order ID: '+orderId+'</div>';
+    if(_frm){
+      _frm.innerHTML='<div style="text-align:center;padding:2.5rem 1rem;">'+
+        '<div style="width:64px;height:64px;background:#dcfce7;color:#16a34a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">'+
+        '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+
+        '</div>'+_showOid+
+        '<h3 style="font-size:1.55rem;font-weight:800;color:#0f172a;margin-bottom:.5rem;">Order Received! \uD83C\uDF89</h3>'+
+        '<div style="background:linear-gradient(135deg,#FFF3CD,#FFFAE5);border:2px solid #FFCA28;border-radius:12px;padding:14px 18px;margin:1rem auto;max-width:400px;text-align:center;">'+
+        '<div style="font-size:22px;margin-bottom:6px;">\uD83D\uDCDE</div>'+
+        '<p style="font-size:.8rem;font-weight:900;color:#7B5800;letter-spacing:.04em;margin:0 0 4px;">EXPECT A CALL OR TEXT FROM US</p>'+
+        '<p style="font-size:1.2rem;font-weight:900;color:#1A1A1A;margin:0 0 4px;">08039940408</p>'+
+        '<p style="font-size:.78rem;font-weight:700;color:#92400e;line-height:1.5;margin:0;">We\'ll call to confirm your order & delivery time before dispatch.</p>'+
+        '</div>'+
+        '<p style="color:#64748b;font-size:.95rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;">Thank you, <strong>'+nm+'</strong>. Your order for <strong>'+pname+'</strong> has been logged. Tap below to confirm on WhatsApp.</p>'+
+        '<div style="display:flex;flex-direction:column;gap:.75rem;max-width:340px;margin:0 auto;">'+
+        '<a href="https://wa.me/2348039940408?text='+_waMsg+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:900;font-size:.95rem;padding:1rem 1.5rem;border-radius:9999px;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.3);">\uD83D\uDCAC Confirm on WhatsApp</a>'+
+        '<a href="#" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;" style="display:flex;align-items:center;justify-content:center;padding:.75rem;background:#f1f5f9;color:#475569;border-radius:9999px;font-size:.82rem;font-weight:700;text-decoration:none;">Back to Top</a>'+
+        '</div></div>';
+      var _sec=_frm.closest('section')||_frm.parentElement;
+      if(_sec)_sec.scrollIntoView({behavior:'smooth'});
+    }
   },true);
 })();
 </script>
