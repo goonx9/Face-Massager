@@ -637,6 +637,8 @@ function showOrderConfirmed(nm,tot,pname,ids){
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(isSub)return;
+    /* FrankAgent handles submission — old handler disabled */
+    return;
     isSub=true;
     var btn=document.getElementById('submitBtn');
     btn.disabled=true;btn.textContent='Opening WhatsApp...';
