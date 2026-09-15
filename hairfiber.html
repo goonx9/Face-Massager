@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -925,6 +925,7 @@ fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category
         fbq('init','446510071587010',{ph:rp,fn:(nm.split(' ')[0]||'').toLowerCase(),ct:loc.toLowerCase(),st:'lagos',country:'ng'});
         fbq('track','Lead',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId});
         fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
+        fbq('track','Purchase',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',num_items:1,order_id:orderId});
       }
 
       // ── Send email fire-and-forget ──
