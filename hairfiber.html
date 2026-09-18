@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -24,8 +24,13 @@ img,video{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;border:none;background:none;font-family:inherit}
 input,select,textarea{font-family:inherit}
-#ub{position:fixed;top:0;left:0;right:0;z-index:200;background:linear-gradient(90deg,#1a0a0f,#3d0015,#1a0a0f);background-size:200%;animation:mb 3s linear infinite;color:#fff;text-align:center;padding:10px 16px;font-size:9.5px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
-@keyframes mb{0%{background-position:100% 0}100%{background-position:-100% 0}}
+#ub{position:fixed;top:0;left:0;right:0;z-index:200;background:linear-gradient(135deg,#7b0019 0%,#c90035 50%,#7b0019 100%);background-size:200% 100%;animation:mb 5s ease infinite;color:#fff;padding:0 12px}
+@keyframes mb{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.ub-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 10px;padding:7px 8px;min-height:34px}
+.ub-chip{font-size:10.5px;font-weight:700;letter-spacing:.04em;white-space:nowrap}
+.ub-chip a{color:#fde68a;font-weight:900;text-decoration:none;border-bottom:1px solid rgba(253,230,138,.4)}
+.ub-chip a:hover{color:#fff;border-color:#fff}
+.ub-dot-sep{width:4px;height:4px;background:rgba(255,255,255,.4);border-radius:50%;flex-shrink:0}
 #nav{position:fixed;top:36px;left:0;right:0;z-index:199;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid #fce7f3;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
 #ts{position:fixed;top:92px;left:0;right:0;z-index:198;background:#fff9fb;border-bottom:1px solid #fce7f3;display:flex;align-items:center;justify-content:center;gap:20px;padding:7px 16px;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9b2335;overflow:hidden;white-space:nowrap}
 main{padding-top:128px}
@@ -132,7 +137,7 @@ main{padding-top:128px}
 <body style="background:#fff;margin:0;padding:0">
 
 <!-- Urgency Bar -->
-<div id="ub">🚨 Lagos only · Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos+and+I+would+like+to+order+the+Hairline+Filler+Spray" target="_blank" rel="noopener" style="color:#86efac;font-weight:900;text-decoration:underline">Chat us on WhatsApp to order</a> · Only order if you're available to receive delivery</div>
+<div id="ub"><div class="ub-inner"><span class="ub-chip">&#128666; FREE Lagos Delivery</span><span class="ub-dot-sep"></span><span class="ub-chip">&#128179; Pay on Delivery</span><span class="ub-dot-sep"></span><span class="ub-chip">Outside Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos+and+I+would+like+to+order+the+Hairline+Filler+Spray" target="_blank" rel="noopener">WhatsApp us &#8594;</a></span></div></div>
 
 <!-- Nav -->
 <nav id="nav">
@@ -774,15 +779,17 @@ fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"/></noscript>
 <script>
 (function(){
-  /* ── FrankAgent v3 — Nuclear clean handler ───────────────────────────
-     Clones form to strip ALL competing listeners. Explicit emailjs.init()
-     before every send. Inline success UI. No redirect. No conflicts.    */
+  /* ── FrankAgent v4 — Hardened Order System ────────────────────────────
+     Fixes: emailjs.init compat, pixel retry, visual validation,
+     currency symbol, locStr deduplication, CDN onerror guard.          */
   var EJSVC  = 'service_gxhivxk';
   var EJSTPL = 'template_239s5yz';
   var EJSKEY = '_h1UzYlyePtWt0IqM';
   var WA_NUM = '2348039940408';
+  var NAIRA  = '\u20A6';
 
-  function rnd(n){ return Math.random().toString(36).substr(2,n).toUpperCase().replace(/[^A-Z0-9]/g,'0').substr(0,n); }
+  /* ── Helpers ──────────────────────────────────────────────────────── */
+  function rnd(n){ return Math.random().toString(36).substr(2,n+4).toUpperCase().replace(/[^A-Z0-9]/g,'').substr(0,n)||'00000000'.substr(0,n); }
   function makeOid(){ return 'HF-'+rnd(8)+'-'+rnd(5); }
 
   function getAttr(){
@@ -791,60 +798,114 @@ fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category
     var fb=p.get('fbclid')||sessionStorage.getItem('_fbclid')||'';
     if(p.get('fbclid'))sessionStorage.setItem('_fbclid',p.get('fbclid'));
     ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){if(p.get(k))sessionStorage.setItem('_'+k,p.get(k));});
-    return{fbclid:fb,_fbp:gc('_fbp')||'',_fbc:gc('_fbc')||(fb?'fb.1.'+Date.now()+'.'+fb:''),
+    return{
+      fbclid:fb, _fbp:gc('_fbp')||'',
+      _fbc:gc('_fbc')||(fb?'fb.1.'+Date.now()+'.'+fb:''),
       utm_source:p.get('utm_source')||sessionStorage.getItem('_utm_source')||'',
       utm_medium:p.get('utm_medium')||sessionStorage.getItem('_utm_medium')||'',
       utm_campaign:p.get('utm_campaign')||sessionStorage.getItem('_utm_campaign')||'',
-      referrer:document.referrer||'',landing_page:window.location.href};
+      referrer:document.referrer||'', landing_page:window.location.href
+    };
   }
 
+  /* ── EmailJS: init-safe, CDN-fallback, onerror-guarded ────────────── */
   function sendEmail(ep){
     var doSend = function(){
-      try{ emailjs.init({publicKey:EJSKEY}); }catch(e){}
-      emailjs.send(EJSVC,EJSTPL,ep).catch(function(err){ console.error('EJS:',err); });
+      // v3 & v4 compatible init — string form works in both
+      try{ emailjs.init(EJSKEY); }catch(ignore){}
+      emailjs.send(EJSVC, EJSTPL, ep)
+        .then(function(){ console.log('[FrankAgent] Email sent OK'); })
+        .catch(function(err){ console.error('[FrankAgent] Email error:', err); });
     };
     if(typeof emailjs !== 'undefined'){ doSend(); return; }
-    var s=document.createElement('script');
-    s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    s.onload=function(){ doSend(); };
+    // CDN fallback
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload  = function(){ doSend(); };
+    s.onerror = function(){ console.error('[FrankAgent] EmailJS CDN failed to load'); };
     document.head.appendChild(s);
   }
 
+  /* ── Meta Pixel: fires immediately, retries once if fbq not ready ── */
+  function firePixel(pname, tot, orderId, ph, nm, loc){
+    var doFire = function(){
+      if(typeof fbq !== 'function') return;
+      var rp = (ph||'').replace(/\D/g,'');
+      if(rp.charAt(0)==='0') rp='234'+rp.substring(1);
+      else if(rp.substring(0,3)!=='234') rp='234'+rp;
+      fbq('init','446510071587010',{
+        ph:rp,
+        fn:(nm.split(' ')[0]||'').toLowerCase(),
+        ln:(nm.split(' ').slice(1).join(' ')||'').toLowerCase(),
+        ct:(loc||'').toLowerCase(), st:'lagos', country:'ng'
+      });
+      fbq('track','Lead',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId});
+      fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
+      fbq('track','Purchase',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',num_items:1,order_id:orderId});
+      console.log('[FrankAgent] Pixel events fired: Lead, OrderSubmitted, Purchase');
+    };
+    if(typeof fbq === 'function'){ doFire(); }
+    else{ setTimeout(function(){ doFire(); }, 2500); } // retry after 2.5s
+  }
+
+  /* ── Visual field validation (no alert()) ──────────────────────────── */
+  function showFieldErr(el, msg){
+    el.style.borderColor='#dc2626';
+    el.style.boxShadow='0 0 0 3px rgba(220,38,38,.15)';
+    var old = el.parentNode.querySelector('.fa-err');
+    if(old) old.remove();
+    var p = document.createElement('p');
+    p.className='fa-err';
+    p.style.cssText='color:#dc2626;font-size:11px;font-weight:700;margin:4px 0 0 2px;';
+    p.textContent='\u26A0\uFE0F '+msg;
+    el.insertAdjacentElement('afterend', p);
+    el.addEventListener('input', function clr(){
+      el.style.borderColor=''; el.style.boxShadow='';
+      var e=el.parentNode.querySelector('.fa-err');if(e)e.remove();
+      el.removeEventListener('input',clr);
+    });
+  }
+  function clearErrs(form){
+    form.querySelectorAll('.fa-err').forEach(function(e){e.remove();});
+    form.querySelectorAll('input,select,textarea').forEach(function(f){f.style.borderColor='';f.style.boxShadow='';});
+  }
+
+  /* ── Inline success UI ────────────────────────────────────────────── */
   function showSuccess(form, nm, pname, orderId, tot, waMsg){
-    var frm = document.getElementById('orderForm');
-    if(!frm) frm = form;
+    var frm = document.getElementById('orderForm') || form;
+    // ensure the form container is visible before replacing
+    var sec = frm.closest('section') || frm.closest('.fc') || frm.parentElement;
+    if(sec){ sec.style.cssText += ';display:block!important;visibility:visible!important;opacity:1!important'; }
     frm.innerHTML =
       '<div style="text-align:center;padding:2.5rem 1rem;">'+
       '<div style="width:64px;height:64px;background:#dcfce7;color:#16a34a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">'+
       '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+
       '</div>'+
-      '<div style="background:#f1f5f9;padding:.3rem .8rem;border-radius:9999px;font-size:.82rem;font-weight:700;color:#475569;display:inline-block;margin-bottom:.75rem;">Order ID: '+orderId+'</div>'+
-      '<h3 style="font-size:1.55rem;font-weight:800;color:#0f172a;margin-bottom:.5rem;">Order Received! &#127881;</h3>'+
+      '<div style="background:#f1f5f9;padding:.3rem .9rem;border-radius:9999px;font-size:.8rem;font-weight:700;color:#475569;display:inline-block;margin-bottom:.75rem;">Order ID: '+orderId+'</div>'+
+      '<h3 style="font-size:1.5rem;font-weight:800;color:#0f172a;margin-bottom:.5rem;">Order Received! &#127881;</h3>'+
       '<div style="background:linear-gradient(135deg,#FFF3CD,#FFFAE5);border:2px solid #FFCA28;border-radius:12px;padding:14px 18px;margin:1rem auto;max-width:400px;text-align:center;">'+
       '<div style="font-size:22px;margin-bottom:6px;">&#128222;</div>'+
-      '<p style="font-size:.8rem;font-weight:900;color:#7B5800;letter-spacing:.04em;margin:0 0 4px;">EXPECT A CALL OR TEXT FROM US</p>'+
-      '<p style="font-size:1.2rem;font-weight:900;color:#1A1A1A;margin:0 0 4px;">08039940408</p>'+
-      '<p style="font-size:.78rem;font-weight:700;color:#92400e;line-height:1.5;margin:0;">We\'ll call to confirm your order &amp; delivery time before dispatch.</p>'+
+      '<p style="font-size:.78rem;font-weight:900;color:#7B5800;letter-spacing:.06em;margin:0 0 4px;text-transform:uppercase;">Expect a Call or Text From Us</p>'+
+      '<p style="font-size:1.3rem;font-weight:900;color:#1A1A1A;margin:0 0 4px;">08039940408</p>'+
+      '<p style="font-size:.76rem;font-weight:700;color:#92400e;line-height:1.55;margin:0;">We\'ll call to confirm your order &amp; delivery before dispatch.</p>'+
       '</div>'+
-      '<p style="color:#64748b;font-size:.95rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.6;">Thank you, <strong>'+nm+'</strong>. Your order for <strong>'+pname+'</strong> has been logged.</p>'+
+      '<p style="color:#64748b;font-size:.92rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.65;">Thank you, <strong>'+nm+'</strong>. Your <strong>'+pname+'</strong> order has been logged. Tap below to confirm faster.</p>'+
       '<div style="display:flex;flex-direction:column;gap:.75rem;max-width:340px;margin:0 auto;">'+
       '<a href="https://wa.me/'+WA_NUM+'?text='+waMsg+'" target="_blank" rel="noopener" '+
         'style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:900;font-size:.95rem;padding:1rem 1.5rem;border-radius:9999px;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.3);">'+
         '&#128172; Confirm on WhatsApp</a>'+
       '<a href="#" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;" '+
-        'style="display:flex;align-items:center;justify-content:center;padding:.75rem;background:#f1f5f9;color:#475569;border-radius:9999px;font-size:.82rem;font-weight:700;text-decoration:none;">Back to Top</a>'+
+        'style="display:flex;align-items:center;justify-content:center;padding:.75rem;background:#f1f5f9;color:#475569;border-radius:9999px;font-size:.82rem;font-weight:700;text-decoration:none;">&#8593; Back to Top</a>'+
       '</div></div>';
-    // Make sure the container is visible
-    var sec = frm.closest('section') || frm.closest('.fc') || frm.parentElement;
-    if(sec){ sec.style.display=''; sec.style.visibility='visible'; sec.style.opacity='1'; }
-    frm.scrollIntoView({behavior:'smooth'});
+    frm.scrollIntoView({behavior:'smooth', block:'start'});
   }
 
+  /* ── Main: DOM ready ──────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function(){
     var origForm = document.getElementById('orderForm');
-    if(!origForm) return;
+    if(!origForm){ console.error('[FrankAgent] orderForm not found'); return; }
 
-    // ── NUCLEAR: clone form to remove ALL existing event listeners ──
+    // NUCLEAR: clone form to strip ALL prior event listeners
     var form = origForm.cloneNode(true);
     origForm.parentNode.replaceChild(form, origForm);
 
@@ -857,81 +918,115 @@ fbq('track','ViewContent',{content_name:'Hairline Filler Spray',content_category
       e.preventDefault();
       if(_done) return;
 
-      // ── Collect values ──
+      clearErrs(form);
+
+      // ── Collect ──────────────────────────────────────────────────
       var d     = Object.fromEntries(new FormData(form).entries());
       var nm    = (d.name||'').trim();
       var ph    = (d.phone||'').trim();
-      var aph   = (d.alt_phone||d.whatsapp||ph||'').trim();
+      var aph   = (d.alt_phone||ph).trim();
       var addr  = (d.address||'').trim();
-      var loc   = (d.location||d.city||'').trim();
-      var pname = d.product_name || 'Hairline Filler Spray';
-      var tot   = parseFloat(d.product_price) || (typeof basePrice !== 'undefined' ? basePrice : 35500);
+      var loc   = (d.location||'').trim();
+      var pname = (d.product_name||'Hairline Filler Spray').trim();
+      var tot   = parseFloat(d.product_price) || (typeof basePrice!=='undefined'?basePrice:35500);
       var ts    = new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Africa/Lagos'});
 
-      // ── Basic validation ──
-      var err = '';
-      if(!nm)   err = 'Please enter your name';
-      else if(!ph) err = 'Please enter your phone number';
-      else if(!addr) err = 'Please enter your delivery address';
-      if(err){
-        alert(err);
+      // ── Validate ─────────────────────────────────────────────────
+      var firstErr = null;
+      if(!nm){
+        showFieldErr(form.querySelector('[name="name"]'),'Please enter your full name');
+        firstErr = firstErr || form.querySelector('[name="name"]');
+      }
+      if(!ph || ph.replace(/\D/g,'').length < 10){
+        showFieldErr(form.querySelector('[name="phone"]'),'Please enter a valid phone number');
+        firstErr = firstErr || form.querySelector('[name="phone"]');
+      }
+      if(!loc){
+        var locEl = form.querySelector('[name="location"],#locationSelect');
+        if(locEl){ showFieldErr(locEl,'Please select your delivery area'); firstErr = firstErr || locEl; }
+      }
+      if(!addr){
+        showFieldErr(form.querySelector('[name="address"]'),'Please enter your delivery address');
+        firstErr = firstErr || form.querySelector('[name="address"]');
+      }
+      if(firstErr){
+        firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+        setTimeout(function(){try{firstErr.focus();}catch(x){}},400);
         return;
       }
 
+      // ── Lock ──────────────────────────────────────────────────────
       _done = true;
       var btn = form.querySelector('button[type="submit"],#submitBtn');
-      if(btn){ btn.disabled=true; btn.textContent='Placing your order...'; }
+      if(btn){ btn.disabled=true; btn.innerHTML='<span style="display:inline-flex;align-items:center;gap:6px;">Placing your order&hellip;</span>'; }
 
-      var attr = getAttr();
-      var locStr = [loc, 'Lagos'].filter(Boolean).join(', ');
+      var attr   = getAttr();
+      // Build locStr — avoid 'Lagos, Lagos' duplication
+      var locStr = loc && loc.toLowerCase()!=='lagos' ? loc+', Lagos' : (loc||'Lagos');
 
-      // ── WhatsApp message ──
-      var rawMsg = '*NEW ORDER (HAIRLINE FILLER)*\n' +
-        'Order ID: '+orderId+'\n' +
-        'Product: '+pname+'\n' +
-        'Total: N'+tot.toLocaleString()+'\n' +
-        'Name: '+nm+'\n' +
-        'Phone: '+ph+'\n' +
-        'Address: '+addr+', '+locStr+'\n' +
-        'Payment: Pay on Delivery\n\nPlease confirm my delivery.';
+      // ── WhatsApp message ──────────────────────────────────────────
+      var rawMsg =
+        '*NEW ORDER \u2014 HAIRLINE FILLER SPRAY*\n'+
+        '\uD83D\uDD16 Order ID: '+orderId+'\n\n'+
+        '\uD83D\uDCE6 Product: '+pname+'\n'+
+        '\uD83D\uDCB0 Total: '+NAIRA+tot.toLocaleString()+'\n'+
+        '\uD83D\uDEBF Payment: Pay on Delivery\n\n'+
+        '\uD83D\uDC64 Name: '+nm+'\n'+
+        '\uD83D\uDCDE Phone: '+ph+'\n'+
+        '\uD83D\uDCCD Address: '+addr+', '+locStr+'\n\n'+
+        'Please confirm my delivery. Thank you!';
       var waMsg = encodeURIComponent(rawMsg);
 
-      // ── EmailJS payload ──
+      // ── EmailJS payload ───────────────────────────────────────────
       var ep = {
-        order_id: orderId, to_name:'FrankAgent', from_name:nm,
-        customer_name:nm, name:nm,
-        message: '=== NEW ORDER (HAIRLINE FILLER) ===\nOrder ID: '+orderId+'\nDate: '+ts+
-          '\nProduct: '+pname+'\nTotal: N'+tot.toLocaleString()+
-          '\nName: '+nm+'\nPhone: '+ph+'\nAlt: '+aph+
-          '\nAddress: '+addr+'\nLocation: '+locStr+
-          '\nPayment: Pay on Delivery\n'+
-          '\nUTM: '+attr.utm_source+' / '+attr.utm_medium+' / '+attr.utm_campaign+
-          '\nFBCLID: '+attr.fbclid+'\nReferrer: '+attr.referrer,
-        customer_phone:ph, phone:ph, alternative_phone:aph, alt_phone:aph,
-        customer_address:addr, address:addr, location:locStr, city:loc, state:'Lagos',
-        product_name:pname, product:pname,
-        price:'N'+tot.toLocaleString(), total:'N'+tot.toLocaleString(),
-        total_amount:'N'+tot.toLocaleString(), currency:'NGN',
-        payment_method:'Pay on Delivery', delivery_fee:'FREE', date:ts,
-        fbclid:attr.fbclid||'', utm_source:attr.utm_source||'',
-        utm_medium:attr.utm_medium||'', utm_campaign:attr.utm_campaign||'',
-        referrer:attr.referrer||'', landing_page:attr.landing_page||''
+        order_id:       orderId,
+        to_name:        'FrankAgent',
+        from_name:      nm,
+        customer_name:  nm, name: nm,
+        customer_phone: ph, phone: ph,
+        alternative_phone: aph, alt_phone: aph,
+        customer_address: addr, address: addr,
+        location: locStr, city: loc, state: 'Lagos',
+        product_name: pname, product: pname,
+        price:        NAIRA+tot.toLocaleString(),
+        total:        NAIRA+tot.toLocaleString(),
+        total_amount: NAIRA+tot.toLocaleString(),
+        currency: 'NGN', payment_method: 'Pay on Delivery',
+        delivery_fee: 'FREE', date: ts,
+        fbclid:       attr.fbclid||'',
+        utm_source:   attr.utm_source||'',
+        utm_medium:   attr.utm_medium||'',
+        utm_campaign: attr.utm_campaign||'',
+        referrer:     attr.referrer||'',
+        landing_page: attr.landing_page||'',
+        message:
+          '=== NEW ORDER \u2014 HAIRLINE FILLER SPRAY ===\n'+
+          'Order ID:    '+orderId+'\n'+
+          'Date:        '+ts+'\n\n'+
+          'Product:     '+pname+'\n'+
+          'Total:       '+NAIRA+tot.toLocaleString()+'\n'+
+          'Delivery:    FREE\n'+
+          'Payment:     Pay on Delivery\n\n'+
+          'Name:        '+nm+'\n'+
+          'Phone:       '+ph+'\n'+
+          'Alt Phone:   '+aph+'\n'+
+          'Address:     '+addr+'\n'+
+          'Location:    '+locStr+'\n\n'+
+          'UTM Source:  '+(attr.utm_source||'-')+'\n'+
+          'UTM Medium:  '+(attr.utm_medium||'-')+'\n'+
+          'UTM Camp:    '+(attr.utm_campaign||'-')+'\n'+
+          'FBCLID:      '+(attr.fbclid||'-')+'\n'+
+          'Referrer:    '+(attr.referrer||'Direct')+'\n'+
+          'Landing:     '+(attr.landing_page||'-')
       };
 
-      // ── Meta Pixel ──
-      if(typeof fbq === 'function'){
-        var rp=(ph||'').replace(/\D/g,'');
-        if(rp.startsWith('0'))rp='234'+rp.substring(1);
-        fbq('init','446510071587010',{ph:rp,fn:(nm.split(' ')[0]||'').toLowerCase(),ct:loc.toLowerCase(),st:'lagos',country:'ng'});
-        fbq('track','Lead',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId});
-        fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
-        fbq('track','Purchase',{content_name:pname,content_ids:['hf_001'],content_type:'product',value:tot,currency:'NGN',num_items:1,order_id:orderId});
-      }
+      // ── Fire pixel (with 2.5s retry if fbq not ready) ─────────────
+      firePixel(pname, tot, orderId, ph, nm, loc);
 
-      // ── Send email fire-and-forget ──
+      // ── Send email fire-and-forget ─────────────────────────────────
       sendEmail(ep);
 
-      // ── Show success UI immediately ──
+      // ── Show success UI ────────────────────────────────────────────
       showSuccess(form, nm, pname, orderId, tot, waMsg);
     });
   });
