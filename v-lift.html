@@ -522,192 +522,193 @@ main{padding-top:128px}
 
 
 <script>
-// ── Pixel + helpers ──────────────────────────────────────────
-var _icFired=false;
-function fireIC(){
-  if(_icFired)return;
-  _icFired=true;
-  var pn=(document.getElementById('hp_name')||{value:'V-Lift Pro Face Massager'}).value;
-  var pv=parseInt((document.getElementById('hp_price')||{value:'26500'}).value)||26500;
-  if(typeof fbq==='function')fbq('track','InitiateCheckout',{content_name:pn,content_ids:['vlift_001'],content_type:'product',value:pv,currency:'NGN'});
-}
-function scrollToOrder(){
-  var el=document.getElementById('order');
-  if(!el)return;
-  window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-130,behavior:'smooth'});
-  fireIC();
-}
-// IC on scroll into form
-(function(){var oe=document.getElementById('order');if(oe&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){fireIC();io.disconnect();}});},{threshold:0.15});io.observe(oe);}})();
-
-// ── Bundle selector ──────────────────────────────────────────
-function selectBundle(name,price){
-  document.getElementById('hp_name').value=name;
-  document.getElementById('hp_price').value=price;
-  var fmt='\u20A6'+price.toLocaleString();
-  document.getElementById('sp').textContent=name;
-  document.getElementById('spr').textContent=fmt;
-  document.getElementById('st').textContent=fmt;
-  document.getElementById('cs').classList.toggle('sel',name.indexOf('Standard')>-1);
-  document.getElementById('cb').classList.toggle('sel',name.indexOf('Bundle')>-1);
-  scrollToOrder();
-}
-
-// ── State -> City ─────────────────────────────────────────────
-var cities={Lagos:['Lagos Island','Mainland','Ikeja','Lekki Phase 1','Lekki Phase 2','Ajah / Sangotedo','Victoria Island','Ikoyi','Surulere','Yaba','Gbagada','Maryland','Ikorodu','Epe','Alimosho','Agege','Oshodi','Festac','Badagry','Apapa','Mushin','Ketu / Ojota']};
-function updateCities(){
-  var st=document.getElementById('stateSelect').value;
-  var cs=document.getElementById('citySelect');
-  cs.innerHTML='<option value="" disabled selected>— Select your area —</option>';
-  if(cities[st]){cities[st].forEach(function(c){var o=document.createElement('option');o.value=c;o.textContent=c;cs.appendChild(o);});cs.disabled=false;}
-  var cl=document.getElementById('cl');if(cl)cl.textContent='Lagos';
-}
-document.addEventListener('DOMContentLoaded',function(){updateCities();});
-
-// ── FAQ ───────────────────────────────────────────────────────
-function tFaq(el){
-  var item=el.parentElement,wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.fqi').forEach(function(f){f.classList.remove('open');});
-  if(!wasOpen)item.classList.add('open');
-}
-
-
-// ── Demo video: play on intersection (keeps LCP clean) ───────────
 (function(){
-  var v=document.getElementById('demoVid');
-  if(!v||!window.IntersectionObserver)return;
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){v.play();}else{v.pause();}
+  /* ── FrankAgent v4 — V-Lift Face Sculptor ─────────────────────────────
+     emailjs.init string-compat, CDN onerror, pixel 2.5s retry,
+     visual validation, naira symbol, locStr dedup.                     */
+  var EJSVC  = 'service_gxhivxk';
+  var EJSTPL = 'template_239s5yz';
+  var EJSKEY = '_h1UzYlyePtWt0IqM';
+  var WA_NUM = '2348039940408';
+  var NAIRA  = '\u20A6';
+  var PX_ID  = '4029546293858823';
+
+  function rnd(n){ return Math.random().toString(36).substr(2,n+4).toUpperCase().replace(/[^A-Z0-9]/g,'').substr(0,n)||'00000000'.substr(0,n); }
+  function makeOid(){ return 'VL-'+rnd(8)+'-'+rnd(5); }
+
+  function getAttr(){
+    var p=new URLSearchParams(window.location.search);
+    var gc=function(n){var m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));return m?decodeURIComponent(m[2]):'';};
+    var fb=p.get('fbclid')||sessionStorage.getItem('_fbclid')||'';
+    if(p.get('fbclid'))sessionStorage.setItem('_fbclid',p.get('fbclid'));
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){if(p.get(k))sessionStorage.setItem('_'+k,p.get(k));});
+    return{fbclid:fb,_fbp:gc('_fbp')||'',
+      _fbc:gc('_fbc')||(fb?'fb.1.'+Date.now()+'.'+fb:''),
+      utm_source:p.get('utm_source')||sessionStorage.getItem('_utm_source')||'',
+      utm_medium:p.get('utm_medium')||sessionStorage.getItem('_utm_medium')||'',
+      utm_campaign:p.get('utm_campaign')||sessionStorage.getItem('_utm_campaign')||'',
+      referrer:document.referrer||'',landing_page:window.location.href};
+  }
+
+  function sendEmail(ep){
+    var doSend=function(){
+      try{ emailjs.init(EJSKEY); }catch(ignore){}
+      emailjs.send(EJSVC,EJSTPL,ep)
+        .then(function(){ console.log('[FrankAgent] Email sent OK'); })
+        .catch(function(err){ console.error('[FrankAgent] Email error:',err); });
+    };
+    if(typeof emailjs!=='undefined'){ doSend(); return; }
+    var s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload=function(){ doSend(); };
+    s.onerror=function(){ console.error('[FrankAgent] EmailJS CDN failed'); };
+    document.head.appendChild(s);
+  }
+
+  function firePixel(pname,tot,orderId,ph,nm,loc){
+    var doFire=function(){
+      if(typeof fbq!=='function') return;
+      var rp=(ph||'').replace(/\D/g,'');
+      if(rp.charAt(0)==='0')rp='234'+rp.substring(1);
+      else if(rp.substring(0,3)!=='234')rp='234'+rp;
+      fbq('init',PX_ID,{ph:rp,fn:(nm.split(' ')[0]||'').toLowerCase(),ln:(nm.split(' ').slice(1).join(' ')||'').toLowerCase(),ct:(loc||'').toLowerCase(),country:'ng'});
+      fbq('track','Lead',{content_name:pname,content_ids:['vlift_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId});
+      fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
+      fbq('track','Purchase',{content_name:pname,content_ids:['vlift_001'],content_type:'product',value:tot,currency:'NGN',num_items:1,order_id:orderId});
+      console.log('[FrankAgent] Pixel fired: Lead, OrderSubmitted, Purchase');
+    };
+    if(typeof fbq==='function'){ doFire(); }
+    else{ setTimeout(function(){ doFire(); },2500); }
+  }
+
+  function showFieldErr(el,msg){
+    if(!el) return;
+    el.style.borderColor='#dc2626'; el.style.boxShadow='0 0 0 3px rgba(220,38,38,.15)';
+    var old=el.parentNode.querySelector('.fa-err'); if(old)old.remove();
+    var p=document.createElement('p'); p.className='fa-err';
+    p.style.cssText='color:#dc2626;font-size:11px;font-weight:700;margin:4px 0 0 2px;';
+    p.textContent='\u26A0\uFE0F '+msg;
+    el.insertAdjacentElement('afterend',p);
+    el.addEventListener('input',function clr(){el.style.borderColor='';el.style.boxShadow='';var e=el.parentNode.querySelector('.fa-err');if(e)e.remove();el.removeEventListener('input',clr);});
+  }
+  function clearErrs(form){ form.querySelectorAll('.fa-err').forEach(function(e){e.remove();}); form.querySelectorAll('input,select,textarea').forEach(function(f){f.style.borderColor='';f.style.boxShadow='';}); }
+
+  function showSuccess(form,nm,pname,orderId,tot,waMsg){
+    var frm=document.getElementById('orderForm')||form;
+    var sec=frm.closest('section')||frm.closest('.fc')||frm.parentElement;
+    if(sec){ sec.style.cssText+=';display:block!important;visibility:visible!important;opacity:1!important'; }
+    frm.innerHTML=
+      '<div style="text-align:center;padding:2.5rem 1rem;">'+
+      '<div style="width:64px;height:64px;background:#dcfce7;color:#16a34a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">'+
+      '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+
+      '</div>'+
+      '<div style="background:#f1f5f9;padding:.3rem .9rem;border-radius:9999px;font-size:.8rem;font-weight:700;color:#475569;display:inline-block;margin-bottom:.75rem;">Order ID: '+orderId+'</div>'+
+      '<h3 style="font-size:1.5rem;font-weight:800;color:#0f172a;margin-bottom:.5rem;">Order Received! &#127881;</h3>'+
+      '<div style="background:linear-gradient(135deg,#FFF3CD,#FFFAE5);border:2px solid #FFCA28;border-radius:12px;padding:14px 18px;margin:1rem auto;max-width:400px;text-align:center;">'+
+      '<div style="font-size:22px;margin-bottom:6px;">&#128222;</div>'+
+      '<p style="font-size:.78rem;font-weight:900;color:#7B5800;letter-spacing:.06em;margin:0 0 4px;text-transform:uppercase;">Expect a Call or Text From Us</p>'+
+      '<p style="font-size:1.3rem;font-weight:900;color:#1A1A1A;margin:0 0 4px;">08039940408</p>'+
+      '<p style="font-size:.76rem;font-weight:700;color:#92400e;line-height:1.55;margin:0;">We\'ll call to confirm your order &amp; delivery before dispatch.</p>'+
+      '</div>'+
+      '<p style="color:#64748b;font-size:.92rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.65;">Thank you, <strong>'+nm+'</strong>. Your <strong>'+pname+'</strong> order has been logged. Tap below to confirm faster.</p>'+
+      '<div style="display:flex;flex-direction:column;gap:.75rem;max-width:340px;margin:0 auto;">'+
+      '<a href="https://wa.me/'+WA_NUM+'?text='+waMsg+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:900;font-size:.95rem;padding:1rem 1.5rem;border-radius:9999px;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.3);">&#128172; Confirm on WhatsApp</a>'+
+      '<a href="#" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;" style="display:flex;align-items:center;justify-content:center;padding:.75rem;background:#f1f5f9;color:#475569;border-radius:9999px;font-size:.82rem;font-weight:700;text-decoration:none;">&#8593; Back to Top</a>'+
+      '</div></div>';
+    frm.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    var origForm=document.getElementById('orderForm');
+    if(!origForm){ console.error('[FrankAgent] orderForm not found'); return; }
+
+    // NUCLEAR: clone to strip all prior listeners
+    var form=origForm.cloneNode(true);
+    origForm.parentNode.replaceChild(form,origForm);
+
+    var _done=false;
+    var orderId=makeOid();
+    var oidEl=form.querySelector('#order_id,[name="order_id"]');
+    if(oidEl) oidEl.value=orderId;
+
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(_done) return;
+      clearErrs(form);
+
+      var d=Object.fromEntries(new FormData(form).entries());
+      var nm    =(d.name||'').trim();
+      var ph    =(d.phone||'').trim();
+      var aph   =(d.alt_phone||ph).trim();
+      var state =(d.state||'').trim();
+      var loc   =(d.location||'').trim();
+      var addr  =(d.address||'').trim();
+      var pname =(d.product_name||'V-Lift Face Sculptor').trim();
+      var tot   =parseFloat(d.product_price)||26500;
+      var ts    =new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Africa/Lagos'});
+
+      // Validate
+      var firstErr=null;
+      if(!nm){ showFieldErr(form.querySelector('[name="name"]'),'Please enter your full name'); firstErr=firstErr||form.querySelector('[name="name"]'); }
+      if(!ph||ph.replace(/\D/g,'').length<10){ showFieldErr(form.querySelector('[name="phone"]'),'Please enter a valid phone number'); firstErr=firstErr||form.querySelector('[name="phone"]'); }
+      if(!state){ var sEl=form.querySelector('[name="state"]'); if(sEl){ showFieldErr(sEl,'Please select your state'); firstErr=firstErr||sEl; } }
+      if(!addr){ showFieldErr(form.querySelector('[name="address"]'),'Please enter your delivery address'); firstErr=firstErr||form.querySelector('[name="address"]'); }
+      if(firstErr){ firstErr.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){try{firstErr.focus();}catch(x){}},400); return; }
+
+      _done=true;
+      var btn=form.querySelector('button[type="submit"],#submitBtn');
+      if(btn){ btn.disabled=true; btn.innerHTML='Placing your order&hellip;'; }
+
+      var attr=getAttr();
+      var locStr=loc&&loc!==state ? loc+', '+state : (state||'Nigeria');
+
+      var rawMsg=
+        '*NEW ORDER \u2014 V-LIFT FACE SCULPTOR*\n'+
+        '\uD83D\uDD16 Order ID: '+orderId+'\n\n'+
+        '\uD83D\uDCE6 Product: '+pname+'\n'+
+        '\uD83D\uDCB0 Total: '+NAIRA+tot.toLocaleString()+'\n'+
+        '\uD83D\uDEBF Payment: Pay on Delivery\n\n'+
+        '\uD83D\uDC64 Name: '+nm+'\n'+
+        '\uD83D\uDCDE Phone: '+ph+'\n'+
+        '\uD83D\uDCCD Address: '+addr+', '+locStr+'\n\n'+
+        'Please confirm my delivery. Thank you!';
+      var waMsg=encodeURIComponent(rawMsg);
+
+      var ep={
+        order_id:orderId, to_name:'FrankAgent', from_name:nm,
+        customer_name:nm, name:nm,
+        customer_phone:ph, phone:ph, alternative_phone:aph, alt_phone:aph,
+        customer_address:addr, address:addr, location:locStr, city:loc, state:state,
+        product_name:pname, product:pname,
+        price:NAIRA+tot.toLocaleString(), total:NAIRA+tot.toLocaleString(),
+        total_amount:NAIRA+tot.toLocaleString(), currency:'NGN',
+        payment_method:'Pay on Delivery', delivery_fee:'FREE', date:ts,
+        fbclid:attr.fbclid||'', utm_source:attr.utm_source||'',
+        utm_medium:attr.utm_medium||'', utm_campaign:attr.utm_campaign||'',
+        referrer:attr.referrer||'', landing_page:attr.landing_page||'',
+        message:
+          '=== NEW ORDER \u2014 V-LIFT FACE SCULPTOR ===\n'+
+          'Order ID:    '+orderId+'\n'+
+          'Date:        '+ts+'\n\n'+
+          'Product:     '+pname+'\n'+
+          'Total:       '+NAIRA+tot.toLocaleString()+'\n'+
+          'Payment:     Pay on Delivery\n\n'+
+          'Name:        '+nm+'\n'+
+          'Phone:       '+ph+'\n'+
+          'Alt Phone:   '+aph+'\n'+
+          'Address:     '+addr+'\n'+
+          'Location:    '+locStr+'\n\n'+
+          'UTM Source:  '+(attr.utm_source||'-')+'\n'+
+          'UTM Medium:  '+(attr.utm_medium||'-')+'\n'+
+          'UTM Camp:    '+(attr.utm_campaign||'-')+'\n'+
+          'FBCLID:      '+(attr.fbclid||'-')+'\n'+
+          'Referrer:    '+(attr.referrer||'Direct')
+      };
+
+      firePixel(pname,tot,orderId,ph,nm,loc||state);
+      sendEmail(ep);
+      showSuccess(form,nm,pname,orderId,tot,waMsg);
     });
-  },{threshold:0.25});
-  io.observe(v);
-})();
-// ── Trust nudge (shows once on scroll) ─────────────────────
-(function(){
-  var ni=document.getElementById('on');
-  if(!ni)return;
-  var shown=false;
-  window.addEventListener('scroll',function(){
-    if(!shown&&window.scrollY>400){shown=true;ni.classList.add('show');setTimeout(function(){ni.classList.remove('show');},6000);}
-  },{passive:true});
-})();
-
-// ── Sticky CTA ────────────────────────────────────────────────
-(function(){
-  var bar=document.getElementById('scta'),ord=document.getElementById('order');
-  if(!bar||!ord)return;
-  window.addEventListener('scroll',function(){
-    var sy=window.scrollY,ot=ord.getBoundingClientRect().top+window.scrollY;
-    bar.classList.toggle('v',sy>120&&sy<ot-100);
-  },{passive:true});
-})();
-
-
-
-// Lazy EmailJS
-var _ejsLoading=false;
-function ensureEjs(cb){
-  if(typeof emailjs!=='undefined'){cb();return;}
-  if(_ejsLoading){var t=setInterval(function(){if(typeof emailjs!=='undefined'){clearInterval(t);cb();}},80);return;}
-  _ejsLoading=true;
-  var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-  s.onload=function(){emailjs.init('_h1UzYlyePtWt0IqM');cb();};document.head.appendChild(s);
-}
-// ── IC on form focus ──────────────────────────────────────────
-(function(){
-  var fm=document.getElementById('orderForm');
-  if(fm)fm.addEventListener('focusin',function(){fireIC();ensureEjs(function(){});},{once:true});
-})();
-
-// ── Order confirmed: hide form, fire Purchase, show inline card ──
-function showOrderConfirmed(nm,tot,pname,ids){
-  var pm=document.getElementById('pm'),frm=document.getElementById('orderForm'),oc=document.getElementById('orderConfirm'),fc=frm&&frm.closest('.fc');
-  if(pm)pm.style.display='none';
-  if(fc)fc.style.display='none';
-  if(oc){oc.style.display='block';setTimeout(function(){oc.scrollIntoView({behavior:'smooth',block:'center'});},200);}
-  if(typeof fbq!=='undefined')fbq('track','Lead',{content_name:pname||'V-Lift Pro Face Massager',content_ids:ids||['vlift_001'],content_type:'product',value:tot||26500,currency:'NGN',num_items:1});
-  if(typeof window._orderConfirmed==='function')window._orderConfirmed();
-} (function(){var _o=document.getElementById('order_id');fbq('trackCustom','OrderSubmitted',{order_id:_o?_o.value:'',content_type:'product',payment_method:'Pay on Delivery',currency:'NGN'});})();
-// ── Form submission: instant Pixel + WhatsApp, no animation ──────
-(function(){
-  var form=document.getElementById('orderForm');
-  if(!form)return;
-  var isSub=false;
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(isSub)return;
-    /* FrankAgent handles submission — old handler disabled */
-    return;
-    isSub=true;
-    var btn=document.getElementById('submitBtn');
-    btn.disabled=true;btn.textContent='Opening WhatsApp...';
-    var fd=new FormData(e.target),data=Object.fromEntries(fd.entries());
-    var nm=data.name,ph=data.phone,aph=data.alt_phone||'None',addr=data.address,loc=data.location||'',state=data.state||'Lagos',pname=data.product_name,pprice=data.product_price,ts=new Date().toLocaleString(),tot=parseInt(pprice),pay='Pay on Delivery';
-    var _rawph=(ph||'').replace(/\D/g,'');if(_rawph.startsWith('0'))_rawph='234'+_rawph.substring(1);else if(!_rawph.startsWith('234'))_rawph='234'+_rawph;
-    var _np=(nm||'').trim().split(/\s+/),_fn=(_np[0]||'').toLowerCase(),_ln=_np.length>1?_np.slice(1).join(' ').toLowerCase():'';
-    var _ud={ph:_rawph,fn:_fn,ct:(loc||state).toLowerCase().replace(/[^a-z ]/g,''),st:state.toLowerCase().replace(/\s.*/,''),country:'ng'};if(_ln)_ud.ln=_ln;
-    var msg='*NEW ORDER (V-LIFT FACE MASSAGER)* \uD83D\uDC86\u200D\u2640\uFE0F\n--------------------------\n'+'\uD83D\uDC64 *NAME:* '+nm+'\n\uD83D\uDCDE *PHONE:* '+ph+'\n\uD83D\uDCDE *ALT:* '+aph+'\n\uD83D\uDCCD *LOCATION:* '+loc+' ('+state+')\n\uD83C\uDFE0 *ADDRESS:* '+addr+'\n\n\uD83D\uDCE6 *PRODUCT:* '+pname+'\n\uD83D\uDE9A *DELIVERY:* FREE\n\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString()+'\n\uD83D\uDCB3 *PAYMENT:* '+pay+'\n\uD83D\uDCC5 *DATE:* '+ts+'\n--------------------------\n\n*I am ready to confirm my V-Lift order!*';
-    var waUrl='https://wa.me/2348039940408?text='+encodeURIComponent(msg);
-    // 1. Fire pixel Purchase immediately
-    if(typeof fbq==='function')fbq('track','Lead',{content_name:pname||'V-Lift Pro Face Massager',content_ids:['vlift_001'],content_type:'product',value:tot||26500,currency:'NGN',num_items:1});
-    if(typeof window._orderConfirmed==='function')window._orderConfirmed();
-    // 2. Open WhatsApp immediately — no delay, no setTimeout
-    window.open(waUrl,'_blank');
-    // 3. Send email fire-and-forget
-    ensureEjs(function(){if(typeof emailjs!=='undefined'){emailjs.send('service_gxhivxk','template_239s5yz',{to_name:'Glamour & Grace',from_name:nm,customer_name:nm,customerName:nm,name:nm,message:msg,customer_phone:ph,phone:ph,alternative_phone:aph,alt_phone:aph,customer_address:addr,address:addr,location:loc,city:loc,state:state,customer_state:state,product_name:pname,product:pname,total_amount:'\u20A6'+tot.toLocaleString(),total:'\u20A6'+tot.toLocaleString(),payment_method:pay,date:ts}).then(function(){}).catch(function(err){console.error('Email:',err);});}});
-    // 4. Show confirmation
-    showOrderConfirmed(nm,tot,pname,['vlift_001']);
-  }); (function(){var _o=document.getElementById('order_id');fbq('trackCustom','OrderSubmitted',{order_id:_o?_o.value:'',content_type:'product',payment_method:'Pay on Delivery',currency:'NGN'});})();
-})();
-
-
-
-
-// ── Exit Intent Guard (iOS + mid-submit safe) ──────────────────
-(function(){
-  var dirty=false,processing=false,done=false;
-  var ov=document.createElement('div');
-  ov.style.cssText='position:fixed;inset:0;z-index:9999;background:rgba(26,10,15,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:24px';
-  ov.innerHTML='<div style="background:#fff;border-radius:32px;padding:36px 28px;max-width:360px;width:100%;text-align:center;box-shadow:0 32px 80px rgba(0,0,0,.3);animation:egPop .35s cubic-bezier(.34,1.56,.64,1) both"><style>@keyframes egPop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}</style><div id="egIcon" style="font-size:52px;margin-bottom:14px">🛍️</div><h2 id="egTitle" style="font-family:Georgia,serif;font-size:22px;font-weight:900;color:#1a0a0f;line-height:1.2;margin-bottom:10px">Your order isn\'t placed yet!</h2><p id="egMsg" style="font-size:13px;font-weight:600;color:#9b7080;line-height:1.7;margin-bottom:26px">You\'re almost done — complete it in seconds.<br>Free delivery · Pay cash on arrival.</p><button id="egStay" style="display:block;width:100%;padding:17px;background:linear-gradient(135deg,#FF2D55,#c90035);color:#fff;border:none;border-radius:9999px;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;margin-bottom:12px;box-shadow:0 8px 28px rgba(255,45,85,.4)">✅ Stay &amp; Complete My Order</button><button id="egLeave" style="display:block;width:100%;padding:14px;background:none;border:1.5px solid #fce7f3;border-radius:9999px;font-weight:700;font-size:11px;color:#b0a0a8;cursor:pointer;letter-spacing:.05em">Leave anyway</button></div>';
-  document.body.appendChild(ov);
-  var _dest=null;
-  function show(href,isProc){
-    _dest=href||null;
-    var icon=document.getElementById('egIcon'),title=document.getElementById('egTitle'),msg=document.getElementById('egMsg'),leave=document.getElementById('egLeave');
-    if(isProc){
-      if(icon)icon.textContent='⏳';
-      if(title)title.textContent='Your order is being submitted!';
-      if(msg)msg.textContent='Please wait — navigating away now could lose your order. Stay just a moment.';
-      if(leave)leave.style.display='none';
-    }else{
-      if(icon)icon.textContent='🛍️';
-      if(title)title.textContent='Your order isn\'t placed yet!';
-      if(msg)msg.innerHTML='You\'re almost done — complete it in seconds.<br>Free delivery · Pay cash on arrival.';
-      if(leave)leave.style.display='block';
-    }
-    ov.style.display='flex';
-  }
-  function armHistory(){if((dirty||processing)&&!done)try{history.pushState({eg:1},'');}catch(x){}}
-  document.getElementById('egStay').onclick=function(){ov.style.display='none';if(!processing)armHistory();};
-  document.getElementById('egLeave').onclick=function(){if(processing)return;ov.style.display='none';if(_dest)window.location.href=_dest;};
-  ov.addEventListener('click',function(e){if(e.target===ov&&!processing)ov.style.display='none';});
-  function onBefore(e){if((dirty||processing)&&!done){e.preventDefault();e.returnValue='';return '';}}
-  // iOS + desktop back swipe via popstate
-  window.addEventListener('popstate',function(){if(done)return;if(dirty||processing){armHistory();show(null,processing);}});
-  var fm=document.getElementById('orderForm');
-  if(fm){
-    fm.addEventListener('input',function(){if(!dirty&&!done){dirty=true;armHistory();window.addEventListener('beforeunload',onBefore);}},{passive:true});
-    fm.addEventListener('submit',function(){processing=true;}); // keep guard ON during email send
-  }
-  // Call this just before redirect on confirmed order
-  window._orderConfirmed=function(){done=true;processing=false;window.removeEventListener('beforeunload',onBefore);};
-  document.addEventListener('click',function(e){
-    if((!dirty&&!processing)||done)return;
-    var a=e.target.closest('a[href]');if(!a)return;
-    var h=a.getAttribute('href')||'';
-    if(!h||h.charAt(0)==='#'||/^(tel:|mailto:|https:\/\/wa\.me)/i.test(h))return;
-    e.preventDefault();show(h,processing);
   });
 })();
 </script>
