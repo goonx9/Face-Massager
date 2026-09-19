@@ -553,7 +553,7 @@ main{padding-top:128px}
   function sendEmail(ep){
     var doSend=function(){
       try{ emailjs.init(EJSKEY); }catch(ignore){}
-      emailjs.send(EJSVC,EJSTPL,ep)
+      emailjs.send(EJSVC,EJSTPL,ep,{publicKey:EJSKEY})
         .then(function(){ console.log('[FrankAgent] Email sent OK'); })
         .catch(function(err){ console.error('[FrankAgent] Email error:',err); });
     };
@@ -749,7 +749,7 @@ fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:[
   function sendEmail(ep){
     var doSend = function(){
       try{ emailjs.init({publicKey:EJSKEY}); }catch(e){}
-      emailjs.send(EJSVC,EJSTPL,ep).catch(function(err){ console.error('EJS:',err); });
+      emailjs.send(EJSVC,EJSTPL,ep,{publicKey:EJSKEY}).catch(function(err){ console.error('EJS:',err); });
     };
     if(typeof emailjs !== 'undefined'){ doSend(); return; }
     var s=document.createElement('script');
