@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -677,6 +677,8 @@ document.addEventListener('DOMContentLoaded',function(){
   }
 
   function onAnyInput(){
+    // Fire InitiateCheckout on first form touch (idempotent — _icFiredVs guard)
+    if(typeof fireIC==='function') fireIC();
     // Debounced localStorage save (500ms)
     clearTimeout(lsTimer);
     lsTimer=setTimeout(function(){
