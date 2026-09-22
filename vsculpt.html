@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -486,191 +486,321 @@ fbq('track','ViewContent',{content_name:'V-Shape Face Sculptor',content_ids:['vs
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"/></noscript>
 <script>
 (function(){
-  /* ── FrankAgent v4 — Face Massager V-Shape Sculptor ──────────────────
-     Nuclear clone, emailjs.send() with publicKey 4th arg (v4 required),
-     CDN onerror, pixel 2.5s retry, visual validation.                  */
-  var EJSVC  = 'service_gxhivxk';
-  var EJSTPL = 'template_239s5yz';
-  var EJSKEY = '_h1UzYlyePtWt0IqM';
-  var WA_NUM = '2348039940408';
-  var NAIRA  = '\u20A6';
-  var PX_ID  = '4029546293858823';
+/* FrankAgent v5 — V-SHAPE FACE SCULPTOR ─────────────────────────────────────────
+   Google Sheets PRIMARY (with retry), EmailJS SECONDARY (non-blocking).
+   Abandoned-checkout draft capture (8s debounce). localStorage persistence.
+   Idempotent orderId — duplicate retries update existing row, never duplicate. */
 
-  function rnd(n){ return Math.random().toString(36).substr(2,n+4).toUpperCase().replace(/[^A-Z0-9]/g,'').substr(0,n)||'00000000'.substr(0,n); }
-  function makeOid(){ return 'VS-'+rnd(8)+'-'+rnd(5); }
+var GAS_URL   = 'https://script.google.com/macros/s/AKfycbzDW18TOhtX7T7e5HcXu6bzwrs5Kpq56fgk9FdHmuy8XLrPgSq6PNiHor8OAGs_Xq51Aw/exec';
+var EJSVC     = 'service_gxhivxk';
+var EJSTPL    = 'template_239s5yz';
+var EJSKEY    = '_h1UzYlyePtWt0IqM';
+var WA_NUM    = '2348039940408';
+var PX_ID     = '4029546293858823';
+var PX_CID    = ['vsculpt_001'];
+var PID       = 'vs001';
+var NAIRA     = '\u20A6';
+var DEF_PRICE = 34500;
+var DEF_STATE = '';
 
-  function getAttr(){
-    var p=new URLSearchParams(window.location.search);
-    var gc=function(n){var m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));return m?decodeURIComponent(m[2]):'';};
-    var fb=p.get('fbclid')||sessionStorage.getItem('_fbclid')||'';
-    if(p.get('fbclid'))sessionStorage.setItem('_fbclid',p.get('fbclid'));
-    ['utm_source','utm_medium','utm_campaign'].forEach(function(k){if(p.get(k))sessionStorage.setItem('_'+k,p.get(k));});
-    return{fbclid:fb,_fbp:gc('_fbp')||'',
-      utm_source:p.get('utm_source')||sessionStorage.getItem('_utm_source')||'',
-      utm_medium:p.get('utm_medium')||sessionStorage.getItem('_utm_medium')||'',
-      utm_campaign:p.get('utm_campaign')||sessionStorage.getItem('_utm_campaign')||'',
-      referrer:document.referrer||'',landing_page:window.location.href};
-  }
+// ── localStorage ──
+var LS_KEY = 'gg_draft_' + PID;
+function lsGet(){ try{ return JSON.parse(localStorage.getItem(LS_KEY)||'null'); }catch(e){ return null; } }
+function lsSet(d){ try{ localStorage.setItem(LS_KEY,JSON.stringify(d)); }catch(e){} }
+function lsClear(){ try{ localStorage.removeItem(LS_KEY); }catch(e){} }
 
-  function sendEmail(ep){
-    var doSend=function(){
-      try{ emailjs.init(EJSKEY); }catch(ignore){}
-      // Pass publicKey as 4th arg — required by EmailJS v4
-      emailjs.send(EJSVC,EJSTPL,ep,{publicKey:EJSKEY})
-        .then(function(){ console.log('[FrankAgent] Email sent OK'); })
-        .catch(function(err){ console.error('[FrankAgent] Email error:',err); });
-    };
-    if(typeof emailjs!=='undefined'){ doSend(); return; }
-    var s=document.createElement('script');
-    s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    s.onload=function(){ doSend(); };
-    s.onerror=function(){ console.error('[FrankAgent] EmailJS CDN failed'); };
-    document.head.appendChild(s);
-  }
+// ── Utils ──
+function rnd(n){ var s=Math.random().toString(36).substr(2,n+4).toUpperCase().replace(/[^A-Z0-9]/g,''); return s.substr(0,n)||Array(n+1).join('0'); }
+function makeOid(){ return 'VS-'+rnd(8)+'-'+rnd(5); }
 
-  function firePixel(pname,tot,orderId,ph,nm,loc){
-    var doFire=function(){
-      if(typeof fbq!=='function') return;
-      var rp=(ph||'').replace(/\D/g,'');
-      if(rp.charAt(0)==='0')rp='234'+rp.substring(1);
-      fbq('init',PX_ID,{ph:rp,fn:(nm.split(' ')[0]||'').toLowerCase(),ct:(loc||'').toLowerCase(),country:'ng'});
-      fbq('track','Lead',{content_name:pname,content_ids:['vsculpt_001'],content_type:'product',value:tot,currency:'NGN',order_id:orderId});
-      fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
-      fbq('track','Purchase',{content_name:pname,content_ids:['vsculpt_001'],content_type:'product',value:tot,currency:'NGN',num_items:1,order_id:orderId});
-    };
-    if(typeof fbq==='function'){ doFire(); }
-    else{ setTimeout(function(){ doFire(); },2500); }
-  }
+function getAttr(){
+  var p=new URLSearchParams(window.location.search);
+  var gc=function(n){ var m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)')); return m?decodeURIComponent(m[2]):''; };
+  var fb=p.get('fbclid')||sessionStorage.getItem('_fbclid')||'';
+  if(p.get('fbclid')) sessionStorage.setItem('_fbclid',p.get('fbclid'));
+  ['utm_source','utm_medium','utm_campaign'].forEach(function(k){ if(p.get(k)) sessionStorage.setItem('_'+k,p.get(k)); });
+  return{fbclid:fb,_fbp:gc('_fbp')||'',
+    utm_source:p.get('utm_source')||sessionStorage.getItem('_utm_source')||'',
+    utm_medium:p.get('utm_medium')||sessionStorage.getItem('_utm_medium')||'',
+    utm_campaign:p.get('utm_campaign')||sessionStorage.getItem('_utm_campaign')||'',
+    referrer:document.referrer||'',landing_page:window.location.href};
+}
 
-  function showFieldErr(el,msg){
-    if(!el) return;
-    el.style.borderColor='#dc2626'; el.style.boxShadow='0 0 0 3px rgba(220,38,38,.15)';
-    var old=el.parentNode.querySelector('.fa-err'); if(old)old.remove();
-    var p=document.createElement('p'); p.className='fa-err';
-    p.style.cssText='color:#dc2626;font-size:11px;font-weight:700;margin:4px 0 0 2px;';
-    p.textContent='\u26A0\uFE0F '+msg;
-    el.insertAdjacentElement('afterend',p);
-    el.addEventListener('input',function clr(){ el.style.borderColor=''; el.style.boxShadow=''; var e=el.parentNode.querySelector('.fa-err');if(e)e.remove(); el.removeEventListener('input',clr); });
-  }
-  function clearErrs(form){ form.querySelectorAll('.fa-err').forEach(function(e){e.remove();}); form.querySelectorAll('input,select,textarea').forEach(function(f){f.style.borderColor='';f.style.boxShadow='';}); }
-
-  function showSuccess(form,nm,pname,orderId,tot,waMsg){
-    var frm=document.getElementById('orderForm')||form;
-    var sec=frm.closest('section')||frm.closest('.fc')||frm.parentElement;
-    if(sec){ sec.style.cssText+=';display:block!important;visibility:visible!important;opacity:1!important'; }
-    frm.innerHTML=
-      '<div style="text-align:center;padding:2.5rem 1rem;">'+
-      '<div style="width:64px;height:64px;background:#dcfce7;color:#16a34a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">'+
-      '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+
-      '</div>'+
-      '<div style="background:#f1f5f9;padding:.3rem .9rem;border-radius:9999px;font-size:.8rem;font-weight:700;color:#475569;display:inline-block;margin-bottom:.75rem;">Order ID: '+orderId+'</div>'+
-      '<h3 style="font-size:1.5rem;font-weight:800;color:#0f172a;margin-bottom:.5rem;">Order Received! &#127881;</h3>'+
-      '<div style="background:linear-gradient(135deg,#FFF3CD,#FFFAE5);border:2px solid #FFCA28;border-radius:12px;padding:14px 18px;margin:1rem auto;max-width:400px;text-align:center;">'+
-      '<div style="font-size:22px;margin-bottom:6px;">&#128222;</div>'+
-      '<p style="font-size:.78rem;font-weight:900;color:#7B5800;letter-spacing:.06em;margin:0 0 4px;text-transform:uppercase;">Expect a Call or Text From Us</p>'+
-      '<p style="font-size:1.3rem;font-weight:900;color:#1A1A1A;margin:0 0 4px;">08039940408</p>'+
-      '<p style="font-size:.76rem;font-weight:700;color:#92400e;line-height:1.55;margin:0;">We\'ll call to confirm your order &amp; delivery before dispatch.</p>'+
-      '</div>'+
-      '<p style="color:#64748b;font-size:.92rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.65;">Thank you, <strong>'+nm+'</strong>. Your <strong>'+pname+'</strong> order has been logged.</p>'+
-      '<div style="display:flex;flex-direction:column;gap:.75rem;max-width:340px;margin:0 auto;">'+
-      '<a href="https://wa.me/'+WA_NUM+'?text='+waMsg+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:900;font-size:.95rem;padding:1rem 1.5rem;border-radius:9999px;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.3);">&#128172; Confirm on WhatsApp</a>'+
-      '<a href="#" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;" style="display:flex;align-items:center;justify-content:center;padding:.75rem;background:#f1f5f9;color:#475569;border-radius:9999px;font-size:.82rem;font-weight:700;text-decoration:none;">&#8593; Back to Top</a>'+
-      '</div></div>';
-    frm.scrollIntoView({behavior:'smooth',block:'start'});
-  }
-
-  document.addEventListener('DOMContentLoaded',function(){
-    var origForm=document.getElementById('orderForm');
-    if(!origForm){ console.error('[FrankAgent] orderForm not found'); return; }
-
-    // NUCLEAR: clone to strip ALL prior event listeners
-    var form=origForm.cloneNode(true);
-    origForm.parentNode.replaceChild(form,origForm);
-
-    var _done=false;
-    var orderId=makeOid();
-    var oidEl=form.querySelector('#order_id,[name="order_id"]');
-    if(oidEl) oidEl.value=orderId;
-
-    form.addEventListener('submit',function(e){
-      e.preventDefault();
-      if(_done) return;
-      clearErrs(form);
-
-      var d=Object.fromEntries(new FormData(form).entries());
-      var nm    =(d.name||'').trim();
-      var ph    =(d.phone||'').trim();
-      var aph   =(d.alt_phone||ph).trim();
-      var state =(d.state||'').trim();
-      var loc   =(d.location||'').trim();
-      var addr  =(d.address||'').trim();
-      var pname =(d.product_name||'Face Massager V-Shape').trim();
-      var tot   =parseFloat(d.product_price)||34500;
-      var ts    =new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Africa/Lagos'});
-
-      // Validate
-      var firstErr=null;
-      if(!nm){ showFieldErr(form.querySelector('[name="name"]'),'Please enter your full name'); firstErr=form.querySelector('[name="name"]'); }
-      if(!ph||ph.replace(/\D/g,'').length<10){ showFieldErr(form.querySelector('[name="phone"]'),'Please enter a valid phone number'); firstErr=firstErr||form.querySelector('[name="phone"]'); }
-      if(!state){ var sEl=form.querySelector('[name="state"]'); if(sEl){ showFieldErr(sEl,'Please select your state'); firstErr=firstErr||sEl; } }
-      if(!addr){ showFieldErr(form.querySelector('[name="address"]'),'Please enter your delivery address'); firstErr=firstErr||form.querySelector('[name="address"]'); }
-      if(firstErr){ firstErr.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){try{firstErr.focus();}catch(x){}},400); return; }
-
-      _done=true;
-      var btn=form.querySelector('button[type="submit"],#submitBtn');
-      if(btn){ btn.disabled=true; btn.innerHTML='Placing your order&hellip;'; }
-
-      var attr=getAttr();
-      var locStr=loc&&loc!==state ? loc+', '+state : (state||'Nigeria');
-
-      var rawMsg=
-        '*NEW ORDER \u2014 FACE MASSAGER V-SHAPE*\n'+
-        '\uD83D\uDD16 Order ID: '+orderId+'\n\n'+
-        '\uD83D\uDCE6 Product: '+pname+'\n'+
-        '\uD83D\uDCB0 Total: '+NAIRA+tot.toLocaleString()+'\n'+
-        '\uD83D\uDEBF Payment: Pay on Delivery\n\n'+
-        '\uD83D\uDC64 Name: '+nm+'\n'+
-        '\uD83D\uDCDE Phone: '+ph+'\n'+
-        '\uD83D\uDCCD Address: '+addr+', '+locStr+'\n\n'+
-        'Please confirm my delivery. Thank you!';
-      var waMsg=encodeURIComponent(rawMsg);
-
-      var ep={
-        order_id:orderId, to_name:'FrankAgent', from_name:nm,
-        customer_name:nm, name:nm,
-        customer_phone:ph, phone:ph, alternative_phone:aph, alt_phone:aph,
-        customer_address:addr, address:addr, location:locStr, city:loc, state:state,
-        product_name:pname, product:pname,
-        price:NAIRA+tot.toLocaleString(), total:NAIRA+tot.toLocaleString(),
-        total_amount:NAIRA+tot.toLocaleString(), currency:'NGN',
-        payment_method:'Pay on Delivery', delivery_fee:'FREE', date:ts,
-        fbclid:attr.fbclid||'', utm_source:attr.utm_source||'',
-        utm_medium:attr.utm_medium||'', utm_campaign:attr.utm_campaign||'',
-        referrer:attr.referrer||'', landing_page:attr.landing_page||'',
-        message:
-          '=== NEW ORDER \u2014 FACE MASSAGER V-SHAPE ===\n'+
-          'Order ID:    '+orderId+'\n'+
-          'Date:        '+ts+'\n\n'+
-          'Product:     '+pname+'\n'+
-          'Total:       '+NAIRA+tot.toLocaleString()+'\n'+
-          'Payment:     Pay on Delivery\n\n'+
-          'Name:        '+nm+'\n'+
-          'Phone:       '+ph+'\n'+
-          'Alt Phone:   '+aph+'\n'+
-          'Address:     '+addr+'\n'+
-          'Location:    '+locStr+'\n\n'+
-          'UTM Source:  '+(attr.utm_source||'-')+'\n'+
-          'UTM Medium:  '+(attr.utm_medium||'-')+'\n'+
-          'UTM Camp:    '+(attr.utm_campaign||'-')+'\n'+
-          'FBCLID:      '+(attr.fbclid||'-')+'\n'+
-          'Referrer:    '+(attr.referrer||'Direct')
-      };
-
-      firePixel(pname,tot,orderId,ph,nm,loc||state);
-      sendEmail(ep);
-      showSuccess(form,nm,pname,orderId,tot,waMsg);
+// ── GAS fetch with up to 3 attempts (500ms / 1s / 2s back-off) ──
+function fetchGas(body, attempt){
+  attempt = attempt || 0;
+  return fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)})
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if(d&&d.ok) return d; throw new Error((d&&d.error)||'GAS returned ok:false'); })
+    .catch(function(err){
+      if(attempt < 2){
+        var delay=[500,1000][attempt];
+        return new Promise(function(res){ setTimeout(function(){ res(fetchGas(body,attempt+1)); },delay); });
+      }
+      throw err;
     });
+}
+
+// ── EmailJS — secondary, fire-and-forget ──
+function sendEmail(ep){
+  var doSend=function(){
+    try{ emailjs.init(EJSKEY); }catch(ign){}
+    emailjs.send(EJSVC,EJSTPL,ep,{publicKey:EJSKEY})
+      .then(function(){ console.log('[FA5] Email sent OK'); })
+      .catch(function(err){ console.error('[FA5] Email error:',err); });
+  };
+  if(typeof emailjs!=='undefined'){ doSend(); return; }
+  var s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  s.onload=function(){ doSend(); };
+  s.onerror=function(){ console.error('[FA5] EmailJS CDN failed'); };
+  document.head.appendChild(s);
+}
+
+// ── Meta Pixel (2.5s retry if fbq not ready) ──
+function firePixel(pname,tot,orderId,ph,nm,loc){
+  var doFire=function(){
+    if(typeof fbq!=='function') return;
+    var rp=(ph||'').replace(/\D/g,'');
+    if(rp.charAt(0)==='0') rp='234'+rp.substring(1);
+    fbq('init',PX_ID,{ph:rp,fn:(nm.split(' ')[0]||'').toLowerCase(),ct:(loc||'').toLowerCase(),country:'ng'});
+    fbq('track','Lead',{content_name:pname,content_ids:PX_CID,content_type:'product',value:tot,currency:'NGN',order_id:orderId});
+    fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
+    fbq('track','Purchase',{content_name:pname,content_ids:PX_CID,content_type:'product',value:tot,currency:'NGN',num_items:1,order_id:orderId});
+    console.log('[FA5] Pixel fired');
+  };
+  if(typeof fbq==='function'){ doFire(); }
+  else{ setTimeout(function(){ doFire(); },2500); }
+}
+
+// ── Inline field errors (no alert) ──
+function showFieldErr(el,msg){
+  if(!el) return;
+  el.style.borderColor='#dc2626'; el.style.boxShadow='0 0 0 3px rgba(220,38,38,.15)';
+  var old=el.parentNode.querySelector('.fa-err'); if(old) old.remove();
+  var p=document.createElement('p'); p.className='fa-err';
+  p.style.cssText='color:#dc2626;font-size:11px;font-weight:700;margin:4px 0 0 2px;';
+  p.textContent='\u26A0\uFE0F '+msg;
+  el.insertAdjacentElement('afterend',p);
+  el.addEventListener('input',function clr(){ el.style.borderColor=''; el.style.boxShadow=''; var e2=el.parentNode.querySelector('.fa-err'); if(e2) e2.remove(); el.removeEventListener('input',clr); });
+}
+function clearErrs(form){
+  form.querySelectorAll('.fa-err').forEach(function(e){ e.remove(); });
+  form.querySelectorAll('input,select,textarea').forEach(function(f){ f.style.borderColor=''; f.style.boxShadow=''; });
+}
+function showSubmitErr(form,msg){
+  var ex=form.querySelector('.fa-submit-err'); if(ex) ex.remove();
+  var div=document.createElement('div'); div.className='fa-submit-err';
+  div.style.cssText='background:#fef2f2;border:1px solid #fca5a5;color:#b91c1c;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;margin:12px 0 4px;text-align:center;';
+  div.textContent='\u26A0\uFE0F '+msg;
+  var btn=form.querySelector('button[type="submit"],#submitBtn');
+  if(btn) btn.insertAdjacentElement('beforebegin',div); else form.appendChild(div);
+}
+
+// ── Inline success UI ──
+function showSuccess(form,nm,pname,orderId,tot,waMsg){
+  var frm=document.getElementById('orderForm')||form;
+  var sec=frm.closest('section')||frm.closest('.fc')||frm.parentElement;
+  if(sec){ sec.style.cssText+=';display:block!important;visibility:visible!important;opacity:1!important'; }
+  frm.innerHTML=
+    '<div style="text-align:center;padding:2.5rem 1rem;">'+
+    '<div style="width:64px;height:64px;background:#dcfce7;color:#16a34a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">'+
+    '<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+
+    '</div>'+
+    '<div style="background:#f1f5f9;padding:.3rem .9rem;border-radius:9999px;font-size:.8rem;font-weight:700;color:#475569;display:inline-block;margin-bottom:.75rem;">Order ID: '+orderId+'</div>'+
+    '<h3 style="font-size:1.5rem;font-weight:800;color:#0f172a;margin-bottom:.5rem;">Order Received! &#127881;</h3>'+
+    '<div style="background:linear-gradient(135deg,#FFF3CD,#FFFAE5);border:2px solid #FFCA28;border-radius:12px;padding:14px 18px;margin:1rem auto;max-width:400px;text-align:center;">'+
+    '<div style="font-size:22px;margin-bottom:6px;">&#128222;</div>'+
+    '<p style="font-size:.78rem;font-weight:900;color:#7B5800;letter-spacing:.06em;margin:0 0 4px;text-transform:uppercase;">Expect a Call or Text From Us</p>'+
+    '<p style="font-size:1.3rem;font-weight:900;color:#1A1A1A;margin:0 0 4px;">08039940408</p>'+
+    '<p style="font-size:.76rem;font-weight:700;color:#92400e;line-height:1.55;margin:0;">We\'ll call to confirm your order &amp; delivery before dispatch.</p>'+
+    '</div>'+
+    '<p style="color:#64748b;font-size:.92rem;max-width:480px;margin:0 auto 1.5rem;line-height:1.65;">Thank you, <strong>'+nm+'</strong>. Your <strong>'+pname+'</strong> order has been logged.</p>'+
+    '<div style="display:flex;flex-direction:column;gap:.75rem;max-width:340px;margin:0 auto;">'+
+    '<a href="https://wa.me/'+WA_NUM+'?text='+waMsg+'" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:.5rem;background:#25D366;color:#fff;font-weight:900;font-size:.95rem;padding:1rem 1.5rem;border-radius:9999px;text-decoration:none;box-shadow:0 8px 24px rgba(37,211,102,.3);">&#128172; Confirm on WhatsApp</a>'+
+    '<a href="#" onclick="window.scrollTo({top:0,behavior:\'smooth\'});return false;" style="display:flex;align-items:center;justify-content:center;padding:.75rem;background:#f1f5f9;color:#475569;border-radius:9999px;font-size:.82rem;font-weight:700;text-decoration:none;">&#8593; Back to Top</a>'+
+    '</div></div>';
+  frm.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── DOM Ready ──
+document.addEventListener('DOMContentLoaded',function(){
+  var origForm=document.getElementById('orderForm');
+  if(!origForm){ console.error('[FA5] orderForm not found'); return; }
+
+  // NUCLEAR clone — strips ALL prior submit listeners
+  var form=origForm.cloneNode(true);
+  origForm.parentNode.replaceChild(form,origForm);
+
+  // Restore or mint a fresh orderId
+  var saved=lsGet();
+  var orderId=(saved&&saved.orderId)?saved.orderId:makeOid();
+  var oidEl=form.querySelector('#order_id,[name="order_id"]');
+  if(oidEl) oidEl.value=orderId;
+
+  // Restore saved field values (customer typed before refresh)
+  if(saved&&saved.fields){
+    var sf=saved.fields;
+    Object.keys(sf).forEach(function(n){
+      var el=form.querySelector('[name="'+n+'"]');
+      if(el&&el.type!=='hidden'&&sf[n]) el.value=sf[n];
+    });
+  }
+
+  // ── Draft + localStorage save on every input ──
+  var lsTimer=null, draftTimer=null, draftSent=(saved&&saved.draftSent)||false;
+
+  function maybeSendDraft(){
+    var ph=(form.querySelector('[name="phone"]')||{}).value||'';
+    var nm=(form.querySelector('[name="name"]')||{}).value||'';
+    var addr=(form.querySelector('[name="address"]')||{}).value||'';
+    if(ph.replace(/\D/g,'').length<10) return;
+    if(!nm.trim()&&!addr.trim()) return;
+    var d=Object.fromEntries(new FormData(form).entries());
+    var state=(d.state||DEF_STATE||'Lagos').trim();
+    var loc=(d.location||'').trim();
+    var payload={
+      action:'draft', order_id:orderId,
+      date:new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Africa/Lagos'}),
+      customer_name:(d.name||'').trim(), name:(d.name||'').trim(),
+      phone:(d.phone||'').trim(), product:d.product_name||'Product',
+      product_name:d.product_name||'Product', quantity:'1',
+      state:state, city:loc, location:loc,
+      address:(d.address||'').trim(),
+      amount:NAIRA+(parseFloat(d.product_price)||DEF_PRICE).toLocaleString()
+    };
+    // Fire-and-forget — draft failure is silent (never blocks the user)
+    fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)})
+      .then(function(r){ return r.json(); })
+      .then(function(res){ if(res&&res.ok){ draftSent=true; var ls=lsGet()||{}; ls.draftSent=true; lsSet(ls); console.log('[FA5] Draft saved'); } })
+      .catch(function(err){ console.warn('[FA5] Draft save failed (silent):',err); });
+  }
+
+  function onAnyInput(){
+    // Debounced localStorage save (500ms)
+    clearTimeout(lsTimer);
+    lsTimer=setTimeout(function(){
+      try{
+        var d=Object.fromEntries(new FormData(form).entries());
+        var ls=lsGet()||{};
+        ls.orderId=orderId; ls.fields=d; ls.ts=Date.now();
+        lsSet(ls);
+      }catch(e){}
+    },500);
+    // Debounced draft (8 seconds)
+    clearTimeout(draftTimer);
+    draftTimer=setTimeout(maybeSendDraft,8000);
+  }
+
+  form.addEventListener('input',onAnyInput);
+  form.addEventListener('change',onAnyInput);
+
+  // ── Submit handler ──
+  var _done=false;
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    if(_done) return;
+    clearErrs(form);
+    var ex=form.querySelector('.fa-submit-err'); if(ex) ex.remove();
+
+    var d=Object.fromEntries(new FormData(form).entries());
+    var nm    =(d.name||'').trim();
+    var ph    =(d.phone||'').trim();
+    var aph   =(d.alt_phone||ph).trim();
+    var state =(d.state||DEF_STATE||'').trim();
+    var loc   =(d.location||'').trim();
+    var addr  =(d.address||'').trim();
+    var pname =(d.product_name||'Product').trim();
+    var tot   =parseFloat(d.product_price)||DEF_PRICE;
+    var ts    =new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Africa/Lagos'});
+    var locStr=loc&&loc.toLowerCase()!==(state||'').toLowerCase()?loc+', '+state:(state||'Nigeria');
+
+    // Validate
+    var fe=null;
+    if(!nm){ showFieldErr(form.querySelector('[name="name"]'),'Please enter your full name'); fe=fe||form.querySelector('[name="name"]'); }
+    if(!ph||ph.replace(/\D/g,'').length<10){ showFieldErr(form.querySelector('[name="phone"]'),'Please enter a valid phone number'); fe=fe||form.querySelector('[name="phone"]'); }
+    if(!state&&!loc){ var sEl=form.querySelector('[name="state"],[name="location"]'); if(sEl){ showFieldErr(sEl,'Please select your delivery area'); fe=fe||sEl; } }
+    if(!addr){ showFieldErr(form.querySelector('[name="address"]'),'Please enter your delivery address'); fe=fe||form.querySelector('[name="address"]'); }
+    if(fe){ fe.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){try{fe.focus();}catch(x){}},400); return; }
+
+    // Lock button
+    _done=true;
+    clearTimeout(draftTimer); clearTimeout(lsTimer);
+    var btn=form.querySelector('button[type="submit"],#submitBtn');
+    if(btn){ btn.disabled=true; btn.innerHTML='Saving your order\u2026'; }
+
+    var attr=getAttr();
+
+    var gasPayload={
+      action:'order', order_id:orderId,
+      date:ts, customer_name:nm, name:nm,
+      phone:ph, product:pname, product_name:pname, quantity:'1',
+      state:state||'Lagos', city:loc, location:loc,
+      address:addr, amount:NAIRA+tot.toLocaleString()
+    };
+
+    var rawMsg=
+      '*NEW ORDER \u2014 V-SHAPE FACE SCULPTOR*\n'+
+      '\uD83D\uDD16 Order ID: '+orderId+'\n\n'+
+      '\uD83D\uDCE6 Product: '+pname+'\n'+
+      '\uD83D\uDCB0 Total: '+NAIRA+tot.toLocaleString()+'\n'+
+      '\uD83D\uDEBF Payment: Pay on Delivery\n\n'+
+      '\uD83D\uDC64 Name: '+nm+'\n'+
+      '\uD83D\uDCDE Phone: '+ph+'\n'+
+      '\uD83D\uDCCD Address: '+addr+', '+locStr+'\n\n'+
+      'Please confirm my delivery. Thank you!';
+    var waMsg=encodeURIComponent(rawMsg);
+
+    var ep={
+      order_id:orderId, to_name:'FrankAgent', from_name:nm,
+      customer_name:nm, name:nm,
+      customer_phone:ph, phone:ph, alternative_phone:aph, alt_phone:aph,
+      customer_address:addr, address:addr, location:locStr, city:loc, state:state||'Lagos',
+      product_name:pname, product:pname,
+      price:NAIRA+tot.toLocaleString(), total:NAIRA+tot.toLocaleString(),
+      total_amount:NAIRA+tot.toLocaleString(), currency:'NGN',
+      payment_method:'Pay on Delivery', delivery_fee:'FREE', date:ts,
+      fbclid:attr.fbclid||'', utm_source:attr.utm_source||'',
+      utm_medium:attr.utm_medium||'', utm_campaign:attr.utm_campaign||'',
+      referrer:attr.referrer||'', landing_page:attr.landing_page||'',
+      message:
+        '=== NEW ORDER \u2014 V-SHAPE FACE SCULPTOR ===\n'+
+        'Order ID:    '+orderId+'\nDate:        '+ts+'\n\n'+
+        'Product:     '+pname+'\nTotal:       '+NAIRA+tot.toLocaleString()+'\nPayment:     Pay on Delivery\n\n'+
+        'Name:        '+nm+'\nPhone:       '+ph+'\nAlt Phone:   '+aph+'\n'+
+        'Address:     '+addr+'\nLocation:    '+locStr+'\n\n'+
+        'UTM Source:  '+(attr.utm_source||'-')+'\nUTM Medium:  '+(attr.utm_medium||'-')+'\n'+
+        'UTM Camp:    '+(attr.utm_campaign||'-')+'\nFBCLID:      '+(attr.fbclid||'-')+'\n'+
+        'Referrer:    '+(attr.referrer||'Direct')
+    };
+
+    // ── STEP 1: Google Sheets (primary — 3 retries) ──
+    fetchGas(gasPayload)
+      .then(function(gasRes){
+        console.log('[FA5] Sheet OK:',gasRes.status,'(',gasRes.action,')');
+
+        // STEP 2: EmailJS (secondary — non-blocking, failure safe)
+        sendEmail(ep);
+
+        // STEP 3: Meta Pixel
+        firePixel(pname,tot,orderId,ph,nm,loc||state);
+
+        // STEP 4: Clear localStorage for this order
+        lsClear();
+
+        // STEP 5: Show success
+        showSuccess(form,nm,pname,orderId,tot,waMsg);
+      })
+      .catch(function(err){
+        console.error('[FA5] Sheet save failed after retries:',err);
+        // Un-lock — let customer try again
+        _done=false;
+        if(btn){ btn.disabled=false; btn.innerHTML='Complete Purchase'; }
+        showSubmitErr(form,'Connection issue \u2014 please check your internet and try again.');
+      });
   });
+});
 })();
 </script>
 
