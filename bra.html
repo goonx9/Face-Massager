@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -308,7 +308,33 @@ details>summary{list-style:none}details>summary::-webkit-details-marker{display:
       </div>
       <div style="padding:12px 14px;background:#fff;border-radius:14px;border:1.5px solid #fce7f3"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer"><input type="checkbox" id="availabilityCheck" required style="margin-top:2px;width:18px;height:18px;flex-shrink:0;accent-color:#FF2D55"><span style="font-size:11px;font-weight:700;color:#1a1a2e;line-height:1.5">✅ I confirm I will be <strong>available to receive my order within 24 hours</strong>. I am currently in Lagos or Abuja and ready for delivery.</span></label></div>
       <div style="padding:10px 14px;background:#fffbeb;border-radius:12px;border:1px solid #fde68a"><p style="font-size:10px;font-weight:700;color:#92400e;margin:0;line-height:1.5">⚠️ NOTICE: Do not order if you are not sure, or you are travelling. We deliver to Lagos and Abuja only.</p></div>
-      <button type="submit" id="submitBtn" class="btn-main" style="font-size:15px;padding:18px">🛍️ Place Order — Pay on Delivery</button>
+      
+<!-- GG Delivery Preference -->
+<div id="dp_wrap" style="margin:1.5rem 0 0;padding:1.25rem;background:#fafafa;border:1.5px solid #ffe4e6;border-radius:14px;">
+  <p style="font-weight:900;font-size:13px;color:#1a0a0f;margin:0 0 12px;">&#x1F4E6; When should we deliver?</p>
+  <div style="display:flex;gap:8px;margin-bottom:14px;">
+    <button type="button" id="dp_today" onclick="dpSelectDay('today')" style="flex:1;padding:12px 8px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;text-align:center;font-family:inherit;"><div style="font-weight:900;font-size:13px;color:#1a0a0f;">Today</div><div id="dp_today_date" style="font-size:10px;font-weight:700;color:#64748b;margin-top:3px;"></div></button>
+    <button type="button" id="dp_tomorrow" onclick="dpSelectDay('tomorrow')" style="flex:1;padding:12px 8px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;text-align:center;font-family:inherit;"><div style="font-weight:900;font-size:13px;color:#1a0a0f;">Tomorrow</div><div id="dp_tomorrow_date" style="font-size:10px;font-weight:700;color:#64748b;margin-top:3px;"></div></button>
+  </div>
+  <div id="dp_windows" style="display:none;margin-bottom:12px;">
+    <p style="font-size:10.5px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:.07em;margin:0 0 8px;">Choose a time window:</p>
+    <div style="display:flex;gap:8px;">
+      <button type="button" id="dp_win_morning" onclick="dpSelectWindow('morning','8am-3pm')" style="flex:1;padding:10px 8px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;font-size:12px;font-weight:800;color:#1a0a0f;font-family:inherit;">&#x1F305; 8am &ndash; 3pm</button>
+      <button type="button" id="dp_win_afternoon" onclick="dpSelectWindow('afternoon','3pm-6pm')" style="flex:1;padding:10px 8px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;font-size:12px;font-weight:800;color:#1a0a0f;font-family:inherit;">&#9728; 3pm &ndash; 6pm</button>
+    </div>
+  </div>
+  <div id="dp_warning" style="display:none;background:#fffbeb;border:1.5px solid #fcd34d;border-radius:10px;padding:10px 12px;font-size:11.5px;color:#78350f;font-weight:700;line-height:1.6;margin-bottom:12px;">&#9888; Please endeavour to be available and ready to pay during your selected delivery window. Only place an order if you are ready to receive it.</div>
+  <label id="dp_confirm_wrap" style="display:none;flex-direction:row;align-items:flex-start;gap:10px;background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:10px 12px;cursor:pointer;margin-bottom:10px;">
+    <input type="checkbox" name="availability_confirmed" id="dp_confirm_cb" value="Yes" style="margin-top:2px;width:17px;height:17px;min-width:17px;cursor:pointer;accent-color:#16a34a;flex-shrink:0;">
+    <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.55;">I confirm someone will be available to receive and pay for this order.</span>
+  </label>
+  <p id="dp_note" style="display:none;font-size:11px;color:#64748b;font-weight:600;font-style:italic;margin:0 0 6px;line-height:1.5;">&#x1F4CB; Your preferred delivery window will be confirmed before dispatch.</p>
+  <input type="hidden" name="delivery_day" id="dp_hid_day">
+  <input type="hidden" name="delivery_date" id="dp_hid_date">
+  <input type="hidden" name="delivery_window" id="dp_hid_window">
+</div>
+<!-- End GG Delivery Preference -->
+<button type="submit" id="submitBtn" class="btn-main" style="font-size:15px;padding:18px">🛍️ Place Order — Pay on Delivery</button>
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap"><span style="font-size:10px;color:#9ca3af;font-weight:700">🔒 Secure</span><span style="font-size:10px;color:#9ca3af;font-weight:700">💳 Pay on Delivery</span><span style="font-size:10px;color:#9ca3af;font-weight:700">🚚 Free Delivery</span><span style="font-size:10px;color:#9ca3af;font-weight:700">⭐ 1,000+ Orders</span></div>
     </form>
     <!-- ── Inline Order Confirmation ─────────────────────────── -->
@@ -389,7 +415,7 @@ function showOrderConfirmed(nm,tot,pname,ids){
 } (function(){var _o=document.getElementById('order_id');fbq('trackCustom','OrderSubmitted',{order_id:_o?_o.value:'',content_type:'product',payment_method:'Pay on Delivery',currency:'NGN'});})();// ── Form submit (keep synchronous) ──────────────────────────
 var isSub=false,form=document.getElementById('orderForm');
 if(!form)return;
-if(locSel){locSel.addEventListener('change',function(){if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}});}
+form.addEventListener('submit',async function(e){);if(smo){if(this.value==='Abuja'){smo.disabled=true;smo.textContent='Small (A/B) — OUT OF STOCK (Abuja)';if(szs&&szs.value==='Small - A/B Cup'){szs.value='';if(szs.options[0])szs.options[0].selected=true;}}else{smo.disabled=false;smo.textContent='Small (A/B)';}}});}
 if(locSel)locSel.addEventListener('change',updateSummary);
 var isSub=false,form=document.getElementById('orderForm');
 if(!form)return;
@@ -460,6 +486,70 @@ fbq('track','ViewContent',{content_name:'Invisible Push-Up Bra Pads',content_cat
 })();
 </script>
 <script>
+var _dpDay='',_dpWindow='';
+function _dpLagosHour(){ return new Date(Date.now()+3600000).getUTCHours(); }
+function _dpDateLabel(offset){
+  var d=new Date(Date.now()+3600000); d.setUTCDate(d.getUTCDate()+offset);
+  var D=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return D[d.getUTCDay()]+', '+d.getUTCDate()+' '+M[d.getUTCMonth()];
+}
+function dpGetAv(day){
+  var h=_dpLagosHour();
+  if(day==='today'){ if(h>=16) return{ok:false,morning:false,afternoon:false}; return{ok:true,morning:h<7,afternoon:true}; }
+  return{ok:true,morning:true,afternoon:true};
+}
+function dpInit(){
+  var td=document.getElementById('dp_today_date'),tm=document.getElementById('dp_tomorrow_date');
+  if(td) td.textContent=_dpDateLabel(0); if(tm) tm.textContent=_dpDateLabel(1);
+  if(_dpLagosHour()>=16){ var b=document.getElementById('dp_today'); if(b){b.disabled=true;b.style.opacity='.38';b.style.cursor='not-allowed';b.title='Delivery window has passed for today';} }
+}
+function dpSelectDay(day){
+  _dpDay=day;_dpWindow='';
+  ['dp_win_morning','dp_win_afternoon'].forEach(function(id){ var el=document.getElementById(id); if(el){el.style.borderColor='#e2e8f0';el.style.background='#fff';el.style.color='#1a0a0f';el.style.opacity='1';el.disabled=false;el.style.cursor='pointer';el.title='';} });
+  document.getElementById('dp_hid_window').value='';
+  ['dp_today','dp_tomorrow'].forEach(function(id){ var el=document.getElementById(id); if(el&&!el.disabled){el.style.borderColor='#e2e8f0';el.style.background='#fff';} });
+  var sel=document.getElementById('dp_'+day); if(sel&&!sel.disabled){sel.style.borderColor='#c90035';sel.style.background='#fff0f5';}
+  document.getElementById('dp_hid_day').value=day==='today'?'Today':'Tomorrow';
+  document.getElementById('dp_hid_date').value=_dpDateLabel(day==='today'?0:1);
+  var av=dpGetAv(day),mBtn=document.getElementById('dp_win_morning'),aBtn=document.getElementById('dp_win_afternoon');
+  if(mBtn){ if(!av.morning){mBtn.disabled=true;mBtn.style.opacity='.38';mBtn.style.cursor='not-allowed';mBtn.title='Not available at this time';} else{mBtn.disabled=false;mBtn.style.opacity='1';mBtn.style.cursor='pointer';mBtn.title='';} }
+  if(aBtn){ if(!av.afternoon){aBtn.disabled=true;aBtn.style.opacity='.38';aBtn.style.cursor='not-allowed';aBtn.title='Not available';} else{aBtn.disabled=false;aBtn.style.opacity='1';aBtn.style.cursor='pointer';aBtn.title='';} }
+  document.getElementById('dp_windows').style.display='block';
+  document.getElementById('dp_warning').style.display='block';
+  document.getElementById('dp_confirm_wrap').style.display='flex';
+  document.getElementById('dp_note').style.display='block';
+}
+function dpSelectWindow(slot,label){
+  _dpWindow=label;
+  ['dp_win_morning','dp_win_afternoon'].forEach(function(id){ var el=document.getElementById(id); if(el&&!el.disabled){el.style.borderColor='#e2e8f0';el.style.background='#fff';el.style.color='#1a0a0f';} });
+  var w=document.getElementById('dp_win_'+slot); if(w){w.style.borderColor='#c90035';w.style.background='#fff0f5';w.style.color='#c90035';}
+  document.getElementById('dp_hid_window').value=label;
+}
+function dpRecheck(){
+  if(!_dpDay) return 'Please select a delivery day.';
+  var av=dpGetAv(_dpDay);
+  if(!av.ok){
+    var td=document.getElementById('dp_today');
+    if(td){td.disabled=true;td.style.opacity='.38';td.style.cursor='not-allowed';td.style.borderColor='#e2e8f0';td.style.background='#fff';}
+    _dpDay='';_dpWindow='';
+    ['dp_hid_day','dp_hid_date','dp_hid_window'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+    document.getElementById('dp_windows').style.display='none';
+    return "Today's delivery window has passed. Please select Tomorrow.";
+  }
+  if(!_dpWindow) return 'Please select a delivery time window.';
+  if(_dpWindow==='8am-3pm'&&!av.morning){
+    _dpWindow=''; var mBtn=document.getElementById('dp_win_morning');
+    if(mBtn){mBtn.disabled=true;mBtn.style.opacity='.38';mBtn.style.cursor='not-allowed';mBtn.style.borderColor='#e2e8f0';mBtn.style.background='#fff';mBtn.style.color='#1a0a0f';}
+    document.getElementById('dp_hid_window').value='';
+    return "The 8am-3pm window is no longer available. Please choose 3pm-6pm or select Tomorrow.";
+  }
+  var cb=document.getElementById('dp_confirm_cb');
+  if(!cb||!cb.checked) return 'Please confirm you will be available to receive the delivery.';
+  return null;
+}
+document.addEventListener('DOMContentLoaded',function(){ dpInit(); });
+</script>
+<script>
 /* ── FrankAgent Order Automation Layer ────────────────────────────────
    Validation · Unique Order ID · Attribution · Lead+OrderSubmitted
    NOTE: Purchase NOT fired on COD. Fires server-side after confirmed delivery.
@@ -500,6 +590,8 @@ fbq('track','ViewContent',{content_name:'Invisible Push-Up Bra Pads',content_cat
     form.querySelectorAll('.field-error').forEach(function(el){el.remove();});
     form.querySelectorAll('.err-field').forEach(function(el){el.classList.remove('err-field');});
     var first=null;
+    var dpErr=(typeof dpRecheck==='function')?dpRecheck():null;
+    if(dpErr){e.preventDefault();e.stopImmediatePropagation();var ex=form.querySelector('.dp-sub-err');if(ex)ex.remove();var de=document.createElement('p');de.className='dp-sub-err field-error';de.style.cssText='text-align:center;padding:8px;font-size:13px;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;margin:8px 0;';de.textContent='\u26A0\uFE0F '+dpErr;var sb=document.getElementById('submitBtn');if(sb)sb.insertAdjacentElement('beforebegin',de);return;}
     form.querySelectorAll('[required]').forEach(function(f){
       if(f.disabled)return; var bad=f.type==='checkbox'?!f.checked:(!f.value||!f.value.trim());
       if(bad){
@@ -534,6 +626,7 @@ fbq('track','ViewContent',{content_name:'Invisible Push-Up Bra Pads',content_cat
     if(loc)_p.push('\uD83D\uDCCD *AREA:* '+loc);
     if(d.state&&d.state!==loc)_p.push('\uD83D\uDDFA\uFE0F *STATE:* '+d.state);
     if(addr)_p.push('\uD83C\uDFE0 *ADDRESS:* '+addr);
+    if(d.delivery_day){_p.push('\uD83D\uDCC5 *DELIVERY:* '+d.delivery_day+' ('+d.delivery_date+')');_p.push('\u23F0 *WINDOW:* '+d.delivery_window);}
     _p.push('');if(pname)_p.push('\uD83D\uDCE6 *PRODUCT:* '+pname);
     _p.push('\uD83D\uDE9A *DELIVERY:* FREE');
     if(tot>0)_p.push('\uD83D\uDCB0 *TOTAL:* \u20A6'+tot.toLocaleString());
@@ -556,49 +649,26 @@ fbq('track','ViewContent',{content_name:'Invisible Push-Up Bra Pads',content_cat
       utm_campaign:attr.utm_campaign||'',utm_content:attr.utm_content||'',
       referrer:attr.referrer||'',landing_page:attr.landing_page||''};
     if(d.size)ep.size=d.size;
+    if(d.delivery_day){ep.delivery_day=d.delivery_day;ep.delivery_date=d.delivery_date;ep.delivery_window=d.delivery_window||'';ep.availability_confirmed=d.availability_confirmed||'';}
     var _nav=function(){window.location.href='thanks.html?n='+encodeURIComponent(nm)+'&p='+tot+'&pn='+encodeURIComponent(pname)+'&oid='+encodeURIComponent(orderId);};
 
-    // EmailJS is the source of truth for website order intake.
-    // Never show a fake success/redirect if the email did not send.
-    var _showSendError=function(err){
-      console.error('EmailJS order send failed:',err);
-      _done=false;
-      if(btn){btn.disabled=false;btn.textContent='Try Again';}
-      var old=document.getElementById('orderSendError');
-      if(old)old.remove();
-      var box=document.createElement('div');
-      box.id='orderSendError';
-      box.style.cssText='margin:14px 0;padding:14px 16px;border:1.5px solid #ef4444;background:#fef2f2;color:#991b1b;border-radius:14px;font:700 12px/1.5 system-ui;text-align:center';
-      box.textContent='We could not submit your order yet. Please check your connection and tap Try Again. Your order has NOT been confirmed.';
-      if(btn&&btn.parentNode)btn.parentNode.insertBefore(box,btn);
-    };
-
-    var _sendOrder=function(){
-      try{ emailjs.init({publicKey:'_h1UzYlyePtWt0IqM'}); }
-      catch(initErr){
-        try{ emailjs.init('_h1UzYlyePtWt0IqM'); }catch(ignore){}
-      }
-      return emailjs.send('service_gxhivxk','template_239s5yz',ep);
-    };
-
+    // Safety: always redirect after 4s if emailjs hangs or fails silently
+    var _navTimer=setTimeout(function(){_nav();},4000);
+    var _navOnce=function(){clearTimeout(_navTimer);_nav();};
     var _doSendSafe=function(){
       if(typeof emailjs!=='undefined'){
-        _sendOrder().then(function(){
-          if(typeof window._orderConfirmed==='function')window._orderConfirmed();
-          _nav();
-        }).catch(_showSendError);
+        emailjs.send('service_gxhivxk','template_239s5yz',ep)
+          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
         return;
       }
-
       var _ejs=document.createElement('script');
       _ejs.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
       _ejs.onload=function(){
-        _sendOrder().then(function(){
-          if(typeof window._orderConfirmed==='function')window._orderConfirmed();
-          _nav();
-        }).catch(_showSendError);
+        try{emailjs.init('_h1UzYlyePtWt0IqM');}catch(e){}
+        emailjs.send('service_gxhivxk','template_239s5yz',ep)
+          .then(function(){_navOnce();}).catch(function(err){console.error('EmailJS:',err);_navOnce();});
       };
-      _ejs.onerror=function(){_showSendError('EmailJS library failed to load');};
+      _ejs.onerror=function(){_navOnce();};
       document.head.appendChild(_ejs);
     };
     _doSendSafe();
