@@ -122,6 +122,13 @@ main{padding-top:128px}
   .md2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
   .md3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 }
+.vl-offer,.vl-demo-label{max-width:380px;margin:12px auto 0;text-align:center;color:#fff;font-size:13px;font-weight:800;line-height:1.5;text-shadow:0 1px 6px #1a0a0f}
+.vl-demo-label{margin-top:22px;font-size:15px}
+.vl-delivery-steps{display:grid;gap:12px;list-style:none;margin:0;padding:0}
+.vl-delivery-steps li{padding:14px;background:#fff;border:1px solid #fce7f3;border-radius:14px;color:#492331;font-size:13px;line-height:1.5}
+.vl-delivery-steps strong{display:block;color:#1a0a0f;margin-bottom:4px}
+#customer-faq{scroll-margin-top:108px}
+@media(min-width:620px){.vl-delivery-steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
 <body style="background:#fff;margin:0;padding:0">
@@ -157,14 +164,15 @@ main{padding-top:128px}
   <div class="hc">
     <div class="hbadge"><svg width="12" height="12" viewBox="0 0 24 24" fill="var(--p)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> #1 At-Home Face Lifting Device in Nigeria</div>
     <h1 class="htitle">Sculpt a More Defined,<br><em>Lifted-Looking Face</em> at Home</h1>
-    <p class="hsub">10 minutes a day with the V-Lift Pro&#8482; facial massager &#8212; no needles, no appointments, no downtime.</p>
+    <p class="hsub">A 10-minute at-home routine with the V-Lift Pro&#8482; facial massager. Vitamin C serum is included.</p>
     <div class="hprice">
       <div>
         <div style="font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.15em;color:#9b2335;margin-bottom:2px">Today's Price</div>
-        <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:32px;font-weight:900;color:var(--p)">₦26,500</span><span style="font-size:16px;font-weight:700;text-decoration:line-through;opacity:.4">₦55,000</span></div>
+        <div style="display:flex;align-items:baseline;gap:10px"><span style="font-size:32px;font-weight:900;color:var(--p)">₦29,500</span><span style="font-size:16px;font-weight:700;text-decoration:line-through;opacity:.4">₦55,000</span></div>
       </div>
-      <div style="background:var(--p);color:#fff;border-radius:12px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:900">52%</div><div style="font-size:8px;font-weight:900;letter-spacing:.1em">OFF</div></div>
+      <div style="background:var(--p);color:#fff;border-radius:12px;padding:8px 14px;text-align:center"><div style="font-size:18px;font-weight:900">46%</div><div style="font-size:8px;font-weight:900;letter-spacing:.1em">OFF</div></div>
     </div>
+    <p class="vl-offer">₦29,500 with free Vitamin C serum · Free Lagos delivery · Pay cash on arrival</p>
     <ul class="hbullets">
       <li><span style="color:var(--p)">✅</span> EMS microcurrent + red light therapy combined</li>
       <li><span style="color:var(--p)">✅</span> Lifts sagging skin &amp; defines jawline visibly</li>
@@ -172,8 +180,9 @@ main{padding-top:128px}
       <li><span style="color:var(--p)">✅</span> USB rechargeable — works anywhere</li>
       <li><span style="color:var(--p)">✅</span> Pay on Delivery — zero risk to you</li>
     </ul>
+    <h2 class="vl-demo-label" id="vl-demo-label">See the V-Lift Pro in action</h2>
     <div style="border-radius:24px;overflow:hidden;margin:20px auto 20px;background:#000;aspect-ratio:16/9;max-width:380px;box-shadow:0 16px 48px rgba(0,0,0,.3)">
-      <video autoplay loop muted playsinline preload="none"
+      <video controls autoplay loop muted playsinline preload="none" aria-labelledby="vl-demo-label"
         poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto:good,w_700,so_0/v1776010456/VID_20260412_171026_1_pgw2av.jpg"
         style="width:100%;height:100%;object-fit:cover" width="380" height="214">
         <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:good/v1776010456/VID_20260412_171026_1_pgw2av.mp4" type="video/mp4">
@@ -185,7 +194,7 @@ main{padding-top:128px}
 </section>
 
 <!-- PROOF BAR -->
-<section id="pb"><div class="s"><strong>12,000+</strong><span>Women Served</span></div><div class="s"><strong>4.9★</strong><span>Average Rating</span></div><div class="s"><strong>54%</strong><span>Price Cut</span></div><div class="s"><strong>2–4 Wks</strong><span>Visible Results</span></div></section>
+<section id="pb"><div class="s"><strong>12,000+</strong><span>Women Served</span></div><div class="s"><strong>4.9★</strong><span>Average Rating</span></div><div class="s"><strong>46%</strong><span>Price Cut</span></div><div class="s"><strong>2–4 Wks</strong><span>Visible Results</span></div></section>
 
 
 <!-- TRUST & TRANSPARENCY -->
@@ -193,8 +202,8 @@ main{padding-top:128px}
   <div style="max-width:768px" class="mx">
     <div class="tc" style="margin-bottom:28px"><span class="stag">Before You Order</span><h2 class="stitle">Everything You <em>Need to Know</em></h2></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
-      <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:20px;padding:18px"><div style="font-size:22px;margin-bottom:6px">&#x2705;</div><p style="font-size:12px;font-weight:900;color:#166534;margin-bottom:3px">Pay on Delivery</p><p style="font-size:11px;font-weight:600;color:#166534;opacity:.8;line-height:1.5">No payment upfront. Cash only when your package arrives at your door.</p></div>
-      <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:20px;padding:18px"><div style="font-size:22px;margin-bottom:6px">&#x1F69A;</div><p style="font-size:12px;font-weight:900;color:#1e40af;margin-bottom:3px">Delivery Areas</p><p style="font-size:11px;font-weight:600;color:#1e40af;opacity:.8;line-height:1.5">Lagos: 24 to 48 hrs<br>Abuja (FCT): 3 to 5 days<br>Free delivery on all orders</p></div>
+      <div style="background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:20px;padding:18px"><div style="font-size:22px;margin-bottom:6px">&#x2705;</div><p style="font-size:12px;font-weight:900;color:#166534;margin-bottom:3px">Pay on Delivery</p><p style="font-size:11px;font-weight:600;color:#166534;opacity:.8;line-height:1.5">In Lagos, pay cash when your package arrives. Orders outside Lagos go through WhatsApp and require payment before dispatch.</p></div>
+      <div style="background:#eff6ff;border:1.5px solid #bfdbfe;border-radius:20px;padding:18px"><div style="font-size:22px;margin-bottom:6px">&#x1F69A;</div><p style="font-size:12px;font-weight:900;color:#1e40af;margin-bottom:3px">Delivery Areas</p><p style="font-size:11px;font-weight:600;color:#1e40af;opacity:.8;line-height:1.5">Lagos: free delivery, typically 24–48 hours.<br>Abuja (FCT): typically 3–5 days. Message us on WhatsApp to confirm delivery and prepayment.</p></div>
       <div style="background:#fff7ed;border:1.5px solid #fed7aa;border-radius:20px;padding:18px"><div style="font-size:22px;margin-bottom:6px">&#x1F4DE;</div><p style="font-size:12px;font-weight:900;color:#9a3412;margin-bottom:3px">Questions?</p><p style="font-size:11px;font-weight:600;color:#9a3412;opacity:.8;line-height:1.5">Call or WhatsApp us:<br><a href="tel:+2348039940408" style="font-weight:900;color:#9a3412;text-decoration:none">08039940408</a></p></div>
       <div style="background:#fdf4ff;border:1.5px solid #e9d5ff;border-radius:20px;padding:18px"><div style="font-size:22px;margin-bottom:6px">&#x1F504;</div><p style="font-size:12px;font-weight:900;color:#6b21a8;margin-bottom:3px">Wrong or Damaged?</p><p style="font-size:11px;font-weight:600;color:#6b21a8;opacity:.8;line-height:1.5">We will replace it. Call us within 24 hrs of delivery.</p></div>
     </div>
@@ -256,7 +265,7 @@ main{padding-top:128px}
       <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px"><div style="font-size:24px;margin-bottom:8px">😩</div><p style="font-size:13px;font-weight:700;opacity:.9;line-height:1.6">"I can see wrinkles forming and I'm terrified of needles."</p></div>
     </div>
     <div style="padding:24px;background:rgba(255,45,85,.15);border:1.5px solid rgba(255,45,85,.3);border-radius:24px;margin-bottom:32px">
-      <p style="font-size:15px;font-weight:800;line-height:1.6">The V-Lift Pro™ is the <strong style="color:#ff8fab">professional solution</strong> — clinical EMS technology from ₦50,000+ spa sessions, now yours for ₦26,500 with <strong style="color:#ff8fab">free delivery</strong>.</p>
+      <p style="font-size:15px;font-weight:800;line-height:1.6">The V-Lift Pro™ is the <strong style="color:#ff8fab">professional solution</strong> — clinical EMS technology from ₦50,000+ spa sessions, now yours for ₦29,500 with <strong style="color:#ff8fab">free delivery</strong>.</p>
     </div>
     <button onclick="scrollToOrder()" class="btn" style="max-width:340px;margin:0 auto">Get Mine Now</button>
   </div>
@@ -270,7 +279,7 @@ main{padding-top:128px}
       <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">Lifts Sagging Skin</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">EMS stimulates facial muscles, naturally lifting and firming without surgery.</p></div>
       <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">Defines Your Jawline</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">Sculpts the lower face, reduces double chin, and gives you that sharp jawline.</p></div>
       <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">Reduces Wrinkles</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">Red light + microcurrent boost collagen to visibly smooth fine lines in 2–4 weeks.</p></div>
-      <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">Saves ₦300k/Year</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">One-time ₦26,500 vs ₦25,000/month at the spa. Own it forever.</p></div>
+      <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">Saves ₦300k/Year</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">One-time ₦29,500 vs ₦25,000/month at the spa. Own it forever.</p></div>
       <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">10 Min / Day</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">Use during your skincare routine or before bed. No appointments needed.</p></div>
       <div class="card"><div class="bi"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.929 4.929l1.414 1.414m11.313 11.313 1.414 1.414M2 12h2m16 0h2M4.929 19.071l1.414-1.414m11.313-11.313 1.414-1.414"/></svg></div><h3 style="font-size:14px;font-weight:900;margin-bottom:6px">Natural Glow</h3><p style="font-size:12px;font-weight:600;opacity:.7;line-height:1.6">Improves circulation so your skin looks brighter, healthier, and more radiant.</p></div>
     </div>
@@ -303,7 +312,7 @@ main{padding-top:128px}
       <div class="rc"><div class="stars">★★★★★</div><p style="font-size:13px;font-weight:600;line-height:1.7;margin:12px 0;font-style:italic;opacity:.85">"I'm 42 and after 4 weeks, the fine lines around my eyes are genuinely lighter. I love this product — it's become a non-negotiable part of my routine."</p><p style="font-size:11px;font-weight:900;letter-spacing:.08em">BIMPE A. — VICTORIA ISLAND</p><div class="ver" style="margin-top:8px">✓ Verified Purchase</div></div>
       <div class="rc"><div class="stars">★★★★★</div><p style="font-size:13px;font-weight:600;line-height:1.7;margin:12px 0;font-style:italic;opacity:.85">"I was sceptical but I paid on delivery so I had nothing to lose. My double chin is almost gone after 5 weeks. Telling every woman I know about this."</p><p style="font-size:11px;font-weight:900;letter-spacing:.08em">NGOZI I. — LEKKI</p><div class="ver" style="margin-top:8px">✓ Verified Purchase</div></div>
       <div class="rc"><div class="stars">★★★★★</div><p style="font-size:13px;font-weight:600;line-height:1.7;margin:12px 0;font-style:italic;opacity:.85">"Puffiness under my eyes is completely gone. I use it every morning for 10 minutes and my face looks sculpted for the whole day."</p><p style="font-size:11px;font-weight:900;letter-spacing:.08em">FUNKE L. — IKEJA</p><div class="ver" style="margin-top:8px">✓ Verified Purchase</div></div>
-      <div class="rc"><div class="stars">★★★★★</div><p style="font-size:13px;font-weight:600;line-height:1.7;margin:12px 0;font-style:italic;opacity:.85">"Delivery was fast, packaging was premium, and the device exceeded my expectations. My skin looks like I've been on a 2-week retreat. So worth ₦26,500!"</p><p style="font-size:11px;font-weight:900;letter-spacing:.08em">CHISOM O. — ABUJA</p><div class="ver" style="margin-top:8px">✓ Verified Purchase</div></div>
+      <div class="rc"><div class="stars">★★★★★</div><p style="font-size:13px;font-weight:600;line-height:1.7;margin:12px 0;font-style:italic;opacity:.85">"Delivery was fast, packaging was premium, and the device exceeded my expectations. My skin looks like I've been on a 2-week retreat. So worth &#8358;26,500!"</p><p style="font-size:11px;font-weight:900;letter-spacing:.08em">CHISOM O. — ABUJA</p><div class="ver" style="margin-top:8px">✓ Verified Purchase · Previous offer</div></div>
     </div>
     <div class="tc" style="margin-top:36px"><button onclick="scrollToOrder()" class="btn" style="max-width:340px;margin:0 auto">Place Your Order — Pay on Delivery →</button></div>
   </div>
@@ -312,37 +321,23 @@ main{padding-top:128px}
 <!-- VALUE STACK / BUNDLES -->
 <section style="padding:72px 20px;background:#fff">
   <div style="max-width:768px" class="mx">
-    <div class="tc" style="margin-bottom:32px"><span class="stag">Choose Your Package</span><h2 class="stitle">What's <em>Included</em></h2></div>
+    <div class="tc" style="margin-bottom:32px"><span class="stag">V-Lift Pro + Vitamin C</span><h2 class="stitle">What's <em>Included</em></h2></div>
     <div class="md2" style="display:grid;grid-template-columns:1fr;gap:24px">
       <div style="border:2px solid var(--p);border-radius:28px;padding:28px;position:relative">
-        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--p);color:#fff;border-radius:9999px;padding:6px 18px;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">⭐ Most Popular</div>
-        <div class="tc" style="margin-bottom:20px;margin-top:8px"><div style="font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin-bottom:4px">Standard Package</div><div style="display:flex;align-items:baseline;justify-content:center;gap:10px"><span style="font-size:32px;font-weight:900;color:var(--p)">₦26,500</span><span style="font-size:16px;font-weight:700;text-decoration:line-through;opacity:.4">₦55,000</span></div></div>
+        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--p);color:#fff;border-radius:9999px;padding:6px 18px;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">Vitamin C Serum Included</div>
+        <div class="tc" style="margin-bottom:20px;margin-top:8px"><div style="font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin-bottom:4px">V-Lift Pro + Vitamin C Serum</div><div style="display:flex;align-items:baseline;justify-content:center;gap:10px"><span style="font-size:32px;font-weight:900;color:var(--p)">₦29,500</span><span style="font-size:16px;font-weight:700;text-decoration:line-through;opacity:.4">₦55,000</span></div></div>
+        <img src="https://res.cloudinary.com/dmy2yiax9/image/upload/v1795308859/ad27c43b-dc87-4747-9ac3-498a0c9d12af_1_xayhxi.png" alt="Vitamin C serum included with the V-Lift Pro offer" loading="lazy" decoding="async" style="width:min(100%,360px);height:auto;margin:0 auto 20px;border-radius:16px">
         <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
+          <li class="vsi"><span style="font-weight:700;font-size:12px">Vitamin C Serum</span><span class="vsp">Free</span></li>
           <li class="vsi"><span style="font-weight:700;font-size:12px">V-Lift Pro™ Device</span><span class="vsp">Included</span></li>
           <li class="vsi"><span style="font-weight:700;font-size:12px">USB Fast Charging Cable</span><span class="vsp">Included</span></li>
           <li class="vsi"><span style="font-weight:700;font-size:12px">Instruction Guidebook</span><span class="vsp">Included</span></li>
           <li class="vsi"><span style="font-weight:700;font-size:12px">Luxury Storage Box</span><span class="vsp">Included</span></li>
           <li class="vsi"><span style="font-weight:700;font-size:12px;color:#16a34a">Free Delivery</span><span style="font-weight:900;color:#16a34a">₦0</span></li>
         </ul>
-        <button onclick="selectBundle('Face Massager (Standard)',26500)" class="btn">Select — ₦26,500</button>
+        <button onclick="scrollToOrder()" class="btn">Order V-Lift + Serum — ₦29,500</button>
       </div>
-      <div style="border:2px solid #f97316;border-radius:28px;padding:28px;position:relative;background:linear-gradient(135deg,#fff,#fff8f5)">
-        <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#f97316,#ef4444);color:#fff;border-radius:9999px;padding:6px 18px;font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap">🔥 Best Value — Save Extra ₦3,500</div>
-        <div class="tc" style="margin-bottom:20px;margin-top:8px"><div style="font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;opacity:.5;margin-bottom:4px">Power Bundle</div><div style="display:flex;align-items:baseline;justify-content:center;gap:10px"><span style="font-size:32px;font-weight:900;color:#f97316">₦33,000</span><span style="font-size:16px;font-weight:700;text-decoration:line-through;opacity:.4">₦65,000</span></div></div>
-        <div style="margin-bottom:16px;border-radius:24px;overflow:hidden;aspect-ratio:16/9;background:#000">
-          <video autoplay loop muted playsinline preload="none" poster="https://res.cloudinary.com/dmy2yiax9/video/upload/f_jpg,q_auto,w_400/v1782931830/202607011617_8_1_iohxxv.jpg" style="width:100%;height:100%;object-fit:cover" width="400" height="225">
-            <source src="https://res.cloudinary.com/dmy2yiax9/video/upload/q_auto:good/v1782931830/202607011617_8_1_iohxxv.mp4" type="video/mp4">
-          </video>
-        </div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:24px">
-          <li class="vsi"><span style="font-weight:700;font-size:12px">V-Lift Pro™ Device</span><span class="vsp">Included</span></li>
-          <li class="vsi"><span style="font-weight:700;font-size:12px">🎁 Premium Face Lift Tape</span><span style="font-weight:900;color:#f97316">FREE</span></li>
-          <li class="vsi"><span style="font-weight:700;font-size:12px">USB Fast Charging Cable</span><span class="vsp">Included</span></li>
-          <li class="vsi"><span style="font-weight:700;font-size:12px">Instruction Guidebook</span><span class="vsp">Included</span></li>
-          <li class="vsi"><span style="font-weight:700;font-size:12px;color:#16a34a">Free Delivery</span><span style="font-weight:900;color:#16a34a">₦0</span></li>
-        </ul>
-        <button onclick="selectBundle('Massager + Lift Tape Bundle',33000)" style="display:block;width:100%;padding:18px;background:linear-gradient(135deg,#f97316,#ef4444);color:#fff;border-radius:9999px;font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none">Select Bundle — ₦33,000</button>
-      </div>
+
     </div>
   </div>
 </section>
@@ -355,7 +350,7 @@ main{padding-top:128px}
       <table class="ct">
         <thead style="background:var(--p);color:#fff"><tr><th style="text-align:left;padding:16px 20px;font-size:11px">Feature</th><th style="padding:16px;font-size:11px">V-Lift Pro™</th><th style="padding:16px;font-size:11px">Spa Facial</th><th style="padding:16px;font-size:11px">Surgery</th></tr></thead>
         <tbody>
-          <tr><td style="padding:14px 20px;font-weight:700;font-size:12px;border-top:1px solid #fce7f3">Cost</td><td style="text-align:center;border-top:1px solid #fce7f3;font-weight:900;color:var(--p);font-size:12px">₦26,500</td><td style="text-align:center;border-top:1px solid #fce7f3;font-size:12px;opacity:.6">₦15–25k/visit</td><td style="text-align:center;border-top:1px solid #fce7f3;font-size:12px;opacity:.6">₦500k+</td></tr>
+          <tr><td style="padding:14px 20px;font-weight:700;font-size:12px;border-top:1px solid #fce7f3">Cost</td><td style="text-align:center;border-top:1px solid #fce7f3;font-weight:900;color:var(--p);font-size:12px">₦29,500</td><td style="text-align:center;border-top:1px solid #fce7f3;font-size:12px;opacity:.6">₦15–25k/visit</td><td style="text-align:center;border-top:1px solid #fce7f3;font-size:12px;opacity:.6">₦500k+</td></tr>
           <tr style="background:#fff9fb"><td style="padding:14px 20px;font-weight:700;font-size:12px;border-top:1px solid #fce7f3">Visible Lift</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#16a34a;font-size:16px">✓</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#16a34a;font-size:16px">✓</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#16a34a;font-size:16px">✓</td></tr>
           <tr><td style="padding:14px 20px;font-weight:700;font-size:12px;border-top:1px solid #fce7f3">Use at Home</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#16a34a;font-size:16px">✓</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#d1d5db;font-size:16px">✗</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#d1d5db;font-size:16px">✗</td></tr>
           <tr style="background:#fff9fb"><td style="padding:14px 20px;font-weight:700;font-size:12px;border-top:1px solid #fce7f3">Zero Pain</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#16a34a;font-size:16px">✓</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#16a34a;font-size:16px">✓</td><td style="text-align:center;border-top:1px solid #fce7f3;color:#d1d5db;font-size:16px">✗</td></tr>
@@ -368,16 +363,16 @@ main{padding-top:128px}
 </section>
 
 <!-- FAQ -->
-<section style="padding:72px 20px;background:#fff">
+<section id="customer-faq" style="padding:72px 20px;background:#fff">
   <div style="max-width:672px" class="mx">
     <div class="tc" style="margin-bottom:32px"><span class="stag">Questions? We Have Answers</span><h2 class="stitle">Frequently Asked <em>Questions</em></h2></div>
     <div style="display:flex;flex-direction:column;gap:12px">
       <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>How soon will I see results?</span><span class="fqicon">+</span></div><div class="fqa">Most women notice tighter skin and less puffiness within 1–2 weeks. Full results at 4–6 weeks of daily 10-minute use.</div></div>
       <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>Is it safe for all skin types?</span><span class="fqicon">+</span></div><div class="fqa">Yes — dermatologist-safe for all skin types including sensitive skin. If you have a pacemaker, are pregnant, or have active skin infections, consult your doctor first.</div></div>
       <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>How do I use it?</span><span class="fqicon">+</span></div><div class="fqa">Apply your serum or facial oil, then glide the device over your face in upward strokes for 10 minutes. Focus on the jawline, cheeks, and under-eye areas. Daily use gives best results.</div></div>
-      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>Do I pay before delivery?</span><span class="fqicon">+</span></div><div class="fqa">No — you pay cash when your package arrives at your door. We deliver across Lagos and Abuja. You receive a confirmation call before dispatch.</div></div>
-      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>How long does delivery take?</span><span class="fqicon">+</span></div><div class="fqa">24 to 48 hours in Lagos, 3 to 5 days in Abuja. You'll receive a WhatsApp message when it's on the way.</div></div>
-      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>Standard vs Bundle — what's the difference?</span><span class="fqicon">+</span></div><div class="fqa">Standard includes the device, cable, guidebook and storage box. The Bundle adds our Premium Face Lift Tape — a physical lifting product that works perfectly with the device for even faster results. Most serious customers choose the Bundle.</div></div>
+      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>Do I pay before delivery?</span><span class="fqicon">+</span></div><div class="fqa">For Lagos orders, pay cash when your package arrives. For Abuja and other orders outside Lagos, contact us on WhatsApp to confirm service and pay before dispatch. We call before dispatch for Lagos orders.</div></div>
+      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>How long does delivery take?</span><span class="fqicon">+</span></div><div class="fqa">Lagos delivery usually takes 24–48 hours. Choose a preferred day and time window when you order. We confirm availability before dispatch. Abuja usually takes 3–5 days through WhatsApp.</div></div>
+      <div class="fqi"><div class="fqq" onclick="tFaq(this)"><span>What comes with my order?</span><span class="fqicon">+</span></div><div class="fqa">You get the V-Lift Pro device, a complimentary Vitamin C serum, the USB charging cable, the guidebook and the storage box.</div></div>
     </div>
   </div>
 </section>
@@ -388,34 +383,37 @@ main{padding-top:128px}
 
     <div class="tc" style="margin-bottom:28px"><span class="stag">Secure Order Form</span><h2 class="stitle" style="font-size:clamp(1.6rem,5vw,2.4rem)">Place Your Order <em>Below</em></h2><p style="font-size:12px;font-weight:600;color:#9b2335;margin-top:8px;opacity:.8">Free Delivery · Pay on Delivery · We Call Before Dispatch</p></div>
 
-    <!-- Bundle selector -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px">
-      <div class="bc sel" id="cs" onclick="selectBundle('Face Massager (Standard)',26500)"><div class="bb" style="background:var(--p);color:#fff">⭐ Popular</div><div style="font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-bottom:4px;margin-top:12px">Standard</div><div style="font-size:22px;font-weight:900;color:var(--p)">₦26,500</div><div style="font-size:10px;font-weight:700;opacity:.5;text-decoration:line-through">₦55,000</div></div>
-      <div class="bc" id="cb" onclick="selectBundle('Massager + Lift Tape Bundle',33000)"><div class="bb" style="background:linear-gradient(90deg,#f97316,#ef4444);color:#fff">🔥 Best Value</div><div style="font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin-bottom:4px;margin-top:12px">+ Lift Tape</div><div style="font-size:22px;font-weight:900;color:#f97316">₦33,000</div><div style="font-size:10px;font-weight:700;opacity:.5;text-decoration:line-through">₦65,000</div></div>
+    <div style="margin-bottom:24px">
+      <h3 style="font-size:16px;color:#1a0a0f;margin:0 0 10px">How Lagos delivery works</h3>
+      <ol class="vl-delivery-steps">
+        <li><strong>1. Order V-Lift Pro + serum</strong>₦29,500 includes the massager, Vitamin C serum and free Lagos delivery.</li>
+        <li><strong>2. Pick your delivery window</strong>Choose when someone can receive the package. We call to confirm before dispatch.</li>
+        <li><strong>3. Pay the rider in cash</strong>Delivery in Lagos is free. The total in the order summary is what you pay on arrival.</li>
+      </ol>
     </div>
 
     <div class="fc">
       <form id="orderForm" data-pid="9992">
 <input type="hidden" name="order_id" id="order_id" value="">
-        <input type="hidden" name="product_name" id="hp_name" value="Face Massager (Standard)">
-        <input type="hidden" name="product_price" id="hp_price" value="26500">
+        <input type="hidden" name="product_name" id="hp_name" value="V-Lift Pro + Vitamin C Serum">
+        <input type="hidden" name="product_price" id="hp_price" value="29500">
         <div style="display:flex;flex-direction:column;gap:16px">
           <div class="fg"><label class="fl">Full Name *</label><input class="fi" type="text" name="name" placeholder="Your full name" required autocomplete="name"></div>
           <div class="fg"><label class="fl">Phone Number *</label><input class="fi" type="tel" name="phone" placeholder="08012345678" required autocomplete="tel"></div>
           <div class="fg"><label class="fl" for="vl_alt_phone">Alternative Phone <span style="font-weight:500;opacity:.6;text-transform:none;letter-spacing:0">(Optional)</span></label><input class="fi" type="tel" id="vl_alt_phone" name="alt_phone" placeholder="09012345678" autocomplete="tel"></div>
           
 
-          <div class="fg"><label class="fl" for="stateSelectVL">Select State *</label><select class="fs" name="state" id="stateSelect" required onchange="updateCities()"><option value="Lagos" selected>Lagos</option></select></div>
-          <div class="fg"><label class="fl" for="citySelectVL">Select Area *</label><select class="fs" name="location" id="citySelect" required disabled><option value="" disabled selected>— Select your area —</option></select></div>
+          <div class="fg"><label class="fl" for="stateSelect">Select State *</label><select class="fs" name="state" id="stateSelect" required onchange="updateCities()"><option value="Lagos" selected>Lagos</option></select></div>
+          <div class="fg"><label class="fl" for="citySelect">Select Area *</label><select class="fs" name="location" id="citySelect" required disabled><option value="" disabled selected>— Select your area —</option></select></div>
           <div class="fg"><label class="fl">Delivery Address *</label><textarea class="fta" name="address" placeholder="House number, street, landmark..." required></textarea></div>
 
           <!-- Order summary -->
           <div style="background:#fff9fb;border-radius:20px;padding:16px;border:1.5px solid #fce7f3">
             <p style="font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--p);margin-bottom:12px">Order Summary</p>
-            <div class="sr"><span id="sp">Face Massager (Standard)</span><span id="spr" style="font-weight:900;color:var(--p)">₦26,500</span></div>
+            <div class="sr"><span id="sp">V-Lift Pro + Vitamin C Serum</span><span id="spr" style="font-weight:900;color:var(--p)">₦29,500</span></div>
             <div class="sr"><span>Delivery</span><span style="color:#16a34a;font-weight:900">FREE</span></div>
             <div class="sr"><span>Payment</span><span style="color:#2563eb">Pay on Delivery</span></div>
-            <div style="display:flex;justify-content:space-between;padding-top:12px;font-size:15px;font-weight:900;border-top:2px solid #fce7f3;margin-top:4px"><span>Total</span><span id="st" style="color:var(--p)">₦26,500</span></div>
+            <div style="display:flex;justify-content:space-between;padding-top:12px;font-size:15px;font-weight:900;border-top:2px solid #fce7f3;margin-top:4px"><span>Total</span><span id="st" style="color:var(--p)">₦29,500</span></div>
           </div>
 
           <!-- Confirmation -->
@@ -436,7 +434,8 @@ main{padding-top:128px}
           
 <!-- GG Delivery Preference -->
 <div id="dp_wrap" style="margin:1.5rem 0 0;padding:1.25rem;background:#fafafa;border:1.5px solid #ffe4e6;border-radius:14px;">
-  <p style="font-weight:900;font-size:13px;color:#1a0a0f;margin:0 0 12px;">&#x1F4E6; When should we deliver?</p>
+  <p style="font-weight:900;font-size:13px;color:#1a0a0f;margin:0 0 12px;">&#x1F4E6; Choose your preferred delivery day</p>
+  <p style="font-size:12px;color:#475569;margin:0 0 12px;">We confirm your preferred day and time before dispatch.</p>
   <div style="display:flex;gap:8px;margin-bottom:14px;">
     <button type="button" id="dp_today" onclick="dpSelectDay('today')" style="flex:1;padding:12px 8px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;text-align:center;font-family:inherit;"><div style="font-weight:900;font-size:13px;color:#1a0a0f;">Today</div><div id="dp_today_date" style="font-size:10px;font-weight:700;color:#64748b;margin-top:3px;"></div></button>
     <button type="button" id="dp_tomorrow" onclick="dpSelectDay('tomorrow')" style="flex:1;padding:12px 8px;border:2px solid #e2e8f0;border-radius:12px;background:#fff;cursor:pointer;text-align:center;font-family:inherit;"><div style="font-weight:900;font-size:13px;color:#1a0a0f;">Tomorrow</div><div id="dp_tomorrow_date" style="font-size:10px;font-weight:700;color:#64748b;margin-top:3px;"></div></button>
@@ -516,7 +515,7 @@ main{padding-top:128px}
 
 <!-- STICKY CTA -->
 <div id="scta">
-  <div style="flex:1"><p style="font-size:13px;font-weight:900;color:var(--d)">V-Lift Pro™ — <span style="color:var(--p)">₦26,500</span></p><p style="font-size:10px;font-weight:700;color:#16a34a;margin-top:2px">✅ Pay on Delivery</p></div>
+  <div style="flex:1"><p style="font-size:13px;font-weight:900;color:var(--d)">V-Lift Pro™ — <span style="color:var(--p)">₦29,500</span></p><p style="font-size:10px;font-weight:700;color:#16a34a;margin-top:2px">✅ Pay on Delivery</p></div>
   <button onclick="scrollToOrder()" style="flex:1;padding:14px;background:var(--p);color:#fff;border-radius:9999px;font-weight:900;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(255,45,85,.4)">Order Now — Pay on Delivery →</button>
 </div>
 
@@ -539,7 +538,7 @@ main{padding-top:128px}
     <div style="width:46px;height:46px;background:var(--p);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px">&#x2753;</div>
     <h3 style="font-size:1.1rem;font-weight:900;text-align:center;color:var(--d);margin:0 0 8px">Have a Question?</h3>
     <p style="font-size:12px;color:#6b7280;text-align:center;font-weight:600;margin:0 0 16px;line-height:1.5">We've answered everything &#8212; how to use it, results, delivery, payment, and returns. All in our FAQ below.</p>
-    <a href="#faq" onclick="document.getElementById('faqnudge').style.display='none'" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;background:var(--p);color:#fff;border-radius:9999px;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">&#x1F4D6; See All FAQs</a>
+    <a href="#customer-faq" onclick="document.getElementById('faqnudge').style.display='none'" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;background:var(--p);color:#fff;border-radius:9999px;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px">&#x1F4D6; See All FAQs</a>
     <button onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});document.getElementById('faqnudge').style.display='none'" class="btn">Order Now Instead</button>
     <p onclick="document.getElementById('faqnudge').style.display='none'" style="text-align:center;font-size:10px;color:#9ca3af;margin:10px 0 0;cursor:pointer;font-weight:600">Continue browsing</p>
   </div>
@@ -547,6 +546,35 @@ main{padding-top:128px}
 
 
 
+<script>
+function scrollToOrder(){
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
+function tFaq(control){
+  var item=control.parentElement;
+  var wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.fqi.open').forEach(function(openItem){ openItem.classList.remove('open'); });
+  if(!wasOpen) item.classList.add('open');
+}
+var lagosDeliveryAreas=['Lagos Island','Lagos Mainland','Victoria Island','Ikoyi','Oniru','Lekki Phase 1','Lekki Phase 2','Ajah','Chevron / Sangotedo','Ikeja / GRA','Maryland','Gbagada','Yaba','Surulere','Mushin','Oshodi','Isolo','Agege','Ketu / Ojota','Ojodu / Berger','Magodo','Anthony Village','Apapa','Festac Town','Mile 2 / Amuwo Odofin','Ikorodu','Epe','Badagry'];
+function updateCities(){
+  var state=document.getElementById('stateSelect');
+  var area=document.getElementById('citySelect');
+  area.replaceChildren(new Option('Select your area','',true,true));
+  area.options[0].disabled=true;
+  if(state.value==='Lagos'){
+    lagosDeliveryAreas.forEach(function(location){ area.add(new Option(location,location)); });
+    area.disabled=false;
+  } else {
+    area.disabled=true;
+  }
+}
+document.addEventListener('DOMContentLoaded',updateCities);
+var stickyOrder=document.getElementById('scta');
+window.addEventListener('scroll',function(){
+  stickyOrder.classList.toggle('v',window.scrollY>200 && document.getElementById('order').getBoundingClientRect().top>0);
+},{passive:true});
+</script>
 <script>
 var _dpDay='',_dpWindow='';
 function _dpLagosHour(){ return new Date(Date.now()+3600000).getUTCHours(); }
@@ -627,7 +655,7 @@ var PX_ID     = '4029546293858823';
 var PX_CID    = ['vlift_001'];
 var PID       = 'vl001';
 var NAIRA     = '\u20A6';
-var DEF_PRICE = 26500;
+var DEF_PRICE = 29500;
 var DEF_STATE = '';
 
 // ── localStorage ──
@@ -945,7 +973,7 @@ document.addEventListener('DOMContentLoaded',function(){
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];window.addEventListener('load',function(){setTimeout(function(){t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);},1000);},{once:true});}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','4029546293858823');
 fbq('track','PageView');
-fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:['vlift_001'],content_type:'product',value:26500,currency:'NGN'});
+fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:['vlift_001'],content_type:'product',value:29500,currency:'NGN'});
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4029546293858823&ev=PageView&noscript=1"/></noscript>
 <script>
@@ -1038,10 +1066,12 @@ fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:[
       var aph   = (d.alt_phone||d.whatsapp||ph||'').trim();
       var addr  = (d.address||'').trim();
       var loc   = (d.location||d.city||d.state||'').trim();
-      var pname = d.product_name || 'V-Lift Face Sculptor';
-      var tot   = parseFloat(d.product_price||d.price||'0') || 0;
+      var pname = d.product_name || 'V-Lift Pro + Vitamin C Serum';
+      var tot   = parseFloat(d.product_price || d.price) || 29500;
       var ts    = new Date().toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Africa/Lagos'});
 
+      var deliveryError=dpRecheck();
+      if(deliveryError){ alert(deliveryError); return; }
       if(!nm){ alert('Please enter your name'); return; }
       if(!ph){ alert('Please enter your phone number'); return; }
       if(!addr){ alert('Please enter your delivery address'); return; }
@@ -1053,25 +1083,28 @@ fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:[
       var attr = getAttr();
       var locStr = loc || 'Lagos';
 
-      var rawMsg = '*NEW ORDER (V-LIFT SCULPTOR)*\n' +
+      var rawMsg = '*NEW ORDER (V-LIFT PRO)*\n' +
         'Order ID: '+orderId+'\nProduct: '+pname+'\nTotal: N'+tot.toLocaleString()+'\n' +
         'Name: '+nm+'\nPhone: '+ph+'\nAddress: '+addr+', '+locStr+'\nPayment: Pay on Delivery\n\nPlease confirm my delivery.';
-      var waMsg = encodeURIComponent(rawMsg);
+      var deliveryDetails = 'Delivery: '+d.delivery_day+' ('+d.delivery_date+') | Window: '+d.delivery_window;
+      var waMsg = encodeURIComponent(rawMsg+'\n'+deliveryDetails);
 
       var ep = {
         order_id:orderId, to_name:'FrankAgent', from_name:nm,
         customer_name:nm, name:nm,
-        message:'=== NEW ORDER (V-LIFT SCULPTOR) ===\nOrder ID: '+orderId+'\nDate: '+ts+
+        message:'=== NEW ORDER (V-LIFT PRO) ===\nOrder ID: '+orderId+'\nDate: '+ts+
           '\nProduct: '+pname+'\nTotal: N'+tot.toLocaleString()+
           '\nName: '+nm+'\nPhone: '+ph+'\nAlt: '+aph+
           '\nAddress: '+addr+'\nLocation: '+locStr+'\nPayment: Pay on Delivery\n'+
-          '\nUTM: '+attr.utm_source+' / '+attr.utm_medium+'\nFBCLID: '+attr.fbclid+'\nReferrer: '+attr.referrer,
+          '\n'+deliveryDetails+'\nUTM: '+attr.utm_source+' / '+attr.utm_medium+'\nFBCLID: '+attr.fbclid+'\nReferrer: '+attr.referrer,
         customer_phone:ph, phone:ph, alternative_phone:aph, alt_phone:aph,
-        customer_address:addr, address:addr, location:locStr, city:loc, state:loc,
+        customer_address:addr, address:addr, location:locStr, city:loc, state:d.state,
         product_name:pname, product:pname,
         price:'N'+tot.toLocaleString(), total:'N'+tot.toLocaleString(),
         total_amount:'N'+tot.toLocaleString(), currency:'NGN',
         payment_method:'Pay on Delivery', delivery_fee:'FREE', date:ts,
+        delivery_day:d.delivery_day, delivery_date:d.delivery_date, delivery_window:d.delivery_window,
+        availability_confirmed:d.availability_confirmed,
         fbclid:attr.fbclid||'', utm_source:attr.utm_source||'',
         utm_medium:attr.utm_medium||'', utm_campaign:attr.utm_campaign||'',
         referrer:attr.referrer||'', landing_page:attr.landing_page||''
