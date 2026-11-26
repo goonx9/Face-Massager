@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded',function(){ dpInit(); });
   <p>We'll confirm your delivery time. Pay <strong id="bra-popup-total"></strong> cash when it arrives.</p>
   <form method="dialog"><button class="btn-main" autofocus>Done</button></form>
 </dialog>
-<style>#bra-order-popup::backdrop{background:rgba(26,10,15,.65)}.hero-grad{pointer-events:none}.hero-media video{position:relative;z-index:1}.hero-media video + .hero-grad{z-index:2}.hero-media video + .hero-grad ~ div{z-index:3;pointer-events:none}</style>
+<style>#bra-order-popup::backdrop{background:rgba(26,10,15,.65)}.hero-grad{pointer-events:none}.hero-media video{position:relative;z-index:1}@media(min-width:768px){.hero-media{max-height:min(64vh,560px)}}.hero-media video + .hero-grad{z-index:2}.hero-media video + .hero-grad ~ div{z-index:3;pointer-events:none}</style>
 <script>
 const braPrices = { Single: 29000, Premium: 39000 };
 const braNames = { Single: 'Invisible Push-Up Bra Pads (Single)', Premium: 'Invisible Bra Pads + Tape & Nipple Covers Combo' };
