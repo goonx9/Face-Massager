@@ -398,10 +398,7 @@ main{padding-top:128px}
 
           <!-- Confirmation -->
           <div style="background:#f0fdf4;border:1.5px solid #86efac;border-radius:20px;padding:18px">
-            <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
-              <input type="checkbox" required style="margin-top:3px;width:18px;height:18px;accent-color:#16a34a;flex-shrink:0">
-              <span style="font-size:12px;font-weight:700;color:#166534;line-height:1.6">I'm in <span id="cl">Lagos</span> and ready to receive my order within 1–2 days. I'll pay the rider cash on delivery.</span>
-            </label>
+            <p style="font-size:12px;font-weight:700;color:#166534;margin:0">You’ll pay the rider cash when your order arrives.</p>
             <p style="font-size:11px;font-weight:800;color:#166534;margin:10px 0 0;text-align:center;border-top:1px solid #bbf7d0;padding-top:10px">Not in Lagos? <a href="https://wa.me/2348039940408?text=Hi%2C+I+am+outside+Lagos+and+I+would+like+to+order+the+V-Lift+Pro" target="_blank" rel="noopener" style="color:#25D366;font-weight:900">WhatsApp us to order →</a></p>
           </div>
           <!-- Inline trust bar -->
@@ -631,7 +628,6 @@ var EJSVC     = 'service_gxhivxk';
 var EJSTPL    = 'template_239s5yz';
 var EJSKEY    = '_h1UzYlyePtWt0IqM';
 var WA_NUM    = '2348039940408';
-var PX_ID     = '4029546293858823';
 var PX_CID    = ['vlift_001'];
 var PID       = 'vl001';
 var NAIRA     = '\u20A6';
@@ -677,28 +673,26 @@ function fetchGas(body, attempt){
 }
 
 // ── EmailJS — secondary, fire-and-forget ──
-function sendEmail(ep){
-  var doSend=function(){
-    try{ emailjs.init(EJSKEY); }catch(ign){}
-    emailjs.send(EJSVC,EJSTPL,ep,{publicKey:EJSKEY})
-      .then(function(){ console.log('[FA5] Email sent OK'); })
-      .catch(function(err){ console.error('[FA5] Email error:',err); });
-  };
-  if(typeof emailjs!=='undefined'){ doSend(); return; }
-  var s=document.createElement('script');
-  s.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-  s.onload=function(){ doSend(); };
-  s.onerror=function(){ console.error('[FA5] EmailJS CDN failed'); };
-  document.head.appendChild(s);
+function sendEmail(payload){
+  return new Promise(function(resolve,reject){
+    if (typeof emailjs !== 'undefined') return resolve();
+    var script=document.createElement('script');
+    script.src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    script.onload=resolve;
+    script.onerror=reject;
+    document.head.appendChild(script);
+  }).then(function(){
+    return emailjs.send(EJSVC,EJSTPL,payload,{publicKey:EJSKEY});
+  }).then(function(){ return true; }).catch(function(error){
+    console.warn('[FA5] Order email failed',error);
+    return false;
+  });
 }
 
 // ── Meta Pixel (2.5s retry if fbq not ready) ──
-function firePixel(pname,tot,orderId,ph,nm,loc){
+function firePixel(pname,tot,orderId){
   var doFire=function(){
     if(typeof fbq!=='function') return;
-    var rp=(ph||'').replace(/\D/g,'');
-    if(rp.charAt(0)==='0') rp='234'+rp.substring(1);
-    fbq('init',PX_ID,{ph:rp,fn:(nm.split(' ')[0]||'').toLowerCase(),ct:(loc||'').toLowerCase(),country:'ng'});
     fbq('track','Lead',{content_name:pname,content_ids:PX_CID,content_type:'product',value:tot,currency:'NGN',order_id:orderId});
     fbq('trackCustom','OrderSubmitted',{order_id:orderId,content_name:pname,value:tot,currency:'NGN',payment_method:'Pay on Delivery'});
     console.log('[FA5] Pixel fired');
@@ -764,6 +758,38 @@ document.addEventListener('DOMContentLoaded',function(){
   if(!origForm){ console.error('[FA5] orderForm not found'); return; }
 
   var form=origForm;
+  var backupEmail=null;
+
+  const trackingFields = {content_ids:['vlift_001'], content_type:'product', value:DEF_PRICE, currency:'NGN'};
+  const trackedIssues = new Set();
+  let checkoutStarted = false;
+  function trackStep(event, reason) {
+    if (typeof fbq !== 'function') return;
+    try {
+      fbq(event === 'InitiateCheckout' ? 'track' : 'trackCustom', event,
+        reason ? {...trackingFields, reason} : trackingFields);
+    } catch (error) { console.warn('Checkout tracking unavailable', error); }
+  }
+  function startCheckout() {
+    if (checkoutStarted) return;
+    checkoutStarted = true;
+    trackStep('InitiateCheckout');
+  }
+  function checkoutIssue(event, reason) {
+    const key = event + ':' + reason;
+    if (trackedIssues.has(key)) return;
+    trackedIssues.add(key);
+    trackStep(event, reason);
+  }
+  form.addEventListener('input', event => {
+    if (event.target.matches('input:not([type="hidden"]), textarea, select')) startCheckout();
+  });
+  form.addEventListener('invalid', () => {
+    startCheckout();
+    checkoutIssue('OrderSubmitAttempt', 'native_validation');
+    checkoutIssue('OrderValidationError', 'required_fields');
+  }, true);
+
 
   // Restore or mint a fresh orderId
   var saved=lsGet();
@@ -837,6 +863,8 @@ document.addEventListener('DOMContentLoaded',function(){
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(_done) return;
+    startCheckout();
+    trackStep('OrderSubmitAttempt');
     clearErrs(form);
     var ex=form.querySelector('.fa-submit-err'); if(ex) ex.remove();
 
@@ -853,7 +881,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var locStr=loc&&loc.toLowerCase()!==(state||'').toLowerCase()?loc+', '+state:(state||'Nigeria');
 
     var dpErr=(typeof dpRecheck==='function')?dpRecheck():null;
-    if(dpErr){ showSubmitErr(form,dpErr); return; }
+    if(dpErr){ checkoutIssue('OrderValidationError', 'delivery_preference'); showSubmitErr(form,dpErr); return; }
 
     // Validate
     var fe=null;
@@ -861,7 +889,7 @@ document.addEventListener('DOMContentLoaded',function(){
     if(!ph||ph.replace(/\D/g,'').length<10){ showFieldErr(form.querySelector('[name="phone"]'),'Please enter a valid phone number'); fe=fe||form.querySelector('[name="phone"]'); }
     if(!state||!loc){ var sEl=form.querySelector('[name="state"],[name="location"]'); if(sEl){ showFieldErr(sEl,'Please select your delivery area'); fe=fe||sEl; } }
     if(!addr){ showFieldErr(form.querySelector('[name="address"]'),'Please enter your delivery address'); fe=fe||form.querySelector('[name="address"]'); }
-    if(fe){ fe.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){try{fe.focus();}catch(x){}},400); return; }
+    if(fe){ checkoutIssue('OrderValidationError', 'contact_or_area'); fe.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(function(){try{fe.focus();}catch(x){}},400); return; }
 
     // Lock button
     _done=true;
@@ -927,10 +955,10 @@ document.addEventListener('DOMContentLoaded',function(){
         console.log('[FA5] Sheet OK:',gasRes.status,'(',gasRes.action,')');
 
         // STEP 2: EmailJS (secondary — non-blocking, failure safe)
-        sendEmail(ep);
+        Promise.resolve(backupEmail).then(function(sent){ if(!sent) sendEmail(ep); });
 
         // STEP 3: Meta Pixel
-        firePixel(pname,tot,orderId,ph,nm,loc||state);
+        try { firePixel(pname,tot,orderId); } catch (error) { console.warn('Order tracking unavailable',error); }
 
         // STEP 4: Clear localStorage for this order
         lsClear();
@@ -940,10 +968,24 @@ document.addEventListener('DOMContentLoaded',function(){
       })
       .catch(function(err){
         console.error('[FA5] Sheet save failed after retries:',err);
+        trackStep('OrderSaveFailed','sheet_unconfirmed');
+        if(!backupEmail){
+          var recovery={...ep,message:'RECOVERY — SHEET SAVE UNCONFIRMED. CHECK ORDER ID BEFORE DISPATCH.\n\n'+ep.message};
+          backupEmail=sendEmail(recovery).then(function(sent){ if(!sent) backupEmail=null; return sent; });
+        }
         // Un-lock — let customer try again
         _done=false;
         if(btn){ btn.disabled=false; btn.textContent='Place My Order — Pay on Delivery →'; }
-        showSubmitErr(form,'Connection issue \u2014 please check your internet and try again.');
+        showSubmitErr(form,'We couldn’t confirm your order. Retry or message us on WhatsApp with your reference.');
+        var help=form.querySelector('.fa-submit-err');
+        if(help){
+          var link=document.createElement('a');
+          link.href='https://wa.me/'+WA_NUM+'?text='+encodeURIComponent('Hi, please check my V-Lift order '+orderId+'.');
+          link.target='_blank';
+          link.rel='noopener';
+          link.textContent=' Message us on WhatsApp';
+          help.appendChild(link);
+        }
       });
   });
 });
@@ -961,3 +1003,4 @@ fbq('track','ViewContent',{content_name:'V-Lift Pro Face Massager',content_ids:[
 
 </body>
 </html>
+

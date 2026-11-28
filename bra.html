@@ -457,12 +457,7 @@ document.addEventListener('DOMContentLoaded',function(){ dpInit(); });
 const braPrice = 29000;
 const braName = 'Invisible Push-Up Bra Pads (Single)';
 const braTracking = {content_name:braName,content_ids:['bra_001'],content_type:'product',value:braPrice,currency:'NGN'};
-let braCheckoutTracked = false;
 function scrollToOrder() {
-  if (!braCheckoutTracked && typeof fbq === 'function') {
-    braCheckoutTracked = true;
-    fbq('track','InitiateCheckout',braTracking);
-  }
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
 }
 function openBraFit() {
@@ -543,11 +538,72 @@ function showSizeHint(size) {
   retryLink.rel = 'noopener';
   retryLink.hidden = true;
   button.before(error,retryLink);
-  const orderId = 'BRA-' + (globalThis.crypto?.randomUUID?.().slice(0,8) || Date.now().toString(36) + Math.random().toString(36).slice(2,7)).toUpperCase();
+  let savedOrderId;
+  try { savedOrderId = sessionStorage.getItem('gg_bra_order_id'); } catch {}
+  const orderId = savedOrderId || 'BRA-' + (globalThis.crypto?.randomUUID?.().slice(0,8) || Date.now().toString(36) + Math.random().toString(36).slice(2,7)).toUpperCase();
   form.elements.namedItem('order_id').value = orderId;
+  try { sessionStorage.setItem('gg_bra_order_id', orderId); } catch {}
   retryLink.href = 'https://wa.me/2348039940408?text=' + encodeURIComponent('Hi, please check my bra order ' + orderId + '.');
   let submitting = false;
-  async function emailOrder(payload) {
+  let backupEmail = null;
+  let draftTimer;
+  let draftRequest;
+  let draftSaved = false;
+  const orderEndpoint = 'https://script.google.com/macros/s/AKfycbzDW18TOhtX7T7e5HcXu6bzwrs5Kpq56fgk9FdHmuy8XLrPgSq6PNiHor8OAGs_Xq51Aw/exec';
+  function scheduleDraft() {
+    if (submitting || draftSaved || draftRequest) return;
+    clearTimeout(draftTimer);
+    draftTimer = setTimeout(() => {
+      const values = Object.fromEntries(new FormData(form));
+      const name = values.name.trim();
+      const phone = values.phone.trim();
+      if (submitting || phone.replace(/\D/g,'').length < 10 || (!name && !values.address.trim())) return;
+      const draft = {
+        action:'draft',order_id:orderId,date:new Date().toLocaleString('en-GB',{timeZone:'Africa/Lagos'}),
+        name,customer_name:name,phone,product:braName,product_name:braName,quantity:'1',
+        size:values.size,state:values.delivery_state,city:values.location,location:values.location,
+        address:values.address.trim(),amount:'₦' + braPrice.toLocaleString('en-NG')
+      };
+      draftRequest = fetch(orderEndpoint,{
+        method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(draft),signal:AbortSignal.timeout(5000)
+      }).then(async response => { draftSaved = response.ok && (await response.json()).ok === true; })
+        .catch(() => {}).finally(() => { draftRequest = null; });
+    },8000);
+  }
+  form.addEventListener('input', scheduleDraft);
+  form.addEventListener('change', scheduleDraft);
+
+  const trackingFields = {content_ids:['bra_001'], content_type:'product', value:braPrice, currency:'NGN'};
+  const trackedIssues = new Set();
+  let checkoutStarted = false;
+  function trackStep(event, reason) {
+    if (typeof fbq !== 'function') return;
+    try {
+      fbq(event === 'InitiateCheckout' ? 'track' : 'trackCustom', event,
+        reason ? {...trackingFields, reason} : trackingFields);
+    } catch (error) { console.warn('Checkout tracking unavailable', error); }
+  }
+  function startCheckout() {
+    if (checkoutStarted) return;
+    checkoutStarted = true;
+    trackStep('InitiateCheckout');
+  }
+  function checkoutIssue(event, reason) {
+    const key = event + ':' + reason;
+    if (trackedIssues.has(key)) return;
+    trackedIssues.add(key);
+    trackStep(event, reason);
+  }
+  form.addEventListener('input', event => {
+    if (event.target.matches('input:not([type="hidden"]), textarea, select')) startCheckout();
+  });
+  form.addEventListener('invalid', () => {
+    startCheckout();
+    checkoutIssue('OrderSubmitAttempt', 'native_validation');
+    checkoutIssue('OrderValidationError', 'required_fields');
+  }, true);
+
+  async function emailOrder(payload, recovery = false) {
     try {
       if (!window.emailjs) {
         await new Promise((resolve, reject) => {
@@ -558,27 +614,34 @@ function showSizeHint(size) {
           document.head.appendChild(script);
         });
       }
-    const message = ['NEW BRA ORDER',orderId,payload.product,payload.size,payload.name,payload.phone,
+    const message = [recovery ? 'RECOVERY — SHEET SAVE UNCONFIRMED. CHECK ORDER ID BEFORE DISPATCH.' : 'NEW BRA ORDER',orderId,payload.product,payload.size,payload.name,payload.phone,
       payload.address + ', ' + payload.city + ', ' + payload.state,payload.delivery_day + ' ' + payload.delivery_date + ' ' + payload.delivery_window,
       payload.amount + ' cash on delivery'].join('\n');
       await window.emailjs.send('service_gxhivxk','template_239s5yz',{
       ...payload, to_name:'FrankAgent',from_name:payload.name,customer_phone:payload.phone,
       customer_address:payload.address,alternative_phone:payload.alt_phone,total:payload.amount,total_amount:payload.amount,price:payload.amount,paymentMethod:payload.payment_method,timestamp:payload.date,selected_size:payload.size,message
     },{publicKey:'_h1UzYlyePtWt0IqM'});
-    } catch (error) { console.warn('Order email failed',error); }
+      return true;
+    } catch (error) { console.warn('Order email failed',error); return false; }
   }
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (submitting || !form.reportValidity()) return;
+    if (submitting) return;
+    startCheckout();
+    trackStep('OrderSubmitAttempt');
+    trackedIssues.delete('OrderSaveFailed:sheet_unconfirmed');
     retryLink.hidden = true;
+    error.textContent = '';
     const order = Object.fromEntries(new FormData(form));
     const deliveryError = dpRecheck();
-    if (deliveryError) {error.textContent = deliveryError;return;}
+    if (deliveryError) {checkoutIssue('OrderValidationError', 'delivery_preference');error.textContent = deliveryError;return;}
     if (!order.name.trim() || order.phone.replace(/\D/g,'').length < 10 || !order.address.trim() || !order.location || !order.size) {
+      checkoutIssue('OrderValidationError', 'contact_or_size');
       error.textContent = 'Enter your name, a valid phone number, delivery area, address, and size.';
       return;
     }
     if (!cityData[order.delivery_state]?.includes(order.location) || ![...size.options].some(option => option.value === order.size && !option.disabled)) {
+      checkoutIssue('OrderValidationError', 'size_or_area');
       error.textContent = 'Choose an available size and a delivery area in your selected state.';
       return;
     }
@@ -596,16 +659,20 @@ function showSizeHint(size) {
       utm_campaign:attr.get('utm_campaign')||'',utm_content:attr.get('utm_content')||'',utm_term:attr.get('utm_term')||'',referrer:document.referrer,landing_page:location.href
     };
     submitting = true;
+    clearTimeout(draftTimer);
     error.textContent = '';
     button.disabled = true;
     button.textContent = 'Saving your order.';
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzDW18TOhtX7T7e5HcXu6bzwrs5Kpq56fgk9FdHmuy8XLrPgSq6PNiHor8OAGs_Xq51Aw/exec',{
+      await draftRequest;
+      const response = await fetch(orderEndpoint,{
         method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({...payload,product:name + ' · ' + order.size,product_name:name + ' · ' + order.size}),signal:AbortSignal.timeout(15000)
       });
       const result = await response.json();
       if (!response.ok || result.ok !== true) throw new Error('Order was not acknowledged');
     } catch {
+      checkoutIssue('OrderSaveFailed', 'sheet_unconfirmed');
+      if (!backupEmail) backupEmail = emailOrder(payload, true).then(sent => { if (!sent) backupEmail = null; return sent; });
       error.textContent = "We couldn’t confirm your order. You can retry or ask us to check the reference.";
       retryLink.hidden = false;
       button.disabled = false;
@@ -613,6 +680,7 @@ function showSizeHint(size) {
       submitting = false;
       return;
     }
+    try { sessionStorage.removeItem('gg_bra_order_id'); } catch {}
     document.getElementById('bra-order-ref').textContent = orderId;
     document.getElementById('bra-popup-ref').textContent = orderId;
     form.hidden = true;
@@ -621,7 +689,7 @@ function showSizeHint(size) {
     document.getElementById('bra-popup-total').textContent = payload.amount;
     const popup = document.getElementById('bra-order-popup');
     if (typeof popup.showModal === 'function') popup.showModal();
-    emailOrder(payload);
+    Promise.resolve(backupEmail).then(sent => { if (!sent) emailOrder(payload); });
     if (typeof fbq === 'function') {
       const tracking = {...braTracking,content_name:name,value:price,order_id:orderId};
       fbq('track','Lead',tracking);
@@ -699,3 +767,4 @@ function showSizeHint(size) {
 </script>
 </body>
 </html>
+
